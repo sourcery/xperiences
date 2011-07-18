@@ -15,7 +15,7 @@ urlpatterns += patterns('',
     # Uncomment the admin/doc line below to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
-    url(r'^$', 'landingpage.views.index', name='index'),
+    
 
     (r'^experiences/', include('experiences.urls')),
     

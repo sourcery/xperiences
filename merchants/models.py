@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.localflavor.us.models import * 
 from django.db.models.signals import pre_save  
 from django.template.defaultfilters import slugify 
 
@@ -10,11 +11,10 @@ class Merchant(models.Model):
     state = USStateField()
     zip_code = models.IntegerField()
     phone_number = models.CharField(max_length=15)
-    email = models.CharField(max_length=15)
-    #slug = models.SlugField(max_length=50, db_index=True, blank=True)  # you can use the slug to identify the merchant (rather than ID)
+    email = models.EmailField(max_length=75)
     # payment - what are the fields?
     # picture
-    
+   
     @property
     def slug(self):
         """accepts self and returns a string which is the slugified version of
@@ -26,7 +26,7 @@ class Merchant(models.Model):
     # ordering options, db table names or human readable names. So this meta class orders the Merchant clas
     # by 'name' and that's for oreder in the admin interface.
     class Meta:   
-        ordering = ['name', 'slug'] # This is a list that specifies the ordering
+        ordering = ['name'] # This is a list that specifies the ordering
     
     def __unicode__(self):  # this is for the presentation in the admin site
         return self.name
@@ -51,3 +51,6 @@ class Merchant(models.Model):
 #- credit card number / paypal for paying fees
 #- bank account and routing for sending payments
 #- probably some IRS stuff like EIN
+
+
+#slug = models.SlugField(max_length=50, db_index=True, blank=True)  # you can use the slug to identify the merchant (rather than ID)

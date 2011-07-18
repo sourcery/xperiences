@@ -16,7 +16,12 @@ def experience_profile(request, id):
     
     template_name = 'experiences/experience_profile.html' # should we slugify the name of experience?
     
-    return render_to_response(template_name, {'experience' : experience}, context_instance=RequestContext(request))
+    # TO DO - add featuers later
+    more_experiences = []
+    
+    return render_to_response(template_name, {'experience': experience, 'more_experiences': more_experiences}, context_instance=RequestContext(request))
+    
+    
 
 
 def index(request):

@@ -1,14 +1,24 @@
 {% extends "base.html" %}
 
 {% block header %}
-
+{{ experience.title }}
 {% endblock %}
 
 {% block content %}
     
-    {{ experience.title }}
     
-    {{ experience.description }}
+    <!--<img src="{{ experience.image.url }}" />--><!-- check documentation -->
+    
+    <p>{{ experience.description }}</p>
+    
+    {% if more_experiences %}
+        <h2>more experiences from merchant</h2>
+        <ul>
+            {% for e in more_experiences %}
+                <li><!--<img src="{{ e.image.url }}"--> title="{{ e.title }}" /></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
 
 {% endblock %}
