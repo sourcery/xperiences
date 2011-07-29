@@ -22,7 +22,7 @@ class Experience(models.Model):
     
     active_categories = ['adventure', 'food', 'save the world', 'romance', 'music', 'education']
         
-    class Meta:  # what is this class Meta?
+    class Meta:  # this is for the admin
         ordering = ['title']
     
     def __unicode__(self):

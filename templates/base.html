@@ -1,13 +1,92 @@
 <html>
 <head>
-    <link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css" media="screen, print" />
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css" media="screen, print" />    
+    <title>{% block title %}Welcome to the Experience Project!{% endblock %}</title> 
+</head>
+
+<body>
     
-    <title>{% block title %}The Experience Project{% endblock %}</title>
-    <body>
-        
-        <h1>{% block header %} THE EXPERIENCE PROJECT {% endblock %}</h1>
-        <div id=content>{% block content %}This is the body for now{% endblock %}</div>
+<!-- wrap all -->    
+<div id="wrapper">{% block wrapper %}  <!-- DOES THE WRAPPER GOES IN BASE? -->  
+    <div id="header">{% block header %}<!-- ASK JOSEPH ABOUT THE HEADER- what goes into base.html and what goes into each indvidual page? -->
+        <h1 id="logo"><!-- I think this block should stay in base.html -->
+            <a href="#">The Experience Project</a>
+        </h1>
+        <!-- top level nav; register, log-in, etc. -->
+        <div id="meta-nav"><!-- how to change meta-nav with template to reflect if user is signed-in or not? -->
+            <ul id="sign-up">
+                <li id="register-link">
+                    <a title="Register" href="#">Register</a>
+                </li>
+                <li id="log-in-link">
+                    <a title="Log-in" href="#">Log-in</a>
+                </li>
+            </ul>
+        </div>
+        <!-- main nav bar --><!-- I think that the main nav is going to change based on the page... and whether a user is logged in... prob. should not be in base -->
+        <div id="main-nav">
+            <ul id="user-nav">
+                <li class="first">
+                    <a title="About the experience project" href="#">What is the Project</a>
+                </li>
+                <li>
+                    <a title="Buy" href="#">Buy</a>
+                </li>
+                <li>
+                    <a title="Sell" href="#">Sell</a>
+                </li>
+            </ul>
+            <form id="search-bar" class="" action="#">
+                <div id="search-drop-down">
+                    drop-down button
+                </div>
+                <div id="search-input">
+                    input field
+                </div>
+                <div id="search-button">
+                    some button
+                </div>
+            </form>
+            <div id="cart">
+                <a title="Your Shopping Cart" href="#">Cart</a>
+            </div>
+        </div>
+    </div>{% endblock %}<!-- close header -->
+
     
-    </body>
+    <!-- ASK JOSEPH IF IS SHOULD PUT THE TWO COLUMN DIV IN BASE?? -->
+    <div id=content class="clear">{% block content %}This is the body for now{% endblock %}</div><!-- end content div-->
+    
+    <!-- footer -->
+    <div id="footer">{% block footer %} <!-- WHY DO I NEED BLOCK TAG IF NOTHING LOADS INTO TEMPLATE? -->
+        <p id="copy" class="#">&copy; 2011 Na'ama Moran</p>
+        <ul class="footer-nav">
+            <li>
+                <a title="About" href="#">About</a>
+            </li>
+            <li>
+                <a title="Careers" href="#">Careers</a>
+            </li>
+            <li>
+                <a title="Press" href="#">Press</a>
+            </li>
+            <li>
+                <a title="Terms" href="#">Terms</a>
+            </li>
+            <li>
+                <a title="Contact" href="#">Contact</a>
+            </li>                      
+        </ul>
+    </div>{% endblock %}<!-- end footer -->
+    
+
+</div>{% endblock %}<!-- close wrapper -->
+
+</body>
     
 </html>
+
+ 
+        
+        

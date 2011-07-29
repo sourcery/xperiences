@@ -1,10 +1,46 @@
+<!-- THIS IS THE HOME PAGE INDEX.HTML SAVED IN THE EXPERIENCES APP -->
+
 {% extends "base.html" %}
 
 {% block title %}
-    This is where you find the ultimate exprience
+    Welcome to the Experience Project!
 {% endblock %}
 
+
 {% block content %}
+    
+    <!-- side-bar-->
+        <div id="side-bar">
+            <!-- category list section -->
+            <div class="section">
+                <!--{% if active_categories %}-->
+                <h2>Categories</h2>                
+                <ul id="category-list">
+                    {% for category in active_categories %}  <!-- I THINK I MIGHT NEED TO CREATE A CATEGORY CLASS, then the active
+                                                                categories list should have objects of that class only if they're active-->
+                    <li>
+                        <a title="{{ active_categories[category] }}" href="{{ category.url }}">{{ category.title }}</a> <!-- this is how it should look if category were a class -->
+                    </li>
+                    <li>
+                        <a title="#" href="#">Cuisine</a>
+                    </li>
+                    <li>
+                        <a title="#" href="#">Culture</a>
+                    </li>
+                    <li>
+                        <a title="#" href="#">Education</a>
+                    </li>
+                    <li>
+                        <a title="#" href="#">Love</a>
+                    </li>
+                    <li>
+                        <a title="#" href="#">Save the world</a>
+                    </li>
+                    <li>
+                        <a title="#" href="#">Travel</a>
+                    </li>
+                </ul>    
+            </div><!-- end category list section -->    
     
         {% for item in experiences %}
         <h2><a href="{% url experience_profile item.id %}">{{ item.title }} </a> by <a href="{% url merchant_profile item.merchant.slug %}">{{ item.merchant.name }}</a></h2>
