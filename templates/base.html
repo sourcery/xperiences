@@ -8,8 +8,8 @@
 <body>
     
 <!-- wrap all -->    
-<div id="wrapper">{% block wrapper %}  <!-- DOES THE WRAPPER GOES IN BASE? -->  
-    <div id="header">{% block header %}<!-- ASK JOSEPH ABOUT THE HEADER- what goes into base.html and what goes into each indvidual page? -->
+<div id="wrapper"><!-- DOES THE WRAPPER GOES IN BASE? -->  
+    <div id="header"><!-- ASK JOSEPH ABOUT THE HEADER- what goes into base.html and what goes into each indvidual page? -->
         <h1 id="logo"><!-- I think this block should stay in base.html -->
             <a href="#">The Experience Project</a>
         </h1>
@@ -25,6 +25,7 @@
             </ul>
         </div>
         <!-- main nav bar --><!-- I think that the main nav is going to change based on the page... and whether a user is logged in... prob. should not be in base -->
+        {% block mainnav %}
         <div id="main-nav">
             <ul id="user-nav">
                 <li class="first">
@@ -51,8 +52,8 @@
             <div id="cart">
                 <a title="Your Shopping Cart" href="#">Cart</a>
             </div>
-        </div>
-    </div>{% endblock %}<!-- close header -->
+        </div>{% endblock %}
+    </div><!-- close header -->
 
     
     <!-- ASK JOSEPH IF IS SHOULD PUT THE TWO COLUMN DIV IN BASE?? -->
