@@ -4,12 +4,14 @@ from django.db.models.signals import pre_save
 from django.template.defaultfilters import slugify 
 
 class Merchant(models.Model):
+    
+    # username
     name = models.CharField(max_length=50)  # by default blank=false and null=false, means that both fields are mandatory in both admin and DB
     description = models.TextField(max_length=250)
     address = models.CharField(max_length=100)
     city = models.CharField(max_length=50)
     state = USStateField()
-    zip_code = models.CharField()
+    #zip_code = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=15)
     email = models.EmailField(max_length=75)
     # payment - what are the fields?

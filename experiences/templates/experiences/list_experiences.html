@@ -7,7 +7,8 @@
 {% block content %}
     
         {% for item in experiences %}
-        <h2><a href="{% url experience_profile item.id %}">{{ item.title }} </a> by <a href="{% url merchant_profile item.merchant.slug %}">{{ item.merchant.name }}</a></h2>
+        {% comment %}<h2><a href="{% url experience_profile item.id %}">{{ item.title }} </a> by <a href="{% url merchant_profile item.merchant.slug %}">{{ item.merchant.name }}</a></h2>{% endcomment %}
+        {{ item.title }}
         {% endfor %}
 
 {% endblock %}   
