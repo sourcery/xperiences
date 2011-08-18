@@ -3,32 +3,46 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Welcome to the Experience Project!
+    Home Page!
 {% endblock %}
 
 
 {% block content %}
     
-    <!-- side-bar-->
-        <div id="side-bar">
+        <!-- left column-->
+        <nav id="left-nav">
             <!-- category list section -->
             <div class="section">
-                <!--{% if active_categories %}-->
                 <h2>Categories</h2>                
                 <ul id="category-list">
-                    {% for category in active_categories %}  <!-- I THINK I MIGHT NEED TO CREATE A CATEGORY CLASS, then the active
-                                                                categories list should have objects of that class only if they're active-->
+                    {% for category in categories %}  
                     <li>
                         <a title="{{ category }}" href="/category/{{ category }}">{{ category }}</a> <!-- this is how it should look if category were a class -->
-                    </li>{% endfor %} 
+                    </li>
+                    {% endfor %} 
                 </ul>   
-            </div><!--{% endif %}--><!-- end category list section -->
-            <!-- ways to shop section -->
-            <div class="section"><!-- this is pretty much static... do I need anything here? -->
-                <h2>Discover</h2>
-                <ul id="ways-to-shop">
+            </div>
+            
+            <!--subscribe to email list section -->
+            <div class="section-email-list">
+                <h2>The daily experience</h2>
+                <p>Get our daily email of experiences and gift ideas.</p>
+                <div id="input-group">
+                    <form id="form" name="form" method="post" action="#">
+                        <input class="text" type="text" onfocus="if(this.value=='Enter your email')this.value='';" value="Enter your email" name="email">
+                        <span><input type="submit" value="Sign Up"></span>
+                    </form>
+                </div>
+            </div>    
+        </nav><!-- end side bar -->
+        
+        <!-- primary content -->
+        <article id="main-content">
+            
+            <div class="section">
+                 <ul id="ways-to-shop-bar">
                     <li>
-                        <a title="curated list" href="#">Curated lists</a>
+                        <a title="our pick" href="#">Our pick</a>
                     </li>
                     <li>
                         <a title="Shop nearby" href="#">Shop nearby</a>
@@ -44,24 +58,12 @@
                     </li>
                 </ul>
             </div>
-            <!--subscribe to email list section -->
-            <div class="section-email-list">
-                <h2>The daily experience</h2>
-                <p>Get our daily email of experiences and gift ideas.</p>
-                <div id="input-group">
-                    <form id="form" name="form" method="post" action="#">
-                        <input class="text" type="text" onfocus="if(this.value=='Enter your email')this.value='';" value="Enter your email" name="email">
-                        <span><input type="submit" value="Sign Up"></span>
-                    </form>
-                </div>
-            </div>    
-        </div><!-- end side bar -->
-        
-        <!-- primary content -->
-        <div id="primary">
+            
+            <div class="grid">
     
-        {% for item in experiences %}
-        <h2><a href="{% url experience_profile item.id %}">{{ item.title }} </a> by <a href="{% url merchant_profile item.merchant.slug %}">{{ item.merchant.name }}</a></h2>
+        {% for item in recent_experiences %}
+        <h2><a href="{% url experience_profile item.id %}">{{ item.title }} </a>{% if item.merchant %}  by <a href="{% url merchant_profile item.merchant.0 %}" >{{ item.merchant.1 }}{% endif %}</a></h2>
         {% endfor %}
+        </article>
 
 {% endblock %}   

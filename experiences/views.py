@@ -3,6 +3,7 @@ from django.template import RequestContext
 #from experiences.models import Experience
 import pymongo
 from pymongo import objectid
+import functions
 
 def experience_by_category(db, request, category):
     #experiences = Experience.objects.all()
@@ -17,21 +18,38 @@ def experience_by_category(db, request, category):
 
 def experience_profile(db, request, id):
     #experience = Experience.objects.get(id=id) [django]
-    
-    experience = db.experience.find_one({'_id':pymongo.objectid.ObjectId(id)}) # why the underscore before id?
 
+    experience = wrapmongo(db.experience.find_one({'_id':pymongo.objectid.ObjectId(id)})) 
+    
+    merchant_tuple = experience["merchant"] # get a tuple with ObjectId and name
+    
+    merchant_obj = wrapmongo(db.merchant.find_one({"_id":merchant_tuple[0]})) # get a merchant object
+       
     template_name = 'experiences/experience_profile.html' # should we slugify the name of experience?
     
-    more_experiences = db.experience.find({'merchant': experience.get('merchant', None)}).limit(5)
+    more_experiences = wrapmongo(db.experience.find({'merchant': experience.get('merchant', None)}).limit(10))
     #more_experiences = [e for e in more_experiences if e['_id'] != experience['_id']]
     
-    return render_to_response(template_name, {'experience': experience, 'more_experiences': more_experiences}, context_instance=RequestContext(request))
+    return render_to_response(template_name, {'experience': experience, 'merchant': merchant_obj, 'more_experiences': more_experiences}, context_instance=RequestContext(request))
     
     
+def wrapmongo(o):
+    """Lets you access dict.id to get dict._id"""
+    class MongoDict(dict):
+        def __init__(self, i):
+            dict.__init__(self, i)
+        @property
+        def id(self):
+            return str(self.get('_id'))
+    if not isinstance(o, dict):
+            return (MongoDict(i) for i in o)
+    else:
+        return MongoDict(o)
+        
 def index(db, request):
     #recent_experiences = Experience.objects.get(pub_date=recent) # look into get function and SQL, Django ORM
     
-    recent_experiences = db.experience.find(sort=[('pub_date', -1)], limit=9)
+    recent_experiences = wrapmongo(db.experience.find(sort=[('pub_date', -1)], limit=9))
        
     home_page_categories = get_categories()
     
@@ -42,7 +60,8 @@ def index(db, request):
     return render_to_response(template_name, {'recent_experiences': recent_experiences, 'categories': home_page_categories, 'eofd': experience_of_the_day}, context_instance=RequestContext(request))
 
 
-active_categories = ['adventure', 'food', 'save the world', 'romance', 'music', 'education']
+# how to extract active categories from Mongo to populate this list?
+active_categories = ['Adventure', 'Funky', 'save the world', 'Travel', 'Music', 'Skills']
 
 
 def get_categories():

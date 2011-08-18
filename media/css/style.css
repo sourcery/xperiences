@@ -1,0 +1,135 @@
+div#wrapper {
+    width:980px;
+    margin:0px auto 0px auto;
+    background-color:#CCC;
+}
+
+
+a {text-decoration: none;}
+a:link {color: blue;}
+a:visited {color: blue;} 
+a:hover {text-decoration: underline;}
+
+/*------------------------------------------------------------------------------*/
+/*          1. HEADER                                                          
+/*------------------------------------------------------------------------------*/
+header#header {
+    background-color:#f60;
+    height:100px;
+}
+
+header#header nav#login {
+    text-align:right;
+    background-color:#fefefe;
+}
+
+nav#main-nav div#main-nav-group > div {
+    display:inline-block;
+    margin:0px 60px 0px 10px;
+}
+
+nav#main-nav div#main-nav-group select {
+    padding-right: 10px;
+    margin-right: 20px;
+}
+
+input.search-input {
+    width:300px;
+    height:30px;
+    background-color:#FFF;
+    border:solid 1px #ccc;
+    font-size:18px;
+    font-weight:bold;
+    margin-right: 20px;
+}
+
+
+
+
+/*------------------------------------------------------------------------------*/
+/*          2. MAIN CONTENT                                                           
+/*------------------------------------------------------------------------------*/
+
+div#content {
+    display:table; width:100%;
+}
+
+nav#left-nav {
+    background-color:#555;
+    width:250px; height:auto;
+    float:left;
+}
+
+article#main-content {
+    background-color:#000;
+    color:#FFF;
+    float:left;
+    width:710px;
+    height:430px;
+    padding:10px;
+}
+
+article#main-content ul#ways-to-shop-bar li {
+    float: left;
+    margin: 10px;
+    padding: 10px;
+}
+
+
+.image-gallery {
+	list-style: none;
+	margin-top: 100px;
+}
+
+.image-gallery li {  
+	float: left;
+	margin: 5px;
+	padding: 5px;
+}
+
+.listing-item {
+	width: 220px;
+}
+
+#thumb-details {
+	height: 50px;
+	margin-bottom: 10px;
+	
+}
+
+article#main-content div#experience-of-the-day {
+	float: left;
+	padding: 5px;
+}
+
+footer {
+    background-color: red;
+    height:50px;
+}
+
+footer > div {
+    display:inline-block;
+    margin:0px 60px 0px 10px;
+}
+
+footer ul.footer-nav {
+    list-style: none;
+    margin-top: 10px;
+}
+
+footer ul.footer-nav li {
+    float: left;
+    margin: 5px;
+    padding: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+

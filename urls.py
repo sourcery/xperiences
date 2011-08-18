@@ -1,14 +1,15 @@
 from django.conf import settings
 from django.conf.urls.defaults import *
+from django.conf.urls.static import static
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns =  patterns('',(r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
-       {'document_root': settings.STATIC_DOC_ROOT}))
+#urlpatterns =  patterns('',(r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
+#       {'document_root': settings.STATIC_DOC_ROOT}))
 
-urlpatterns += patterns('', 
+urlpatterns = patterns('', 
     # Example:
     # (r'^Experience/', include('Experience.foo.urls')),
 
@@ -20,10 +21,7 @@ urlpatterns += patterns('',
     
     (r'^merchants/', include('merchants.urls')),
 
-
-
      #Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
-    
-    
-)
+        
+) + static(settings.MEDIA_URL, document_root=settings.STATIC_DOC_ROOT)
