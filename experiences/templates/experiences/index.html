@@ -3,7 +3,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Home Page!
+    Welcome to the Experience Project!
 {% endblock %}
 
 
@@ -24,23 +24,23 @@
             </div>
             
             <!--subscribe to email list section -->
-            <div class="section-email-list">
+            <div id="email-list" class="section">
                 <h2>The daily experience</h2>
                 <p>Get our daily email of experiences and gift ideas.</p>
                 <div id="input-group">
                     <form id="form" name="form" method="post" action="#">
-                        <input class="text" type="text" onfocus="if(this.value=='Enter your email')this.value='';" value="Enter your email" name="email">
-                        <span><input type="submit" value="Sign Up"></span>
+                        <input class="space_common" type="text" onfocus="if(this.value=='Enter your email')this.value='';" value="Enter your email" name="email">
+                        <input class="button" type="submit" value="Sign Up">
                     </form>
                 </div>
-            </div>    
-        </nav><!-- end side bar -->
+            </div><!-- close email-list -->    
+        </nav><!-- close side bar -->
         
         <!-- primary content -->
         <article id="main-content">
-            
-            <div class="section">
-                 <ul id="ways-to-shop-bar">
+            <h1>hits: {{ hits }}</h1>
+            <div id="ways-to-shop-bar" class="section">
+                 <ul>
                     <li>
                         <a title="our pick" href="#">Our pick</a>
                     </li>
@@ -59,11 +59,30 @@
                 </ul>
             </div>
             
-            <div class="grid">
-    
-        {% for item in recent_experiences %}
-        <h2><a href="{% url experience_profile item.id %}">{{ item.title }} </a>{% if item.merchant %}  by <a href="{% url merchant_profile item.merchant.0 %}" >{{ item.merchant.1 }}{% endif %}</a></h2>
-        {% endfor %}
+            <div class="grid">  
+                <ul class="image-gallery">
+                {% for item in recent_experiences %}
+                    <li id="#" class="listing-item">
+                        <a class="#" title="{{ experience.title }}" href="#">
+                            <img width="230" height="150" alt="{{ experience.title }}" src="/site-media/images/cheese_making.jpg">
+                        </a>
+                        <div id="thumb-details">
+                            <p class="listing-title">
+                                <a title="{{ experience.title }}" href="#"> {{ experience.title }} </a>
+                            </p>
+                            <p class="listing-merchant">
+                                <a title="{{ merchant.name }}" href=""> {{ merchant.name }}, {{ merchant.city }} {{ merchant.state }}</a>
+                            </p>
+                            <p class="listing-price">
+                                <span class="currency-symbol">$</span>
+                                {{ experience.price }}
+                                <span class="currency-code">USD</span>
+                            </p>
+                        </div>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
         </article>
 
 {% endblock %}   

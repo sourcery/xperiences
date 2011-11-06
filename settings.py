@@ -71,10 +71,10 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'middleware.MongoMiddleware'
+    #'middleware.MongoMiddleware'
 )
 
 ROOT_URLCONF = 'Experience.urls'
@@ -98,7 +98,9 @@ INSTALLED_APPS = (
 )
 
 STATIC_DOC_ROOT = '/Users/naamamoran/Code/Experience/media'
-MEDIA_URL = "/site_media/"
+UPLOADED_IMAGES = '/Users/naamamoran/Code/Experience/uploaded_media/images'
+MEDIA_URL = "/site-media/"
+
 
 
 

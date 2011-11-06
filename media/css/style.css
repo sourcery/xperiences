@@ -1,133 +1,825 @@
+/*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*	THIS IS THE CSS FOR THE EXPERIENCE PROJECT WEBSITE... I'M STILL HAVING A REALLY HARD TIME GETTING IT TO WORK... PROBABLY ANOTHER 2 WEEKS OF WTF?!!??
+/*----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "proxima-nova-1", "proxima-nova-2", "Droid Sans", arial, sans-serif;
+	font-size: 12px;
+	color: black;
+}
+
+
 div#wrapper {
-    width:980px;
-    margin:0px auto 0px auto;
-    background-color:#CCC;
+	width:980px;
+	margin:0px auto 0px auto;
+	background-color:#FFF;
+}
+
+
+h1 {
+	font-size: 2em;
+}
+
+h2 {
+	font-size: 1.5em;
+}
+
+h3 {
+	font-size: 1.2em;
 }
 
 
 a {text-decoration: none;}
-a:link {color: blue;}
-a:visited {color: blue;} 
-a:hover {text-decoration: underline;}
+a:link { color: gray; }
+/*a:visited { color: none; } */
+a:hover { text-decoration: underline; }
+a.button:hover { text-decoration: none; }
+a.buy-now-button:hover { text-decoration: none; }
+
+.section {
+	background-color: #F5F5F1;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+/* wrapper for merchant image */
+.image-wrapper {
+	background-color: #FFFFFF;
+	border: solid 1px #EAEAEA;
+/*	height: 100px;
+	width: 100px;*/
+	padding-bottom: 3px;
+	padding-left: 3px;
+	padding-right: 3px;
+	padding-top: 3px;
+	text-align: center;	
+}
+
+/* wrapper for images of more experiences */
+.image-wrapper-sml {
+	background-color: #FFFFFF;
+	border: solid 1px #EAEAEA;
+	height: 70px;
+	/*width: 70px;*/
+	padding-bottom: 3px;
+	padding-left: 3px;
+	padding-right: 3px;
+	padding-top: 3px;
+	text-align: center;
+	margin-right: 5px; /* wish I could apply it only to the second row... is there any way? */
+	margin-top: 5px;
+}
+
 
 /*------------------------------------------------------------------------------*/
-/*          1. HEADER                                                          
+/*	HEADER (MOVE TO BASE.CSS)
 /*------------------------------------------------------------------------------*/
+
+
 header#header {
-    background-color:#f60;
-    height:100px;
+	background-color:#fefefe;
+	height:100px;
 }
 
 header#header nav#login {
-    text-align:right;
-    background-color:#fefefe;
+	text-align:right;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	margin-top: 10px;
 }
 
 nav#main-nav div#main-nav-group > div {
-    display:inline-block;
-    margin:0px 60px 0px 10px;
+	display:inline-block;
+	margin:0px 60px 0px 10px;
+}
+
+nav#main-nav div#main-nav-group {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+	border-bottom-color: #EEEEEE;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	/*background-color: #CBCBC5;*/
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	font-size: 1.25em;
+	background-attachment: scroll;
+	background-clip: border-box;
+	background-color: #DDDDD8;
+	background-image: -moz-linear-gradient(center bottom , #CBCBC5 25%, #DDDDD8 76%, #EEEEEC 98%, #E7E7E4 100%);
+	background-origin: padding-box;
+	background-position: 0 0;
+	background-repeat: repeat;
+	background-size: auto auto;
+	overflow-x: hidden;
+	overflow-y: hidden;
 }
 
 nav#main-nav div#main-nav-group select {
-    padding-right: 10px;
-    margin-right: 20px;
+	padding-right: 10px;
+	margin-right: 20px;
 }
 
 input.search-input {
-    width:300px;
-    height:30px;
-    background-color:#FFF;
-    border:solid 1px #ccc;
-    font-size:18px;
-    font-weight:bold;
-    margin-right: 20px;
+	width:300px;
+	height:30px;
+	background-color:#FFF;
+	border:solid 1px #CCC;
+	font-size:18px; font-weight:bold;
+	margin-right: 10px;
+	padding-left: 10px;
+}
+
+button#search-button {
+	width: 100px;
 }
 
 
+/*------------------------------------------------------------------------------*/
+/*	LEFT NAV (specific to home page and category page)
+/*------------------------------------------------------------------------------*/
+
+nav#left-nav {
+	width:215px;
+	height:auto;
+	float:left;
+	margin-top: 20px;
+}
+
+#content nav#left-nav h2 {
+	padding: 5px;
+	border-bottom-color: #CBCBC5;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	
+}
+
+#content nav#left-nav .section {
+	background-color: #F5F5F1;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	padding-bottom: 16px;
+	padding-top: 16px;
+	padding-left: 19px;
+	padding-right: 19px;    
+}
+
+#content nav#left-nav #category-list li a {
+	display: block;
+	line-height: 20px;
+	width: 99%;
+	margin-left: 5px;
+}
+
+#email-list .section {
+	
+}
+
+#email-list p {
+	padding: 5px;
+	margin: 5px;
+	line-height: 17px;
+	font-size: 1.1em;
+}
+
+#email-list #input-group {
+	margin: 5px;
+}
+
+/* I just can't figure out how to space the text input field from button */
+#content nav#left-nav #email-list #input-group form input .text {
+	margin: 10px;
+}
+
+#content nav#left-nav #email-list #input-group form input .button {
+	margin: 10px;
+}
 
 
 /*------------------------------------------------------------------------------*/
-/*          2. MAIN CONTENT                                                           
+/*	MAIN-CONTENT
 /*------------------------------------------------------------------------------*/
 
 div#content {
-    display:table; width:100%;
+	display:table;
+	width:100%;
 }
 
-nav#left-nav {
-    background-color:#555;
-    width:250px; height:auto;
-    float:left;
-}
 
 article#main-content {
-    background-color:#000;
-    color:#FFF;
-    float:left;
-    width:710px;
-    height:430px;
-    padding:10px;
+	background-color:#FFF; 
+	float:right;
+	width:750px;
+	height:auto;
+	margin-top: 20px;
+	margin-left: 10px;
 }
 
-article#main-content ul#ways-to-shop-bar li {
-    float: left;
-    margin: 10px;
-    padding: 10px;
+/* specific to home page */
+
+article#main-content #ways-to-shop-bar {
+	margin: 10px;
+	margin-bottom: 20px;
+	padding: 20px;
+	padding-bottom: 30px;
 }
 
-
-.image-gallery {
-	list-style: none;
-	margin-top: 100px;
-}
-
-.image-gallery li {  
+	
+article#main-content #ways-to-shop-bar ul li {
 	float: left;
-	margin: 5px;
+	margin-right: 20px;
+	margin-left: 5px;
+	padding-bottom: 0px;
+	font-size: 1.25em;
+	
+}
+
+
+/*------------------------------------------------------------------------------*/
+/*	(experience profile) SIDE-BAR
+/*------------------------------------------------------------------------------*/
+
+#content .side-bar {
+	float: left;
+	background-color: #FFF;
+	width: 210px;
+	padding-right: 9px;
+	border-right-color: #EEEEEE;
+	border-right-style: solid;
+	border-right-width: 1px;
+	margin-top: 20px;
+	
+}
+
+#content .side-bar #map {
+	border: solid 1px #EEEEEE;
+	padding: 1px;
+}
+
+
+#content .side-bar #merchant-listing {
+	margin-top: 10px;
+	padding: 10px;
+}
+
+#content .side-bar #merchant-listing #merchant-image {
+	float: left;
+}
+
+#content .side-bar #merchant-listing #merchant-details {
+	float: right;
+	margin-bottom: 50px;
+	/*margin-top: 5px;*/
+	padding: 5px;
+	line-height: 1.25em;
+}
+
+#content .side-bar #merchant-listing #merchant-details li#location {
+	font-size: 10px;
+}
+
+
+#content .side-bar #merchant-listing #merchant-rating {
+	margin-top: 3px;
+	padding-left: 3px;
+	display: inline-block;
+	font-size: 0.9em;
+}
+
+#content .side-bar #merchant-listing #more-experiences {
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: solid 1px #BFBFBF; 
+}
+
+
+#content .side-bar #merchant-listing #more-experiences ul {
+	list-style: none;
+	margin-top: 10px;
+}
+
+#content .side-bar #merchant-listing #more-experiences li {
+	float: left;
+}
+
+#content .side-bar #merchant-listing #add-to-favorites-button button {
+	margin-top: 10px;
+}
+
+/*------------------------------------------------------------------------------*/
+/*	(experience profile) MAIN-CONTENT
+/*------------------------------------------------------------------------------*/
+
+/* PRIMARY */
+
+article#main-content .primary {
+	float: left;
+	width: 540px;
+	background-color:#FFFFFF;
+	margin-right: 10px;
+}
+
+article#main-content .primary #exp-title {
+	padding-bottom: 5px;
+	font-family: georgia;
+	color: gray;
+	
+}
+
+article#main-content .primary #exp-thumbs ul {
+	list-style: none;
+	margin-top: 10px;
+	
+}
+
+article#main-content .primary #exp-thumbs li {
+	float: left;
+}
+
+article#main-content .primary #exp-description {
+	display: inline-block;
+	margin-top: 10px;
+	padding-top: 10px;
+	border-top-color: #EEEEEE;
+	border-top-style: solid;
+	border-top-width: 1px; 
+}
+
+
+article#main-content .primary #reviews {
+	margin-top: 10px;
+	padding-top: 10px;
+	border-top-color: #EEEEEE;
+	border-top-style: solid;
+	border-top-width: 1px; 
+}
+
+
+/* SECONDARY */
+
+article#main-content .secondary {
+	float: right;
+	width: 200px;
+	/*height: 400px;*/
+	background-color: #FFFFFF;
+}
+
+article#main-content .secondary #price {
+	font-size: 2em;
+	font-family: georgia;
+	color: gray;
+	padding-bottom: 5px;
+}
+
+article#main-content .secondary #price a {
+	font-size: 10px;
+}
+
+article#main-content .secondary #buy-now {
+	margin-top: 10px;
+	padding: 5px 0px 10px 10px;
+}
+
+article#main-content .secondary #buy-now span {
+	margin-top: 10px;
+}
+	
+button#add-to-cart {
+	margin-top: 10px;
+	width: 150px;
+}
+
+button#add-to-wish-list {
+	margin-top: 10px;
+	width: 150px;
+}
+
+article#main-content .secondary #share {
+	margin-top: 10px;
 	padding: 5px;
 }
 
-.listing-item {
-	width: 220px;
+article#main-content .secondary #share ul {
+	list-style: none;
+	margin-top: 10px;
 }
 
-#thumb-details {
+article#main-content .secondary #share li {
+	float: left;
+	margin-right: 20px;
+}
+
+article#main-content .secondary #exp-stats {
+	margin-top: 10px;
+	padding: 10px;
+	font-size: 0.8em;
+	line-height: 1.7em;
+}
+
+/* this is a hack I did because w.out the button the share images overlay the
+  section background... and it doesn't stretch.. I don't really know why... must
+  solve at some point... maybe ask Steve Etheridge */
+button.hidden {
+	visibility: hidden;
+}
+
+
+
+/*------------------------------------------------------------------------------*/
+/*	(home page) IMAGE-GALLERY
+/*------------------------------------------------------------------------------*/
+
+.image-gallery {
+	list-style: none;
+	margin-top: 10px;
+}
+
+.image-gallery .listing-item {
+	float: left;
+	margin: 4px;
+	padding: 5px;
+	width: 230px;
+	border: solid 1px #EEEEEE;
+}
+
+experience-of-the-day .listing-item {
+	width: 100%;
+}
+
+
+div#thumb-details {
 	height: 50px;
 	margin-bottom: 10px;
-	
 }
+
+
+li.listing-item .listing-title {
+	line-height: 15px;
+}
+
+li.listing-item .listing-title a {
+	color: #666666;
+}
+
+li.listing-item .listing-merchant {
+	line-height: 15px;
+}
+
+li.listing-item .listing-merchant a {
+	color: #666666;
+}
+
+li .listing-price listing-price {
+	line-height: 15px;
+	float: right;
+	position: absolute;
+}
+
+
+
+
+/*------------------------------------------------------------------------------*/
+/*	EXPERIENCE OF THE DAY
+/*------------------------------------------------------------------------------*/
 
 article#main-content div#experience-of-the-day {
 	float: left;
 	padding: 5px;
+	margin-bottom: 10px;
 }
 
+
+
+/*------------------------------------------------------------------------------*/
+/*	FOOTER (MOVE TO BASE.CSS)
+/*------------------------------------------------------------------------------*/
+
 footer {
-    background-color: red;
-    height:50px;
+	border-top-color: #EEEEEE;
+	border-top-style: solid;
+	border-top-width: 1px;
+	color: #666666;
+	height:50px;
+	margin-top: 60px;
+	clear: left;
+	padding-top: 8px;
 }
 
 footer > div {
-    display:inline-block;
-    margin:0px 60px 0px 10px;
+	display:inline-block;
+	margin:0px 60px 0px 10px;
 }
 
 footer ul.footer-nav {
-    list-style: none;
-    margin-top: 10px;
+	list-style: none;
+	margin-top: 5px;
+	/*float: right;*/
 }
 
 footer ul.footer-nav li {
+	float: right;
+	margin: 5px;
+	padding: 5px;
+}
+
+
+footer p#copy {
+	float: left;
+	/*top: 20px;*/
+	margin-top: 15px;
+	
+}
+
+
+/*------------------------------------------------------------------------------*/
+/*	MOVE TO BASE.CSS
+/*------------------------------------------------------------------------------*/
+
+
+#content #breadcrumbs {
+	border-bottom-color: #EEEEEE;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	color: #666666;
+	font-size: 0.9em;
+	/*line-height: 20px;*/
+	list-style-image: none;
+	list-style-position: outside;
+	list-style-type: none;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-left: 5px;	
+	margin-bottom: 10px;
+}
+
+#content #breadcrumbs li {
+	float: left;
+	margin-right: 5px;
+}
+
+#content #breadcrumbs a {
+	color: #666666;
+}
+
+
+
+
+/*------------------------------------------------------------------------------*/
+/*	(merchant profile) MAIN-CONTENT
+/*------------------------------------------------------------------------------*/
+
+article#main-content #about-merchant {
+	margin-top: 10px;
+	margin-bottom: 20px;
+	padding: 10px;
+	padding-bottom: 30px;
+	border: solid 5px #EEEEEE;
+	/*background-color: #C6E7F3;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;*/
+	/*#A3F1E6*/
+	 /*#9AC8F3*/
+}
+
+article#main-content #about-merchant h1 {
+	font-family: georgia;
+	color: gray;
+}
+
+article#main-content #about-merchant #merchant-description {
+	margin-top: 10px;
+}
+
+article#main-content #merchant-experiences h2 {
+	font-family: georgia;
+	color: gray;
+	padding-left: 10px;
+	margin-top: 10px;
+	padding-top: 10px;
+	border-top: solid 1px #EEEEEE;
+}
+
+
+
+/*------------------------------------------------------------------------------*/
+/*	(merchant profile) SIDE-BAR
+/*------------------------------------------------------------------------------*/
+
+
+#content .side-bar #merchant-listing #favorite-exp {
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: solid 1px #BFBFBF; 
+}
+
+
+#content .side-bar #merchant-listing #favorite-exp ul {
+	list-style: none;
+	margin-top: 10px;
+}
+
+#content .side-bar #merchant-listing #favorite-exp li {
+	float: left;
+}
+
+/*------------------------------------------------------------------------------*/
+/*	(merchant profile) REVIEWS
+/*------------------------------------------------------------------------------*/
+
+#reviews {
+    border-top: 1px solid #EEEEEE;
+}
+
+#reviews .review-item {
+    margin-top: 5px;
+    /*border: 3px solid red;*/
+    height: 200px;
+    padding-bottom: 10px; /* you need padding in case the content is really long
+			    and reaching close to 200px in height. */
+    border-bottom: 1px solid #EEEEEE;
+}
+
+#reviews .review-item .reviewer-listing {
+    margin-top: 10px;
+    /*border: 3px solid blue;*/
+    height: 70px;
+}
+
+#reviews .review-item .reviewer-listing #reviewer-wrap {
     float: left;
-    margin: 5px;
+   /* background-color: yellow;*/
+    margin-top: 5px;
+}
+
+#reviews .review-item .reviewer-listing #ratings {
+    float: right;
+    /*border: 1px solid black;*/
+    margin-top: 5px;
+    width: 200px;
+}
+
+#reviews .review-item .reviewer-listing #reviewer-wrap #reviewer-image {
+    float: left;
+}
+
+#reviews .review-item .reviewer-listing #reviewer-wrap #reviewer-details {
+    float: right;
+    padding: 5px;
+    margin-left:5px;
+   /* border: 1px solid green;*/
+}
+
+#review-body {
+    /*border: 2px solid cyan;*/
+    margin-top: 5px;
+}
+
+#review-body p {
     padding: 5px;
 }
 
 
+/*------------------------------------------------------------------------------*/
+/*	BUTTONS
+/*------------------------------------------------------------------------------*/
+
+.button {
+    -moz-text-blink: none;
+    -moz-text-decoration-color: -moz-use-text-color;
+    -moz-text-decoration-line: none;
+    -moz-text-decoration-style: solid;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #1F75CD; 
+    background-image: none;
+    background-origin: padding-box;
+    background-position: 0 0;
+    background-repeat: repeat;
+    background-size: auto auto;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: #FFFFFF;
+    display: block;
+    font-family: "league-gothic-1","league-gothic-2",sans-serif;
+    font-size: 100%;
+    line-height: 1.1em;
+    margin-bottom: 0px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 80px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold; 
+}
+
+.button:hover {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #E64E4E;
+    background-image: none;
+    background-origin: padding-box;
+    background-position: 0 0;
+    background-repeat: repeat;
+    background-size: auto auto;
+    color: #FFFFFF;
+}
+
+.button:active, .button:focus {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #E1F1F4;
+    background-image: none;
+    background-origin: padding-box;
+    background-position: 0 0;
+    background-repeat: repeat;
+    background-size: auto auto;
+    color: #FFFFFF;
+}
+
+.buy-now-button {
+    -moz-text-blink: none;
+    -moz-text-decoration-color: -moz-use-text-color;
+    -moz-text-decoration-line: none;
+    -moz-text-decoration-style: solid;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #1F75CD; 
+    background-image: none;
+    background-origin: padding-box;
+    background-position: 0 0;
+    background-repeat: repeat;
+    background-size: auto auto;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: #FFFFFF;
+    display: block;
+    font-family: "league-gothic-1","league-gothic-2",sans-serif;
+    font-size: 150%;
+    line-height: 1.1em;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: 10px;
+    margin-top: 10px;
+    padding-bottom: 7px;
+    padding-left: 0px;
+    padding-right: 5px;
+    padding-top: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold; 
+}
+
+
+.buy-now-button:hover {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #E64E4E;
+    background-image: none;
+    background-origin: padding-box;
+    background-position: 0 0;
+    background-repeat: repeat;
+    background-size: auto auto;
+    color: #FFFFFF;
+}
+
+.buy-now-button:active, .buy-now-button:focus {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #E1F1F4;
+    background-image: none;
+    background-origin: padding-box;
+    background-position: 0 0;
+    background-repeat: repeat;
+    background-size: auto auto;
+    color: #FFFFFF;
+}
 
 
 
+http://imgur.com/4BMNm" title="Hosted by imgur.com">http://imgur.com/4BMNm.png</a>
 
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post"> <!-- Identify your business so that you can collect the payments. --> <input type="hidden" name="business" value="herschelgomez@xyzzyu.com"> <!-- Specify a Buy Now button. --> <input type="hidden" name="cmd" value="_xclick"> <!-- Specify details about the item that buyers will purchase. --> <input type="hidden" name="item_name" value="Hot Sauce-12 oz. Bottle"> <input type="hidden" name="amount" value="5.95"> <input type="hidden" name="currency_code" value="USD"> <!-- Prompt buyers to enter their desired quantities. --> <input type="hidden" name="undefined_quantity" value="1"> <!-- Display the payment button. --> <input type="image" name="submit" border="0" src="https://www.paypal.com/en_US/i/btn/btn_buynow_LG.gif" alt="PayPal - The safer, easier way to pay online"> <img alt="" border="0" width="1" height="1" src="https://www.paypal.com/en_US/i/scr/pixel.gif" > </form> 
+
+<img src="http://i.imgur.com/4BMNm.png" alt="" title="Hosted by imgur.com" />
 
 
 

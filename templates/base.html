@@ -1,196 +1,58 @@
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8" />
-<!--    <style type="text/css">
-div#wrapper {
-width:980px;
-margin:0px auto 0px auto;
-background-color:#CCC;
-}
-
-
-a {text-decoration: none;}
-a:link {color: blue;}
-a:visited {color: blue;} 
-a:hover {text-decoration: underline;}
-
-/*------------------------------------------------------------------------------*/
-/*          1. HEADER                                                          
-/*------------------------------------------------------------------------------*/
-header#header {
-    background-color:#f60;
-    height:100px;
-}
-
-header#header nav#login {
-    text-align:right;
-    background-color:#fefefe;
-}
-
-nav#main-nav div#main-nav-group > div {
-    display:inline-block;
-    margin:0px 60px 0px 10px;
-}
-
-nav#main-nav div#main-nav-group select {
-    padding-right: 10px;
-    margin-right: 20px;
-}
-
-input.search-input {
-    width:300px;
-    height:30px;
-    background-color:#FFF;
-    border:solid 1px #ccc;
-    font-size:18px;
-    font-weight:bold;
-    margin-right: 20px;
-}
-
-
-
-
-/*------------------------------------------------------------------------------*/
-/*          2. MAIN CONTENT                                                           
-/*------------------------------------------------------------------------------*/
-
-div#content {
-    display:table; width:100%;
-}
-
-nav#left-nav {
-    background-color:#555;
-    width:250px; height:auto;
-    float:left;
-}
-
-article#main-content {
-    background-color:#000;
-    color:#FFF;
-    float:left;
-    width:710px;
-    height:430px;
-    padding:10px;
-}
-
-article#main-content ul#ways-to-shop-bar li {
-    float: left;
-    margin: 10px;
-    padding: 10px;
-}
-
-
-.image-gallery {
-	list-style: none;
-	margin-top: 100px;
-}
-
-.image-gallery li {  
-	float: left;
-	margin: 5px;
-	padding: 5px;
-}
-
-.listing-item {
-	width: 220px;
-}
-
-#thumb-details {
-	height: 50px;
-	margin-bottom: 10px;
-	
-}
-
-article#main-content div#experience-of-the-day {
-	float: left;
-	padding: 5px;
-}
-
-footer {
-    background-color: red;
-    height:50px;
-}
-
-footer > div {
-    display:inline-block;
-    margin:0px 60px 0px 10px;
-}
-
-footer ul.footer-nav {
-    list-style: none;
-    margin-top: 10px;
-}
-
-footer ul.footer-nav li {
-    float: left;
-    margin: 5px;
-    padding: 5px;
-}
-</style>-->
-<!--<link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css" media="screen, print" />    -->
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/reset.css" type="text/css" media="screen, print" /> 
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css" media="screen, print" /> 
 <title>{% block title %}Welcome to the Experience Project!{% endblock %}</title>
 </head>
 
 <body>
     
 <!-- wrap all -->    
-<div id="wrapper"><!-- DOES THE WRAPPER GOES IN BASE? -->
+<div id="wrapper">
     {% block header %}
-    <div id="header"><!-- ASK JOSEPH ABOUT THE HEADER- what goes into base.html and what goes into each indvidual page? -->
-        <h1 id="logo"><!-- I think this block should stay in base.html -->
-            <a href="#">The Experience Project</a>
-        </h1>
+    <header id="header">
         <!-- top level nav; register, log-in, etc. -->
-        <div id="meta-nav"><!-- how to change meta-nav with template to reflect if user is signed-in or not? -->
-            <ul id="sign-up">
-                <li id="register-link">
-                    <a title="Register" href="#">Register</a>
-                </li>
-                <li id="log-in-link">
-                    <a title="Log-in" href="#">Log-in</a>
-                </li>
-            </ul>
-        </div>
+        <nav id="login"><a href="#">Register</a> | <a href="#">Login</a></nav>
+       
+        <nav id="main-nav">
+            <div id="main-nav-group">
+                <div id="logo">Logo</div>
+                <div id="buy-sell"><a href="#">Buy</a> | <a href="#">Sell</a></div>
+                <div><form id="search-bar" class="#" action="#">
+                    <!--<div id="search-drop-down">-->
+                    <select>
+                        <option>Adventure</option>
+                        <option>Yummy</option>
+                        <option>Culture</option>
+                        <option>Skills</option>
+                        <option>Funky</option>
+                        <option>Save the World</option>
+                        <option>Travel</option>
+                    </select>    
+                    <!--</div>-->
+                    <!--<div id="search-input">-->
+                    <input type="text" class="search-input" />
+                    <!--</div>-->
+                    <!--<div id="search-button">-->
+                    <button id="search-button"><!--<input type="submit" />-->Search</button>
+                    <!--</div>-->
+                </form></div>
+                <div>cart</div>
+            </div><!-- close main-nav group -->
+        </nav><!-- close main-nav -->
+    </header>{% endblock %}<!-- close header -->
         
-        <!-- main nav bar --><!-- I think that the main nav is going to change based on the page... and whether a user is logged in... prob. should not be in base -->
-        {% block main-nav %}
-        <div id="main-nav">
-            <ul id="user-nav">
-                <li class="first">
-                    <a title="About the experience project" href="#">What is the Project</a>
-                </li>
-                <li>
-                    <a title="Buy" href="#">Buy</a>
-                </li>
-                <li>
-                    <a title="Sell" href="#">Sell</a>
-                </li>
-            </ul>
-            <form id="search-bar" class="" action="#">
-                <div id="search-drop-down">
-                    drop-down button
-                </div>
-                <div id="search-input">
-                    input field
-                </div>
-                <div id="search-button">
-                    some button
-                </div>
-            </form>
-            <div id="cart">
-                <a title="Your Shopping Cart" href="#">Cart</a>
-            </div>
-        </div>{% endblock %}<!-- close main-nav -->
-    </div>{% endblock %}<!-- close header -->
-    
 
     
-    <!-- ASK JOSEPH IF IS SHOULD PUT THE TWO COLUMN DIV IN BASE?? -->
-    <div id=content class="clear">{% block content %}This is the body for now{% endblock %}</div><!-- end content div-->
+    <!-- ASK JOSEPH IF I SHOULD PUT THE TWO COLUMN DIV IN BASE?? -->
+    <div id="content" class="clear">{% block content %}This is the body for now{% endblock %}</div><!-- end content div-->
+    
     
     <!-- footer -->
-    <div id="footer">{% block footer %} <!-- WHY DO I NEED BLOCK TAG IF NOTHING LOADS INTO TEMPLATE? -->
-        <p id="copy" class="#">&copy; 2011 Na'ama Moran</p>
+    <footer>
+        <p id="copy">&copy; 2011 Na'ama Moran</p>
         <ul class="footer-nav">
             <li>
                 <a title="About" href="#">About</a>
@@ -208,8 +70,7 @@ footer ul.footer-nav li {
                 <a title="Contact" href="#">Contact</a>
             </li>                      
         </ul>
-    </div>{% endblock %}<!-- end footer -->
-    
+    </footer>
 
 </div><!-- close wrapper -->
 

@@ -4,17 +4,37 @@ from django.template import RequestContext  # I still need to understand better 
 #from merchants.models import Merchant
 import pymongo
 from pymongo import objectid
+from db_manage import db, merchant_collection, create_merchant
 
 
 def merchant_profile(request, username):
-    merchant = wrapmongo(db.merchant.find_one({'username': username}))
-    
+    merchant = db.merchant.find_one({'username': username})   
     template_name = 'merchants/merchant_profile.html'
-    
-    return render_to_response(template_name, {'merchant' : merchant}, context_instance=RequestContext(request))
-
+    return render_to_response(template_name, {'merchant': merchant}, context_instance=RequestContext(request))
 
     
+def register(request):
+    status = ''
+    if request.method == 'POST':
+        data = request.POST
+        if len(data['email']) == 0:
+            status = 'please enter your email'
+        else:
+            pass
+        if db.merchant.find_one({'email':data['email']}) is not None:
+            status = 'a user already exists for this email. Try again'
+        else:
+            create_merchant(merchant_collection, **data)
+            status = 'yay! Merchant created'
+            
+    else: 
+        pass
+    
+    template_name = 'merchants/register.html'
+    print "I work!"
+    return render_to_response(template_name, {'status': status}, context_instance=RequestContext(request))
+
+
     
 def wrapmongo(o):
     """Lets you access dict.id to get dict._id"""
