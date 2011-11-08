@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+        
+    <title>Add experience form</title>    
+</head>
+<body>
+    <h3>About the experience</h3>
+    <p> uploading image for {{ experience.title }} </p>
+    <form action="" method="POST" enctype="multipart/form-data">
+        <label>Upload your images
+            <input type="file" name="image_1" size="20">
+            <!--<input type="file" name="{{ experience.id}} image_2" size="20">
+            <input type="file" name="{{ experience.id}} image_3" size="20">
+            <input type="file" name="{{ experience.id}} image_4" size="20">
+            <input type="file" name="{{ experience.id}} image_5" size="20">-->
+        </label><br />
+        <input class="upload-button" type="submit" value="Upload image"><br />
+    </form>
+</body>
+</html>

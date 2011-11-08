@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+        
+    <title>Add a new listing</title>    
+</head>
+<body>
+    
+    <h2>Add listing form</h2><!-- we can change this title based on the niche-->
+    
+    <form action="#" method="POST" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Describe your offering</legend>    
+            <label>Title <input type="text" value maxlength="32" required="required" name="title"/></label><br /><br />
+            <label>Description (tell us about your cooking, the setting, yourself... anything that helps tell your story)<br />
+            <textarea rows="20" cols="50" id="description" required="required" name="description"></textarea></label><br /><br />
+            <!--<label>Category
+            <select name="category">
+                <option>Category 1</option>
+                <option>Category 2</option>
+                <option>Category 3</option>
+                <option>Category 4</option>
+                <option>Category 5</option>
+            </select>
+            </label><br /><br />-->
+        </fieldset>
+        
+        <br /><br />
+        
+        <fieldset>
+            <legend>Tell your story visually</legend>    
+            <label>Upload your images
+                <input type="file" name="image_1" size="20">
+                <input type="file" name="image_2" size="20">
+                <input type="file" name="image_3" size="20">
+                <input type="file" name="image_4" size="20">
+                <input type="file" name="image_5" size="20">
+            </label><br /><br />
+            <label>Link to a video <input type="text" value maxlength="32" name="video_link"/></label>
+        </fieldset>
+        
+        <br /><br />
+        
+        <fieldset>    
+            <legend>Location</legend>
+            <input type="checkbox" name="use_saved_address" />Use my address<br />
+            <address><!-- html 5 semantic markup -->
+                <label>Address <input class="space_common" type="text" name="address"></label><br />
+                <label>City  <input class="space_common" type="text" name="city"></label><br />
+                <label>State  
+                    <select name="state">
+                        <option>AL</option>
+                        <option>BM</option>
+                        <option>CA</option>
+                        <option>PA</option>
+                        <option>NY</option>
+                        <option>NH</option>
+                        <option>MA</option>
+                    </select>
+                </label><br />
+                <label>Zip-code<input class="space_common" type="text" name="zipcode"></label><br />
+                <label>Country  <!-- eveyrthing is going to be in the U.S. for now--> 
+                    <select name="country">
+                       <option>United States</option>
+                    </select>
+                </label><br />
+            </address><br />
+        </fieldset>
+        
+        <br /><br />
+        
+        <fieldset>
+            <legend>Available dates and times</legend>
+            <p> Pick available dates </p>
+            <!-- how to enable them select specific dates as well as 'from' 'to'? -->
+            <!-- the calendar here is just a place holder -->
+            <iframe id='cv_if1' src='http://cdn.instantcal.com/cvir.html?id=cv_nav1&theme=RE&ntype=cv_datepickerm&file=http%3A%2F%2Fwww.instantcal.com%2Ftest.ics' allowTransparency='true' scrolling='no' frameborder=0 height=250 width=250></iframe>
+            <br />
+            <p>Pick available times</p>
+            <!-- here I want to include a better time widget, perhaps a slider like in Kayak. -->
+            <input type="radio" name="mornings" />Mornings<br />
+            <input type="radio" name="evenings" />Evenings<br /> 
+            <input type="radio" name="all_day" />All day<br />
+        </fieldset>
+        
+        <br /><br />
+        
+        <fieldset>
+            <legend>Give more details to help people find you</legend>    
+            <label>Tags <input type="text" alue maxlength="10" name="tags"></label><br /><br /><!-- I need to learn how to do this... -->
+            <input type="checkbox" name="my_place">Hosting at my place<br />
+            <input type="checkbox" name="delivery">Delivery<br />
+            <input type="checkbox" name="pick-up">Pick up<br /><br />
+        </fieldset>
+        
+        <br /><br />
+        
+        <fieldset>
+            <legend>Price and capacity</legend>
+            <label for="price">Price</label>
+            <span>$</span>
+            <input type="text" id="price" name="price"/>
+            <span>USD</span><br /><br />
+            <label for="capacity">How many people can you feed?
+                <select name="capcaity">
+                    <option>1-5</option>
+                    <option>6-10</option>
+                    <option>11-15</option>
+                    <option>16-20</option>
+                    <option>more than 20</option>
+                </select></label>
+                <input type="checkbox" name="run_out_of_food"> until I run out of food<br />
+        </fieldset>       
+        
+        <br /><br />
+        
+        <input type="submit" class="button" value="View listing">
+
+    </form>
+    
+</body>
+</html>
+
+<!-- -- title for listing
+-- text area for description
+-- upload images ("of your cooking, the setting, yourself. anything that helps tell your story.")
+-- link to video (or embedding)
+-- geo location (need to represent if it's (a) stationary, (b) has a delivery service area...
+   enter address and radius, we pull geo location from Google and display map.
+-- time availability widget - use calendar and enable them to mark multiple dates.   
+
+    as well as general times, like "lunchtime weekdays" (these can be check boxes)
+
+-- toggle: listing "active" / "inactive"  
+-- tags
+-- field to classify type of experience: "delivery, take out, eat in" (checkboxes)
+-- how many people? (they will have limited capacity) - drop down menu
+-- price   
+-- save
+-- listing preview with 'edit' and 'submit' buttons
+(if user clicks edit go back one step
+if user clicks submit then the listing goes live but admin gets an email to review listing!)
+-->
+
+
+
