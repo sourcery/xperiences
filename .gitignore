@@ -1,2 +1,6 @@
+bin
+build
+include
+lib
+.Python
 *.pyc
-build/*
