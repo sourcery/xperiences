@@ -4,3 +4,6 @@ include
 lib
 .Python
 *.pyc
+src
+MongoFiles
+pip-log.txt
