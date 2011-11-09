@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+{% block title %}Sign Up{% endblock %}
+{% block extra_head %}
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/lib/openid-jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            openid.init('openid_identifier');
+        });
+        function facebook_onlogin()
+        {
+            window.location = "/accounts/facebook_login/?next={{ next }}"
+        }
+
+        function validate_this()
+        {
+            var msg = '';
+            var password = $('#password1').val();
+            var password2 = $('#password2').val();
+            if( password != password2)
+                msg = 'Password was not confirmed correctly';
+            if(password.length == 0)
+                msg = 'Please enter a password';
+            var email = $('#email1').val();
+            var email2 = $('#email2').val();
+            if( email != email2)
+                msg = 'Email address was not confirmed correctly';
+            var atIndex = email.indexOf('@');
+            if(atIndex <= 0 || atIndex == email.length-1)
+                msg = 'Not a valid email address';
+            if(msg != '')
+            {
+                $('#msg_span').html(msg).show();
+            }
+            else
+                $('#register_form').submit();
+        }
+    </script>
+    
+{% endblock %}
+{% block message_bar %}
+    <div id='msg_span' class='error_span' style='background-color: #ed0000; width:100%;
+{% if register_failed or login_failed %}
+{% else %}
+    display:none;
+{% endif %}
+ '>
+{% if login_failed %}
+        your email and password are not in are database
+{% endif %}
+{% if reason == 'already_exists' %}
+    there is already an account with '{{ email }}' as email 
+{% endif %}
+    </div>
+{% endblock %}
+{% block content %}
+    <div id="content" class="clearfix signup">
+
+        <div class="sign-in floatLeft">
+            <form method="post" action="/accounts/login/">
+                <h3 class="form-title">Sign In</h3>
+                <div class="line clearfix">
+                    <label>Email Address</label>
+                    <input name="username" type="text" value="{{ username }}"/>
+                </div>
+                <div class="line clearfix">
+                    <label>Password</label>
+                    <input name='password' type="password" value="{{ password }}"/>
+                </div>
+                <div class="line clearfix">
+                    <input type="submit" value="LOGIN"/>
+                </div>
+                <input type="hidden" name="next" value="{{ next }}" />
+            </form>
+            <a href="sign_up.html#" class="forgot-pass">Forgot your password ?</a>
+            <div class="existing-acc">
+                <h3 class="form-title">Or Use an Existing Account</h3>
+                <a href="/accounts/facebook_login/?next={{ next }}" class="fb-connect">Facebook</a>
+                <a href="#" class="google-connect" onclick="openid.signin('google');">Google</a>
+            </div>
+        </div>
+        <div class="new-customer floatLeft">
+            <form id="register_form" method="post" action="/accounts/sign_in/">
+                <input type="hidden" name="next" value="{{ next }}" />
+                <h3 class="form-title">New Customer</h3>
+                <div class="line clearfix">
+                    <label>First Name</label>
+                    <input name="first_name" type="text" value="{{ first_name }}"/>
+                </div>
+                <div class="line clearfix">
+                    <label>Last Name</label>
+                    <input name="last_name" type="text" value="{{ last_name }}"/>
+                </div>
+                <div class="line clearfix">
+                    <label>Email Address</label>
+                    <input id="email1" name="register_email" type="text" value="{{ register_email }}"/>
+                </div>
+                <div class="line clearfix">
+                    <label>Confirm Email Address</label>
+                    <input id="email2" type="text" value="{{ register_email }}"/>
+                </div>
+                <div class="line clearfix">
+                    <label>Password</label>
+                    <input id="password1" name="register_password" type="password" value="{{ register_password }}"/>
+                </div>
+                <div class="line clearfix">
+                    <label>Confirm Password</label>
+                    <input id="password2" type="password" value="{{ register_password }}"/>
+                </div>
+                <div class="line clearfix">
+                    <input onclick="validate_this();" type="button" value="REGISTER"/>
+                </div>
+            </form>
+        </div>
+        <div style="display:none;">
+        <form action="{% url socialauth_openid_login %}" method="get" id="openid_form">
+            <input type="hidden" name="action" value="verify" />
+            <input type="hidden" name="openid_next" value="{{ next }}" />
+
+            <fieldset>
+                    <legend>Sign-in or Create New Account</legend>
+
+                    <div id="openid_choice">
+                        <p>Please click your account provider:</p>
+                        <div id="openid_btns"></div>
+                    </div>
+
+                    <div id="openid_input_area">
+                        <input id="openid_identifier" name="openid_identifier" type="text" value="http://" />
+                        <input id="openid_submit" type="submit" value="Sign-In"/>
+                    </div>
+                    <noscript>
+                    <p>OpenID is service that allows you to log-on to many different websites using a single indentity.
+                    Find out <a href="http://openid.net/what/">more about OpenID</a> and <a href="http://openid.net/get/">how to get an OpenID enabled account</a>.</p>
+                    </noscript>
+            </fieldset>
+            <fieldset>
+              <legend>Sign-in or Create New Account via twitter</legend>
+              <div id="login">
+                <div id="twitter">
+                    <a href="/accounts/twitter_login/" id="twitter_login_link" class="openid_large_btn twitter"></a>
+                </div>
+              </div>
+
+                <div id="facebook">
+                    <div onclick="facebook_onlogin();" class=" fb_login_ready FB_login_button FB_ElementReady">
+                        <a id="RES_ID_fb_login" class="fbconnect_login_button">
+                            <img id="RES_ID_fb_login_image" src="http://static.ak.fbcdn.net/rsrc.php/v1/yq/r/RwaZQIP0ALn.gif" alt="Connect">
+                        </a>
+                    </div>
+                </div>
+                <script type="text/javascript">  FB.init("56243245f98b6dfb29f4b59cf34ccdf8", "/accounts/facebook_login/xd_receiver.htm"); </script>
+        </fieldset>
+        </form>
+        </div>
+    </div>
+
+{% endblock %}

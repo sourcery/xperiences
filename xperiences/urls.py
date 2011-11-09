@@ -6,6 +6,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 admin.autodiscover()
 
+import socialauth.urls
+
 #urlpatterns =  patterns('',(r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
 #       {'document_root': settings.STATIC_DOC_ROOT}))
 
@@ -21,6 +23,7 @@ urlpatterns = patterns('',
     
     (r'^merchants/', include('merchants.urls')),
 
+    (r'^accounts/', include(socialauth.urls)),
      #Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
         

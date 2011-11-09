@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Logout{% endblock %}
+{% block content %}
+    <form method='get' action='/accounts/login/'>
+    <div id="content" class="clearfix signup">
+
+        <div class="sign-in floatLeft">
+            <h3 class="form-title">Logout</h3>
+                <div class="line clearfix">
+                    <label>You just logged out, come back soon</label>
+                </div>
+            <div class="line clearfix">
+                <input type="submit" value="LOGIN AGAIN"/>
+            </div>
+        </div>
+    </div>
+    </form>
+{% endblock %}

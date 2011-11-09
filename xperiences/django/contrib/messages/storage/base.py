@@ -1,9 +1,9 @@
 from django.conf import settings
 from django.utils.encoding import force_unicode, StrAndUnicode
-from django.contrib.messages import constants, utils
+from django.contrib.messages import constants#, utils
 
 
-LEVEL_TAGS = utils.get_level_tags()
+LEVEL_TAGS = {}#utils.get_level_tags()
 
 
 class Message(StrAndUnicode):
