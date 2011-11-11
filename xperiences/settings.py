@@ -2,6 +2,8 @@
 import os
 CODE_ROOT = os.path.dirname(__file__)
 
+PRODCUTION = 'MONGOLAB_URI' in os.environ
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -11,16 +13,29 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django_mongodb_engine',
-        'NAME': 'xperiences',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '27017', 
+if PRODCUTION:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django_mongodb_engine',
+            'NAME': 'heroku_app1726026',
+            'USER': 'heroku_app1726026',
+            'PASSWORD': '7dki386htormvc4qdug35q1u6i',
+            'HOST': 'dbh83.mongolab.com',
+            'PORT': '27837', 
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django_mongodb_engine',
+            'NAME': 'xperiences',
+            'USER': '',
+            'PASSWORD': '',
+            'HOST': 'localhost',
+            'PORT': '27017', 
+        }
+    }
+
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
