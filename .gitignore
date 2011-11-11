@@ -2,6 +2,7 @@ bin
 build
 include
 /lib
+/Scripts
 .Python
 *.pyc
 *.pyo
