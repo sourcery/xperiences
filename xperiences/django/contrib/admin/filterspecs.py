@@ -194,7 +194,6 @@ class DateFieldFilterSpec(FilterSpec):
 
         self.links = (
             (_('Any date'), {}),
-            (_('Future'), {'%s__gte' % self.field_path: str(today)}),
             (_('Today'), {'%s__year' % self.field_path: str(today.year),
                        '%s__month' % self.field_path: str(today.month),
                        '%s__day' % self.field_path: str(today.day)}),
