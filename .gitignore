@@ -4,6 +4,7 @@ include
 /lib
 /Scripts
 .Python
+.idea
 *.pyc
 *.pyo
 src
