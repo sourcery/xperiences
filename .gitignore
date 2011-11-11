@@ -5,6 +5,7 @@ include
 /Scripts
 .Python
 .idea
+dump
 *.pyc
 *.pyo
 src
