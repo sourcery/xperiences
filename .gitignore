@@ -1,9 +1,10 @@
 bin
 build
 include
-lib
+/lib
 .Python
 *.pyc
+*.pyo
 src
 MongoFiles
 pip-log.txt
