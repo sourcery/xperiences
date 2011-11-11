@@ -1,4 +1,4 @@
-from django.db import models
+﻿from django.db import models
 from django.contrib.localflavor.us.models import * 
 from django.db.models.signals import pre_save  
 from django.template.defaultfilters import slugify 
