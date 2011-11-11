@@ -2,7 +2,7 @@
 import os
 CODE_ROOT = os.path.dirname(__file__)
 
-PRODCUTION = 'MONGOLAB_URI' in os.environ
+PRODUCTION = 'MONGOLAB_URI' in os.environ
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -13,7 +13,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-if PRODCUTION:
+if PRODUCTION:
     DATABASES = {
         'default': {
             'ENGINE': 'django_mongodb_engine',
