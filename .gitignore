@@ -4,7 +4,7 @@ include
 /lib
 /Scripts
 .Python
-.idea
+xperiences/.idea
 dump
 *.pyc
 *.pyo

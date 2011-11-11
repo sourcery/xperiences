@@ -1,11 +1,8 @@
-import pymongo
-from pymongo import objectid
+from django.db import connections
 
 def create_db():
-    connection = pymongo.Connection()
-    db = connection.test
-    #print db
-    return db
+    connection = connections['default']
+    return connection.db_connection
 
 
 def get_collection(db, collection_name):
@@ -16,7 +13,7 @@ def get_collection(db, collection_name):
 
 
 db = create_db()
-merchant_collection = get_collection(db, "merchant")  
+merchant_collection = get_collection(db, "merchant")
 experience_collection = get_collection(db, "experience")
 
 
@@ -51,7 +48,7 @@ test_title = "abcdefgh"
 test_name = "Na'ama Moran"
 
 test_username = "nmoran"
-    
+
 test_merchant = create_merchant(merchant_collection, test_name, test_username, "157A Fair Oaks Street", "San Francisco", "CA", "94110", "United States", "naamamoran@gmail.com", "(646) 675-9655", "Just a lovely woman!")
 test_experience = create_experience(experience_collection, test_title, 89, "efge", "2011-08-15", "category_test", test_merchant)
 
@@ -69,20 +66,20 @@ def add_merchant_to_experience(collection, exp, merchant):
     """ todo: continue this"""
     merchant_tuple =  (merchant["_id"], merchant["name"])
     exp["merchant"]=(pymongo.objectid.ObjectId(merchantID), merchantName)  # I'm not sure how ObjectId gets passed b/w functions?? Understand this line better... ask Joseph?
-    
+
     db.experience.save(exp)  # do I need to pass the experience collection to the function?
     print exp
 
-  
-  
-# but where do these two functions get the value?    
+
+
+# but where do these two functions get the value?
 def add_field_to_collection(collection, field):
     all_objs_in_collection = list(db.collection.find())
     for obj in all_objs_in_collection:
         obj["field"]=value
 
-        
+
 def add_field_to_object(collection, obj, field):
     obj["field"]=value
-    
+
 
