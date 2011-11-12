@@ -1,5 +1,5 @@
 from django.db import models
-from django.template.defaultfilters import slugify 
+from django.template.defaultfilters import slugify
 
 from merchants.models import Merchant
 
@@ -10,8 +10,8 @@ class Experience(models.Model):
     location = models.CharField(max_length=100)
     #picture = models.ImageField(upload_to="/uploads", null=True) #null=True means that picture is not mandatory
     price = models.PositiveIntegerField(default=0)
-    merchant = models.ForeignKey(Merchant)
-    pub_date = models.DateField()
+    merchant = models.ForeignKey(Merchant, null=True)
+    pub_date = models.DateField(null=True)
 
     @property
     def slug(self):
@@ -19,12 +19,12 @@ class Experience(models.Model):
             the instance's name.
         """
         return slugify(self.title)
-    
-    
-         
+
+
+
     class Meta:  # this is for the admin
         ordering = ['title']
-    
+        db_table = 'experience'
+
     def __unicode__(self):
         return self.title
-   
