@@ -1,68 +1,79 @@
 from django.shortcuts import render_to_response  # renders a given template with a given context dictionary and returns an HttpResponse object with that rendered text
 from django.template import RequestContext
 from django.http import HttpResponse
-#from experiences.models import Experience
+from experiences.models import Experience
 import pymongo
-from pymongo import objectid
 from db_manage import db
+
 
 def experience_by_category(request, category):
     #experiences = Experience.objects.all()
-    
-    experiences = db.experience.find_one({'category':category})
-    
+
+    experiences = db.experience.find_one({'category': category})
+
     template_name = 'experiences/list_experiences.html'  # aren't we supposed to have something like experiences/category/list_experiences.html?
-                                                         # or is that something that'll be determined by the urls.py?   I think this url should change!!
-    
-    return render_to_response(template_name, {'experiences' : experiences}, context_instance=RequestContext(request))
+    # or is that something that'll be determined by the urls.py?   I think this url should change!!
+
+    return render_to_response(template_name, {'experiences': experiences}, context_instance=RequestContext(request))
 
 
 def experience_profile(request, id):
     #experience = Experience.objects.get(id=id) [django]
 
-    experience = wrapmongo(db.experience.find_one({'_id':pymongo.objectid.ObjectId(id)})) 
-    
+    experience = wrapmongo(db.experience.find_one({'_id': pymongo.objectid.ObjectId(id)}))
+
     merchant_tuple = experience["merchant"] # get a tuple with ObjectId and name
-    
-    merchant_obj = wrapmongo(db.merchant.find_one({"_id":merchant_tuple[0]})) # get a merchant object
-       
+
+    merchant_obj = wrapmongo(db.merchant.find_one({"_id": merchant_tuple[0]})) # get a merchant object
+
     template_name = 'experiences/experience_profile.html' # should we slugify the name of experience?
-    
-    more_experiences = wrapmongo(db.experience.find({'merchant': experience.get('merchant', None)}).limit(10))
+
+    more_experiences = wrapmongo(db.experience.find({'merchant': experience.get('merchant')}).limit(10))
     #more_experiences = [e for e in more_experiences if e['_id'] != experience['_id']]
-    
-    return render_to_response(template_name, {'experience': experience, 'merchant': merchant_obj, 'more_experiences': more_experiences}, context_instance=RequestContext(request))
-    
-    
+
+    return render_to_response(template_name,
+            {'experience': experience, 'merchant': merchant_obj, 'more_experiences': more_experiences},
+                              context_instance=RequestContext(request))
+
+
 def wrapmongo(o):
     """Lets you access dict.id to get dict._id"""
+
+
     class MongoDict(dict):
         def __init__(self, i):
             dict.__init__(self, i)
+
+
         @property
         def id(self):
             return str(self.get('_id'))
+
+
     if not isinstance(o, dict):
-            return (MongoDict(i) for i in o)
+        return (MongoDict(i) for i in o)
     else:
         return MongoDict(o)
-        
+
+
 def index(request):
     #recent_experiences = Experience.objects.get(pub_date=recent) # look into get function and SQL, Django ORM
     hits = request.session.get('hits', 0) + 1
     request.session['hits'] = hits
-    
-    recent_experiences = wrapmongo(db.experience.find(sort=[('pub_date', -1)], limit=9))
-       
+
+    recent_experiences = Experience.objects.order_by("-pud_date")[:9]
+
     home_page_categories = get_categories()
-    
+
     experience_of_the_day = get_experience_of_the_day(db)
 
     template_name = 'experiences/index.html'
-    
+
     print "I am the index!"
-    
-    return render_to_response(template_name, {'hits': hits, 'recent_experiences': recent_experiences, 'categories': home_page_categories, 'eofd': experience_of_the_day}, context_instance=RequestContext(request))
+
+    return render_to_response(template_name,
+            {'hits': hits, 'recent_experiences': recent_experiences, 'categories': home_page_categories,
+             'eofd': experience_of_the_day}, context_instance=RequestContext(request))
 
 
 # how to extract active categories from Mongo to populate this list?
@@ -70,31 +81,32 @@ active_categories = ['Adventure', 'Funky', 'save the world', 'Travel', 'Music', 
 
 
 def get_categories():
-    return active_categories    
+    return active_categories
 
 
 def get_experience_of_the_day(db):
-    experience_of_the_day = db.experience.find_one({'_id':pymongo.objectid.ObjectId("4e3722fcd01724fa2a0c0017")}) # every day I can change the ID of the experience based on the experience of the day.
+    experience_of_the_day = db.experience.find_one({'_id': pymongo.objectid.ObjectId(
+        "4e3722fcd01724fa2a0c0017")}) # every day I can change the ID of the experience based on the experience of the day.
     return experience_of_the_day
-
 
 
 def add_experience_to_favorites(request):
     exp_id = request.POST['experience_id']  #({'_id':pymongo.objectid.ObjectId(id)}))
     #fav_experience = wrapmongo(db.experience.find_one({"_id": pymongo.objectid.ObjectId(exp_id)}))
-    
+
     #get merchant
     merch_id = request.POST['merchant_id']
     fav_merchant = wrapmongo(db.merchant.find_one({"_id": pymongo.objectid.ObjectId(merch_id)}))
-    
+
     #add experience id to favorite experiences in merchant collection
     if 'favorite_experiences' not in fav_merchant:
         fav_merchant["favorite_experience"] = []
     merchant_favorite_experiences = fav_merchant["favorite_experiences"]
     merchant_favorite_experiences.append(exp_id)
     db.merchant.save(fav_merchant)
-    
+
     return HttpResponse("Favorite experience saved!")
+
 
 def add_image(image, experience):
     """accepts image which is a django upload file object and an experience object.
@@ -102,16 +114,16 @@ def add_image(image, experience):
     """
     filename = save_image(image)
     if 'images' in experience:
-        experience['images'].append(filename)   
+        experience['images'].append(filename)
     else:
         experience['images'] = [filename]
     db.experience.save(experience)
     return True
 
- 
+
 def add_image_to_experience(request, id):
     template_name = 'experiences/add_image.html'
-    experience = db.experience.find_one({'_id':pymongo.objectid.ObjectId(id)}) 
+    experience = db.experience.find_one({'_id': pymongo.objectid.ObjectId(id)})
     if request.method == 'POST':
         #import pdb; pdb.set_trace()
         image = request.FILES['image_1']
@@ -128,7 +140,7 @@ def add_experience(request):
         data = request.POST
         if len(data['title']) == 0:
             status = 'You must enter a title for the experience, otherwise how can people know how to find you?'
-        elif len(dat['title']) > 140:
+        elif len(data['title']) > 140:
             status = 'Title cannot be longer than 140 characters'
         else:
             pass
@@ -144,7 +156,7 @@ def add_experience(request):
             pass
         if data['use_my_address'] is True:
             pass    # here I should assign the merchant's address to the experience...
-                    # not sure how to do it b/c the experience is still not in created in mongo...
+            # not sure how to do it b/c the experience is still not in created in mongo...
         elif len(data['address']) == 0:  # are these supposed to be elif?
             status = 'Please enter a valid address'
         elif len(data['city']) == 0:
@@ -159,26 +171,25 @@ def add_experience(request):
             pass
         if len(data['price']) == 0:
             status = 'Please enter price'
-        #elif data['price'] is not a number:
+            #elif data['price'] is not a number:
             # status = 'Price must be a number'
-        #elif data['price'] > 500000:
-            # status = 'Price must be between $1 and $500,000. If you want to list a really expensive experience please contact us at support@tep.com'  
+            #elif data['price'] > 500000:
+            # status = 'Price must be between $1 and $500,000. If you want to list a really expensive experience please contact us at support@tep.com'
         if len(request.FILES) > 0:
             experience = create_experience(experience_collection, **data)
-            for k,v in request.FILES.iteritems():
-                    add_image(v, experience)
+            for k, v in request.FILES.iteritems():
+                add_image(v, experience)
             status = 'yay! experience created'
         else:
             status = 'you must upload at least one image'
-        
-       
-          
 
 
 import random
 import time
 import settings
 import os
+
+
 def save_image(image):
     """accepts an image which is a django uploaded file object.
         returns a string filename, which is the path to where file is stored.
@@ -187,8 +198,6 @@ def save_image(image):
     with open(filename, 'wb') as f:
         f.write(image.read())
     return filename
-    
-
 
 
 def random_name_generator():
@@ -196,7 +205,7 @@ def random_name_generator():
         returns a randomly generated string.
     """
     return str(int(time.time())) + str(random.randint(10000, 999999))
-    
+
 
 
 
