@@ -3,6 +3,7 @@ build
 include
 /lib
 /Scripts
+/share
 .Python
 xperiences/.idea
 xperiences/django/db/backends
