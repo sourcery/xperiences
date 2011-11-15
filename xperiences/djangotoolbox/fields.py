@@ -235,17 +235,16 @@ class EmbeddedModelField(models.Field):
         return 'DictField:RawField'
 
     def _set_model(self, model):
-        # EmbeddedModelFields are not contribute[d]_to_class if using within
-        # ListFields (and friends), so we can only know the model field is
-        # used in when the IterableField sets our 'model' attribute in its
-        # contribute_to_class method.
-        # We need to know the model to generate a valid key for the lookup.
+        # We need to know the model to generate a valid key for the lookup but
+        # EmbeddedModelFields are not contributed_to_class if used in ListFields
+        # (and friends), so we can only know the model when the ListField sets
+        # our 'model' attribute in its contribute_to_class method.
 
         if model is not None and isinstance(self.embedded_model, basestring):
             # The model argument passed to __init__ was a string, so we need
             # to make sure to resolve that string to the corresponding model
-            # class, similar to relation fields. We abuse some of the
-            # relation fields' code to do the lookup here:
+            # class, similar to relation fields. We abuse some of the relation
+            # fields' code to do the lookup here:
             def _resolve_lookup(self_, resolved_model, model):
                 self.embedded_model = resolved_model
             from django.db.models.fields.related import add_lazy_relation
@@ -255,18 +254,19 @@ class EmbeddedModelField(models.Field):
 
     model = property(lambda self:self._model, _set_model)
 
-    def pre_save(self, model_instance, add):
-        embedded_instance = super(EmbeddedModelField, self).pre_save(model_instance, add)
+    def pre_save(self, model_instance, _):
+        embedded_instance = getattr(model_instance, self.attname)
         if embedded_instance is None:
             return None, None
 
         model = self.embedded_model or models.Model
         if not isinstance(embedded_instance, model):
-            raise TypeError("Expected instance of type %r, not %r" % (
-                            type(model), type(embedded_instance)))
+            raise TypeError("Expected instance of type %r, not %r"
+                            % (model, type(embedded_instance)))
 
         values = []
         for field in embedded_instance._meta.fields:
+            add = not embedded_instance._entity_exists
             value = field.pre_save(embedded_instance, add)
             if field.primary_key and value is None:
                 # exclude unset pks ({"id" : None})
@@ -294,12 +294,19 @@ class EmbeddedModelField(models.Field):
     def to_python(self, values):
         if not isinstance(values, dict):
             return values
+
         module, model = values.pop('_module', None), values.pop('_model', None)
-
-        # TODO/XXX: Workaround for old Python releases. Remove this someday.
-        # Let's make sure keys are instances of str
-        values = dict([(str(k), v) for k,v in values.items()])
-
         if module is not None:
-            return getattr(import_module(module), model)(**values)
-        return self.embedded_model(**values)
+            model = getattr(import_module(module), model)
+        else:
+            model = self.embedded_model
+
+        data = {}
+        for field in model._meta.fields:
+            try:
+                # TODO/XXX: str(...) is a workaround for old Python releases.
+                # Remove this someday.
+                data[str(field.attname)] = values[field.column]
+            except KeyError:
+                pass
+        return model(**data)
