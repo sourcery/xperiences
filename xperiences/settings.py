@@ -21,7 +21,7 @@ if PRODUCTION:
             'USER': 'heroku_app1726026',
             'PASSWORD': '7dki386htormvc4qdug35q1u6i',
             'HOST': 'dbh83.mongolab.com',
-            'PORT': '27837', 
+            'PORT': '27837',
         }
     }
 else:
@@ -32,7 +32,7 @@ else:
             'USER': '',
             'PASSWORD': '',
             'HOST': 'localhost',
-            'PORT': '27017', 
+            'PORT': '27017',
         }
     }
 
@@ -51,7 +51,7 @@ TIME_ZONE = 'America/Chicago'
 LANGUAGE_CODE = 'en-us'
 
 
-SITE_ID = '4eba73fe96cf4c019c00001d' if PRODUCTION else '4eba7239619a080e4000001d'
+SITE_ID = '4eba73fe96cf4c019c00001d' if PRODUCTION else '4eba73fe96cf4c019c00001d'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
@@ -217,3 +217,10 @@ EMAIL_USE_TLS = True
 SERVER_EMAIL = EMAIL_HOST_USER
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+#Storage
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_ACCESS_KEY_ID = 'AKIAJYBGEQMSD3MMPTYA'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'my_prod_xpr_uploads' if PRODUCTION else 'my_dev_xpr_uploads'

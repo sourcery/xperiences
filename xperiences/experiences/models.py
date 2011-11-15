@@ -12,6 +12,7 @@ class Experience(models.Model):
     price = models.PositiveIntegerField(default=0)
     merchant = models.ForeignKey(Merchant, null=True)
     pub_date = models.DateField(null=True)
+    photos = models.ImageField(upload_to='photos')
 
     @property
     def slug(self):
