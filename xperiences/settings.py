@@ -13,15 +13,17 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+import urlparse
 if PRODUCTION:
+    _DB_PARAMS = urlparse.urlparse(os.environ['MONGOLAB_URI'].replace('mongodb', 'http'))
     DATABASES = {
         'default': {
             'ENGINE': 'django_mongodb_engine',
-            'NAME': 'heroku_app1726026',
-            'USER': 'heroku_app1726026',
-            'PASSWORD': '7dki386htormvc4qdug35q1u6i',
-            'HOST': 'dbh83.mongolab.com',
-            'PORT': '27837',
+            'NAME': _DB_PARAMS[2][1:],
+            'USER': _DB_PARAMS.username,
+            'PASSWORD': _DB_PARAMS.password,
+            'HOST': _DB_PARAMS.hostname,
+            'PORT': _DB_PARAMS.port,
         }
     }
 else:
