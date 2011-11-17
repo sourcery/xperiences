@@ -1,6 +1,5 @@
 from django.db import models
 from django.template.defaultfilters import slugify
-import djangotoolbox.fields
 
 from merchants.models import Merchant
 
@@ -13,7 +12,12 @@ class Experience(models.Model):
     price = models.PositiveIntegerField(default=0)
     merchant = models.ForeignKey(Merchant, null=True)
     pub_date = models.DateField(null=True)
-    photos = djangotoolbox.fields.ListField(models.ImageField(upload_to='photos'))
+    photos = models.ImageField(upload_to='photos')
+    photo2 = models.ImageField(upload_to='photos')
+    photo3 = models.ImageField(upload_to='photos')
+    photo4 = models.ImageField(upload_to='photos')
+    photo5 = models.ImageField(upload_to='photos')
+
 
     @property
     def slug(self):
