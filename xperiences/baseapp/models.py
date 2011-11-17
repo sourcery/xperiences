@@ -21,6 +21,15 @@ class UserExtension(models.Model):
     phone_number = models.CharField(max_length=15)
     website = models.CharField(max_length=100)
 
+    birthday = models.DateField(null=True,blank=True)
+    education = models.CharField(max_length=255,default='')
+    groups = models.CharField(max_length=755,default='')
+    user_events = models.CharField(max_length=755,default='')
+    hometown = models.CharField(max_length=255,default='')
+    user_interests = models.CharField(max_length=755,default='')
+    activities = models.CharField(max_length=755,default='')
+    friends = models.CharField(max_length=2500,default='',blank='')
+
     @staticmethod
     def create_from_user(user):
         ext = UserExtension(user=user,name=user.username )
