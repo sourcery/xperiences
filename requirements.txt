@@ -1,4 +1,4 @@
-pymongo
+boto
 django-storages
 PIL
-boto
+pymongo

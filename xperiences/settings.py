@@ -53,7 +53,7 @@ TIME_ZONE = 'America/Chicago'
 LANGUAGE_CODE = 'en-us'
 
 
-SITE_ID = '4eba73fe96cf4c019c00001d' if PRODUCTION else '4eba73fe96cf4c019c00001d'
+SITE_ID = '4eba73fe96cf4c019c00001d' if PRODUCTION else '4eba7239619a080e4000001d'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
@@ -200,6 +200,7 @@ LOGGING = {
 FACEBOOK_APP_ID = '299479036742472'
 FACEBOOK_API_KEY = '299479036742472'
 FACEBOOK_SECRET_KEY = '498f25f7cb732faf01e9a197fedaf3a6'
+FACEBOOK_PERMISSIONS = 'user_about_me,email,user_website,publish_stream,user_activities,user_birthday,user_education_history,user_events,user_groups,user_hometown,user_interests'
 
 if DEBUG:
     FACEBOOK_APP_ID = '185047278245686'

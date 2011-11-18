@@ -306,6 +306,16 @@ class FacebookBackend:
             ext.FB_token = access_token
             ext.description = fb_data.get('bio','')
             ext.website = fb_data.get('website','')
+            print fb_data
+            friends = []
+            try:
+                friends = graph.get_object('me/friends')
+            except:
+                pass
+            if friends and friends.get('data',None):
+                friends = friends.get('data')
+            friend_list = ''.join(f['id'] for f in friends)
+            ext.friends = friend_list
             ext.save()
 
             auth_meta = AuthMeta(user=user, provider='Facebook').save()
