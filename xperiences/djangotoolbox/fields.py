@@ -283,6 +283,8 @@ class EmbeddedModelField(models.Field):
         if self.embedded_model is None:
             values.update({'_module' : embedded_instance.__class__.__module__,
                            '_model'  : embedded_instance.__class__.__name__})
+        # This instance will exist in the db very soon.
+        embedded_instance._entity_exists = True
         return values
 
     # TODO/XXX: Remove this once we have a cleaner solution
@@ -309,4 +311,4 @@ class EmbeddedModelField(models.Field):
                 data[str(field.attname)] = values[field.column]
             except KeyError:
                 pass
-        return model(**data)
+        return model(__entity_exists=True, **data)
