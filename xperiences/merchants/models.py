@@ -14,6 +14,7 @@ class Merchant(models.Model):
     #zip_code = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=15)
     email = models.EmailField(max_length=75)
+    photo = models.ImageField(upload_to='photos_merchent')
     # payment - what are the fields?
     # picture
 

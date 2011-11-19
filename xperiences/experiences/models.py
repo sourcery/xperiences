@@ -13,6 +13,11 @@ class Experience(models.Model):
     merchant = models.ForeignKey(Merchant, null=True)
     pub_date = models.DateField(null=True)
     photos = models.ImageField(upload_to='photos')
+    photo2 = models.ImageField(upload_to='photos')
+    photo3 = models.ImageField(upload_to='photos')
+    photo4 = models.ImageField(upload_to='photos')
+    photo5 = models.ImageField(upload_to='photos')
+
 
     @property
     def slug(self):
