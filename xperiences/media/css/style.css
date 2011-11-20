@@ -451,7 +451,7 @@ button.hidden {
 	border: solid 1px #EEEEEE;
 }
 
-experience-of-the-day .listing-item {
+div#experience-of-the-day .listing-item {
 	width: 100%;
 }
 
