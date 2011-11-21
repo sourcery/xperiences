@@ -6,11 +6,6 @@
 <link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css" media="screen, print" /> 
 <title>{% block title %}Book meals with people from around your city. Learn new dishes and share with your friends. Order homemade takeout.!{% endblock %}</title>
 <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
-<!--[if !IE 7]>
-	<style type="text/css">
-		#wrap {display:table;height:100%}
-	</style>
-<![endif]-->
 {% block extra_head %} <!-- where is this extra_head coming from??-->
 {% endblock %}
 </head>
@@ -22,9 +17,8 @@
             <div id="top-banner">
                 <ul>
                     <li>
-                        <!--https://my_dev_xpr_uploads.s3.amazonaws.com/photos/logo.png-->
                         <a href="index.html" id="logo">
-                            <img width="312" height="59" alt="neighborly-meals" src="{{ MEDIA_URL }}images/logo.png">
+                            <img width="312" height="59" alt="neighborly-meals" src="images/logo.png">
                         </a>
                     </li>
                     <li><h1>Experience Different Cultures through Food and Family</h1>
@@ -45,38 +39,44 @@
                 </ul>
             </div><!-- close main-nav -->
         </div>
-    </header>
-    {% endblock %}<!-- close header -->
+    </header>{% endblock %}<!-- close header -->
     
-    <div id="wrapper">
-        <div id="content">{% block content %}This is the body for now{% endblock %}</div>   
-    </div>
+<!-- wrap all -->    
+<div id="wrapper">
+    
+        
 
+    
+    <!-- ASK JOSEPH IF I SHOULD PUT THE TWO COLUMN DIV IN BASE?? -->
+    <div id="content" class="clear">{% block content %}This is the body for now{% endblock %}</div><!-- end content div-->
+    
+    
     <!-- footer -->
-    {% block footer %}
     <footer>
-        <div>
-            <p id="copy">&copy; 2011 Neighborly Meals</p>
-            <ul class="footer-nav">
-                <li>
-                    <a title="About" href="#">About</a>
-                </li>
-                <!--<li>
-                    <a title="Careers" href="#">Careers</a>
-                </li>
-                <li>
-                    <a title="Press" href="#">Press</a>
-                </li>
-                <li>
-                    <a title="Terms" href="#">Terms</a>
-                </li>-->
-                <li>
-                    <a title="Contact" href="#">Contact</a>
-                </li>                      
-            </ul>
-        </div>
-    </footer>{% endblock %}
-</body>    
+        <p id="copy">&copy; 2011 Na'ama Moran</p>
+        <ul class="footer-nav">
+            <li>
+                <a title="About" href="#">About</a>
+            </li>
+            <li>
+                <a title="Careers" href="#">Careers</a>
+            </li>
+            <li>
+                <a title="Press" href="#">Press</a>
+            </li>
+            <li>
+                <a title="Terms" href="#">Terms</a>
+            </li>
+            <li>
+                <a title="Contact" href="#">Contact</a>
+            </li>                      
+        </ul>
+    </footer>
+
+</div><!-- close wrapper -->
+
+</body>
+    
 </html>
 
  

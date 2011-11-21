@@ -1,77 +1,24 @@
 <!-- THIS IS THE HOME PAGE INDEX.HTML SAVED IN THE EXPERIENCES APP -->
-
 {% extends "base.html" %}
 
-{% block title %}
-    Welcome to the Experience Project!
-{% endblock %}
 
-
-{% block content %}
-
-        <!-- left column-->
-        <nav id="left-nav">
-            <!-- category list section -->
-            <div class="section">
-                <h2>Categories</h2>
-                <ul id="category-list">
-                    {% for category in categories %}
-                    <li>
-                        <a title="{{ category }}" href="/category/{{ category }}">{{ category }}</a> <!-- this is how it should look if category were a class -->
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-
-            <!--subscribe to email list section -->
-            <div id="email-list" class="section">
-                <form id="form" name="form" method="post" action="#">
-                    <h2>The daily experience</h2>
-                    <p><label for="daily_email">Get our daily email of experiences and gift ideas.</label></p>
-                    <div id="input-group">
-                        <input id="daily_email" class="space_common" type="text" onfocus="if(this.value=='Enter your email')this.value='';" value="Enter your email" name="email">
-                        <input class="button" type="submit" value="Sign Up">
-                    </div>
-                </form>
-            </div><!-- close email-list -->
-        </nav><!-- close side bar -->
-
-        <!-- primary content -->
-        <article id="main-content">
-            <h1>hits: {{ hits }}</h1>
-            <div id="ways-to-shop-bar" class="section">
-                 <ul>
-                    <li>
-                        <a title="our pick" href="#">Our pick</a>
-                    </li>
-                    <li>
-                        <a title="Shop nearby" href="#">Shop nearby</a>
-                    </li>
-                    <li>
-                        <a title="Personalized offers" href="#">Personalized offers</a>
-                    </li>
-                    <li>
-                        <a title="Recently posted" href="#">Fresh experiences</a>
-                    </li>
-                    <li>
-                        <a title="Shop with friends" href="#">Shop with friends</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="grid">
+    
+    {% block wrapper %}
+        <!--<h1>hits: {{ hits }}</h1>-->
+        {% block content %}
+            <div class="image-grid">
                 <ul class="image-gallery">
-                {% for item in recent_experiences %}
+                {% for experience in recent_experiences %}
                     <li id="#" class="listing-item">
                         <a class="#" title="{{ experience.title }}" href="#">
-                            <img width="230" height="150" alt="{{ experience.title }}" src="/media/images/cheese_making.jpg">
+                            <img width="310" height="207" alt="{{ experience.title }}" src="https://my_dev_xpr_uploads.s3.amazonaws.com/{{ experience.photos.name }}">
                         </a>
                         <div id="thumb-details">
                             <p class="listing-title">
                                 <a title="{{ experience.title }}" href="#"> {{ experience.title }} </a>
                             </p>
                             <p class="listing-merchant">
-                                <a title="{{ merchant.name }}" href=""> {{ merchant.name }}, {{ merchant.city }} {{ merchant.state }}</a>
+                                <a title="{{ experience.merchant.name }}" href=""> {{ experience.merchant.name }}, {{ experience.merchant.city }} {{ experience.merchant.state }}</a>
                             </p>
                             <p class="listing-price">
                                 <span class="currency-symbol">$</span>
@@ -82,7 +29,6 @@
                     </li>
                 {% endfor %}
                 </ul>
-            </div>
-        </article>
-
-{% endblock %}
+            </div><!-- end image-grid div -->
+        {% endblock %}<!-- end content block -->
+    {% endblock %}<!-- end wrapper block
