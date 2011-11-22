@@ -11,14 +11,11 @@
             <div id="exp-title">
                 <h1>{{ experience.title }}</h1>
             </div>
-            <div id="img-gallery">
+            <div id="img-gallery"> <!-- I need to talk to chong han about this.. I am confused -->
                 <div id="exp-main-image" class="image-wrapper"></div>
                 <div id="exp-thumbs">
-                    {% for img in experience %}
-                        <img class="exp-thumbs-img" alt="{{ experience.title }}" src="https://my_dev_xpr_uploads.s3.amazonaws.com/{{ experience.photos.name }}">
-                        <img class="exp-thumbs-img" alt="{{ experience.title }}" src="https://my_dev_xpr_uploads.s3.amazonaws.com/{{ experience.photos.name }}">
-                        <img class="exp-thumbs-img" alt="{{ experience.title }}" src="https://my_dev_xpr_uploads.s3.amazonaws.com/{{ experience.photos.name }}">
-                        <img class="exp-thumbs-img" alt="{{ experience.title }}" src="https://my_dev_xpr_uploads.s3.amazonaws.com/{{ experience.photos.name }}">    
+                    {% for img in experience %}<!--src="https://my_dev_xpr_uploads.s3.amazonaws.com/{{ experience.photos.name }}"-->
+                        <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ MEDIA_URL }}/images/aurora_boralis.jpg">
                     {% endfor %}    
                 </div><!-- close exp-thumbs -->  
             </div><!-- close img-gallery -->
@@ -30,31 +27,93 @@
             <div id="reviews">
                 <!--<h3> What People Say</h3>-->
                 <!--<button id="write-a-review">Write a Review</button>-->
-                <div class="review-item">
-                    <div class="reviewer-listing">
-                        <div id="reviewer-wrap">
-                            <div id="reviewer-image">
-                                <img width="50" height="50" alt="{{ user.name }}" src="/site-media/images/Picture_Necklace_sml.jpg">
-                            </div><!-- close reviewer-image-->
-                            <div id="reviewer-details">
-                                <p>{{ user.name }}</p>
-                                <p class="location">{{ user.city }}, {{ user.state }}</p>
-                                <div id="feedback-visual">
-                                    <ul>
-                                        <li><img src="#"></li>
-                                        <li>{{ review.pub_date }}</li>
-                                    </ul>    
-                                </div>
-                            </div><!-- close reviewer-details -->    
-                        </div><!-- close reviewer-wrap-->
-                        <div id="ratings"><img width: 60px src="/site-media/images/stars.jpg"> | Aug 26, 2009</div><!-- close ratings -->
-                    </div><!-- close reviewer listing -->    
-                    <div id="review-body">
-                        <p>{{ review.content }}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eleifend rutrum porta. Integer magna sem, ultricies nec ultricies suscipit, ullamcorper sit amet purus. Sed vulputate dolor in urna varius tempor. Sed elementum molestie elit at pharetra. Suspendisse nec imperdiet turpis. Nam vitae ante urna, sit amet luctus lorem. Integer eu turpis id urna imperdiet tempor sit amet vitae elit. Nullam viverra, arcu eget hendrerit fermentum, turpis odio convallis lectus, ut laoreet nibh ligula vel dolor. Maecenas volutpat cursus dictum. Donec varius lectus et leo auctor faucibus.</p> 
-                    </div> <!-- close review-body -->     
-                </div><!-- close review_item -->            
-            </div><!-- close reviews -->
+            <div class="review-item">
+                <div class="reviewer-listing">
+                    <div id="reviewer-wrap">
+                        <div id="reviewer-image">
+                            <img width="50" height="50" alt="#" src="{{ MEDIA_URL }}/images/Picture_Necklace_sml.jpg">
+                        </div><!-- close reviewer-image-->
+                        <div id="reviewer-details">
+                            <p>Na'ama Moran</p>
+                            <p class="location">San-Francisco, CA</p>
+                        </div><!-- close reviewer-details -->    
+                    </div><!-- close reviewer-wrap-->
+                    <div id="ratings"><img width: 60px src="{{ MEDIA_URL }}/images/stars.png"></div><!-- close ratings -->
+                </div><!-- close reviewer listing -->    
+                <div id="review-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+                    elit. Vivamus eleifend rutrum porta. Integer magna sem,
+                    ultricies nec ultricies suscipit, ullamcorper sit amet
+                    purus. Sed vulputate dolor in urna varius tempor. Sed
+                    elementum molestie elit at pharetra. Suspendisse nec
+                    imperdiet turpis. Nam vitae ante urna, sit amet luctus
+                    lorem. Integer eu turpis id urna imperdiet tempor sit
+                    amet vitae elit. Nullam viverra, arcu eget hendrerit
+                    fermentum, turpis odio convallis lectus, ut laoreet nibh
+                    ligula vel dolor. Maecenas volutpat cursus dictum. Donec
+                    varius lectus et leo auctor faucibus.</p>
+                </div> <!-- close review-body --> 
+            </div><!-- close review_item -->            
+        
+            <div class="review-item">
+                <div class="reviewer-listing">
+                    <div id="reviewer-wrap">
+                        <div id="reviewer-image">
+                            <img width="50" height="50" alt="#" src="{{ MEDIA_URL }}/images/Picture_Necklace_sml.jpg">
+                        </div><!-- close reviewer-image-->
+                        <div id="reviewer-details">
+                            <p>Na'ama Moran</p>
+                            <p class="location">San-Francisco, CA</p>
+                        </div><!-- close reviewer-details -->    
+                    </div><!-- close reviewer-wrap-->
+                    <div id="ratings"><img width: 60px src="{{ MEDIA_URL }}/images/stars.png"></div><!-- close ratings -->
+                </div><!-- close reviewer listing -->    
+                <div id="review-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+                    elit. Vivamus eleifend rutrum porta. Integer magna sem,
+                    ultricies nec ultricies suscipit, ullamcorper sit amet
+                    purus. Sed vulputate dolor in urna varius tempor. Sed
+                    elementum molestie elit at pharetra. Suspendisse nec
+                    imperdiet turpis. Nam vitae ante urna, sit amet luctus
+                    lorem. Integer eu turpis id urna imperdiet tempor sit
+                    amet vitae elit. Nullam viverra, arcu eget hendrerit
+                    fermentum, turpis odio convallis lectus, ut laoreet nibh
+                    ligula vel dolor. Maecenas volutpat cursus dictum. Donec
+                    varius lectus et leo auctor faucibus.</p>
+                </div> <!-- close review-body --> 
+            </div><!-- close review_item -->
+                    
+            <div class="review-item">
+                <div class="reviewer-listing">
+                    <div id="reviewer-wrap">
+                        <div id="reviewer-image">
+                            <img width="50" height="50" alt="#" src="{{ MEDIA_URL }}/images/Picture_Necklace_sml.jpg">
+                        </div><!-- close reviewer-image-->
+                        <div id="reviewer-details">
+                            <p>Na'ama Moran</p>
+                            <p class="location">San-Francisco, CA</p>
+                        </div><!-- close reviewer-details -->    
+                    </div><!-- close reviewer-wrap-->
+                    <div id="ratings"><img width: 60px src="{{ MEDIA_URL }}/images/stars.png"></div><!-- close ratings -->
+                </div><!-- close reviewer listing -->    
+                <div id="review-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+                    elit. Vivamus eleifend rutrum porta. Integer magna sem,
+                    ultricies nec ultricies suscipit, ullamcorper sit amet
+                    purus. Sed vulputate dolor in urna varius tempor. Sed
+                    elementum molestie elit at pharetra. Suspendisse nec
+                    imperdiet turpis. Nam vitae ante urna, sit amet luctus
+                    lorem. Integer eu turpis id urna imperdiet tempor sit
+                    amet vitae elit. Nullam viverra, arcu eget hendrerit
+                    fermentum, turpis odio convallis lectus, ut laoreet nibh
+                    ligula vel dolor. Maecenas volutpat cursus dictum. Donec
+                    varius lectus et leo auctor faucibus.</p>
+                </div> <!-- close review-body --> 
+            </div><!-- close review_item -->            
+        </div><!-- close reviews -->
+            
         </div><!-- close primary -->
+        
     
         <div class="secondary">
             <div id="price">
@@ -83,7 +142,7 @@
                 <div id="merchant-image">
                     <a title={{ merchant.name }} href="{% url merchant_profile merchant.id %}">
                         <div class="image-wrapper">
-                            <img width="100" height="100" alt="{{ merchant.name }}" src="/site-media/images/joseph.jpg">
+                            <img width="100" height="100" alt="{{ merchant.name }}" src="{{ MEDIA_URL }}/images/joseph.jpg">
                         </div>            
                     </a>
                 </div>
@@ -99,7 +158,7 @@
             </div>
             
             <div id="map">
-                <iframe width="290" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=6375+Nautilus+Dr+Boulder,+CO+80301&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=61.153041,92.988281&amp;vpsrc=0&amp;ie=UTF8&amp;hq=&amp;hnear=6375+Nautilus+Dr,+Boulder,+Colorado+80301&amp;ll=40.062308,-105.204048&amp;spn=0.016423,0.018024&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe><br /><small><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=6375+Nautilus+Dr+Boulder,+CO+80301&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=61.153041,92.988281&amp;vpsrc=0&amp;ie=UTF8&amp;hq=&amp;hnear=6375+Nautilus+Dr,+Boulder,+Colorado+80301&amp;ll=40.062308,-105.204048&amp;spn=0.016423,0.018024&amp;z=14&amp;iwloc=A" style="color:#0000FF;text-align:left">View Larger Map</a></small>
+                <iframe width="320" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=6375+Nautilus+Dr+Boulder,+CO+80301&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=61.153041,92.988281&amp;vpsrc=0&amp;ie=UTF8&amp;hq=&amp;hnear=6375+Nautilus+Dr,+Boulder,+Colorado+80301&amp;ll=40.062308,-105.204048&amp;spn=0.016423,0.018024&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe><br /><small><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=6375+Nautilus+Dr+Boulder,+CO+80301&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=61.153041,92.988281&amp;vpsrc=0&amp;ie=UTF8&amp;hq=&amp;hnear=6375+Nautilus+Dr,+Boulder,+Colorado+80301&amp;ll=40.062308,-105.204048&amp;spn=0.016423,0.018024&amp;z=14&amp;iwloc=A" style="color:#0000FF;text-align:left">View Larger Map</a></small>
             </div><!-- close map -->
             
             <div id="exp-stats" class="section">

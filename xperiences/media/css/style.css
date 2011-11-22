@@ -159,8 +159,8 @@ div#thumb-details {
 
 
 li.listing-item .listing-title {
-	line-height: 20px;
-        font-size: 16px;
+	line-height: 16px;
+        font-size: 14px;
         
 }
 
@@ -246,10 +246,10 @@ article#main-content {
 
 article#main-content .primary {
 	float: left;
-	width: 670px;
+	width: 660px;
 	margin-top: 10px;
-	margin-right: 20px;
-	padding-top: 10px;
+/*	margin-right: 10px;
+*/	padding-top: 10px;
 
 }
 
@@ -263,22 +263,25 @@ article#main-content .primary {
 #exp-thumbs {
 	overflow: hidden;
 	position: relative;
+	margin-top: 10px;
 }
 
 .exp-thumbs-img {
 	width: 70px;
 	height: 70px;
 	cursor: pointer;
+	padding: 5px;
+	margin-right: 5px;
 }
 
 .primary #exp-thumbs ul {
-	list-style: none;
-	margin-top: 10px;
-	
+	list-style: none;	
 }
 
 .primary #exp-thumbs li {
 	float: left;
+	padding: 5px;
+	margin-right: 5px;
 }
 
 .primary #exp-description {
@@ -295,7 +298,7 @@ article#main-content .primary {
 
 article#main-content .secondary {
 	float: right;
-	width: 300px;
+	width: 320px;
 	padding-top: 5px;
         margin-top: 10px;
 }
@@ -314,7 +317,7 @@ article#main-content .secondary {
 
 .secondary #buy-now {
 	margin-top: 5px;
-	padding: 10px 0px 10px 10px;
+	padding: 15px;
 }
 
 .secondary #buy-now span {
@@ -324,7 +327,7 @@ article#main-content .secondary {
 .secondary #merchant-listing {
 	margin-top: 10px;
         margin-bottom: 10px;
-	padding: 10px;
+	padding: 15px;
 }
 
 .secondary #merchant-listing #merchant-image {
@@ -361,7 +364,7 @@ article#main-content .secondary {
 
 article#main-content .secondary #exp-stats {
 	margin-top: 10px;
-	padding: 10px;
+	padding: 15px;
 	font-size: 0.8em;
 	line-height: 1.7em;
 }
@@ -382,15 +385,22 @@ button.hidden {
     border-top-right-radius: 5px;
 }
 
+
+/* ask chong han about this code below.. where is that .main-image thing working?
+  what is it about position relative for tag and absolute for class?
+  where is that class in the code?
+*/
+
+
 #exp-main-image {
-	width: 660px;
-	height: 440px;
+	width: 640px;
+	height: 480px;
 	position: relative;
 }
 
 .main-image {
-	width: 660px;
-	height: 440px;
+	width: 640px;
+	height: 480px;
 	position: absolute;
 	left: 5px;
 	top: 5px;
@@ -400,8 +410,8 @@ button.hidden {
 .image-wrapper {
     background-color: #FFFFFF;
     border: solid 1px #EAEAEA;
-	padding: 5px;
-	text-align: center;	
+    padding: 5px;
+    text-align: center;	
 }
 
 
@@ -496,8 +506,7 @@ a.button {
 
 #reviews .review-item .reviewer-listing #reviewer-wrap {
     float: left;
-   /* background-color: yellow;*/
-    margin-top: 5px;
+    margin: 5px 0 0 5px;
 }
 
 
