@@ -13,13 +13,11 @@ class Experience(models.Model):
     price = models.PositiveIntegerField(default=0)
     merchant = models.ForeignKey(Merchant, null=True)
     pub_date = models.DateField(null=True)
-    #photo1 = models.FileField(upload_to='photos', null=True)
-    #photo2 = models.FileField(upload_to='photos', null=True)
-    #photo3 = models.FileField(upload_to='photos', null=True)
-    #photo4 = models.FileField(upload_to='photos', null=True)
-    #photo5 = models.FileField(upload_to='photos', null=True)
-    # ask Refael why null=True is not working on the admin...
-
+    photo1 = models.FileField(upload_to='photos', blank=True)
+    photo2 = models.FileField(upload_to='photos', blank=True)
+    photo3 = models.FileField(upload_to='photos', blank=True)
+    photo4 = models.FileField(upload_to='photos', blank=True)
+    photo5 = models.FileField(upload_to='photos', blank=True)
 
     @property
     def slug(self):

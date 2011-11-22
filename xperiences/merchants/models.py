@@ -14,7 +14,7 @@ class Merchant(models.Model):
     #zip_code = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=15)
     email = models.EmailField(max_length=75)
-    #photo = models.FileField(upload_to='photos_merchent', null=True)
+    photo = models.FileField(upload_to='photos_merchent')
     
     @property
     def slug(self):
