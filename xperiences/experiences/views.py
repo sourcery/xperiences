@@ -9,12 +9,12 @@ from db_manage import db
 def experience_by_category(request, category):
     #experiences = Experience.objects.all()
 
-    experiences = db.experience.find({'category': category})
+    recent_experiences = Experience.objects.filter(category=category).order_by("-pud_date")
 
-    template_name = 'experiences/list_experiences.html'  # aren't we supposed to have something like experiences/category/list_experiences.html?
+    template_name = 'experiences/index.html'  # aren't we supposed to have something like experiences/category/list_experiences.html?
     # or is that something that'll be determined by the urls.py?   I think this url should change!!
 
-    return render_to_response(template_name, {'experiences': experiences}, context_instance=RequestContext(request))
+    return render_to_response(template_name, {'recent_experiences': recent_experiences, 'category': category}, context_instance=RequestContext(request))
 
 
 def experience_profile(request, id):
