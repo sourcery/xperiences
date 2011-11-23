@@ -14,12 +14,12 @@
             <div id="img-gallery"> <!-- I need to talk to chong han about this.. I am confused -->
                 <div id="exp-main-image" class="image-wrapper"></div>
                 <div id="exp-thumbs">
-                    
-                    <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo1.url}}">
-                    <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo2.url}}">
-                    <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo3.url}}">
-                    <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo4.url}}">
-                    <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo5.url}}">
+                
+                    {% if experience.photo1 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo1.url}}">{% endif %}
+                    {% if experience.photo1 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo2.url}}">{% endif %}
+                    {% if experience.photo1 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo3.url}}">{% endif %}
+                    {% if experience.photo1 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo4.url}}">{% endif %}
+                    {% if experience.photo1 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo5.url}}">{% endif %}
                
                 </div><!-- close exp-thumbs -->  
             </div><!-- close img-gallery -->
