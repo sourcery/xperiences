@@ -18,18 +18,22 @@ def experience_by_category(request, category):
 
 
 def experience_profile(request, id):
-    #experience = Experience.objects.get(id=id) [django]
+    experience = Experience.objects.get(id=id) 
 
-    experience = wrapmongo(db.experience.find_one({'_id': pymongo.objectid.ObjectId(id)}))
+    #experience = wrapmongo(db.experience.find_one({'_id': pymongo.objectid.ObjectId(id)}))
 
-    merchant_tuple = experience["merchant"] # get a tuple with ObjectId and name
+    #merchant_tuple = experience["merchant"] # get a tuple with ObjectId and name
 
-    merchant_obj = wrapmongo(db.merchant.find_one({"_id": merchant_tuple[0]})) # get a merchant object
+    #merchant_obj = wrapmongo(db.merchant.find_one({"_id": merchant_tuple[0]})) # get a merchant object
+    
+    merchant_obj = experience.merchant
 
     template_name = 'experiences/experience_profile.html' # should we slugify the name of experience?
 
-    more_experiences = wrapmongo(db.experience.find({'merchant': experience.get('merchant')}).limit(10))
+    #more_experiences = wrapmongo(db.experience.find({'merchant': experience.get('merchant')}).limit(10))
     #more_experiences = [e for e in more_experiences if e['_id'] != experience['_id']]
+    
+    more_experiences = merchant_obj.experience_set.all()[:10]
 
     return render_to_response(template_name,
             {'experience': experience, 'merchant': merchant_obj, 'more_experiences': more_experiences},

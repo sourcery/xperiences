@@ -14,9 +14,13 @@
             <div id="img-gallery"> <!-- I need to talk to chong han about this.. I am confused -->
                 <div id="exp-main-image" class="image-wrapper"></div>
                 <div id="exp-thumbs">
-                    {% for img in experience %}<!--src="https://my_dev_xpr_uploads.s3.amazonaws.com/{{ experience.photos.name }}"-->
-                        <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ MEDIA_URL }}/images/aurora_boralis.jpg">
-                    {% endfor %}    
+                    
+                    <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo1.url}}">
+                    <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo2.url}}">
+                    <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo3.url}}">
+                    <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo4.url}}">
+                    <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo5.url}}">
+               
                 </div><!-- close exp-thumbs -->  
             </div><!-- close img-gallery -->
             <div id="exp-description">
