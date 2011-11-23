@@ -7,8 +7,8 @@ $(document).ready(function() {
 	var thumbs = $(".exp-thumbs-img");
 	var thumbswrapper = $("#exp-thumbs");
 
-	var thumbW = thumbs.first().width();
-	var thumbH = thumbs.first().height();
+	var thumbW = thumbs.first().outerWidth(true);
+	var thumbH = thumbs.first().outerHeight(true);
 	thumbswrapper.css("width", thumbW * (thumbs.length - 1));
 	thumbswrapper.css("height", thumbH);
 
@@ -50,7 +50,7 @@ function setImageToMain(item) {
 	if (index >= thumbs.length) return;
 
 	var thumbswrapper = $("#exp-thumbs");
-	var w = thumbs.first().width();
+	var w = thumbs.first().outerWidth(true);
 
 	var first = thumbs.first();
 	first.remove();
