@@ -11,7 +11,7 @@
                 {% for experience in recent_experiences %}
                     <li id="#" class="listing-item">
                         <a class="#" title="{{ experience.title }}" href="#">
-                            <img width="310" height="207" alt="{{ experience.title }}" src="https://my_dev_xpr_uploads.s3.amazonaws.com/{{ experience.photos.name }}">
+                            <img width="310" height="207" alt="{{ experience.title }}" {% if experience.photo1 %}src="{{ experience.photo1.url }}"{% endif %}>
                         </a>
                         <div id="thumb-details">
                             <p class="listing-title">
