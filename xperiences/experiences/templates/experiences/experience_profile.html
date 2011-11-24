@@ -146,7 +146,7 @@
                 <div id="merchant-image">
                     <a title={{ merchant.name }} href="{% url merchant_profile merchant.id %}">
                         <div class="image-wrapper">
-                            <img width="100" height="100" alt="{{ merchant.name }}" src="{{ MEDIA_URL }}/images/joseph.jpg">
+                            <img width="100" height="100" alt="{{ merchant.name }}" src="{{merchant.photo.url}}">
                         </div>            
                     </a>
                 </div>
