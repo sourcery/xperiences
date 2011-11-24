@@ -305,6 +305,7 @@ class FacebookBackend:
             ext.FB_token = access_token
             ext.description = fb_data.get('bio','')
             ext.website = fb_data.get('website','')
+<<<<<<< HEAD
 
 #            meta = []
 #            try:
@@ -314,6 +315,9 @@ class FacebookBackend:
 #            if meta and meta.get('data'):
 #                meta = meta['data']
 #            print meta
+=======
+            print fb_data
+>>>>>>> 8a9cdb4e5e2e52acc7bfcf12e4b06840a559f59a
             friends = []
             try:
                 friends = graph.get_object('me/friends')
@@ -321,6 +325,7 @@ class FacebookBackend:
                 pass
             if friends and friends.get('data',None):
                 friends = friends.get('data')
+<<<<<<< HEAD
             friend_list = ''.join(f['id'] + ',' for f in friends)
             ext.friends = friend_list
 
@@ -364,6 +369,10 @@ class FacebookBackend:
             print groups
             ext.groups = groups
 
+=======
+            friend_list = ''.join(f['id'] for f in friends)
+            ext.friends = friend_list
+>>>>>>> 8a9cdb4e5e2e52acc7bfcf12e4b06840a559f59a
             ext.save()
 
             auth_meta = AuthMeta(user=user, provider='Facebook').save()

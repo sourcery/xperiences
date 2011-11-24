@@ -28,5 +28,6 @@ urlpatterns = patterns('',
     (r'^accounts/', include(socialauth.urls)),
      #Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
+    (r'^$', include('experiences.urls')),
         
 ) + static(settings.MEDIA_URL, document_root=settings.STATIC_DOC_ROOT)

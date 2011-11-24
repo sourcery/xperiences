@@ -2,4 +2,4 @@ from django.contrib import admin
 
 from merchants.models import *
 
-#admin.site.register(Merchant)
+admin.site.register(Merchant)

@@ -55,6 +55,6 @@ def auth(request):
 
     return {
         'user': SimpleLazyObject(get_user),
-#        'messages': messages.get_messages(request),
+        'messages': messages.get_messages(request),
         'perms':  lazy(lambda: PermWrapper(get_user()), PermWrapper)(),
     }

@@ -1,361 +1,292 @@
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-/*	THIS IS THE CSS FOR THE EXPERIENCE PROJECT WEBSITE... I'M STILL HAVING A REALLY HARD TIME GETTING IT TO WORK... PROBABLY ANOTHER 2 WEEKS OF WTF?!!??
+/*	CSS FOR NEIGHBORLYMEALS.COM OUR TESTBED WEBSITES FOR THE FOOD NICHE
 /*----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-
-body {
-	font-family: "proxima-nova-1", "proxima-nova-2", "Droid Sans", arial, sans-serif;
-	font-size: 12px;
-	color: black;
+ 	
+ 	
+html, body {
+    font-family: proxima-nova, Droid Sans, helvetica, sans-serif;
+    font-size: 12px;
+	line-height: 1.3;
+/*    background: #e8dcc9 url(../images/bg.png) repeat-x; */
+    background: #fdf4e5;
+    height: 100%;
+}
+	
+#wrapper {
+    width:990px;
+    margin:0px auto;
+    min-height: 100%;
+    /*border-right: 1px solid red;
+    border-left: 1px solid red;*/
 }
 
-
-div#wrapper {
-	width:980px;
-	margin:0px auto 0px auto;
-	background-color:#FFF;
+#content {
+    overflow: auto;
+    padding-bottom: 70px;
 }
-
 
 h1 {
-	font-size: 2em;
+    font-size: 2em;
 }
 
 h2 {
-	font-size: 1.5em;
+    font-size: 1.5em;
 }
 
 h3 {
-	font-size: 1.2em;
+    font-size: 1.2em;
 }
 
 
-a {text-decoration: none;}
-a:link { color: gray; }
-/*a:visited { color: none; } */
-a:hover { text-decoration: underline; }
-a.button:hover { text-decoration: none; }
-a.buy-now-button:hover { text-decoration: none; }
-
-.section {
-	background-color: #F5F5F1;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-
-/* wrapper for merchant image */
-.image-wrapper {
-	background-color: #FFFFFF;
-	border: solid 1px #EAEAEA;
-/*	height: 100px;
-	width: 100px;*/
-	padding-bottom: 3px;
-	padding-left: 3px;
-	padding-right: 3px;
-	padding-top: 3px;
-	text-align: center;	
-}
-
-/* wrapper for images of more experiences */
-.image-wrapper-sml {
-	background-color: #FFFFFF;
-	border: solid 1px #EAEAEA;
-	height: 70px;
-	/*width: 70px;*/
-	padding-bottom: 3px;
-	padding-left: 3px;
-	padding-right: 3px;
-	padding-top: 3px;
-	text-align: center;
-	margin-right: 5px; /* wish I could apply it only to the second row... is there any way? */
-	margin-top: 5px;
-}
+a { text-decoration: none; }
 
 
 /*------------------------------------------------------------------------------*/
-/*	HEADER (MOVE TO BASE.CSS)
+/*	HEADER 
 /*------------------------------------------------------------------------------*/
 
 
 header#header {
-	background-color:#fefefe;
-	height:100px;
+    overflow: hidden;
+    position: relative;
+    height: 220px;
+    width: 100%;
+    margin-bottom: 10px;
 }
 
-header#header nav#login {
-	text-align:right;
-	padding-bottom: 10px;
-	padding-top: 10px;
-	margin-top: 10px;
+#top-banner-bg {
+    background: #bf5c27 url(../images/header_bg2.png) repeat-x bottom;
+    padding-top: 50px;
+    padding-bottom: 30px;
 }
 
-nav#main-nav div#main-nav-group > div {
-	display:inline-block;
-	margin:0px 60px 0px 10px;
+#top-banner {
+    margin: 0 auto 0;
+    width: 990px;
 }
 
-nav#main-nav div#main-nav-group {
-	padding-top: 20px;
-	padding-bottom: 20px;
-	margin-bottom: 20px;
-	border-bottom-color: #EEEEEE;
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
-	/*background-color: #CBCBC5;*/
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	font-size: 1.25em;
-	background-attachment: scroll;
-	background-clip: border-box;
-	background-color: #DDDDD8;
-	background-image: -moz-linear-gradient(center bottom , #CBCBC5 25%, #DDDDD8 76%, #EEEEEC 98%, #E7E7E4 100%);
-	background-origin: padding-box;
-	background-position: 0 0;
-	background-repeat: repeat;
-	background-size: auto auto;
-	overflow-x: hidden;
-	overflow-y: hidden;
+.clear {
+    clear: both;
 }
 
-nav#main-nav div#main-nav-group select {
-	padding-right: 10px;
-	margin-right: 20px;
+#top-banner li {
+    float: left;
+    
 }
 
-input.search-input {
-	width:300px;
-	height:30px;
-	background-color:#FFF;
-	border:solid 1px #CCC;
-	font-size:18px; font-weight:bold;
-	margin-right: 10px;
-	padding-left: 10px;
+@font-face {
+    font-family: 'MenschBold';
+    src: url('mensch-bold-wf.eot');
+    src: url('mensch-bold-wf.eot?#iefix') format('embedded-opentype'),
+         url('mensch-bold-wf.woff') format('woff'),
+         url('mensch-bold-wf.ttf') format('truetype'),
+         url('mensch-bold-wf.svg#MenschMenschBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
 }
 
-button#search-button {
-	width: 100px;
+#top-banner li:last-child {
+    margin-left: 65px;
+    padding-top: 5px;
+    color: #fdf4e5;
+    font-family: MenschBold, helvetica, san-sarif;   
 }
+
+#top-banner li:last-child h3 {
+    line-height: 2em;
+}
+
+#main-nav-bg {
+    background: #e8dcc9;
+    height: 50px;
+    padding-top: 20px;
+}
+
+#main-nav {
+    clear: both;
+    height: 50px;
+    width: 990px;
+    margin: 0 auto;
+}
+
+
+#main-nav li {
+    float: left;    
+    margin-right: 30px;
+    line-height: 50px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+#main-nav li a {
+    color: #c56029;
+    font-size: 16px; 
+}
+
+
+
+#main-nav li#selected {
+    margin-left:5px;
+    background-color: #fdf4e5;
+}
+
+
 
 
 /*------------------------------------------------------------------------------*/
-/*	LEFT NAV (specific to home page and category page)
+/*	(home page) IMAGE-GALLERY
 /*------------------------------------------------------------------------------*/
 
-nav#left-nav {
-	width:215px;
-	height:auto;
-	float:left;
-	margin-top: 20px;
-}
-
-#content nav#left-nav h2 {
-	padding: 5px;
-	border-bottom-color: #CBCBC5;
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
-	
-}
-
-#content nav#left-nav .section {
-	background-color: #F5F5F1;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	margin-bottom: 10px;
-	margin-top: 10px;
-	padding-bottom: 16px;
-	padding-top: 16px;
-	padding-left: 19px;
-	padding-right: 19px;    
-}
-
-#content nav#left-nav #category-list li a {
-	display: block;
-	line-height: 20px;
-	width: 99%;
-	margin-left: 5px;
-}
-
-#email-list .section {
-	
-}
-
-#email-list p {
-	padding: 5px;
-	margin: 5px;
-	line-height: 17px;
-	font-size: 1.1em;
-}
-
-#email-list #input-group {
-	margin: 5px;
-}
-
-/* I just can't figure out how to space the text input field from button */
-#content nav#left-nav #email-list #input-group form input .text {
-	margin: 10px;
-}
-
-#content nav#left-nav #email-list #input-group form input .button {
-	margin: 10px;
-}
-
-
-/*------------------------------------------------------------------------------*/
-/*	MAIN-CONTENT
-/*------------------------------------------------------------------------------*/
-
-div#content {
-	display:table;
-	width:100%;
-}
-
-
-article#main-content {
-	background-color:#FFF; 
-	float:right;
-	width:750px;
-	height:auto;
-	margin-top: 20px;
-	margin-left: 10px;
-}
-
-/* specific to home page */
-
-article#main-content #ways-to-shop-bar {
-	margin: 10px;
-	margin-bottom: 20px;
-	padding: 20px;
-	padding-bottom: 30px;
-}
-
-	
-article#main-content #ways-to-shop-bar ul li {
-	float: left;
-	margin-right: 20px;
-	margin-left: 5px;
-	padding-bottom: 0px;
-	font-size: 1.25em;
-	
-}
-
-
-/*------------------------------------------------------------------------------*/
-/*	(experience profile) SIDE-BAR
-/*------------------------------------------------------------------------------*/
-
-#content .side-bar {
-	float: left;
-	background-color: #FFF;
-	width: 210px;
-	padding-right: 9px;
-	border-right-color: #EEEEEE;
-	border-right-style: solid;
-	border-right-width: 1px;
-	margin-top: 20px;
-	
-}
-
-#content .side-bar #map {
-	border: solid 1px #EEEEEE;
-	padding: 1px;
-}
-
-
-#content .side-bar #merchant-listing {
-	margin-top: 10px;
-	padding: 10px;
-}
-
-#content .side-bar #merchant-listing #merchant-image {
-	float: left;
-}
-
-#content .side-bar #merchant-listing #merchant-details {
-	float: right;
-	margin-bottom: 50px;
-	/*margin-top: 5px;*/
-	padding: 5px;
-	line-height: 1.25em;
-}
-
-#content .side-bar #merchant-listing #merchant-details li#location {
-	font-size: 10px;
-}
-
-
-#content .side-bar #merchant-listing #merchant-rating {
-	margin-top: 3px;
-	padding-left: 3px;
-	display: inline-block;
-	font-size: 0.9em;
-}
-
-#content .side-bar #merchant-listing #more-experiences {
-	margin-top: 20px;
-	padding-top: 20px;
-	border-top: solid 1px #BFBFBF; 
-}
-
-
-#content .side-bar #merchant-listing #more-experiences ul {
+.image-gallery {
 	list-style: none;
-	margin-top: 10px;
+	margin-top: 20px;
 }
 
-#content .side-bar #merchant-listing #more-experiences li {
+.image-gallery .listing-item {
 	float: left;
+	margin: 4px;
+	padding: 5px;
+	width: 310px;
+        border: solid 1px #e8dcc9;
+	background: #fefefe /*url(../images/image_frames.png) no-repeat;*/
 }
 
-#content .side-bar #merchant-listing #add-to-favorites-button button {
-	margin-top: 10px;
+
+div#thumb-details {
+	height: 50px;
+	margin-bottom: 0px;
 }
+
+
+li.listing-item .listing-title {
+	line-height: 16px;
+        font-size: 14px;
+        
+}
+
+li.listing-item .listing-title a {
+	color: #c56029;
+}
+
+li.listing-item .listing-merchant {
+	line-height: 16px;
+}
+
+li.listing-item .listing-merchant a {
+	color: #969595;
+}
+
+li.listing-item .listing-price {
+	line-height: 16px;
+        color: #70a41e;
+}
+
+
+
+
 
 /*------------------------------------------------------------------------------*/
-/*	(experience profile) MAIN-CONTENT
+/*	FOOTER (MOVE TO BASE.CSS)
+/*------------------------------------------------------------------------------*/
+
+footer {
+	border-top-color: #FFF;
+	border-top-style: solid;
+	border-top-width: 3px;
+	color: #666666;
+	position: relative;
+	height:70px;
+	margin-top: -70px;
+	padding-top: 8px;
+	background: #e8dcc9;
+	clear: both;
+}
+
+footer > div {
+	/*display:inline-block;
+	margin:0px 60px 0px 10px;*/
+	margin: 0 auto;
+	width: 990px;
+}
+
+footer ul.footer-nav {
+	list-style: none;
+	margin-top: 5px;
+	/*float: right;*/
+}
+
+footer ul.footer-nav li a {
+	float: left;
+	margin: 5px;
+	padding: 5px;
+        color: #92796b;
+}
+
+
+footer p#copy {
+	float: right;
+	margin-top: 15px;
+        margin-right: 5px;
+        color: #92796b;
+	
+}
+
+
+
+/*------------------------------------------------------------------------------*/
+/*	(single listing ) MAIN-CONTENT
 /*------------------------------------------------------------------------------*/
 
 /* PRIMARY */
 
+article#main-content {
+    margin-bottom: 20px;
+}
+
+
 article#main-content .primary {
 	float: left;
-	width: 540px;
-	background-color:#FFFFFF;
-	margin-right: 10px;
+	width: 660px;
+	margin-top: 10px;
+/*	margin-right: 10px;
+*/	padding-top: 10px;
+
 }
 
-article#main-content .primary #exp-title {
+.primary #exp-title {
 	padding-bottom: 5px;
 	font-family: georgia;
-	color: gray;
+	color: #545550;
 	
 }
 
-article#main-content .primary #exp-thumbs ul {
-	list-style: none;
-	margin-top: 10px;
-	
+#exp-thumbs {
+	overflow: hidden;
+	position: relative;
+	margin-top: 6px;
 }
 
-article#main-content .primary #exp-thumbs li {
+.exp-thumbs-img {
+	width: 70px;
+	height: 70px;
+	cursor: pointer;
+	border: 3px solid white;
+	margin-right: 2px;
+}
+
+.primary #exp-thumbs ul {
+	list-style: none;	
+}
+
+.primary #exp-thumbs li {
 	float: left;
+	padding: 5px;
+	margin-right: 5px;
 }
 
-article#main-content .primary #exp-description {
+.primary #exp-description {
 	display: inline-block;
-	margin-top: 10px;
-	padding-top: 10px;
-	border-top-color: #EEEEEE;
-	border-top-style: solid;
-	border-top-width: 1px; 
-}
-
-
-article#main-content .primary #reviews {
 	margin-top: 10px;
 	padding-top: 10px;
 	border-top-color: #EEEEEE;
@@ -368,59 +299,73 @@ article#main-content .primary #reviews {
 
 article#main-content .secondary {
 	float: right;
-	width: 200px;
-	/*height: 400px;*/
-	background-color: #FFFFFF;
+	width: 320px;
+	padding-top: 5px;
+        margin-top: 10px;
 }
 
-article#main-content .secondary #price {
-	font-size: 2em;
+.secondary #price {
+	font-size: 3em;
 	font-family: georgia;
-	color: gray;
+	color: #87a824;
 	padding-bottom: 5px;
+        
 }
 
-article#main-content .secondary #price a {
-	font-size: 10px;
+.secondary h2 {
+    color: #87765b;
 }
 
-article#main-content .secondary #buy-now {
-	margin-top: 10px;
-	padding: 5px 0px 10px 10px;
+.secondary #buy-now {
+	margin-top: 5px;
+	padding: 15px;
 }
 
-article#main-content .secondary #buy-now span {
+.secondary #buy-now span {
 	margin-top: 10px;
 }
 	
-button#add-to-cart {
+.secondary #merchant-listing {
 	margin-top: 10px;
-	width: 150px;
+        margin-bottom: 10px;
+	padding: 15px;
 }
 
-button#add-to-wish-list {
-	margin-top: 10px;
-	width: 150px;
-}
-
-article#main-content .secondary #share {
-	margin-top: 10px;
-	padding: 5px;
-}
-
-article#main-content .secondary #share ul {
-	list-style: none;
-	margin-top: 10px;
-}
-
-article#main-content .secondary #share li {
+.secondary #merchant-listing #merchant-image {
 	float: left;
-	margin-right: 20px;
 }
+
+.secondary #merchant-listing #merchant-details {
+	/*float: auto;*/
+	margin-bottom: 50px;
+	margin-left: 110px;
+	padding: 5px;
+	line-height: 1.25em;
+        color: #87765B;
+}
+
+.secondary #merchant-listing #merchant-details a {
+        color: #87765B;
+        font-size: 1.5em;
+        line-height: 1.5em;
+}
+
+.secondary #merchant-listing #merchant-details li#location {
+	font-size: 10px;
+}
+
+
+.secondary #merchant-listing #merchant-rating {
+	margin-top: 3px;
+	padding-left: 3px;
+	display: inline-block;
+	font-size: 0.9em;
+}
+
 
 article#main-content .secondary #exp-stats {
 	margin-top: 10px;
-	padding: 10px;
+	padding: 15px;
 	font-size: 0.8em;
 	line-height: 1.7em;
 }
@@ -433,212 +378,114 @@ button.hidden {
 }
 
 
-
-/*------------------------------------------------------------------------------*/
-/*	(home page) IMAGE-GALLERY
-/*------------------------------------------------------------------------------*/
-
-.image-gallery {
-	list-style: none;
-	margin-top: 10px;
-}
-
-.image-gallery .listing-item {
-	float: left;
-	margin: 4px;
-	padding: 5px;
-	width: 230px;
-	border: solid 1px #EEEEEE;
-}
-
-experience-of-the-day .listing-item {
-	width: 100%;
+.section {
+    background-color: #f5eada;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 
-div#thumb-details {
-	height: 50px;
-	margin-bottom: 10px;
+/* ask chong han about this code below.. where is that .main-image thing working?
+  what is it about position relative for tag and absolute for class?
+  where is that class in the code?
+*/
+
+
+#exp-main-image {
+	width: 640px;
+	height: 480px;
+	position: relative;
 }
 
-
-li.listing-item .listing-title {
-	line-height: 15px;
-}
-
-li.listing-item .listing-title a {
-	color: #666666;
-}
-
-li.listing-item .listing-merchant {
-	line-height: 15px;
-}
-
-li.listing-item .listing-merchant a {
-	color: #666666;
-}
-
-li .listing-price listing-price {
-	line-height: 15px;
-	float: right;
+.main-image {
+	width: 640px;
+	height: 480px;
 	position: absolute;
+	left: 5px;
+	top: 5px;
 }
+
+/* wrapper for merchant image */
+.image-wrapper {
+    background-color: #FFFFFF;
+    border: solid 1px #EAEAEA;
+    padding: 5px;
+    text-align: center;	
+}
+
+
 
 
 
 
 /*------------------------------------------------------------------------------*/
-/*	EXPERIENCE OF THE DAY
+/*	BUTTONS
 /*------------------------------------------------------------------------------*/
 
-article#main-content div#experience-of-the-day {
-	float: left;
-	padding: 5px;
-	margin-bottom: 10px;
+a.button {
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font: 18px/150% helvetica, sans-serif;
+    padding: .5em 2em .55em;
+    text-shadow: 0 1px 1px rgba(0,0,0,.3);
+    -webkit-border-radius: .5em; 
+    -moz-border-radius: .5em;
+    border-radius: .5em;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    width:200px;
+}
+
+
+.green {
+    color: #fdf4e5;
+    /*border: solid 1px #3a4b06;*/
+    background: #0095cd;
+    background: -webkit-gradient(linear, left top, left bottom, from(#a5c642), to(#87a824));
+    background: -moz-linear-gradient(top,  #a5c642,  #87a824);
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#a5c642', endColorstr='#87a824');
 }
 
 
 
-/*------------------------------------------------------------------------------*/
-/*	FOOTER (MOVE TO BASE.CSS)
-/*------------------------------------------------------------------------------*/
 
-footer {
-	border-top-color: #EEEEEE;
-	border-top-style: solid;
-	border-top-width: 1px;
-	color: #666666;
-	height:50px;
-	margin-top: 60px;
-	clear: left;
-	padding-top: 8px;
+/*.blue:hover {
+    background: #007ead;
+    background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
+    background: -moz-linear-gradient(top,  #0095cc,  #00678e);
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0095cc', endColorstr='#00678e');
 }
 
-footer > div {
-	display:inline-block;
-	margin:0px 60px 0px 10px;
-}
-
-footer ul.footer-nav {
-	list-style: none;
-	margin-top: 5px;
-	/*float: right;*/
-}
-
-footer ul.footer-nav li {
-	float: right;
-	margin: 5px;
-	padding: 5px;
-}
-
-
-footer p#copy {
-	float: left;
-	/*top: 20px;*/
-	margin-top: 15px;
-	
-}
-
-
-/*------------------------------------------------------------------------------*/
-/*	MOVE TO BASE.CSS
-/*------------------------------------------------------------------------------*/
-
-
-#content #breadcrumbs {
-	border-bottom-color: #EEEEEE;
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
-	color: #666666;
-	font-size: 0.9em;
-	/*line-height: 20px;*/
-	list-style-image: none;
-	list-style-position: outside;
-	list-style-type: none;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	margin-left: 5px;	
-	margin-bottom: 10px;
-}
-
-#content #breadcrumbs li {
-	float: left;
-	margin-right: 5px;
-}
-
-#content #breadcrumbs a {
-	color: #666666;
-}
-
+.blue:active {
+    color: #80bed6;
+    background: -webkit-gradient(linear, left top, left bottom, from(#0078a5), to(#00adee));
+    background: -moz-linear-gradient(top,  #0078a5,  #00adee);
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0078a5', endColorstr='#00adee');
+}*/
 
 
 
 /*------------------------------------------------------------------------------*/
-/*	(merchant profile) MAIN-CONTENT
-/*------------------------------------------------------------------------------*/
-
-article#main-content #about-merchant {
-	margin-top: 10px;
-	margin-bottom: 20px;
-	padding: 10px;
-	padding-bottom: 30px;
-	border: solid 5px #EEEEEE;
-	/*background-color: #C6E7F3;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;*/
-	/*#A3F1E6*/
-	 /*#9AC8F3*/
-}
-
-article#main-content #about-merchant h1 {
-	font-family: georgia;
-	color: gray;
-}
-
-article#main-content #about-merchant #merchant-description {
-	margin-top: 10px;
-}
-
-article#main-content #merchant-experiences h2 {
-	font-family: georgia;
-	color: gray;
-	padding-left: 10px;
-	margin-top: 10px;
-	padding-top: 10px;
-	border-top: solid 1px #EEEEEE;
-}
-
-
-
-/*------------------------------------------------------------------------------*/
-/*	(merchant profile) SIDE-BAR
+/*	REVIEWS
 /*------------------------------------------------------------------------------*/
 
 
-#content .side-bar #merchant-listing #favorite-exp {
-	margin-top: 20px;
-	padding-top: 20px;
-	border-top: solid 1px #BFBFBF; 
+.primary #reviews {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top-color: #fdf4e5;
+    border-top-style: solid;
+    border-top-width: 1px; 
 }
-
-
-#content .side-bar #merchant-listing #favorite-exp ul {
-	list-style: none;
-	margin-top: 10px;
-}
-
-#content .side-bar #merchant-listing #favorite-exp li {
-	float: left;
-}
-
-/*------------------------------------------------------------------------------*/
-/*	(merchant profile) REVIEWS
-/*------------------------------------------------------------------------------*/
 
 #reviews {
-    border-top: 1px solid #EEEEEE;
+    border-top: 1px solid red;
 }
 
 #reviews .review-item {
@@ -647,8 +494,9 @@ article#main-content #merchant-experiences h2 {
     height: 200px;
     padding-bottom: 10px; /* you need padding in case the content is really long
 			    and reaching close to 200px in height. */
-    border-bottom: 1px solid #EEEEEE;
+    border-bottom: 1px solid #fdf4e5;
 }
+
 
 #reviews .review-item .reviewer-listing {
     margin-top: 10px;
@@ -656,11 +504,12 @@ article#main-content #merchant-experiences h2 {
     height: 70px;
 }
 
+
 #reviews .review-item .reviewer-listing #reviewer-wrap {
     float: left;
-   /* background-color: yellow;*/
-    margin-top: 5px;
+    margin: 5px 0 0 5px;
 }
+
 
 #reviews .review-item .reviewer-listing #ratings {
     float: right;
@@ -669,14 +518,17 @@ article#main-content #merchant-experiences h2 {
     width: 200px;
 }
 
+
 #reviews .review-item .reviewer-listing #reviewer-wrap #reviewer-image {
     float: left;
 }
+
 
 #reviews .review-item .reviewer-listing #reviewer-wrap #reviewer-details {
     float: right;
     padding: 5px;
     margin-left:5px;
+    color: #545550
    /* border: 1px solid green;*/
 }
 
@@ -688,140 +540,3 @@ article#main-content #merchant-experiences h2 {
 #review-body p {
     padding: 5px;
 }
-
-
-/*------------------------------------------------------------------------------*/
-/*	BUTTONS
-/*------------------------------------------------------------------------------*/
-
-.button {
-    -moz-text-blink: none;
-    -moz-text-decoration-color: -moz-use-text-color;
-    -moz-text-decoration-line: none;
-    -moz-text-decoration-style: solid;
-    background-attachment: scroll;
-    background-clip: border-box;
-    background-color: #1F75CD; 
-    background-image: none;
-    background-origin: padding-box;
-    background-position: 0 0;
-    background-repeat: repeat;
-    background-size: auto auto;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    color: #FFFFFF;
-    display: block;
-    font-family: "league-gothic-1","league-gothic-2",sans-serif;
-    font-size: 100%;
-    line-height: 1.1em;
-    margin-bottom: 0px;
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 80px;
-    padding-bottom: 10px;
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 10px;
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: bold; 
-}
-
-.button:hover {
-    background-attachment: scroll;
-    background-clip: border-box;
-    background-color: #E64E4E;
-    background-image: none;
-    background-origin: padding-box;
-    background-position: 0 0;
-    background-repeat: repeat;
-    background-size: auto auto;
-    color: #FFFFFF;
-}
-
-.button:active, .button:focus {
-    background-attachment: scroll;
-    background-clip: border-box;
-    background-color: #E1F1F4;
-    background-image: none;
-    background-origin: padding-box;
-    background-position: 0 0;
-    background-repeat: repeat;
-    background-size: auto auto;
-    color: #FFFFFF;
-}
-
-.buy-now-button {
-    -moz-text-blink: none;
-    -moz-text-decoration-color: -moz-use-text-color;
-    -moz-text-decoration-line: none;
-    -moz-text-decoration-style: solid;
-    background-attachment: scroll;
-    background-clip: border-box;
-    background-color: #1F75CD; 
-    background-image: none;
-    background-origin: padding-box;
-    background-position: 0 0;
-    background-repeat: repeat;
-    background-size: auto auto;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    color: #FFFFFF;
-    display: block;
-    font-family: "league-gothic-1","league-gothic-2",sans-serif;
-    font-size: 150%;
-    line-height: 1.1em;
-    margin-bottom: 0px;
-    margin-left: auto;
-    margin-right: 10px;
-    margin-top: 10px;
-    padding-bottom: 7px;
-    padding-left: 0px;
-    padding-right: 5px;
-    padding-top: 10px;
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: bold; 
-}
-
-
-.buy-now-button:hover {
-    background-attachment: scroll;
-    background-clip: border-box;
-    background-color: #E64E4E;
-    background-image: none;
-    background-origin: padding-box;
-    background-position: 0 0;
-    background-repeat: repeat;
-    background-size: auto auto;
-    color: #FFFFFF;
-}
-
-.buy-now-button:active, .buy-now-button:focus {
-    background-attachment: scroll;
-    background-clip: border-box;
-    background-color: #E1F1F4;
-    background-image: none;
-    background-origin: padding-box;
-    background-position: 0 0;
-    background-repeat: repeat;
-    background-size: auto auto;
-    color: #FFFFFF;
-}
-
-
-
-http://imgur.com/4BMNm" title="Hosted by imgur.com">http://imgur.com/4BMNm.png</a>
-
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post"> <!-- Identify your business so that you can collect the payments. --> <input type="hidden" name="business" value="herschelgomez@xyzzyu.com"> <!-- Specify a Buy Now button. --> <input type="hidden" name="cmd" value="_xclick"> <!-- Specify details about the item that buyers will purchase. --> <input type="hidden" name="item_name" value="Hot Sauce-12 oz. Bottle"> <input type="hidden" name="amount" value="5.95"> <input type="hidden" name="currency_code" value="USD"> <!-- Prompt buyers to enter their desired quantities. --> <input type="hidden" name="undefined_quantity" value="1"> <!-- Display the payment button. --> <input type="image" name="submit" border="0" src="https://www.paypal.com/en_US/i/btn/btn_buynow_LG.gif" alt="PayPal - The safer, easier way to pay online"> <img alt="" border="0" width="1" height="1" src="https://www.paypal.com/en_US/i/scr/pixel.gif" > </form> 
-
-<img src="http://i.imgur.com/4BMNm.png" alt="" title="Hosted by imgur.com" />
-
-
-
-
-
