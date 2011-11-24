@@ -65,7 +65,7 @@ def index(request):
     hits = request.session.get('hits', 0) + 1
     request.session['hits'] = hits
 
-    recent_experiences = Experience.objects.order_by("-pud_date")[9:50]
+    recent_experiences = Experience.objects.order_by("-pud_date")[9:18]
 
     home_page_categories = get_categories()
 
