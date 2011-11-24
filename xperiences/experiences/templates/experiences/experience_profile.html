@@ -144,7 +144,7 @@
             
             <div id="merchant-listing" class="section">
                 <div id="merchant-image">
-                    <a title={{ merchant.name }} href="{% url merchant_profile merchant.id %}">
+                    {% comment %} <a title={{ merchant.name }} href="{% url merchant_profile merchant.id %}">{% endcomment %}
                         <div class="image-wrapper">
                             <img width="100" height="100" alt="{{ merchant.name }}" src="{{merchant.photo.url}}">
                         </div>            
@@ -152,7 +152,7 @@
                 </div>
                 <div id="merchant-details">
                     <ul>
-                        <li><a href="{% url merchant_profile merchant.id %}">{{ merchant.name }}</a></li>
+                        <li>{% comment %}<a href="{% url merchant_profile merchant.id %}">{% endcomment %}{{ merchant.name }}</a></li>
                         <li id="location">{{ merchant.city}} {{ merchant.state }}
                         <br />
                         {{ merchant.country }}
