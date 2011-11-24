@@ -1,50 +1,24 @@
 from django.shortcuts import render_to_response  # renders a given template with a given context dictionary and returns an HttpResponse object with that rendered text
 from django.template import RequestContext
 from django.http import HttpResponse
-<<<<<<< HEAD
 from backend import configurations
-=======
->>>>>>> 8a9cdb4e5e2e52acc7bfcf12e4b06840a559f59a
 from experiences.models import Experience
 import pymongo
 from db_manage import db
 
 
 def experience_by_category(request, category):
-    #experiences = Experience.objects.all()
-
-<<<<<<< HEAD
-    experiences = Experience.objects.filter(category=category)
-
-    template_name = 'experiences/list_experiences.html'  # aren't we supposed to have something like experiences/category/list_experiences.html?
-    # or is that something that'll be determined by the urls.py?   I think this url should change!!
-
-    return render_to_response(template_name, {'experiences': experiences}, context_instance=RequestContext(request))
-=======
-    recent_experiences = Experience.objects.filter(category=category).order_by("-pud_date")
+    recent_experiences = Experience.objects.filter(category=category)
 
     template_name = 'experiences/index.html'  # aren't we supposed to have something like experiences/category/list_experiences.html?
     # or is that something that'll be determined by the urls.py?   I think this url should change!!
 
     return render_to_response(template_name, {'recent_experiences': recent_experiences, 'category': category}, context_instance=RequestContext(request))
->>>>>>> 8a9cdb4e5e2e52acc7bfcf12e4b06840a559f59a
 
 
 def experience_profile(request, id):
     experience = Experience.objects.get(id=id) 
 
-<<<<<<< HEAD
-    experience = wrapmongo(Experience.objects.get(id=pymongo.objectid.ObjectId(id)))  # db.experience.find_one({'_id': pymongo.objectid.ObjectId(id)}))
-
-    merchant_tuple = experience['merchant'] # get a tuple with ObjectId and name
-
-    merchant_obj = wrapmongo(db.merchant.find_one({"_id": merchant_tuple[0]})) # get a merchant object
-
-    template_name = 'experiences/experience_profile.html' # should we slugify the name of experience?
-
-    more_experiences = wrapmongo(db.experience.find({'merchant': experience.get('merchant')}).limit(10))
-    #more_experiences = [e for e in more_experiences if e['_id'] != experience['_id']]
-=======
     #experience = wrapmongo(db.experience.find_one({'_id': pymongo.objectid.ObjectId(id)}))
 
     #merchant_tuple = experience["merchant"] # get a tuple with ObjectId and name
@@ -59,7 +33,6 @@ def experience_profile(request, id):
     #more_experiences = [e for e in more_experiences if e['_id'] != experience['_id']]
     
     more_experiences = merchant_obj.experience_set.all()[:10]
->>>>>>> 8a9cdb4e5e2e52acc7bfcf12e4b06840a559f59a
 
     return render_to_response(template_name,
             {'experience': experience, 'merchant': merchant_obj, 'more_experiences': more_experiences},
@@ -91,19 +64,11 @@ def index(request):
     hits = request.session.get('hits', 0) + 1
     request.session['hits'] = hits
 
-<<<<<<< HEAD
     recent_experiences = Experience.objects.order_by("-pud_date")[:9]
 
     home_page_categories = get_categories()
 
     experience_of_the_day = get_experience_of_the_day()
-=======
-    recent_experiences = Experience.objects.order_by("-pud_date")[9:18]
-
-    home_page_categories = get_categories()
-
-    experience_of_the_day = get_experience_of_the_day(db)
->>>>>>> 8a9cdb4e5e2e52acc7bfcf12e4b06840a559f59a
 
     template_name = 'experiences/index.html'
 
@@ -122,19 +87,11 @@ def get_categories():
     return active_categories
 
 
-<<<<<<< HEAD
 def get_experience_of_the_day():
     try:
         Experience.objects.get(id=configurations.config['EXPERIENCE_OF_THE_DAY'])
     except Experience.DoesNotExist:
         return None
-=======
-def get_experience_of_the_day(db):
-    experience_of_the_day = db.experience.find_one({'_id': pymongo.objectid.ObjectId(
-        "4e3722fcd01724fa2a0c0017")}) # every day I can change the ID of the experience based on the experience of the day.
-    return experience_of_the_day
-
->>>>>>> 8a9cdb4e5e2e52acc7bfcf12e4b06840a559f59a
 
 def add_experience_to_favorites(request):
     exp_id = request.POST['experience_id']  #({'_id':pymongo.objectid.ObjectId(id)}))

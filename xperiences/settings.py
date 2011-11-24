@@ -53,11 +53,7 @@ TIME_ZONE = 'America/Chicago'
 LANGUAGE_CODE = 'en-us'
 
 
-<<<<<<< HEAD
 SITE_ID = '4eba73fe96cf4c019c00001d' if PRODUCTION else '4ece2ad476a6f60b0000001d'
-=======
-SITE_ID = '4eba73fe96cf4c019c00001d' if PRODUCTION else '4eba73fe96cf4c019c00001d'
->>>>>>> 8a9cdb4e5e2e52acc7bfcf12e4b06840a559f59a
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
@@ -236,8 +232,5 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_ACCESS_KEY_ID = 'AKIAJYBGEQMSD3MMPTYA'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'my_prod_xpr_uploads' if PRODUCTION else 'my_dev_xpr_uploads'
-<<<<<<< HEAD
 
 SITE_CONFIGURATION_FILE = 'conf'
-=======
->>>>>>> 8a9cdb4e5e2e52acc7bfcf12e4b06840a559f59a
