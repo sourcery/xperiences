@@ -10,12 +10,12 @@
                 <ul class="image-gallery">
                 {% for experience in recent_experiences %}
                     <li id="#" class="listing-item">
-                        <a class="#" title="{{ experience.title }}" href="{{ experience.url }}">
+                        <a class="#" title="{{ experience.title }}" href="{% url experience_profile experience.id %}">
                             <img width="310" height="207" alt="{{ experience.title }}" {% if experience.photo1 %}src="{{ experience.photo1.url }}"{% endif %}>
                         </a>
                         <div id="thumb-details">
                             <p class="listing-title">
-                                <a title="{{ experience.title }}" href="{{ experience.url }}"> {{ experience.title }} </a>
+                                <a title="{{ experience.title }}" href="{% url experience_profile experience.id %}"> {{ experience.title }} </a>
                             </p>
                             <p class="listing-merchant">
                                 <a title="{{ experience.merchant.name }}" href=""> {{ experience.merchant.name }}, {{ experience.merchant.city }} {{ experience.merchant.state }}</a>
@@ -32,3 +32,6 @@
             </div><!-- end image-grid div -->
         {% endblock %}<!-- end content block -->
     {% endblock %}<!-- end wrapper block
+    
+    
+    {% url merchant_profile merchant.id %}
