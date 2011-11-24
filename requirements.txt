@@ -1,4 +1,5 @@
 pymongo
 django-storages
 boto
+configObj
 https://bitbucket.org/wkornewald/django-nonrel/get/tip.tar.bz2#egg=django

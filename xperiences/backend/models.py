@@ -11,9 +11,12 @@ class Coordinate(models.Model):
     lat = models.FloatField(default=0.0)
     lng = models.FloatField(default=0.0)
 
+    def __str__(self):
+        return '( %f, %f )' % (self.lat, self.lng)
+
 class GeoField(EmbeddedModelField):
     def __init__(self):
-        super(GeoField,self).__init__(Coordinate)
+        super(GeoField,self).__init__(Coordinate, default=Coordinate,editable=False)
 
 class XPDBManager(MongoDBManager):
     def proximity_query(self,location,**kwargs):
@@ -64,6 +67,22 @@ class UserExtension(GeoModel):
     friends = models.TextField(max_length=2500,default='',blank='')
     photo = models.ImageField(upload_to='photos_merchent')
 
+
+    @staticmethod
+    def get_merchant(**kwargs):
+        try:
+            kwargs['is_merchant'] = True
+            return UserExtension.objects.get(**kwargs)
+        except UserExtension.DoesNotExist:
+            return None
+
+    @staticmethod
+    def create_merchant(**kwargs):
+        kwargs['is_merchant'] = True
+        obj = UserExtension(**kwargs)
+        obj.save()
+        return obj
+
     @staticmethod
     def create_from_user(user):
         ext = UserExtension(user=user,name=user.username )
@@ -92,34 +111,34 @@ class UserExtension(GeoModel):
     def __unicode__(self):  # this is for the presentation in the admin site
         return self.name
 
-class Listing(GeoModel):
-    user = models.ForeignKey(User)
-    title = models.CharField(max_length=50)  # by default blank=false and null=false, meaning that both fields are mandatory in both admin and DB
-    description = models.TextField(max_length=250)
-    category = models.CharField(max_length=50)
-    address = models.CharField(max_length=100)
-    #picture = models.ImageField(upload_to="/uploads", null=True) #null=True means that picture is not mandatory
-    price = models.FloatField(default=0.0)
-    pub_date = models.DateField(null=True)
-    photos = models.ImageField(upload_to='photos')
-    photo2 = models.ImageField(upload_to='photos')
-    photo3 = models.ImageField(upload_to='photos')
-    photo4 = models.ImageField(upload_to='photos')
-    photo5 = models.ImageField(upload_to='photos')
-
-
-    @property
-    def slug(self):
-        """accepts self and returns a string which is the slugified version of
-            the instance's name.
-        """
-        return slugify(self.title)
-
-
-
-    class Meta:  # this is for the admin
-        ordering = ['title']
-        db_table = 'experience'
-
-    def __unicode__(self):
-        return self.title
+#class Listing(GeoModel):
+#    user = models.ForeignKey(User)
+#    title = models.CharField(max_length=50)  # by default blank=false and null=false, meaning that both fields are mandatory in both admin and DB
+#    description = models.TextField(max_length=250)
+#    category = models.CharField(max_length=50)
+#    address = models.CharField(max_length=100)
+#    #picture = models.ImageField(upload_to="/uploads", null=True) #null=True means that picture is not mandatory
+#    price = models.FloatField(default=0.0)
+#    pub_date = models.DateField(null=True)
+#    photos = models.FileField(upload_to='photos')
+#    photo2 = models.FileField(upload_to='photos',null=True,blank=True)
+#    photo3 = models.FileField(upload_to='photos',null=True,blank=True)
+#    photo4 = models.FileField(upload_to='photos',null=True,blank=True)
+#    photo5 = models.FileField(upload_to='photos',null=True,blank=True)
+#
+#
+#    @property
+#    def slug(self):
+#        """accepts self and returns a string which is the slugified version of
+#            the instance's name.
+#        """
+#        return slugify(self.title)
+#
+#
+#
+#    class Meta:  # this is for the admin
+#        ordering = ['title']
+#        db_table = 'experience'
+#
+#    def __unicode__(self):
+#        return self.title

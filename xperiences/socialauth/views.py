@@ -1,5 +1,6 @@
 import logging
 import urllib
+from django.db import transaction
 
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
@@ -17,8 +18,8 @@ from socialauth.lib.linkedin import *
 from django.contrib.auth.models import User
 from django.db.utils import IntegrityError
 
-from baseapp.responses import *
-from baseapp import utils
+from backend.responses import *
+from backend import utils
 
 LINKEDIN_CONSUMER_KEY = getattr(settings, 'LINKEDIN_CONSUMER_KEY', '')
 LINKEDIN_CONSUMER_SECRET = getattr(settings, 'LINKEDIN_CONSUMER_SECRET', '')
@@ -33,6 +34,8 @@ TWITTER_CONSUMER_SECRET = getattr(settings, 'TWITTER_CONSUMER_SECRET', '')
 FACEBOOK_APP_ID = getattr(settings, 'FACEBOOK_APP_ID', '')
 FACEBOOK_API_KEY = getattr(settings, 'FACEBOOK_API_KEY', '')
 FACEBOOK_SECRET_KEY = getattr(settings, 'FACEBOOK_SECRET_KEY', '')
+
+FACEBOOK_PERMISSIONS = getattr(settings,'FACEBOOK_PERMISSIONS')
 
 
 def del_dict_key(src_dict, key):
@@ -284,7 +287,7 @@ def facebook_login(request):
     params = {}
     params["client_id"] = FACEBOOK_APP_ID
     params["redirect_uri"] = request.build_absolute_uri(reverse("socialauth_facebook_login_done"))
-    params['scope'] = 'email'
+    params['scope'] = FACEBOOK_PERMISSIONS
 
     url = "https://graph.facebook.com/oauth/authorize?"+urllib.urlencode(params)
     print url
@@ -294,6 +297,7 @@ def try_again(request):
     return redirect('/accounts/login/')
 
 
+@transaction.commit_on_success
 def facebook_login_done(request):
     user = authenticate(request=request)
 

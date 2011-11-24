@@ -2,6 +2,8 @@
 import os
 CODE_ROOT = os.path.dirname(__file__)
 
+PRODUCTION = 'MONGOLAB_URI' in os.environ
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -11,16 +13,31 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django_mongodb_engine',
-        'NAME': 'xperiences',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '27017', 
+import urlparse
+if PRODUCTION:
+    _DB_PARAMS = urlparse.urlparse(os.environ['MONGOLAB_URI'].replace('mongodb', 'http'))
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django_mongodb_engine',
+            'NAME': _DB_PARAMS[2][1:],
+            'USER': _DB_PARAMS.username,
+            'PASSWORD': _DB_PARAMS.password,
+            'HOST': _DB_PARAMS.hostname,
+            'PORT': _DB_PARAMS.port,
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django_mongodb_engine',
+            'NAME': 'xperiences',
+            'USER': '',
+            'PASSWORD': '',
+            'HOST': 'localhost',
+            'PORT': '27017',
+        }
+    }
+
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -35,7 +52,8 @@ TIME_ZONE = 'America/Chicago'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 
-SITE_ID = '4eba7239619a080e4000001d'
+
+SITE_ID = '4eba73fe96cf4c019c00001d' if PRODUCTION else '4ece2ad476a6f60b0000001d'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
@@ -52,18 +70,18 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = '/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = '/static/'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -99,12 +117,15 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'openid_consumer.middleware.OpenIDMiddleware',
+    'django.middleware.transaction.TransactionMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
     #'middleware.MongoMiddleware'
 )
 
@@ -120,6 +141,8 @@ ROOT_URLCONF = 'xperiences.urls'
 
 TEMPLATE_DIRS = (
     os.path.join(CODE_ROOT, 'templates'),
+    os.path.join(CODE_ROOT, 'experiences/templates'),
+    os.path.join(CODE_ROOT, 'merchants/templates'),
     os.path.join(CODE_ROOT, 'socialauth/templates'),
 )
 
@@ -132,7 +155,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
-    'baseapp',
+    'backend',
     'experiences',
     'merchants',
     'djangotoolbox',
@@ -147,7 +170,7 @@ AUTHENTICATION_BACKENDS = (
     'socialauth.auth_backends.TwitterBackend',
     'socialauth.auth_backends.FacebookBackend',
     'socialauth.auth_backends.LinkedInBackend',
-    'baseapp.auth_backends.SimpleAuthBackend',
+    'backend.auth_backends.SimpleAuthBackend',
 )
 
 STATIC_DOC_ROOT = os.path.join(CODE_ROOT, 'media')
@@ -182,6 +205,7 @@ LOGGING = {
 FACEBOOK_APP_ID = '299479036742472'
 FACEBOOK_API_KEY = '299479036742472'
 FACEBOOK_SECRET_KEY = '498f25f7cb732faf01e9a197fedaf3a6'
+FACEBOOK_PERMISSIONS = 'user_about_me,email,user_website,publish_stream,user_activities,user_birthday,user_education_history,user_events,user_groups,user_hometown,user_interests'
 
 if DEBUG:
     FACEBOOK_APP_ID = '185047278245686'
@@ -201,3 +225,12 @@ EMAIL_USE_TLS = True
 SERVER_EMAIL = EMAIL_HOST_USER
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+#Storage
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_ACCESS_KEY_ID = 'AKIAJYBGEQMSD3MMPTYA'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'my_prod_xpr_uploads' if PRODUCTION else 'my_dev_xpr_uploads'
+
+SITE_CONFIGURATION_FILE = 'conf'

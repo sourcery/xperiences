@@ -1,5 +1,5 @@
 import random
-from baseapp.models import UserExtension
+from backend.models import UserExtension
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 import settings

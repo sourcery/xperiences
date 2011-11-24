@@ -1,4 +1,4 @@
-from baseapp.models import UserExtension
+from backend.models import UserExtension
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.conf import settings
@@ -13,7 +13,7 @@ import traceback
 import random
 import datetime
 import cgi
-from baseapp import utils
+from backend import utils
 
 TWITTER_CONSUMER_KEY = getattr(settings, 'TWITTER_CONSUMER_KEY', '')
 TWITTER_CONSUMER_SECRET = getattr(settings, 'TWITTER_CONSUMER_SECRET', '')
@@ -225,16 +225,10 @@ class TwitterBackend:
         
 class FacebookBackend:
     def authenticate(self, request, user=None):
-        print request
-        print 'authenticating by facebook_key'
-        print 'here'
-        print facebook.get_user_from_cookie
         try:
             cookie = facebook.get_user_from_cookie(request.COOKIES, FACEBOOK_APP_ID, FACEBOOK_SECRET_KEY)
         except:
             traceback.print_exc()
-        print 'here comes the cookie'
-        print cookie
         if cookie:
             uid = cookie['uid']
             access_token = cookie['access_token']
@@ -301,11 +295,75 @@ class FacebookBackend:
             fb_profile = FacebookUserProfile(facebook_uid=uid, user=user)
             fb_profile.save()
 
-            ext = UserExtension.create_from_user(user)
+            ext = None
+            qry = UserExtension.objects.filter(user=user)[:1]
+            if len(qry) > 0:
+                ext = qry[0]
+            if not ext:
+                ext = UserExtension.create_from_user(user)
             ext.FB_ID = uid
             ext.FB_token = access_token
             ext.description = fb_data.get('bio','')
             ext.website = fb_data.get('website','')
+
+#            meta = []
+#            try:
+#                meta = graph.get_objects(['me/friends','me/interests','me/activities','me/events','me/groups'])
+#            except Exception,e:
+#                pass
+#            if meta and meta.get('data'):
+#                meta = meta['data']
+#            print meta
+            friends = []
+            try:
+                friends = graph.get_object('me/friends')
+            except:
+                pass
+            if friends and friends.get('data',None):
+                friends = friends.get('data')
+            friend_list = ''.join(f['id'] + ',' for f in friends)
+            ext.friends = friend_list
+
+            interest = []
+            try:
+                interest = graph.get_object('me/interests')
+            except Exception,e:
+                pass
+            if interest and interest.get('data') != None:
+                interest = interest['data']
+            print interest
+            ext.interest = interest
+
+            activities = []
+            try:
+                activities = graph.get_object('me/activities')
+            except Exception,e:
+                pass
+            if activities and activities.get('data') != None:
+                activities = activities['data']
+            print activities
+            ext.activities = activities
+
+            events = []
+            try:
+                events = graph.get_object('me/events')
+            except Exception,e:
+                pass
+            if events and events.get('data') != None:
+                events = events['data']
+            print events
+            ext.events = events
+
+            groups = []
+            try:
+                groups = graph.get_object('me/groups')
+            except Exception,e:
+                pass
+            if groups and groups.get('data') != None:
+                groups = groups['data']
+            print groups
+            ext.groups = groups
+
             ext.save()
 
             auth_meta = AuthMeta(user=user, provider='Facebook').save()

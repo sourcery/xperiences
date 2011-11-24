@@ -1,8 +1,11 @@
+
 __author__ = 'ishai'
 
 
 from django.conf.urls.defaults import *
-from baseapp.resources import  *
+from backend.resources import  *
 
-urlpatterns = patterns()
+urlpatterns = patterns('backend.views',
+    (r'^configurations/', 'configurations'),
+)
 
