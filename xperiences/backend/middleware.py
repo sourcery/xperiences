@@ -5,7 +5,7 @@ __author__ = 'ishai'
 class LazyUserExtension(object):
     def __get__(self, request, obj_type=None):
         if not hasattr(request, '_cached_user_ext'):
-            request._cached_user_ext = UserExtension.get(user=request.user)
+            request._cached_user_ext = UserExtension.objects.get(user=request.user)
         return request._cached_user_ext
 
 class LazyMerchant(object):
