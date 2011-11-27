@@ -57,10 +57,10 @@
         <div id="main-nav-bg">
             <div id="main-nav">
                 <ul>
-                    <li {% if not category %}id="selected"{% endif %}>
-                        <a href="/experiences/">Hosted Meals</a>
+                    <li {% if category == 'hosted meals' %}id="selected"{% endif %}>
+                        <a href="{% url experiences.views.experience_by_category category='hosted meals'%}">Hosted Meals</a>
                     </li>
-                    <li {% if category %}id="selected"{% endif %}>        
+                    <li {% if category == 'homemade takeout' %}id="selected"{% endif %}>
                         <a href="{% url experiences.views.experience_by_category category='homemade takeout'%}">Homemade Takeout</a>
                     </li>
                 </ul>
