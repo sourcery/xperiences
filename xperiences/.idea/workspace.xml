@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/backend/configurations.py" line="30" />
+    <bookmark url="file://$PROJECT_DIR$/backend/configurations.py" line="29" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c19ce237-dcc7-4b30-b48b-52d3084de74d" name="Default" comment="" />
@@ -51,10 +51,8 @@
       <file leaf-file-name="configurations.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/configurations.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="39" selection-start="912" selection-end="912" vertical-scroll-proportion="0.7364341">
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -743,10 +741,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/configurations.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="39" selection-start="912" selection-end="912" vertical-scroll-proportion="0.7364341">
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>

@@ -1,5 +1,4 @@
-from StringIO import StringIO
-import simplejson
+from django.utils import simplejson
 
 __author__ = 'ishai'
 
