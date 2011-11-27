@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from backend.models import UserExtension
 from django.shortcuts import render_to_response
 from django.template import RequestContext  # I still need to understand better the concept of RequestContext
@@ -6,32 +8,28 @@ from django.template import RequestContext  # I still need to understand better 
 
 
 def merchant_profile(request, username):
-    merchant = UserExtension.get_merchant(username=username)
+    merchant = UserExtension.get_merchant(user=User.objects.get(username=username))
     template_name = 'merchants/merchant_profile.html'
     return render_to_response(template_name, {'merchant': merchant}, context_instance=RequestContext(request))
 
-    
+
+@login_required()
 def register(request):
     status = ''
+    template_name = 'merchants/register.html'
     if request.method == 'POST':
         data = request.POST
-        if len(data['email']) == 0:
-            status = 'please enter your email'
-        else:
-            pass
-        if UserExtension.get_merchant(email=data['email']) is not None:
-            status = 'a user already exists for this email. Try again'
-        else:
-            UserExtension.create_merchant(**data)
-#            create_merchant(merchant_collection, **data)
-            status = 'yay! Merchant created'
-            
-    else: 
-        pass
+        merchant = request.merchant
+        for key in data:
+            if hasattr(merchant,key):
+                setattr(merchant,key,data[key])
+        merchant.save()
+        status = 'yay! Merchant created'
+        print "I work!"
+        return render_to_response(template_name, {'status': status, 'merchant':merchant}, context_instance=RequestContext(request))
+    else:
+        return render_to_response(template_name, {'status': status, 'merchant':request.merchant}, context_instance=RequestContext(request))
     
-    template_name = 'merchants/register.html'
-    print "I work!"
-    return render_to_response(template_name, {'status': status}, context_instance=RequestContext(request))
 
 
     

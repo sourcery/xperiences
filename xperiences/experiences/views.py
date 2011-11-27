@@ -80,11 +80,11 @@ def index(request):
 
 
 # how to extract active categories from Mongo to populate this list?
-active_categories = ['Adventure', 'Funky', 'save the world', 'Travel', 'Music', 'Skills']
+#active_categories = ['Adventure', 'Funky', 'save the world', 'Travel', 'Music', 'Skills']
 
 
 def get_categories():
-    return active_categories
+    return configurations.get_categories()
 
 
 def get_experience_of_the_day():
@@ -99,7 +99,7 @@ def add_experience_to_favorites(request):
 
     #get merchant
     merch_id = request.POST['merchant_id']
-    fav_merchant = wrapmongo(db.merchant.find_one({"_id": pymongo.objectid.ObjectId(merch_id)}))
+    fav_merchant = wrapmongo( db.merchant.find_one({"_id": pymongo.objectid.ObjectId(merch_id)}))
 
     #add experience id to favorite experiences in merchant collection
     if 'favorite_experiences' not in fav_merchant:
@@ -126,7 +126,8 @@ def add_image(image, experience):
 
 def add_image_to_experience(request, id):
     template_name = 'experiences/add_image.html'
-    experience = db.experience.find_one({'_id': pymongo.objectid.ObjectId(id)})
+
+    experience = Experience.objects.get(id=id)#db.experience.find_one({'_id': pymongo.objectid.ObjectId(id)})
     if request.method == 'POST':
         #import pdb; pdb.set_trace()
         image = request.FILES['image_1']
@@ -179,12 +180,18 @@ def add_experience(request):
             #elif data['price'] > 500000:
             # status = 'Price must be between $1 and $500,000. If you want to list a really expensive experience please contact us at support@tep.com'
         if len(request.FILES) > 0:
-            experience = create_experience(experience_collection, **data)
+            data['merchant'] = request.merchant
+            experience = Experience(**data)
+            experience.update_location(float(request.POST.get('lat',0.0)), float(request.POST.get('lng',0.0)))
+            experience.save()
+#            experience = create_experience(experience_collection, **data)
             for k, v in request.FILES.iteritems():
                 add_image(v, experience)
             status = 'yay! experience created'
         else:
             status = 'you must upload at least one image'
+    else:
+        return render_to_response('experiences/add_experience.html',context_instance=RequestContext(request))
 
 
 import random

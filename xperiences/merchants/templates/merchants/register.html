@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="UTF-8" />
-<title> Merchant Register Form </title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block extra_head %}
+    {% include 'ckeditor_head.html' %}
+{% endblock %}
+{% block content %}
 <h2>{{ status }}</h2>    
 <form id="form" name="form" method="post" action="#">
-    <p>Name  <input class="space_common" type="text" onfocus="if(this.value=='Name')this.value='';" value="Name" name="name"></p>
-    <p>Email  <input class="space_common" type="text" onfocus="if(this.value=='Email')this.value='';" value="Email" name="email"></p>
-    <p>Choose a username  <input class="space_common" type="text" onfocus="if(this.value=='username')this.value='';" value="username" name="username"></p>
-    <address><p>Address  <input class="space_common" type="text" onfocus="if(this.value=='Address')this.value='';" value="Address" name="address"></p>
+    <p>Name  <input class="space_common" type="text" onfocus="if(this.value=='Name')this.value='';" value="{{ merchant.name }}" name="name"></p>
+    <p>Email {{ user.email }} <!--input class="space_common" type="text" onfocus="if(this.value=='Email')this.value='';" value="Email" name="email"--></p>
+    <!--p>username  <input class="space_common" type="text" onfocus="if(this.value=='username')this.value='';" value="username" name="username"></p-->
+    <address><p>Address  <input class="space_common" type="text" onfocus="if(this.value=='Address')this.value='';" value="{{ merchant.address }}" name="address"></p>
         <p>City  <input class="space_common" type="text" name="city" ></p>
         <p>State  
             <select name="state">
@@ -36,14 +34,9 @@
             </select>
         </p>
     </address>
-    <p>Phone number  <input class="space_common" type="text" onfocus="if(this.value=='Phone number')this.value='';" value="Phone number" name="phone"></p>
-    <textarea name="description"></textarea>
+    <p>Phone number  <input class="space_common" type="text" onfocus="if(this.value=='Phone number')this.value='';" value="{{ merchant.phone }}" name="phone"></p>
+    <textarea name="description" value='{{ merchant.description }}' class='ckeditor'></textarea>
     <input class="button" type="submit" value="Save">
 </form>
 
-
-
-
-
-</body>
-</html>
+{% endblock %}
