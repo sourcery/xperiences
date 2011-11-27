@@ -175,3 +175,7 @@ class UserExtension(GeoModel):
 #
 #    def __unicode__(self):
 #        return self.title
+
+class SiteConfiguration(models.Model):
+    name = models.CharField(max_length=50,primary_key=True)
+    conf = models.TextField(max_length=1500,default='')

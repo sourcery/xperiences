@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/backend/configurations.py" line="20" />
+    <bookmark url="file://$PROJECT_DIR$/backend/configurations.py" line="27" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c19ce237-dcc7-4b30-b48b-52d3084de74d" name="Default" comment="" />
@@ -40,7 +40,7 @@
       <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="0" selection-start="235" selection-end="235" vertical-scroll-proportion="0.0">
+            <state line="178" column="23" selection-start="6347" selection-end="6364" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -48,28 +48,39 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="configurations.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="configurations.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/configurations.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="0" selection-start="426" selection-end="426" vertical-scroll-proportion="0.60465115">
+            <state line="12" column="0" selection-start="163" selection-end="163" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StringIO.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/Python27/Lib/StringIO.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="53" column="8" selection-start="2033" selection-end="2033" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="configobj.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Lib/site-packages/configobj.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1244" column="8" selection-start="40076" selection-end="40076" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="238" column="35" selection-start="7621" selection-end="7621" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="importlib.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/utils/importlib.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="0" selection-start="1179" selection-end="1179" vertical-scroll-proportion="0.0">
+            <state line="238" column="0" selection-start="7586" selection-end="7586" vertical-scroll-proportion="0.8023256">
               <folding />
             </state>
           </provider>
@@ -136,9 +147,7 @@
         <option value="$PROJECT_DIR$/experiences/urls.py" />
         <option value="$PROJECT_DIR$/experiences/templates/experiences/add_experience.html" />
         <option value="$PROJECT_DIR$/templates/base.html" />
-        <option value="$PROJECT_DIR$/backend/configurations.py" />
         <option value="$PROJECT_DIR$/backend/geo.py" />
-        <option value="$PROJECT_DIR$/backend/models.py" />
         <option value="$PROJECT_DIR$/backend/admin.py" />
         <option value="$PROJECT_DIR$/configurations/configurations.py" />
         <option value="$PROJECT_DIR$/experiences/views.py" />
@@ -147,6 +156,8 @@
         <option value="$PROJECT_DIR$/configurations/__init__.py" />
         <option value="$PROJECT_DIR$/experiences/models.py" />
         <option value="$PROJECT_DIR$/configurations/models.py" />
+        <option value="$PROJECT_DIR$/backend/models.py" />
+        <option value="$PROJECT_DIR$/backend/configurations.py" />
         <option value="$PROJECT_DIR$/settings.py" />
       </list>
     </option>
@@ -397,7 +408,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -405,7 +416,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20779915" sideWeight="0.6035635" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3964365" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3964365" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -500,22 +511,6 @@
         <line-breakpoint enabled="true" type="python-line">
           <url>file://C:/Python27/Lib/site-packages/floppyforms/gis/widgets.py</url>
           <line>61</line>
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/backend/configurations.py</url>
-          <line>11</line>
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/backend/configurations.py</url>
-          <line>22</line>
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/backend/configurations.py</url>
-          <line>26</line>
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/backend/admin.py</url>
-          <line>17</line>
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -698,27 +693,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="235" selection-end="235" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="238" column="35" selection-start="7621" selection-end="7621" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/experiences/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="82" column="89" selection-start="3023" selection-end="3090" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#0#166#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="178" column="23" selection-start="6347" selection-end="6364" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -732,9 +720,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://C:/Python27/Lib/StringIO.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="8" selection-start="2033" selection-end="2033" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Lib/site-packages/configobj.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1244" column="8" selection-start="40076" selection-end="40076" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/backend/configurations.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="0" selection-start="426" selection-end="426" vertical-scroll-proportion="0.60465115">
+        <state line="12" column="0" selection-start="163" selection-end="163" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="238" column="0" selection-start="7586" selection-end="7586" vertical-scroll-proportion="0.8023256">
           <folding />
         </state>
       </provider>
