@@ -211,12 +211,32 @@ def random_name_generator():
     return str(int(time.time())) + str(random.randint(10000, 999999))
 
 
+def about(request):
+    template_name = '/about.html'
+    return render_to_response(template_name, context_instance=RequestContext(request))
+
+    
+   
 
 
 
-
-
-
-
-
+#def index(request):
+#    #recent_experiences = Experience.objects.get(pub_date=recent) # look into get function and SQL, Django ORM
+#    hits = request.session.get('hits', 0) + 1
+#    request.session['hits'] = hits
+#
+#    recent_experiences = Experience.objects.order_by("-pud_date")[9:18]
+#
+#    home_page_categories = get_categories()
+#
+#    experience_of_the_day = get_experience_of_the_day(db)
+#
+#    template_name = 'experiences/index.html'
+#
+#    print "I am the index!"
+#
+#    return render_to_response(template_name,
+#            {'hits': hits, 'recent_experiences': recent_experiences, 'categories': home_page_categories,
+#             'eofd': experience_of_the_day}, context_instance=RequestContext(request))
+#
 
