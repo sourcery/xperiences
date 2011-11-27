@@ -332,6 +332,8 @@ article#main-content .secondary {
 	margin-top: 10px;
         margin-bottom: 10px;
 	padding: 15px;
+	position: relative;
+	height: 115px;
 }
 
 .secondary #merchant-listing #merchant-image {
@@ -339,9 +341,9 @@ article#main-content .secondary {
 }
 
 .secondary #merchant-listing #merchant-details {
-	/*float: auto;*/
-	margin-bottom: 50px;
-	margin-left: 110px;
+	position: absolute;
+	top: 15px;
+	left: 135px;
 	padding: 5px;
 	line-height: 1.25em;
         color: #87765B;
@@ -573,7 +575,9 @@ article#about-content {
 }
 
 
-
+button.hidden {
+    visibility: hidden;
+}
 
 
 

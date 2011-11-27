@@ -146,10 +146,10 @@
                 <div id="merchant-image">
                     {% comment %} <a title={{ merchant.name }} href="{% url merchant_profile merchant.id %}">{% endcomment %}
                         <div class="image-wrapper">
-                            <img width="100" height="100" alt="{{ merchant.name }}" src="{{merchant.photo.url}}">
+                            <img width="100" height="100" alt="{{ merchant.name }}" src="{{merchant.photo.url}}">   
                         </div>            
-                    </a>
                 </div>
+                <button class="hidden">just a hidden tag</button>
                 <div id="merchant-details">
                     <ul>
                         <li>{% comment %}<a href="{% url merchant_profile merchant.id %}">{% endcomment %}{{ merchant.name }}</a></li>

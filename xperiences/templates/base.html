@@ -50,7 +50,7 @@
             <div id="main-nav">
                 <ul>
                     <li {% if not category %}id="selected"{% endif %}>
-                        <a href="/experiences/">Hosted Meals</a>
+                        <a href="{% url experiences.views.experience_by_category category='hosted meals'%}">Hosted Meals</a>
                     </li>
                     <li {% if category %}id="selected"{% endif %}>        
                         <a href="{% url experiences.views.experience_by_category category='homemade takeout'%}">Homemade Takeout</a>
