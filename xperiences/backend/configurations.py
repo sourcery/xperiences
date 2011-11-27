@@ -14,8 +14,11 @@ def read_configurations():
     global config
     conf,_ = SiteConfiguration.objects.get_or_create(name='default')
     print conf
-    str = conf.conf or ''
-    config = simplejson.loads(str)
+    str = conf.conf or '{}'
+    try:
+        config = simplejson.loads(str)
+    except:
+        config = {}
 
 
 read_configurations()

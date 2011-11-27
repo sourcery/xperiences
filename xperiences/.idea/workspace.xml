@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/backend/configurations.py" line="27" />
+    <bookmark url="file://$PROJECT_DIR$/backend/configurations.py" line="30" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c19ce237-dcc7-4b30-b48b-52d3084de74d" name="Default" comment="" />
@@ -48,10 +48,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="configurations.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="configurations.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/configurations.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="0" selection-start="163" selection-end="163" vertical-scroll-proportion="0.0">
+            <state line="20" column="18" selection-start="420" selection-end="420" vertical-scroll-proportion="0.5968992">
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -77,10 +77,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="238" column="0" selection-start="7586" selection-end="7586" vertical-scroll-proportion="0.8023256">
+            <state line="238" column="0" selection-start="7586" selection-end="7586" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -157,8 +157,8 @@
         <option value="$PROJECT_DIR$/experiences/models.py" />
         <option value="$PROJECT_DIR$/configurations/models.py" />
         <option value="$PROJECT_DIR$/backend/models.py" />
-        <option value="$PROJECT_DIR$/backend/configurations.py" />
         <option value="$PROJECT_DIR$/settings.py" />
+        <option value="$PROJECT_DIR$/backend/configurations.py" />
       </list>
     </option>
   </component>
@@ -734,19 +734,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/configurations.py">
+    <entry file="file://$PROJECT_DIR$/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="163" selection-end="163" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
+        <state line="238" column="0" selection-start="7586" selection-end="7586" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/settings.py">
+    <entry file="file://$PROJECT_DIR$/backend/configurations.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="238" column="0" selection-start="7586" selection-end="7586" vertical-scroll-proportion="0.8023256">
-          <folding />
+        <state line="20" column="18" selection-start="420" selection-end="420" vertical-scroll-proportion="0.5968992">
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
