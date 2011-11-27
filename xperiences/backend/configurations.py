@@ -40,5 +40,5 @@ def get_dict():
 
 def get_categories():
     global config
-    return config.get('CATEGORIES','').split(',')
+    return config.get('CATEGORIES','cat').split(',')
 
