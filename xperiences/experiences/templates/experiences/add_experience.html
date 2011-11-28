@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-        
-    <title>Add a new listing</title>    
-</head>
-<body>
-    
+{% extends 'base.html' %}
+{% block extra_head %}
+    {% include 'ckeditor_head.html' %}
+{% endblock %}
+{% block content %}
     <h2>Add listing form</h2><!-- we can change this title based on the niche-->
     
     <form action="#" method="POST" enctype="multipart/form-data">
@@ -14,7 +10,7 @@
             <legend>Describe your offering</legend>    
             <label>Title <input type="text" value maxlength="32" required="required" name="title"/></label><br /><br />
             <label>Description (tell us about your cooking, the setting, yourself... anything that helps tell your story)<br />
-            <textarea rows="20" cols="50" id="description" required="required" name="description"></textarea></label><br /><br />
+            <textarea rows="20" cols="50" id="description" required="required" name="description" class='ckeditor'></textarea></label><br /><br />
             <!--<label>Category
             <select name="category">
                 <option>Category 1</option>
@@ -118,10 +114,7 @@
         <input type="submit" class="button" value="View listing">
 
     </form>
-    
-</body>
-</html>
-
+{% endblock %}
 <!-- -- title for listing
 -- text area for description
 -- upload images ("of your cooking, the setting, yourself. anything that helps tell your story.")

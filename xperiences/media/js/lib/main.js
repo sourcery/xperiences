@@ -90,3 +90,42 @@ function setMainImage(imgPath) {
 		})
 	}
 }
+
+function image_autoscale(obj, params)
+{
+
+    params = params || {};
+    var fadeIn = params['fade'] || 800;
+    obj.css({width:'', height:''});
+    obj.load(function()
+    {
+        var elm = $(this);
+        var parent = $(elm.parent());
+        var parent_width = parent.innerWidth();
+        var parent_height = parent.innerHeight();
+        var parent_prop = parent_width * 1.0 / parent_height;
+        parent.css({position:'relative;', overflow:'hidden'});
+
+        var width = elm.width();
+        var height = elm.height();
+        var prop = width * 1.0 / height;
+        var top=0.0, left=0.0;
+        if( prop < parent_prop)
+        {
+            width = parent_width;
+            height = width / prop;
+            top = (parent_height - height)/2;
+        }
+        else
+        {
+            height = parent_height;
+            width = height * prop;
+            left = (parent_width - width)/2;
+        }
+
+        elm.css({position:'absolute', width:width, height:height, top:top, left:left});
+        elm.fadeIn(800)
+    });
+
+    obj.load();
+}

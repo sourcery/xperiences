@@ -1,5 +1,6 @@
 import logging
 import urllib
+from django.db import transaction
 
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
@@ -17,8 +18,8 @@ from socialauth.lib.linkedin import *
 from django.contrib.auth.models import User
 from django.db.utils import IntegrityError
 
-from baseapp.responses import *
-from baseapp import utils
+from backend.responses import *
+from backend import utils
 
 LINKEDIN_CONSUMER_KEY = getattr(settings, 'LINKEDIN_CONSUMER_KEY', '')
 LINKEDIN_CONSUMER_SECRET = getattr(settings, 'LINKEDIN_CONSUMER_SECRET', '')
@@ -296,6 +297,7 @@ def try_again(request):
     return redirect('/accounts/login/')
 
 
+@transaction.commit_on_success
 def facebook_login_done(request):
     user = authenticate(request=request)
 

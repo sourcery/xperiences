@@ -53,7 +53,7 @@ TIME_ZONE = 'America/Chicago'
 LANGUAGE_CODE = 'en-us'
 
 
-SITE_ID = '4eba73fe96cf4c019c00001d' if PRODUCTION else '4eba73fe96cf4c019c00001d'
+SITE_ID = '4eba73fe96cf4c019c00001d' if PRODUCTION else '4ece2ad476a6f60b0000001d'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
@@ -70,18 +70,18 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = '/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = '/static/'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -117,12 +117,16 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'backend.middleware.UserExtensionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'openid_consumer.middleware.OpenIDMiddleware',
+    'django.middleware.transaction.TransactionMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
     #'middleware.MongoMiddleware'
 )
 
@@ -138,6 +142,8 @@ ROOT_URLCONF = 'xperiences.urls'
 
 TEMPLATE_DIRS = (
     os.path.join(CODE_ROOT, 'templates'),
+    os.path.join(CODE_ROOT, 'experiences/templates'),
+    os.path.join(CODE_ROOT, 'merchants/templates'),
     os.path.join(CODE_ROOT, 'socialauth/templates'),
 )
 
@@ -150,7 +156,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
-    'baseapp',
+    'backend',
     'experiences',
     'merchants',
     'djangotoolbox',
@@ -165,7 +171,7 @@ AUTHENTICATION_BACKENDS = (
     'socialauth.auth_backends.TwitterBackend',
     'socialauth.auth_backends.FacebookBackend',
     'socialauth.auth_backends.LinkedInBackend',
-    'baseapp.auth_backends.SimpleAuthBackend',
+    'backend.auth_backends.SimpleAuthBackend',
 )
 
 STATIC_DOC_ROOT = os.path.join(CODE_ROOT, 'media')
@@ -221,10 +227,12 @@ SERVER_EMAIL = EMAIL_HOST_USER
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
+LOGIN_URL = '/accounts/login/'
+
 
 #Storage
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_ACCESS_KEY_ID = 'AKIAJYBGEQMSD3MMPTYA'
 AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'my_prod_xpr_uploads'
-AWS_S3_CUSTOM_DOMAIN = 'd1hg4pg1k1dk6u.cloudfront.net'
+AWS_STORAGE_BUCKET_NAME = 'my_prod_xpr_uploads' if PRODUCTION else 'my_dev_xpr_uploads'
+

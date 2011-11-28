@@ -1,4 +1,4 @@
-boto
-django-storages
-PIL
 pymongo
+django-storages
+boto
+configObj

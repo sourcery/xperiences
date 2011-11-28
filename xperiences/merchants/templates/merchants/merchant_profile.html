@@ -17,9 +17,7 @@
         <div id="merchant-listing" class="section">
             <div id="merchant-image">
                 <a title="{{ merchant.name }}" href="#">
-                    <div class="image-wrapper">
-                        <img width="100" height="100" alt="{{ merchant.name }}" src="/site-media/images/joseph.jpg">
-                    </div>            
+                    {% include 'profile_image.html' with merchant=merchant %}
                 </a>
             </div>
             <div id="merchant-details">
@@ -64,7 +62,7 @@
         <div id ="about-merchant">
             <h1> About {{ merchant.name }} </h1>
             <div id="merchant-description">
-                <p>{{ merchant.description }}</p>
+                {{ merchant.description|safe }}
             </div>
         </div><!-- close about-merchant -->
         
