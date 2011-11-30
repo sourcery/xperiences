@@ -1,7 +1,9 @@
-from django.shortcuts import render_to_response  # renders a given template with a given context dictionary and returns an HttpResponse object with that rendered text
+from django.core.urlresolvers import reverse
+from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.http import HttpResponse
 from backend import configurations
+from backend.decorators import merchant_required
 from experiences.forms import ExperienceForm
 from experiences.models import Experience
 import pymongo
@@ -139,6 +141,7 @@ def add_image_to_experience(request, id):
 
 
 # need to read and learn about form validation... how to make sure that what people enter is valid... so many edge cases are possible...
+@merchant_required()
 def add_experience(request):
     status = ''
     if request.method == 'POST':
@@ -159,21 +162,21 @@ def add_experience(request):
             status = 'You must choose one category'
         else:
             pass
-        if data['use_my_address'] is True:
+        if data['use_saved_address'] is True:
             pass    # here I should assign the merchant's address to the experience...
             # not sure how to do it b/c the experience is still not in created in mongo...
         elif len(data['address']) == 0:  # are these supposed to be elif?
             status = 'Please enter a valid address'
-        elif len(data['city']) == 0:
-            status = 'Please enter city'
-        elif len(data['state']) == 0:
-            status = 'Please select state'
-        elif len(data['zipcode']) == 0:
-            status = 'Please enter zip-code'
-        elif data['country'] is None:
-            status = 'You must select a country'
-        else:
-            pass
+#        elif len(data['city']) == 0:
+#            status = 'Please enter city'
+#        elif len(data['state']) == 0:
+#            status = 'Please select state'
+#        elif len(data['zipcode']) == 0:
+#            status = 'Please enter zip-code'
+#        elif data['country'] is None:
+#            status = 'You must select a country'
+#        else:
+#            pass
         if len(data['price']) == 0:
             status = 'Please enter price'
             #elif data['price'] is not a number:
@@ -182,15 +185,22 @@ def add_experience(request):
             # status = 'Price must be between $1 and $500,000. If you want to list a really expensive experience please contact us at support@tep.com'
         if len(request.FILES) > 0:
             data['merchant'] = request.merchant
-            experience = Experience(**data)
-            experience.update_location(float(request.POST.get('lat',0.0)), float(request.POST.get('lng',0.0)))
-            experience.save()
+#            experience = Experience(**data)
+#            experience.update_location(float(request.POST.get('lat',0.0)), float(request.POST.get('lng',0.0)))
+#            experience.save()
 #            experience = create_experience(experience_collection, **data)
-            for k, v in request.FILES.iteritems():
-                add_image(v, experience)
-            status = 'yay! experience created'
+#            for k, v in request.FILES.iteritems():
+#                add_image(v, experience)
         else:
             status = 'you must upload at least one image'
+
+        new_object = Experience(merchant=request.merchant)
+        form = ExperienceForm(request.POST,instance=new_object)
+        if form.is_valid() and status == '':
+            new_object = form.save()
+            return redirect(reverse(experience_profile,kwargs = {'id':new_object.id}))
+        else:
+            return render_to_response('experiences/add_experience.html',context_instance=RequestContext(request, {'form':form, 'status':status}))
     else:
         form = ExperienceForm()
         return render_to_response('experiences/add_experience.html',context_instance=RequestContext(request, {'form':form}))

@@ -1,6 +1,17 @@
 from django.forms import forms as django_forms
-from django.forms.widgets import Textarea
+from django.forms.widgets import Textarea, DateTimeInput
 
+class XPDatePicker(DateTimeInput):
+    def __init__(self, attrs=None):
+        attrs = attrs or {}
+        attrs['class'] = 'datepicker'
+        super(XPDatePicker, self).__init__(attrs=attrs)
+
+    class Media:
+        css = {
+            'all' : ('ui-lightness/jquery-ui-1.8.16.custom.css',)
+        }
+        js = ('jquery-ui-1.8.16.custom.min.js',)
 
 class RichTextEditorWidget(Textarea):
     def __init__(self, attrs=None):
@@ -24,7 +35,7 @@ def PointWidgetWithAddressField(address_field):
             super(PointWidget, self).__init__(attrs=attrs)
 
         def value_from_datadict(self, data, files, name):
-            lat,lng =  data.get(name,'0.0,0.0').split(',')
+            lat,lng =  data.get(name,'0.0,0.0').strip('()').split(',')
             return (float(lat), float(lng))
 
         class Media:
