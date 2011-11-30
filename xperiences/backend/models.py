@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
-from django.forms import forms
 from django.forms.fields import CharField
 from django.template.defaultfilters import slugify
+from backend.forms import PointWidgetWithAddressField, RichTextEditorWidget
 from django_mongodb_engine.contrib import MongoDBManager
 
 __author__ = 'ishai'
@@ -9,25 +9,7 @@ __author__ = 'ishai'
 from django.db import models
 from djangotoolbox.fields import EmbeddedModelField
 
-def PointWidgetWithAddressField(address_field):
-    class PointWidget(forms.TextInput):
 
-        def __init__(self, attrs=None):
-            attrs = attrs or {}
-            attrs['class'] = 'geopicker'
-            attrs['address_field'] = address_field
-            super(PointWidget, self).__init__(attrs=attrs)
-
-        def value_from_datadict(self, data, files, name):
-            lat,lng =  data.get(name,'0.0,0.0').split(',')
-            return Coordinate(lat=float(lat), lng=float(lng))
-
-        class Media:
-            css = {
-                'all' : ('map.css',)
-            }
-            js = ('http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js','https://maps-api-ssl.google.com/maps/api/js?v=3&sensor=false&language=he&libraries=places','maps.js')
-    return PointWidget
 
 
 class Coordinate(models.Model):
@@ -47,9 +29,10 @@ class GeoField(EmbeddedModelField):
     def __init__(self,**kwargs):
         kwargs['default'] = Coordinate
 #        kwargs['editable'] = False
-        self.address_field = 'id_' + kwargs.get('address_field','')
-        del kwargs['address_field']
-        super(GeoField,self).__init__(Coordinate, **kwargs)
+        if 'address_field' in kwargs:
+            self.address_field = 'id_' + kwargs.get('address_field','')
+            del kwargs['address_field']
+        return super(GeoField,self).__init__(Coordinate, **kwargs)
 
     def formfield(self, **kwargs):
             # A file widget is provided, but use model FileField or ImageField
@@ -62,9 +45,18 @@ class GeoField(EmbeddedModelField):
         return super(GeoField, self).formfield(self.FormClass,**defaults)
 
     class FormClass(CharField):
-        def to_python(self, value):
-            return value
+        def to_python(self, (lat,lng)):
+            return Coordinate(lat=lat, lng=lng)
 
+class RichTextField(models.TextField):
+    def __init__(self,**kwargs):
+        defaults = {'max_length':255}
+        defaults.update(kwargs)
+        return super(RichTextField,self).__init__(**defaults)
+
+    def formfield(self,**kwargs):
+        kwargs['widget'] = RichTextEditorWidget
+        return super(RichTextField,self).formfield(**kwargs)
 
 class XPDBManager(MongoDBManager):
     def proximity_query(self,location,**kwargs):
@@ -101,7 +93,7 @@ class UserExtension(GeoModel):
     referred_by = models.ForeignKey(User, null=True, blank=True, related_name='referred_by')
 
     name = models.CharField(max_length=50)  # by default blank=false and null=false, means that both fields are mandatory in both admin and DB
-    description = models.TextField(max_length=250, default='',blank=True)
+    description = RichTextField(default='',blank=True)
     phone_number = models.CharField(max_length=15, default='',blank=True)
     website = models.CharField(max_length=100, default='',blank=True)
 

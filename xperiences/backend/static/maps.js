@@ -20,6 +20,7 @@ $.prototype.geopicker = function(params)
     if(!address_input)
         address_input = elm.attr('address_field');
     var map;
+    var marker;
     var init = function()
     {
         var num = Number(new Date());
@@ -28,9 +29,23 @@ $.prototype.geopicker = function(params)
         var latlng = elm.val() || '0,0';
         var center = { lat: latlng.split(',')[0], lng: latlng.split(',')[1]};
         map = init_map(id,center,true,update_location);
+        marker = add_draggable_marker(map, center, function(loc)
+        {
+            update_location(loc);
+            if(address_input )
+            {
+                var geo = new google.maps.Geocoder();
+                geo.geocode( { latLng: loc },function(results,status)
+                {
+                    if(results && results.length > 0)
+                        $('#' + address_input).val(results[0].formatted_address);
+                });
+            }
+        });
         if(address_input)
             address_autocomplete(address_input,id, function(location) {
                 update_location(location.geometry.location);
+                marker.setPosition(location.geometry.location);
             });
     };
 
@@ -39,16 +54,6 @@ $.prototype.geopicker = function(params)
         var lat = loc.lat();
         var lng = loc.lng();
         elm.val(lat + ',' + lng);
-        if(address_input )
-        {
-            var geo = new google.maps.Geocoder();
-            geo.geocode( { latLng: loc },function(results,status)
-            {
-                if(results && results.length > 0)
-                    $('#' + address_input).val(results[0].formatted_address);
-            });
-        }
-
     };
     
     init();
@@ -59,7 +64,7 @@ $(document).ready(function()
    $('.geopicker').geopicker();
 });
 
-function init_map( id , center ,editable,location_changed){
+function init_map( id , center){
       if (!center) center = new google.maps.LatLng(-34.397, 34.644);
       else center = new google.maps.LatLng(center.lat, center.lng);
       var myOptions = {
@@ -69,19 +74,22 @@ function init_map( id , center ,editable,location_changed){
       }
       var map = new google.maps.Map(document.getElementById( id ), myOptions);
       maps[ id ] = map;
-      var  marker = new google.maps.Marker({
-            map: map,
-            position: center
-        });
-    if(editable)
-    {
-        marker.setDraggable(true);
-         google.maps.event.addListener(marker, 'dragend', function(me) {
-             if(location_changed)
-                location_changed(me.latLng);
-        });
-    }
      return map;
+}
+function add_draggable_marker(map,center, location_changed)
+{
+    if (!center) center = new google.maps.LatLng(-34.397, 34.644);
+    else center = new google.maps.LatLng(center.lat, center.lng);
+    var  marker = new google.maps.Marker({
+        map: map,
+        position: center
+    });
+    marker.setDraggable(true);
+    google.maps.event.addListener(marker, 'dragend', function(me) {
+        if(location_changed)
+            location_changed(me.latLng);
+    });
+    return marker;
 }
 
 function get_map(id){

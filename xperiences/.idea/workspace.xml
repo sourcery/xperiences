@@ -26,92 +26,104 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="transaction.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/db/transaction.py">
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="219" column="0" selection-start="6850" selection-end="6850" vertical-scroll-proportion="0.0">
+            <state line="96" column="16" selection-start="3362" selection-end="3374" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/merchants/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="29" column="32" selection-start="1301" selection-end="1301" vertical-scroll-proportion="0.5968992">
+              <folding>
+                <element signature="e#0#57#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/socialauth/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin_form.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/admin_form.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="0" selection-start="425" selection-end="440" vertical-scroll-proportion="-5.8846154">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="decorators.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/utils/decorators.py">
+      <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/merchants/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="0" selection-start="909" selection-end="909" vertical-scroll-proportion="0.0">
+            <state line="5" column="6" selection-start="95" selection-end="95" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/socialauth/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="301" column="0" selection-start="11935" selection-end="11935" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="register.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/merchants/templates/merchants/register.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="0" selection-start="185" selection-end="185" vertical-scroll-proportion="-1.1923077">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/models.py">
+        <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/forms/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="31" selection-start="334" selection-end="361" vertical-scroll-proportion="0.0">
+            <state line="184" column="6" selection-start="6755" selection-end="6755" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="maps.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/backend/static/maps.js">
+      <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/forms/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="28" selection-start="1456" selection-end="1456" vertical-scroll-proportion="0.7922607">
-              <folding />
+            <state line="83" column="20" selection-start="3346" selection-end="3353" vertical-scroll-proportion="-7.2">
+              <folding>
+                <element signature="e#22#72#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/db/models/fields/__init__.py">
+      <file leaf-file-name="admin.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="258" column="52" selection-start="10139" selection-end="10176" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fields.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/djangotoolbox/fields.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="275" column="0" selection-start="10413" selection-end="10413" vertical-scroll-proportion="-18.76">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/db/models/base.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="564" column="0" selection-start="26028" selection-end="26028" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="subclassing.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/db/models/fields/subclassing.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="0" selection-start="1024" selection-end="1024" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fields.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/forms/fields.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="168" column="0" selection-start="6700" selection-end="6700" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="options.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/contrib/admin/options.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="981" column="0" selection-start="41714" selection-end="41714" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="10" column="51" selection-start="244" selection-end="248" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#34#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -131,22 +143,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/configurations/admin.py" />
-        <option value="$PROJECT_DIR$/configurations/__init__.py" />
-        <option value="$PROJECT_DIR$/experiences/models.py" />
-        <option value="$PROJECT_DIR$/configurations/models.py" />
-        <option value="$PROJECT_DIR$/backend/configurations.py" />
         <option value="$PROJECT_DIR$/media/js/maps.js" />
         <option value="$PROJECT_DIR$/backend/static/map.css" />
-        <option value="$PROJECT_DIR$/merchants/views.py" />
         <option value="$PROJECT_DIR$/settings.py" />
         <option value="$PROJECT_DIR$/backend/middleware.py" />
         <option value="$PROJECT_DIR$/merchants/urls.py" />
         <option value="$PROJECT_DIR$/urls.py" />
         <option value="$PROJECT_DIR$/backend/decorators.py" />
         <option value="$PROJECT_DIR$/socialauth/views.py" />
+        <option value="$PROJECT_DIR$/experiences/templates/experiences/add_experience.html" />
+        <option value="$PROJECT_DIR$/experiences/models.py" />
         <option value="$PROJECT_DIR$/backend/models.py" />
+        <option value="$PROJECT_DIR$/backend/forms.py" />
         <option value="$PROJECT_DIR$/backend/static/maps.js" />
+        <option value="$PROJECT_DIR$/merchants/forms.py" />
+        <option value="$PROJECT_DIR$/merchants/templates/merchants/register.html" />
+        <option value="$PROJECT_DIR$/merchants/views.py" />
       </list>
     </option>
   </component>
@@ -239,7 +251,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="socialauth" />
+              <option name="myItemId" value="merchants" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -254,6 +266,50 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="merchants" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xperiences" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xperiences" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="merchants" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="merchants" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xperiences" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xperiences" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="media" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -281,53 +337,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="djangotoolbox" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xperiences" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xperiences" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="django" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xperiences" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xperiences" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xperiences" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="xperiences" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -505,7 +515,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21100427" sideWeight="0.6035635" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21260683" sideWeight="0.6035635" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3964365" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -576,11 +586,11 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/backend/models.py</url>
-          <line>124</line>
+          <line>116</line>
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/backend/models.py</url>
-          <line>135</line>
+          <line>127</line>
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/socialauth/auth_backends.py</url>
@@ -589,14 +599,6 @@
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/socialauth/auth_backends.py</url>
           <line>358</line>
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/merchants/views.py</url>
-          <line>18</line>
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/merchants/views.py</url>
-          <line>26</line>
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://C:/Python27/Lib/site-packages/floppyforms/gis/widgets.py</url>
@@ -621,117 +623,133 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/contrib/auth/views.py">
+    <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/contrib/admin/options.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="115" column="0" selection-start="4383" selection-end="4383" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/socialauth/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="317" column="0" selection-start="12531" selection-end="12531" vertical-scroll-proportion="-6.52">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/merchants/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="770" selection-end="770" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#57#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/utils/datastructures.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="303" column="0" selection-start="8884" selection-end="8884" vertical-scroll-proportion="0.0">
+        <state line="127" column="0" selection-start="5887" selection-end="5887" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/forms/widgets.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="177" column="0" selection-start="6259" selection-end="6259" vertical-scroll-proportion="0.0">
+        <state line="357" column="14" selection-start="13097" selection-end="13105" vertical-scroll-proportion="-2.44">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/forms/forms.py">
+    <entry file="file://$PROJECT_DIR$/backend/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="285" column="0" selection-start="11943" selection-end="11943" vertical-scroll-proportion="0.0">
+        <state line="6" column="0" selection-start="165" selection-end="165" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/static/maps.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="15" selection-start="1622" selection-end="1622" vertical-scroll-proportion="-32.64">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/forms/fields.py">
+    <entry file="file://$PROJECT_DIR$/experiences/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="168" column="0" selection-start="6700" selection-end="6700" vertical-scroll-proportion="0.0">
+        <state line="15" column="27" selection-start="606" selection-end="606" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="106" selection-start="495" selection-end="976" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="51" selection-start="244" selection-end="248" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/socialauth/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="425" selection-end="440" vertical-scroll-proportion="-5.8846154">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/contrib/admin/options.py">
+    <entry file="file://$PROJECT_DIR$/merchants/templates/merchants/register.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="981" column="0" selection-start="41714" selection-end="41714" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/db/transaction.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="219" column="0" selection-start="6850" selection-end="6850" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/utils/decorators.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="909" selection-end="909" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/db/models/fields/subclassing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="1024" selection-end="1024" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/db/models/fields/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="258" column="52" selection-start="10139" selection-end="10176" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/db/models/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="564" column="0" selection-start="26028" selection-end="26028" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/djangotoolbox/fields.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="275" column="0" selection-start="10413" selection-end="10413" vertical-scroll-proportion="-18.76">
+        <state line="7" column="0" selection-start="185" selection-end="185" vertical-scroll-proportion="-1.1923077">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="31" selection-start="334" selection-end="361" vertical-scroll-proportion="0.0">
+        <state line="96" column="16" selection-start="3362" selection-end="3374" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/socialauth/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="301" column="0" selection-start="11935" selection-end="11935" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/static/maps.js">
+    <entry file="file://$PROJECT_DIR$/merchants/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="28" selection-start="1456" selection-end="1456" vertical-scroll-proportion="0.7922607">
+        <state line="5" column="6" selection-start="95" selection-end="95" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/forms/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="83" column="20" selection-start="3346" selection-end="3353" vertical-scroll-proportion="-7.2">
+          <folding>
+            <element signature="e#22#72#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/forms/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="184" column="6" selection-start="6755" selection-end="6755" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/merchants/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="32" selection-start="1301" selection-end="1301" vertical-scroll-proportion="0.5968992">
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

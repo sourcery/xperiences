@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 {% block extra_head %}
-    {% include 'ckeditor_head.html' %}
+    {{ form.media }}
 {% endblock %}
 {% block content %}
 <h2>{{ status }}</h2>    
 <form id="form" name="form" method="post" action="#">
-    <p>Name  <input class="space_common" type="text" onfocus="if(this.value=='Name')this.value='';" value="{{ merchant.name }}" name="name"></p>
+    <p>Name {{ form.name }} </p>
     <p>Email {{ user.email }} <!--input class="space_common" type="text" onfocus="if(this.value=='Email')this.value='';" value="Email" name="email"--></p>
     <!--p>username  <input class="space_common" type="text" onfocus="if(this.value=='username')this.value='';" value="username" name="username"></p-->
-    <address><p>Address  <input class="space_common" type="text" onfocus="if(this.value=='Address')this.value='';" value="{{ merchant.address }}" name="address"></p>
-        <p>City  <input class="space_common" type="text" name="city" ></p>
+    {{ form.xp_location }}
+    <address><p>Address  {{ form.address }}</p>
+        <!--p>City  <input class="space_common" type="text" name="city" ></p>
         <p>State  
             <select name="state">
                 <option>AL</option>
@@ -30,12 +31,12 @@
                 <option>PA</option>
                 <option>NY</option>
                 <option>NH</option>
-                <option>MA</option>-->
+                <option>MA</option>>
             </select>
-        </p>
+        </p-->
     </address>
-    <p>Phone number  <input class="space_common" type="text" onfocus="if(this.value=='Phone number')this.value='';" value="{{ merchant.phone }}" name="phone"></p>
-    <textarea name="description" value='{{ merchant.description }}' class='ckeditor'></textarea>
+    <p>Phone number  {{ form.phone_number }}</p>
+    {{ form.description }}
     <input class="button" type="submit" value="Save">
 </form>
 
