@@ -2,6 +2,7 @@ from django.shortcuts import render_to_response  # renders a given template with
 from django.template import RequestContext
 from django.http import HttpResponse
 from backend import configurations
+from experiences.forms import ExperienceForm
 from experiences.models import Experience
 import pymongo
 from db_manage import db
@@ -191,7 +192,8 @@ def add_experience(request):
         else:
             status = 'you must upload at least one image'
     else:
-        return render_to_response('experiences/add_experience.html',context_instance=RequestContext(request))
+        form = ExperienceForm()
+        return render_to_response('experiences/add_experience.html',context_instance=RequestContext(request, {'form':form}))
 
 
 import random

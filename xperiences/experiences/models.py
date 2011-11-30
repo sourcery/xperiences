@@ -24,6 +24,8 @@ class Experience(GeoModel):
     photo3 = models.FileField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
     photo4 = models.FileField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
     photo5 = models.FileField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
+    video_link = models.TextField(max_length=255,null=True,blank=True)
+    use_saved_address = models.BooleanField(default=True)
 
 
     @property
