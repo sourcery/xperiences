@@ -17,7 +17,7 @@ ADMINS = (
 MANAGERS = ADMINS
 
 import urlparse
-if PRODUCTION:
+if PRODUCTION or STAGING:
     _DB_PARAMS = urlparse.urlparse(os.environ['MONGOLAB_URI'].replace('mongodb', 'http'))
     DATABASES = {
         'default': {
@@ -86,7 +86,7 @@ MEDIA_URL = '/media/'
 # Example: "/home/media/media.lawrence.com/static/"
 STATIC_ROOT = '/static/'
 
-if not PRODUCTION:
+if not PRODUCTION and not STAGING:
     STATIC_ROOT = CODE_ROOT + STATIC_ROOT
 
 # URL prefix for static files.
