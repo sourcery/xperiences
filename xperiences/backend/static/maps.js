@@ -24,10 +24,6 @@ $.prototype.geopicker = function(params)
     {
         var num = Number(new Date());
         var id = 'map' + num;
-        $('<div>Update</div>').insertAfter(elm).click(function(){
-            var loc = map.getCenter();
-            update_location(loc);
-        });
         $('<div class="geopicker_map" id="' + id + '"></div>').insertAfter(elm);
         var latlng = elm.val() || '0,0';
         var center = { lat: latlng.split(',')[0], lng: latlng.split(',')[1]};
@@ -43,6 +39,16 @@ $.prototype.geopicker = function(params)
         var lat = loc.lat();
         var lng = loc.lng();
         elm.val(lat + ',' + lng);
+        if(address_input )
+        {
+            var geo = new google.maps.Geocoder();
+            geo.geocode( { latLng: loc },function(results,status)
+            {
+                if(results && results.length > 0)
+                    $('#' + address_input).val(results[0].formatted_address);
+            });
+        }
+
     };
     
     init();

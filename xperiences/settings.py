@@ -251,5 +251,5 @@ MERCHANT_REDIRECT_URL = '/merchants/register/'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_ACCESS_KEY_ID = 'AKIAJYBGEQMSD3MMPTYA'
 AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'my_prod_xpr_uploads' if PRODUCTION else 'my_dev_xpr_uploads'
-
+AWS_STORAGE_BUCKET_NAME = 'my_prod_xpr_uploads'
+AWS_S3_CUSTOM_DOMAIN = 'd1hg4pg1k1dk6u.cloudfront.net'
