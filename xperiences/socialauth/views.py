@@ -42,6 +42,10 @@ def del_dict_key(src_dict, key):
     if key in src_dict:
         del src_dict[key]
 
+def merchant_login_page(request):
+    request.session['is_merchant'] = True
+    return login_page(request)
+
 def login_page(request):
     if request.method == 'GET':
         return render_to_response('sign_up.html', {'next': request.GET.get('next', LOGIN_REDIRECT_URL)}, context_instance=RequestContext(request))
@@ -297,7 +301,6 @@ def try_again(request):
     return redirect('/accounts/login/')
 
 
-@transaction.commit_on_success
 def facebook_login_done(request):
     user = authenticate(request=request)
 

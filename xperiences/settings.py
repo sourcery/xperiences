@@ -7,6 +7,14 @@ STAGING = os.environ.get('IS_STAGING') == 'True'
 if STAGING:
     PRODUCTION = False
 
+BASE_URL = 'http://dev.empeeric.com'
+
+if STAGING:
+    BASE_URL = 'http://xperiences-dev.herokuapp.com/'
+
+if PRODUCTION:
+    BASE_URL = 'http://xperiences.herokuapp.com/'
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -128,6 +136,7 @@ MIDDLEWARE_CLASSES = [
     #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'backend.middleware.UserExtensionMiddleware',
+    'backend.middleware.UserLogMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'openid_consumer.middleware.OpenIDMiddleware',
     'django.middleware.transaction.TransactionMiddleware',

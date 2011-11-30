@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from backend import utils
 from backend.decorators import merchant_required
 from backend.models import UserExtension
 from django.shortcuts import render_to_response
@@ -25,6 +26,7 @@ def register(request):
             form.save()
             status = 'yay! Merchant created'
             print "I work!"
+            utils.merchant_onreview_email(request.merchant)
             return render_to_response(template_name, {'form':form,'status': status, 'merchant':request.merchant}, context_instance=RequestContext(request))
         else:
             errors = form.errors

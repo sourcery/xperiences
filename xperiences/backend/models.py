@@ -1,4 +1,6 @@
+import datetime
 from django.contrib.auth.models import User
+from django.dispatch.dispatcher import receiver
 from django.forms.fields import CharField
 from django.template.defaultfilters import slugify
 from backend.forms import PointWidgetWithAddressField, RichTextEditorWidget
@@ -81,12 +83,38 @@ class GeoModel(models.Model):
     class Meta:
         abstract = True
 
+class UserLog(models.Model):
+    user = models.ForeignKey(User, null=True)
+    session = models.CharField(max_length=100,null=True)
+    was_logged_in = models.BooleanField(default=False)
+    time = models.DateTimeField(default=datetime.datetime.now, editable=False)
+    url = models.CharField(max_length=150)
+
+    def __str__(self):
+        return (str(self.user) if self.user else self.session) + ' ' + str(self.url)
+
+
+    @staticmethod
+    def create_from_user(user,url):
+        return UserLog(user=user,was_logged_in=True,url=url)
+
+    @staticmethod
+    def create_from_session(session,url):
+        return UserLog(session=session,url=url)
+
+    @staticmethod
+    def user_logged_in(user,session):
+        logs = UserLog.objects.filter(session=session)
+        for log in logs:
+            log.user = user
+            log.save()
 
 class UserExtension(GeoModel):
+    id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, unique=True,primary_key=True)
     validation_code = models.CharField(max_length=20, null=True,blank=True)
     is_merchant = models.BooleanField(default=False)
-    is_approved = models.BooleanField(default=True)
+    is_approved = models.BooleanField(default=False)
     credit = models.FloatField(default=0.0)
     FB_ID = models.CharField(max_length=40, null=True)
     FB_token = models.CharField(max_length=255,null=True)
@@ -144,6 +172,7 @@ class UserExtension(GeoModel):
     # by 'name' in the admin interface.
     class Meta:
         ordering = ['name'] # This is a list that specifies the ordering
+        db_table = 'user_extension2'
 
     def __str__(self):
         return self.name
@@ -186,3 +215,16 @@ class UserExtension(GeoModel):
 class SiteConfiguration(models.Model):
     name = models.CharField(max_length=50,primary_key=True)
     conf = models.TextField(max_length=1500,default='')
+
+
+from django.contrib.auth.models import User
+from django.db.models import signals
+from django.dispatch import dispatcher
+
+@receiver(signals.post_save, sender=User)
+def user_post_save(instance, created, **_):
+    pass
+#    session = _['request'].session.session_key
+#    UserLog.user_logged_in(instance,session)
+
+

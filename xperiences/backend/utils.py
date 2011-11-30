@@ -44,7 +44,16 @@ def validate_user(user_id, code):
         return True
     return False
 
+def merchant_onreview_email(merchant):
+    send_email_with_template(settings.EMAIL_HOST_USER,[merchant.user.email],'Your Application is on review', 'app_review.txt','app_review.html',{ 'merchant':merchant})
+
+def approve_merchant(merchant):
+    merchant.is_approved = True
+    merchant.save()
+    send_email_with_template(settings.EMAIL_HOST_USER,[merchant.user.email],'Your Application is approved', 'app_approved.txt','app_approved.html',{ 'merchant':merchant})
+
 def send_email_with_template(from_email, to_list, subject, text_file_name, html_file_name, context):
+    context['BASE_URL'] = settings.BASE_URL
     c = Context(context)
     text_template = loader.get_template('email_templates/' + text_file_name)
     html_template = loader.get_template('email_templates/' + html_file_name)
