@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.forms import forms
+from django.forms.fields import CharField
 from django.template.defaultfilters import slugify
 from django_mongodb_engine.contrib import MongoDBManager
 
@@ -8,17 +9,25 @@ __author__ = 'ishai'
 from django.db import models
 from djangotoolbox.fields import EmbeddedModelField
 
-class PointWidget(forms.TextInput):
+def PointWidgetWithAddressField(address_field):
+    class PointWidget(forms.TextInput):
 
-    def __init__(self, attrs=None):
-        attrs = attrs or {}
-        attrs['class'] = 'geopoint_picker'
-        super(PointWidget, self).__init__(attrs=attrs)
+        def __init__(self, attrs=None):
+            attrs = attrs or {}
+            attrs['class'] = 'geopicker'
+            attrs['address_field'] = address_field
+            super(PointWidget, self).__init__(attrs=attrs)
 
+        def value_from_datadict(self, data, files, name):
+            lat,lng =  data.get(name,'0.0,0.0').split(',')
+            return Coordinate(lat=float(lat), lng=float(lng))
 
-    class Media:
-        css = ('map.css',)
-        js = ('map.js',)
+        class Media:
+            css = {
+                'all' : ('map.css',)
+            }
+            js = ('http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js','https://maps-api-ssl.google.com/maps/api/js?v=3&sensor=false&language=he&libraries=places','maps.js')
+    return PointWidget
 
 
 class Coordinate(models.Model):
@@ -31,24 +40,30 @@ class Coordinate(models.Model):
         return '%f,%f' % (self.lat, self.lng)
 
 
+
+
 class GeoField(EmbeddedModelField):
     address_field = ''
     def __init__(self,**kwargs):
         kwargs['default'] = Coordinate
-        kwargs['editable'] = False
-        self.address_field = kwargs.get('address_field','')
+#        kwargs['editable'] = False
+        self.address_field = 'id_' + kwargs.get('address_field','')
         del kwargs['address_field']
         super(GeoField,self).__init__(Coordinate, **kwargs)
 
     def formfield(self, **kwargs):
             # A file widget is provided, but use model FileField or ImageField
         # for storing specific files most of the time
-        defaults = {'widget': PointWidget}
+        defaults = {'widget': PointWidgetWithAddressField(self.address_field)}
 #        attrs = kwargs.get('attrs',{})
 #        attrs['address_field'] = self.address_field
         defaults.update(kwargs)
 #        defaults['attrs'] = attrs
-        return super(GeoField, self).formfield(**defaults)
+        return super(GeoField, self).formfield(self.FormClass,**defaults)
+
+    class FormClass(CharField):
+        def to_python(self, value):
+            return value
 
 
 class XPDBManager(MongoDBManager):

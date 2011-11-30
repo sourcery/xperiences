@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from backend.decorators import merchant_required
 from backend.models import UserExtension
 from django.shortcuts import render_to_response
 from django.template import RequestContext  # I still need to understand better the concept of RequestContext
@@ -13,7 +14,7 @@ def merchant_profile(request, username):
     return render_to_response(template_name, {'merchant': merchant}, context_instance=RequestContext(request))
 
 
-@login_required()
+@merchant_required()
 def register(request):
     status = ''
     template_name = 'merchants/register.html'

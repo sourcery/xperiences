@@ -3,6 +3,9 @@ import os
 CODE_ROOT = os.path.dirname(__file__)
 
 PRODUCTION = 'MONGOLAB_URI' in os.environ
+STAGING = os.environ.get('IS_STAGING') == 'True'
+if STAGING:
+    PRODUCTION = False
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -82,6 +85,9 @@ MEDIA_URL = '/media/'
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
 STATIC_ROOT = '/static/'
+
+if not PRODUCTION:
+    STATIC_ROOT = CODE_ROOT + STATIC_ROOT
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -208,10 +214,16 @@ FACEBOOK_API_KEY = '299479036742472'
 FACEBOOK_SECRET_KEY = '498f25f7cb732faf01e9a197fedaf3a6'
 FACEBOOK_PERMISSIONS = 'user_about_me,email,user_website,publish_stream,user_activities,user_birthday,user_education_history,user_events,user_groups,user_hometown,user_interests'
 
-if DEBUG:
+if STAGING:
     FACEBOOK_APP_ID = '185047278245686'
     FACEBOOK_API_KEY = '185047278245686'
     FACEBOOK_SECRET_KEY = '378d3a53d53bb4947517892f4a812907'
+
+if not PRODUCTION and not STAGING:
+    FACEBOOK_APP_ID = '317196991641774'
+    FACEBOOK_API_KEY = '317196991641774'
+    FACEBOOK_SECRET_KEY = '80f852f3296fc76863fd9eaf44b9c7a0'
+
 
 EMAIL_HOST_USER = 'peeri.empeeric@gmail.com'
 
@@ -229,6 +241,11 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 LOGIN_URL = '/accounts/login/'
 
+LOGIN_REDIRECT_URL = '/experiences/'
+
+MERCHANT_LOGIN_URL = '/merchants/login/'
+
+MERCHANT_REDIRECT_URL = '/merchants/register/'
 
 #Storage
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
