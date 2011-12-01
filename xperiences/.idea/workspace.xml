@@ -30,9 +30,7 @@
         <entry file="file://$PROJECT_DIR$/experiences/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state line="7" column="54" selection-start="296" selection-end="314" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#34#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -41,9 +39,7 @@
         <entry file="file://$PROJECT_DIR$/backend/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state line="178" column="23" selection-start="6347" selection-end="6364" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -60,7 +56,7 @@
       <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="55" selection-start="2363" selection-end="2375" vertical-scroll-proportion="-11.769231">
+            <state line="59" column="55" selection-start="2363" selection-end="2375" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -69,7 +65,7 @@
       <file leaf-file-name="middleware.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/middleware.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="61" selection-start="258" selection-end="258" vertical-scroll-proportion="0.23658052">
+            <state line="7" column="61" selection-start="258" selection-end="258" vertical-scroll-proportion="0.11666667">
               <folding />
             </state>
           </provider>
@@ -106,9 +102,7 @@
         <entry file="file://$PROJECT_DIR$/experiences/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state line="82" column="89" selection-start="3023" selection-end="3090" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#166#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -117,9 +111,7 @@
         <entry file="file://$PROJECT_DIR$/backend/admin.py">
           <provider selected="true" editor-type-id="text-editor">
             <state line="17" column="0" selection-start="427" selection-end="427" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#34#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -159,10 +151,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="-4" />
+    <option name="y" value="-4" />
+    <option name="width" value="1928" />
+    <option name="height" value="1088" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -280,11 +272,11 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="com.jetbrains.python.configuration.PythonSdkConfigurable" />
+    <property name="recentsLimit" value="5" />
     <property name="DefaultHtmlFileTemplate" value="Html" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -317,6 +309,25 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <module name="xperiences" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <method />
+    </configuration>
     <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -336,25 +347,6 @@
       <option name="useCustomRunCommand" value="false" />
       <option name="customRunCommand" value="" />
       <option name="launchJavascriptDebuger" value="false" />
-      <method />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Unittests">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <module name="xperiences" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -439,24 +431,26 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-4" y="-4" width="1928" height="1088" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20779915" sideWeight="0.6035635" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3964365" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20769636" sideWeight="0.6035635" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3956386" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32979852" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -557,206 +551,58 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/experiences/templates/experiences/experience_by_category.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="11.769231">
-          <folding>
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1321527399569" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="11.769231" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/experiences/templates/experiences/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1" column="18" selection-start="89" selection-end="89" vertical-scroll-proportion="-0.65384614">
-          <folding>
-            <marker date="1322147152553" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1322147152553" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1322147152553" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1322147152553" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1322147152553" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1322147152553" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1322147152553" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1322147152553" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1322147152553" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/db/models/fields/related.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="817" column="8" selection-start="38356" selection-end="38356" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Lib/site-packages/django/utils/importlib.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="0" selection-start="1179" selection-end="1179" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/experiences/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="45" selection-start="301" selection-end="301" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="5" column="45" selection-start="301" selection-end="301" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="1050" selection-end="1050" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="24" column="0" selection-start="1050" selection-end="1050" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/experiences/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="54" selection-start="296" selection-end="314" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiences/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="89" selection-start="3023" selection-end="3090" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#166#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="7" column="54" selection-start="296" selection-end="314" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="178" column="23" selection-start="6347" selection-end="6364" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/admin.py">
+    <entry file="file://$PROJECT_DIR$/backend/configurations.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="427" selection-end="427" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="55" selection-start="2363" selection-end="2375" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://C:/Python27/Lib/StringIO.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="8" selection-start="2033" selection-end="2033" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="53" column="8" selection-start="2033" selection-end="2033" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../Lib/site-packages/configobj.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1244" column="8" selection-start="40076" selection-end="40076" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="1244" column="8" selection-start="40076" selection-end="40076" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/settings.py">
@@ -766,23 +612,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/configurations.py">
+    <entry file="file://$PROJECT_DIR$/experiences/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="82" column="89" selection-start="3023" selection-end="3090" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html">
+    <entry file="file://$PROJECT_DIR$/backend/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="55" selection-start="2363" selection-end="2375" vertical-scroll-proportion="-11.769231">
-          <folding />
-        </state>
+        <state line="17" column="0" selection-start="427" selection-end="427" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/middleware.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="61" selection-start="258" selection-end="258" vertical-scroll-proportion="0.23658052">
+        <state line="7" column="61" selection-start="258" selection-end="258" vertical-scroll-proportion="0.11666667">
           <folding />
         </state>
       </provider>
