@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <link rel="stylesheet" href="{{ MEDIA_URL }}css/reset.css" type="text/css" media="screen, print" /> 
-<link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css" media="screen, print" /> 
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css" media="screen, print" />
+<!--script src="{{ MEDIA_URL }}js/lib/jquery-1.7.min.js"></script-->
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
 <title>{% block title %}Book meals with people from around the world. Learn new dishes and share with your friends. Order homemade takeout.{% endblock %}</title>
-<script src="{{ MEDIA_URL }}js/lib/jquery-1.7.min.js"></script>
 <script src="{{ MEDIA_URL }}js/lib/main.js"></script>
 <!--[if !IE 7]>
 	<style type="text/css">
@@ -25,7 +26,14 @@
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
+
+  $(document).ready(function()
+  {
+      image_autoscale($('.image-wrapper img'));
+  });
+
 </script>
+{% block extra_head %}{% endblock %}
 </head>
 
 <body>
@@ -49,10 +57,10 @@
         <div id="main-nav-bg">
             <div id="main-nav">
                 <ul>
-                    <li {% if not category %}id="selected"{% endif %}>
+                    <li {% if category == 'hosted meals' %}id="selected"{% endif %}>
                         <a href="{% url experiences.views.experience_by_category category='hosted meals'%}">Hosted Meals</a>
                     </li>
-                    <li {% if category %}id="selected"{% endif %}>        
+                    <li {% if category == 'homemade takeout' %}id="selected"{% endif %}>
                         <a href="{% url experiences.views.experience_by_category category='homemade takeout'%}">Homemade Takeout</a>
                     </li>
                 </ul>
@@ -72,7 +80,7 @@
             <p id="copy">&copy; 2011 Neighborly Meals</p>
             <ul class="footer-nav">
                 <li>
-                    <a title="About" href="/about.html">About</a>
+                    <a title="About" href="#">About</a>
                 </li>
                 <!--<li>
                     <a title="Careers" href="#">Careers</a>
@@ -84,7 +92,7 @@
                     <a title="Terms" href="#">Terms</a>
                 </li>-->
                 <li>
-                    <a title="Contact" href="https://docs.google.com/spreadsheet/viewform?formkey=dGNtYVZGUFozal9Cb2xVd3N0Q3lDeEE6MQ">Contact</a>
+                    <a title="Contact" href="#">Contact</a>
                 </li>                      
             </ul>
         </div>

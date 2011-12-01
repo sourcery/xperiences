@@ -17,30 +17,30 @@ merchant_collection = get_collection(db, "merchant")
 experience_collection = get_collection(db, "experience")
 
 
-# note that you have to pass a merchant *object* assigned to the variable 'merchant'
-def create_experience(collection, title, price, description, pub_date, category, merchant):
-    merchant_tuple =  (merchant["_id"], merchant["name"])
-    experience_obj = {"title":title, "price":price, "description":description, "pub_date":pub_date, "category":category, "merchant":merchant_tuple}
-    print experience_obj
-    experience_obj["_id"] = collection.save(experience_obj)
-    print experience_obj
-    return experience_obj
-
-
-
-#create_experience(experience_collection, title="experience_title", price=float(price),
-#                  description="experience_description", pub_date="yyyy-mm-dd",
-#                  category="category_name", merchant="merchant")
-
-
-
-def create_merchant(collection, name, username, address, city, state, zipcode, country, email, phone, description):
-    merchant_obj = {"name":name, "username":username, "address":address, "city":city, "state":state, "zipcode":zipcode, "country":country, "email":email, "phone":phone, "description":description}
-    print merchant_obj
-    merchant_obj["_id"] = collection.save(merchant_obj)
-    print merchant_obj
-    return merchant_obj
-
+## note that you have to pass a merchant *object* assigned to the variable 'merchant'
+#def create_experience(collection, title, price, description, pub_date, category, merchant):
+#    merchant_tuple =  (merchant["_id"], merchant["name"])
+#    experience_obj = {"title":title, "price":price, "description":description, "pub_date":pub_date, "category":category, "merchant":merchant_tuple}
+#    print experience_obj
+#    experience_obj["_id"] = collection.save(experience_obj)
+#    print experience_obj
+#    return experience_obj
+#
+#
+#
+##create_experience(experience_collection, title="experience_title", price=float(price),
+##                  description="experience_description", pub_date="yyyy-mm-dd",
+##                  category="category_name", merchant="merchant")
+#
+#
+#
+#def create_merchant(collection, name, username, address, city, state, zipcode, country, email, phone, description):
+#    merchant_obj = {"name":name, "username":username, "address":address, "city":city, "state":state, "zipcode":zipcode, "country":country, "email":email, "phone":phone, "description":description}
+#    print merchant_obj
+#    merchant_obj["_id"] = collection.save(merchant_obj)
+#    print merchant_obj
+#    return merchant_obj
+#
 
 """
 test_title = "abcdefgh"
