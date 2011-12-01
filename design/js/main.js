@@ -1,6 +1,9 @@
 
 $(document).ready(function(e) {
-	console.log("jQuery loaded!");
+	$(".default-val").each(function(i, el) {
+		$(el).defaultVal();
+	})
+
 });
 
 // Prevent errors in browsers without console support
