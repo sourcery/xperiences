@@ -1,5 +1,6 @@
 import logging
 import urllib
+from django.db import transaction
 
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
@@ -17,8 +18,8 @@ from socialauth.lib.linkedin import *
 from django.contrib.auth.models import User
 from django.db.utils import IntegrityError
 
-from baseapp.responses import *
-from baseapp import utils
+from backend.responses import *
+from backend import utils
 
 LINKEDIN_CONSUMER_KEY = getattr(settings, 'LINKEDIN_CONSUMER_KEY', '')
 LINKEDIN_CONSUMER_SECRET = getattr(settings, 'LINKEDIN_CONSUMER_SECRET', '')
@@ -40,6 +41,10 @@ FACEBOOK_PERMISSIONS = getattr(settings,'FACEBOOK_PERMISSIONS')
 def del_dict_key(src_dict, key):
     if key in src_dict:
         del src_dict[key]
+
+def merchant_login_page(request):
+    request.session['is_merchant'] = True
+    return login_page(request)
 
 def login_page(request):
     if request.method == 'GET':
@@ -307,14 +312,13 @@ def facebook_login_done(request):
         logging.debug("SOCIALAUTH: Couldn't authenticate user with Django, redirecting to Login page")
         return HttpResponseRedirect(reverse('socialauth_login_page'))
 
+    next = request.session.get('openid_next', LOGIN_REDIRECT_URL)
+
     login(request, user)
     
     logging.debug("SOCIALAUTH: Successfully logged in with Facebook!")
     
-    if 'openid_next' in request.session:
-        return HttpResponseRedirect(request.session['openid_next'])
-    else:
-        return HttpResponseRedirect(LOGIN_REDIRECT_URL)
+    return HttpResponseRedirect(next)
 
 def openid_login_page(request):
     return render_to_response('openid/index.html', context_instance=RequestContext(request))

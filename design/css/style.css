@@ -1,0 +1,233 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*
+	Document CSS
+*/
+
+html {
+	background: url(../images/background.jpg);
+}
+
+body {
+	background: url(../images/background_balloon.jpg) repeat-x center top;
+	font-family: helvetica;
+	font-size: 12pt;
+	color: #7a7a7a;
+}
+
+#topbar {
+	height: 5px;
+	background: #52c4ff;
+}
+
+#wrapper {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+header {
+	padding-top: 20px;
+}
+
+#logo {
+	width: 305px;
+	height: 151px;
+	background: url(../images/logo.png) no-repeat;
+	float: left;
+}
+
+#service-list {
+	width: 140px;
+	height: 25px;
+	background: url(../images/service-list.png) no-repeat;
+	color: white;
+	text-shadow: 1px 1px #666666;
+	font-family: museo-sans-rounded;
+	padding: 5px 10px 0 0;
+	text-align: right;
+	float: left;
+	position: relative;
+	top: 110px;
+	left: 20px;
+}
+
+#service-list:hover {
+	background: url(../images/service-list-hover.png) no-repeat;
+}
+
+#facebook-connect {
+	width: 154px;
+	height: 22px;
+	background: url(../images/fb-login.png) no-repeat;
+	float: right;
+	position: relative;
+	top: 120px;
+	margin-right: 20px;
+}
+
+/**
+ * Inputs
+ */
+
+input {
+	padding: 10px;
+/*	border-radius: 5px;
+	border: 1px solid #999999;
+	box-shadow: 1px 1px #666666;*/
+	font: museo-sans-rounded; 
+	border: 0;
+}
+
+
+/**
+ * Search-box
+ */
+
+.textbox {
+	position: relative;
+	display: inline-block;
+	width: 200px;
+	border: 1px solid black;
+	border-radius: 5px;
+	border: 1px solid #999999;
+	box-shadow: 1px 1px #666666;
+	background: white;
+	margin: 0 7px;
+}
+
+.textbox-default {
+	position: absolute;
+	left: 10px;
+	top: 5px;
+	color: #aaaaaa;
+	text-shadow: 1px 1px #dddddd;
+	text-align: left;
+	font-size: 80%;
+}
+
+#search-box {
+	background: #52c4ff;
+	height: 70px;
+	padding-top: 35px;
+	border-radius: 15px;
+	width: 900px;
+	margin: 40px auto 50px;
+	font-size: 150%;
+	line-height: 1.4;
+	color: white;
+	text-align: center;
+	text-shadow: 1px 1px #7a7a7a;
+}
+
+#search-box-locale {
+	width: 250px;
+}
+
+input#search-button {
+	background: #7ec437;
+	color: white;
+	padding: 5px 20px;
+	font-size: 10pt;
+	border: 3px solid white;
+	border-radius: 8px;
+	font-family: museo-sans-rounded;
+	font-size: 12pt;
+}
+.search-results {
+
+}
+
+.search-result {
+	background: white;
+	border-radius: 5px;
+	border: 1px #cccccc solid;
+	height: 100px;
+	width: 640px;
+	margin: 10px 20px 10px 0;
+	padding: 10px;
+}
+
+.map {
+	background: white;
+	border-radius: 5px;
+	border: 1px #cccccc solid;
+	height: 400px;
+	width: 300px;
+	margin: 0 0 0 20px;
+	padding: 10px;
+	float: right;
+}
+
+
+
+/**
+ * Footer
+ */
+
+footer {
+	height: 180px;
+	margin: 50px 20px;
+}
+
+footer ul.footer-nav li {
+	float: left;
+	margin-right: 20px;
+}
+
+footer .copyright {
+	float: right;
+}
+
+/*
+ * Generics
+ */
+.clear {
+	clear: both;
+}

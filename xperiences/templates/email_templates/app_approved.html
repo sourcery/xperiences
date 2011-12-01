@@ -1,0 +1,6 @@
+{% extends 'email_templates/email_base.html' %}
+{% block content %}
+    Hello {{ merchant.user.full_name }},
+    You app '{{ merchant.name }}' is approved.
+    You can start listing Experiences <a href="{{ BASE_URL }}/experiences/add_experience/">Experiences</a>
+{% endblock %}
