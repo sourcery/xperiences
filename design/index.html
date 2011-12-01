@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<!-- iOS viewport setting, refer to:
+	     http://developer.apple.com/library/IOs/#documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html
+	-->
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<!-- for iOS icons, put in root folder:
+		apple-touch-icon-57x57.png (standard iPhone)
+		apple-touch-icon-72x72.png (standard iPad)
+		apple-touch-icon-114x114.png (iPhone 4)
+	-->
+
+	<!-- For convenience purposes, replace with latest local build -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="js/main.js"></script>
+	<script type="text/javascript" src="http://use.typekit.com/qzv2oav.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<link rel="stylesheet" href="css/style.css">
+
+	<title>Change your title</title>
+</head>
+
+<body>
+	<div id="topbar"></div>
+	<div id="wrapper">
+		<header>
+		<div id="logo"></div>
+		<div id="service-list">List your activity</div>
+		<div id="facebook-connect"></div>
+		<div class="clear"></div>
+		</header>
+		<div class="content">
+			<div id="search-box" class="tk-museo-sans-rounded">
+				I want to find
+				<div class="textbox" id="search-box-food">
+					<input type="text"></input>
+					<div class="textbox-default">activity</div>
+				</div>
+				near
+				<div class="textbox" id="search-box-locale">
+					<input type="text"></input>
+					<div class="textbox-default">address, city or zip</div>
+				</div>
+				<input type="button" id="search-button" value="search"></input>
+			</div>
+			<div class="search-results">
+				<div class="map"></div>
+				<div class="search-result">
+					<div class="search-result-title">
+						Mind and body conference
+					</div>
+				</div>
+				<div class="search-result">
+				</div>
+				<div class="search-result">
+				</div>
+				<div class="search-result">
+				</div>
+				<div class="search-result">
+				</div>
+			</div>	
+		</div>
+		<footer>
+			<ul class="footer-nav">
+				<li>About</li>
+				<li>Contact</li>
+			</ul>
+			<div class="copyright">© 2011 Come Play Learn</div>
+		</footer>
+	</div>
+</body>
+
+</html>

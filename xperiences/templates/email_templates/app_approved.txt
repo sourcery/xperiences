@@ -1,0 +1,7 @@
+{% extends 'email_templates/email_base.txt' %}
+{% block content %}
+Hello {{ merchant.user.full_name }},
+   You app '{{ merchant.name }}' is approved.
+    You can start listing Experiences {{ BASE_URL }}/experiences/add_experience/
+
+{% endblock %}

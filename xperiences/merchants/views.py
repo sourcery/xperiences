@@ -1,10 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from backend import utils
+from backend.decorators import merchant_required
 from backend.models import UserExtension
 from django.shortcuts import render_to_response
 from django.template import RequestContext  # I still need to understand better the concept of RequestContext
 #from experiences.models import Experience
 #from merchants.models import Merchant
+from merchants.forms import MerchantForm
 
 
 def merchant_profile(request, username):
@@ -13,22 +16,27 @@ def merchant_profile(request, username):
     return render_to_response(template_name, {'merchant': merchant}, context_instance=RequestContext(request))
 
 
-@login_required()
+@merchant_required()
 def register(request):
     status = ''
     template_name = 'merchants/register.html'
     if request.method == 'POST':
-        data = request.POST
-        merchant = request.merchant
-        for key in data:
-            if hasattr(merchant,key):
-                setattr(merchant,key,data[key])
-        merchant.save()
-        status = 'yay! Merchant created'
-        print "I work!"
-        return render_to_response(template_name, {'status': status, 'merchant':merchant}, context_instance=RequestContext(request))
+        form = MerchantForm(request.POST,instance=request.merchant)
+        if form.is_valid():
+            form.save()
+            status = 'yay! Merchant created'
+            print "I work!"
+            utils.merchant_onreview_email(request.merchant)
+            return render_to_response(template_name, {'form':form,'status': status, 'merchant':request.merchant}, context_instance=RequestContext(request))
+        else:
+            errors = form.errors
+            status = 'yay! Merchant created'
+            print "I work!"
+            return render_to_response(template_name, {'form':form,'errors':errors,'status': status, 'merchant':request.merchant}, context_instance=RequestContext(request))
     else:
-        return render_to_response(template_name, {'status': status, 'merchant':request.merchant}, context_instance=RequestContext(request))
+        form = MerchantForm(instance=request.merchant)
+#        return render_to_response(template, context_instance=RequestContext(request, context))
+        return render_to_response(template_name, {'form':form, 'status': status, 'merchant':request.merchant}, context_instance=RequestContext(request))
     
 
 

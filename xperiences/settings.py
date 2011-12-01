@@ -3,6 +3,17 @@ import os
 CODE_ROOT = os.path.dirname(__file__)
 
 PRODUCTION = 'MONGOLAB_URI' in os.environ
+STAGING = os.environ.get('IS_STAGING') == 'True'
+if STAGING:
+    PRODUCTION = False
+
+BASE_URL = 'http://dev.empeeric.com'
+
+if STAGING:
+    BASE_URL = 'http://xperiences-dev.herokuapp.com/'
+
+if PRODUCTION:
+    BASE_URL = 'http://xperiences.herokuapp.com/'
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -14,7 +25,7 @@ ADMINS = (
 MANAGERS = ADMINS
 
 import urlparse
-if PRODUCTION:
+if PRODUCTION or STAGING:
     _DB_PARAMS = urlparse.urlparse(os.environ['MONGOLAB_URI'].replace('mongodb', 'http'))
     DATABASES = {
         'default': {
@@ -53,7 +64,7 @@ TIME_ZONE = 'America/Chicago'
 LANGUAGE_CODE = 'en-us'
 
 
-SITE_ID = '4eba73fe96cf4c019c00001d' if PRODUCTION else '4eba73fe96cf4c019c00001d'
+SITE_ID = '4eba73fe96cf4c019c00001d'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
@@ -82,6 +93,9 @@ MEDIA_URL = '/media/'
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
 STATIC_ROOT = '/static/'
+
+if not PRODUCTION and not STAGING:
+    STATIC_ROOT = CODE_ROOT + STATIC_ROOT
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -116,19 +130,22 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
-MIDDLEWARE_CLASSES = (
-    'django.middleware.cache.UpdateCacheMiddleware',
+MIDDLEWARE_CLASSES = [
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'backend.middleware.UserExtensionMiddleware',
+    'backend.middleware.UserLogMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'openid_consumer.middleware.OpenIDMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
-    'django.middleware.cache.FetchFromCacheMiddleware',
     #'middleware.MongoMiddleware'
-)
+]
+
+if not DEBUG:
+    MIDDLEWARE_CLASSES.insert(0,'django.middleware.cache.UpdateCacheMiddleware')
+    MIDDLEWARE_CLASSES.append('django.middleware.cache.FetchFromCacheMiddleware')
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     "socialauth.context_processors.facebook_api_key",
@@ -208,10 +225,16 @@ FACEBOOK_API_KEY = '299479036742472'
 FACEBOOK_SECRET_KEY = '498f25f7cb732faf01e9a197fedaf3a6'
 FACEBOOK_PERMISSIONS = 'user_about_me,email,user_website,publish_stream,user_activities,user_birthday,user_education_history,user_events,user_groups,user_hometown,user_interests'
 
-if DEBUG:
+if STAGING:
     FACEBOOK_APP_ID = '185047278245686'
     FACEBOOK_API_KEY = '185047278245686'
     FACEBOOK_SECRET_KEY = '378d3a53d53bb4947517892f4a812907'
+
+if not PRODUCTION and not STAGING:
+    FACEBOOK_APP_ID = '317196991641774'
+    FACEBOOK_API_KEY = '317196991641774'
+    FACEBOOK_SECRET_KEY = '80f852f3296fc76863fd9eaf44b9c7a0'
+
 
 EMAIL_HOST_USER = 'peeri.empeeric@gmail.com'
 
@@ -229,10 +252,15 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 LOGIN_URL = '/accounts/login/'
 
+LOGIN_REDIRECT_URL = '/experiences/'
+
+MERCHANT_LOGIN_URL = '/merchants/login/'
+
+MERCHANT_REDIRECT_URL = '/merchants/register/'
 
 #Storage
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_ACCESS_KEY_ID = 'AKIAJYBGEQMSD3MMPTYA'
 AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'my_prod_xpr_uploads' if PRODUCTION else 'my_dev_xpr_uploads'
-
+AWS_STORAGE_BUCKET_NAME = 'my_prod_xpr_uploads'
+AWS_S3_CUSTOM_DOMAIN = 'd1hg4pg1k1dk6u.cloudfront.net'

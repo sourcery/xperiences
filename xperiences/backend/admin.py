@@ -1,4 +1,4 @@
-from backend import configurations
+from backend import configurations, utils
 from django import forms as django_forms
 from experiences.models import Experience
 
@@ -17,12 +17,22 @@ class SiteConfigurationForm(django_forms.forms.Form):
     def __init__(self, data = None):
         if data == None:
             data = configurations.get_dict()
-        forms.Form.__init__(self,data)
+        super(SiteConfigurationForm,self).__init__(data)
 
     def save_data(self):
         configurations.update_configurations(self.data)
 
+def approve_merchant(modeladmin, request, queryset):
+    for merchant in queryset:
+        if merchant.is_merchant and not merchant.is_approved:
+            utils.approve_merchant(merchant)
 
-admin.site.register(UserExtension)
+merchant_actions = [approve_merchant]
+class UserExtensionAdmin(admin.ModelAdmin):
+    actions = merchant_actions
+
+admin.site.register(UserExtension,UserExtensionAdmin)
+
+admin.site.register(UserLog)
 
 #admin.site.register(Listing)

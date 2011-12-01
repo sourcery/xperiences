@@ -356,9 +356,17 @@ class FacebookBackend:
             print groups
             ext.groups = groups
 
+            if request.session.get('is_merchant',False):
+                ext.is_merchant = True
+
             ext.save()
 
+            qry = UserExtension.objects.filter(user=user)[:1]
+            if len(qry) > 0:
+                ext = qry[0]
             auth_meta = AuthMeta(user=user, provider='Facebook').save()
+
+            request.user_extension = ext
                 
             return user
 

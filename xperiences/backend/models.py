@@ -1,6 +1,9 @@
+import datetime
 from django.contrib.auth.models import User
-from django.forms import forms
+from django.dispatch.dispatcher import receiver
+from django.forms.fields import CharField
 from django.template.defaultfilters import slugify
+from backend.forms import PointWidgetWithAddressField, RichTextEditorWidget
 from django_mongodb_engine.contrib import MongoDBManager
 
 __author__ = 'ishai'
@@ -8,17 +11,7 @@ __author__ = 'ishai'
 from django.db import models
 from djangotoolbox.fields import EmbeddedModelField
 
-class PointWidget(forms.TextInput):
 
-    def __init__(self, attrs=None):
-        attrs = attrs or {}
-        attrs['class'] = 'geopoint_picker'
-        super(PointWidget, self).__init__(attrs=attrs)
-
-
-    class Media:
-        css = ('map.css',)
-        js = ('map.js',)
 
 
 class Coordinate(models.Model):
@@ -31,25 +24,41 @@ class Coordinate(models.Model):
         return '%f,%f' % (self.lat, self.lng)
 
 
+
+
 class GeoField(EmbeddedModelField):
     address_field = ''
     def __init__(self,**kwargs):
         kwargs['default'] = Coordinate
-        kwargs['editable'] = False
-        self.address_field = kwargs.get('address_field','')
-        del kwargs['address_field']
-        super(GeoField,self).__init__(Coordinate, **kwargs)
+#        kwargs['editable'] = False
+        if 'address_field' in kwargs:
+            self.address_field = 'id_' + kwargs.get('address_field','')
+            del kwargs['address_field']
+        return super(GeoField,self).__init__(Coordinate, **kwargs)
 
     def formfield(self, **kwargs):
             # A file widget is provided, but use model FileField or ImageField
         # for storing specific files most of the time
-        defaults = {'widget': PointWidget}
+        defaults = {'widget': PointWidgetWithAddressField(self.address_field)}
 #        attrs = kwargs.get('attrs',{})
 #        attrs['address_field'] = self.address_field
         defaults.update(kwargs)
 #        defaults['attrs'] = attrs
-        return super(GeoField, self).formfield(**defaults)
+        return super(GeoField, self).formfield(self.FormClass,**defaults)
 
+    class FormClass(CharField):
+        def to_python(self, (lat,lng)):
+            return Coordinate(lat=lat, lng=lng)
+
+class RichTextField(models.TextField):
+    def __init__(self,**kwargs):
+        defaults = {'max_length':255}
+        defaults.update(kwargs)
+        return super(RichTextField,self).__init__(**defaults)
+
+    def formfield(self,**kwargs):
+        kwargs['widget'] = RichTextEditorWidget
+        return super(RichTextField,self).formfield(**kwargs)
 
 class XPDBManager(MongoDBManager):
     def proximity_query(self,location,**kwargs):
@@ -74,19 +83,45 @@ class GeoModel(models.Model):
     class Meta:
         abstract = True
 
+class UserLog(models.Model):
+    user = models.ForeignKey(User, null=True)
+    session = models.CharField(max_length=100,null=True)
+    was_logged_in = models.BooleanField(default=False)
+    time = models.DateTimeField(default=datetime.datetime.now, editable=False)
+    url = models.CharField(max_length=150)
+
+    def __str__(self):
+        return (str(self.user) if self.user else self.session) + ' ' + str(self.url)
+
+
+    @staticmethod
+    def create_from_user(user,url):
+        return UserLog(user=user,was_logged_in=True,url=url)
+
+    @staticmethod
+    def create_from_session(session,url):
+        return UserLog(session=session,url=url)
+
+    @staticmethod
+    def user_logged_in(user,session):
+        logs = UserLog.objects.filter(session=session)
+        for log in logs:
+            log.user = user
+            log.save()
 
 class UserExtension(GeoModel):
+    id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, unique=True,primary_key=True)
     validation_code = models.CharField(max_length=20, null=True,blank=True)
     is_merchant = models.BooleanField(default=False)
-    is_approved = models.BooleanField(default=True)
+    is_approved = models.BooleanField(default=False)
     credit = models.FloatField(default=0.0)
     FB_ID = models.CharField(max_length=40, null=True)
     FB_token = models.CharField(max_length=255,null=True)
     referred_by = models.ForeignKey(User, null=True, blank=True, related_name='referred_by')
 
     name = models.CharField(max_length=50)  # by default blank=false and null=false, means that both fields are mandatory in both admin and DB
-    description = models.TextField(max_length=250, default='',blank=True)
+    description = RichTextField(default='',blank=True)
     phone_number = models.CharField(max_length=15, default='',blank=True)
     website = models.CharField(max_length=100, default='',blank=True)
 
@@ -137,6 +172,7 @@ class UserExtension(GeoModel):
     # by 'name' in the admin interface.
     class Meta:
         ordering = ['name'] # This is a list that specifies the ordering
+        db_table = 'user_extension2'
 
     def __str__(self):
         return self.name
@@ -179,3 +215,16 @@ class UserExtension(GeoModel):
 class SiteConfiguration(models.Model):
     name = models.CharField(max_length=50,primary_key=True)
     conf = models.TextField(max_length=1500,default='')
+
+
+from django.contrib.auth.models import User
+from django.db.models import signals
+from django.dispatch import dispatcher
+
+@receiver(signals.post_save, sender=User)
+def user_post_save(instance, created, **_):
+    pass
+#    session = _['request'].session.session_key
+#    UserLog.user_logged_in(instance,session)
+
+
