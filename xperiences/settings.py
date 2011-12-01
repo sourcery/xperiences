@@ -64,7 +64,7 @@ TIME_ZONE = 'America/Chicago'
 LANGUAGE_CODE = 'en-us'
 
 
-SITE_ID = '4eba73fe96cf4c019c00001d'
+SITE_ID = '4eba73fe96cf4c019c00001d' if PRODUCTION else '4ed7858b76a6f6052c00001d'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
@@ -134,6 +134,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     #'django.middleware.csrf.CsrfViewMiddleware',
+    'backend.middleware.ReferralMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'backend.middleware.UserExtensionMiddleware',
     'backend.middleware.UserLogMiddleware',
