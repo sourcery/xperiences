@@ -9,6 +9,8 @@ class Experience(models.Model):
     category = models.CharField(max_length=50)
     location = models.CharField(max_length=100)
     price = models.PositiveIntegerField(default=0)
+    #unit_name = models.CharField(max_length=100) # eg.: week, meal, day...
+    #unit_count = models.PositiveIntegerField(default=0, null=True, blank=True)
     merchant = models.ForeignKey(Merchant, null=True)
     pub_date = models.DateField(null=True)
     photo1 = models.FileField(upload_to='%Y%m%d%H%M%S')
