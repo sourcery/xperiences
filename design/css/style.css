@@ -72,8 +72,22 @@ body {
 	margin: 0 auto;
 }
 
+/*
+ * Standard stuff
+ */
+
+h1, h2 {
+	font-family: museo-sans-rounded;
+	font-size: 140%;
+}
+
+/*
+ * Header
+ */
+
 header {
 	padding-top: 20px;
+	margin-bottom: 50px;
 }
 
 #logo {
@@ -113,18 +127,70 @@ header {
 }
 
 /**
- * Inputs
+ * forms and Inputs
  */
 
-input {
-	padding: 10px;
-/*	border-radius: 5px;
-	border: 1px solid #999999;
-	box-shadow: 1px 1px #666666;*/
-	font: museo-sans-rounded; 
-	border: 0;
+fieldset {
+	border: 1px solid #cccccc;
+	box-shadow: 1px 1px #bbbbbb;
+	border-radius: 5px;
+	background: white;
+	width: 60%;
+	padding: 30px 20px;
+	margin: 0 0 10px;
 }
 
+fieldset h3 {
+	font-size: 120%;
+	color: #666;
+	font-family: museo-sans-rounded;
+}
+
+fieldset label {
+	display: block;
+	margin: 20px 0 5px;
+	font-weight: bold;
+}
+
+.description {
+	font-size: 90%;
+	color: #999;
+}
+
+input {
+	padding: 6px 0 6px 10px;
+	margin: 2px 0 5px;
+	border-radius: 5px;
+	border: 1px solid #999999;
+	box-shadow: 1px 1px #888888;
+	font: museo-sans-rounded; 
+	font-size: 110%;
+	width: 500px;
+}
+
+input:focus {
+	border: 2px solid #52c4ff;
+}
+
+input.long {
+	width: 500px;
+}
+
+input.short {
+	width: 200px;
+}
+
+textarea {
+	padding: 6px 0 6px 10px;
+	margin: 5px 0 5px;
+	border-radius: 5px;
+	border: 1px solid #999999;
+	font: museo-sans-rounded; 
+	box-shadow: 1px 1px #888888;
+	width: 500px;
+	height: 200px;
+	resize: none;
+}
 
 /**
  * Search-box
@@ -230,4 +296,20 @@ footer .copyright {
  */
 .clear {
 	clear: both;
+}
+
+/**
+ * Default Val CSs
+ */
+
+.default-val-parent {
+	position: relative;
+}
+
+.default-val-text {
+	position: absolute;
+	left: 0;
+	top: 0;
+	padding: 6px 0 6px 10px;
+	overflow: hidden;
 }
