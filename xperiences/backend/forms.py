@@ -1,5 +1,6 @@
 from django.forms import forms as django_forms
 from django.forms.widgets import Textarea, DateTimeInput
+import settings
 
 class XPDatePicker(DateTimeInput):
     def __init__(self, attrs=None):
@@ -32,6 +33,7 @@ def PointWidgetWithAddressField(address_field):
             attrs = attrs or {}
             attrs['class'] = 'geopicker'
             attrs['address_field'] = address_field
+            attrs['style'] = 'display:none;'
             super(PointWidget, self).__init__(attrs=attrs)
 
         def value_from_datadict(self, data, files, name):
@@ -42,6 +44,9 @@ def PointWidgetWithAddressField(address_field):
             css = {
                 'all' : ('map.css',)
             }
-            js = ('http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js','https://maps-api-ssl.google.com/maps/api/js?v=3&sensor=false&language=he&libraries=places','maps.js')
+            js = ('http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js',
+                  'https://maps-api-ssl.google.com/maps/api/js?v=3&sensor=false&language=he&libraries=places',
+                  'http://www.iplocationtools.com/iplocationtools.js?key=' + settings.IP_GEOLOCATOR_API_KEY,
+                  'maps.js')
     return PointWidget
 

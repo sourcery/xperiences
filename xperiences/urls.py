@@ -22,6 +22,7 @@ urlpatterns = patterns('',
     (r'^merchants/login/$', 'socialauth.views.merchant_login_page'),
     (r'^merchants/', include('merchants.urls')),
 
+    (r'^api/', include('api.urls')),
     (r'^admin/backend/', include('backend.urls')),
 
     (r'^accounts/', include(socialauth.urls)),

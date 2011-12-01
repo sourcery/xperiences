@@ -21,32 +21,60 @@ $.prototype.geopicker = function(params)
         address_input = elm.attr('address_field');
     var map;
     var marker;
+    var center;
     var init = function()
     {
         var num = Number(new Date());
         var id = 'map' + num;
         $('<div class="geopicker_map" id="' + id + '"></div>').insertAfter(elm);
-        var latlng = elm.val() || '0,0';
-        var center = { lat: latlng.split(',')[0], lng: latlng.split(',')[1]};
-        map = init_map(id,center,true,update_location);
-        marker = add_draggable_marker(map, center, function(loc)
+        $('<div class="my_location">My Location</div>').insertAfter(elm).click(function()
         {
-            update_location(loc);
-            if(address_input )
+            user_position(function(loc)
             {
-                var geo = new google.maps.Geocoder();
-                geo.geocode( { latLng: loc },function(results,status)
-                {
-                    if(results && results.length > 0)
-                        $('#' + address_input).val(results[0].formatted_address);
-                });
-            }
-        });
-        if(address_input)
-            address_autocomplete(address_input,id, function(location) {
-                update_location(location.geometry.location);
-                marker.setPosition(location.geometry.location);
+                center = loc;
+                update_location(new google.maps.LatLng(loc.lat, loc.lng));
             });
+        });
+        var latlng = elm.val() || '0,0';
+
+        var m_init_map = function()
+        {
+            map = init_map(id,center);
+            marker = add_draggable_marker(map, center, function(loc)
+            {
+                update_location(loc);
+                if(address_input )
+                {
+                    var geo = new google.maps.Geocoder();
+                    geo.geocode( { latLng: loc },function(results,status)
+                    {
+                        if(results && results.length > 0)
+                            $('#' + address_input).val(results[0].formatted_address);
+                    });
+                }
+            });
+            if(address_input)
+                address_autocomplete(address_input,id, function(location) {
+                    update_location(location.geometry.location);
+                    marker.setPosition(location.geometry.location);
+                });
+        }
+        center = { lat: latlng.split(',')[0], lng: latlng.split(',')[1]};
+        if(center.lat == 0.0 && center.lng == 0.0)
+        {
+            user_position(function(loc)
+            {
+                center = loc;
+                m_init_map();
+                update_location(marker.getPosition());
+            }, function()
+            {
+                m_init_map();
+            });
+        }
+        else
+            m_init_map();
+
     };
 
     var update_location = function(loc)
@@ -63,6 +91,25 @@ $(document).ready(function()
 {
    $('.geopicker').geopicker();
 });
+
+function user_position(success,error)
+{
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(loc)
+        {
+            success({ lat: loc.coords.latitude, lng:loc.coords.longitude });
+        }, error);
+    } else {
+        if(window.ip2location_latitude && window.ip2location_longitude)
+        {
+            var lat = ip2location_latitude();
+            var lng = ip2location_longitude();
+            success({ lat:Number(lat), lng: Number(lng)});
+        }
+        //"http://www.geoplugin.net/json.gp?jsoncallback=?"
+        error('not supported');
+    }
+}
 
 function init_map( id , center){
       if (!center) center = new google.maps.LatLng(-34.397, 34.644);

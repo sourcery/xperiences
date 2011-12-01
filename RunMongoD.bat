@@ -1,1 +1,1 @@
-c:\bin\mongo\mongod --dbpath=MongoFiles --rest
+c:\bin\mongo\mongod --dbpath=MongoFiles --rest -vvvvv
