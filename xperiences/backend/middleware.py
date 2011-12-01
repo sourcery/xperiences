@@ -42,6 +42,8 @@ class UserLogMiddleware(object):
             log = UserLog.create_from_user(user,url)
             log.save()
         else:
+            if 'referrer' in request.GET:
+                request.session['referrer'] = request.GET['referrer']
             log = UserLog.create_from_session(request.session.session_key,url)
             log.save()
         

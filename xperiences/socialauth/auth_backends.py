@@ -1,4 +1,4 @@
-from backend.models import UserExtension
+from backend.models import UserExtension, UserLog
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.conf import settings
@@ -85,7 +85,7 @@ class OpenIdBackend:
                     user = qry[0]
             
             if not user:
-                user = create_user_with_random_password(username, email)
+                user = create_user_from_session(request,username,email)
                 
                 user.first_name = firstname
                 user.last_name = lastname
@@ -127,7 +127,7 @@ class OpenIdBackend:
 
 class LinkedInBackend:
     """LinkedInBackend for authentication"""
-    def authenticate(self, linkedin_access_token, user=None):
+    def authenticate(self, request,linkedin_access_token, user=None):
         linkedin = LinkedIn(LINKEDIN_CONSUMER_KEY, LINKEDIN_CONSUMER_SECRET)
         # get their profile
         
@@ -142,7 +142,7 @@ class LinkedInBackend:
             username = 'LI:%s' % profile.id
 
             if not user:
-                user = create_user_with_random_password(username)
+                user = create_user_from_session(request,username)
                 user.first_name, user.last_name = profile.firstname, profile.lastname
                 user.email = '%s@socialauth' % (username)
                 user.save()
@@ -161,7 +161,7 @@ class LinkedInBackend:
 
 class TwitterBackend:
     """TwitterBackend for authentication"""
-    def authenticate(self, twitter_access_token, user=None):
+    def authenticate(self,request ,twitter_access_token, user=None):
         '''authenticates the token by requesting user information from twitter'''
         # twitter = oauthtwitter.OAuthApi(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET, twitter_access_token)
         twitter = oauthtwitter.TwitterOAuthClient(settings.TWITTER_CONSUMER_KEY, settings.TWITTER_CONSUMER_SECRET)
@@ -194,7 +194,7 @@ class TwitterBackend:
                     username = '%s%s' % (screen_name, same_name_count + 1)
                 else:
                     username = screen_name
-                user = create_user_with_random_password(username)
+                user = create_user_from_session(request,username)
                 name_data = userinfo.name.split()
                 try:
                     first_name, last_name = name_data[0], ' '.join(name_data[1:])
@@ -383,3 +383,17 @@ def create_user_with_random_password(username, email=''):
     password = ''.join([random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789') for i in xrange(12)])
     user = User(username=username, email=email,password=password)
     return user
+
+def create_user_from_session(request,username, email='', password=None):
+    if not password:
+        user = create_user_with_random_password(username,email)
+    else:
+        user = User.objects.create_user(username, email, password)
+    old_func = user.save
+    def user_overriden_save(self,*args, **kwargs):
+        ret = old_func(self,*args,**kwargs)
+        session = request.session.session_key
+        UserLog.user_logged_in(self,session)
+        return ret
+
+    user.save = user_overriden_save
