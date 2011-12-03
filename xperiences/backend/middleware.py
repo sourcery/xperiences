@@ -4,7 +4,7 @@ from backend.models import UserExtension, UserLog
 __author__ = 'ishai'
 
 class LazyUserExtension(object):
-    def __get__(self, request, obj_type=None):
+    def __get__(self, request, _=None):
         if not hasattr(request, '_cached_user_ext'):
             if request.user and not isinstance(request.user,AnonymousUser):
                 try:
@@ -16,7 +16,7 @@ class LazyUserExtension(object):
         return request._cached_user_ext
 
 class LazyMerchant(object):
-    def __get__(self, request, obj_type=None):
+    def __get__(self, request, _=None):
         if request.user_extension and request.user_extension.is_merchant:
             return request.user_extension
         else:
@@ -44,7 +44,7 @@ class UserLogMiddleware(object):
         else:
             log = UserLog.create_from_session(request.session.session_key,url)
             log.save()
-        
+
 
 
 class ReferralMiddleware(object):

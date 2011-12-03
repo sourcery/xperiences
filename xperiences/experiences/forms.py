@@ -1,10 +1,7 @@
 from django import forms
-from django.contrib.admin.widgets import AdminSplitDateTime
 from django.forms.fields import DateTimeField
 from backend.forms import XPDatePicker
 from models import Experience
-
-__author__ = 'ishai'
 
 
 

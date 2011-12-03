@@ -2,7 +2,7 @@
 {% extends "base.html" %}
 
 
-    
+
     {% block wrapper %}
         <!--<h1>hits: {{ hits }}</h1>-->
         {% block content %}
@@ -18,7 +18,7 @@
                                 <a title="{{ experience.title }}" href="{% url experience_profile experience.id %}"> {{ experience.title }} </a>
                             </p>
                             <p class="listing-merchant">
-                                <a title="{{ experience.merchant.name }}" href=""> {{ experience.merchant.name }}, {{ experience.merchant.city }} {{ experience.merchant.state }}</a>
+                                <a title="{{ experience.merchant.name }}" href=""> {{ experience.merchant.name }}, {{ experience.address }}</a>
                             </p>
                             <p class="listing-price">
                                 <span class="currency-symbol">$</span>
@@ -32,6 +32,6 @@
             </div><!-- end image-grid div -->
         {% endblock %}<!-- end content block -->
     {% endblock %}<!-- end wrapper block
-    
-    
+
+
     {% url merchant_profile merchant.id %}
