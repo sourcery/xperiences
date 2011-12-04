@@ -1,0 +1,4 @@
+{% extends 'email_templates/email_base.txt' %}
+{% block content %}
+ To complete the registration process please click this link : {{ validation_link }}
+{% endblock %}

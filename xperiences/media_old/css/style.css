@@ -1,0 +1,592 @@
+/*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*	CSS FOR NEIGHBORLYMEALS.COM OUR TESTBED WEBSITES FOR THE FOOD NICHE
+/*----------------------------------------------------------------------------------------------------------------------------------------------------------*/
+ 	
+ 	
+html, body {
+    font-family: proxima-nova, Droid Sans, helvetica, sans-serif;
+    font-size: 12px;
+    line-height: 1.3;
+    background: #fdf4e5;
+    height: 100%;
+}
+	
+#wrapper {
+    width:990px;
+    margin:0px auto;
+    min-height: 100%;
+    /*border-right: 1px solid red;
+    border-left: 1px solid red;*/
+}
+
+#content {
+    overflow: auto;
+    padding-bottom: 70px;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+
+a { text-decoration: none; }
+
+
+/*------------------------------------------------------------------------------*/
+/*	HEADER 
+/*------------------------------------------------------------------------------*/
+
+
+header#header {
+    overflow: hidden;
+    position: relative;
+    height: 220px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#top-banner-bg {
+    background: #bf5c27 url(../images/header_bg2.png) repeat-x bottom;
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+
+#top-banner {
+    margin: 0 auto 0;
+    width: 990px;
+}
+
+.clear {
+    clear: both;
+}
+
+#top-banner li {
+    float: left;
+    
+}
+
+@font-face {
+    font-family: 'MenschRegular';
+    src: url('mensch-wf.eot');
+    src: url('mensch-wf.eot?#iefix') format('embedded-opentype'),
+         url('mensch-wf.woff') format('woff'),
+         url('mensch-wf.ttf') format('truetype'),
+         url('mensch-wf.svg#MenschMenschRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+#top-banner li:last-child {
+    margin-left: 65px;
+    padding-top: 5px;
+    color: #fdf4e5;
+    font-family: MenschRegular, helvetica, san-sarif;   
+}
+
+#top-banner li:last-child h3 {
+    line-height: 2em;
+}
+
+#main-nav-bg {
+    background: #e8dcc9;
+    height: 50px;
+    padding-top: 20px;
+}
+
+#main-nav {
+    clear: both;
+    height: 50px;
+    width: 990px;
+    margin: 0 auto;
+}
+
+
+#main-nav li {
+    float: left;    
+    margin-right: 30px;
+    line-height: 50px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+#main-nav li a {
+    color: #c56029;
+    font-size: 16px; 
+}
+
+
+
+#main-nav li#selected {
+    margin-left:5px;
+    background-color: #fdf4e5;
+}
+
+
+
+
+/*------------------------------------------------------------------------------*/
+/*	(home page) IMAGE-GALLERY
+/*------------------------------------------------------------------------------*/
+
+.image-gallery {
+	list-style: none;
+	margin-top: 20px;
+}
+
+.image-gallery .listing-item {
+	float: left;
+	margin: 4px;
+	padding: 5px;
+	width: 310px;
+        border: solid 1px #e8dcc9;
+	background: #fefefe /*url(../images/image_frames.png) no-repeat;*/
+}
+
+
+div#thumb-details {
+	height: 50px;
+	margin-bottom: 0px;
+}
+
+
+li.listing-item .listing-title {
+	line-height: 16px;
+        font-size: 14px;
+        
+}
+
+li.listing-item .listing-title a {
+	color: #c56029;
+}
+
+li.listing-item .listing-merchant {
+	line-height: 16px;
+}
+
+li.listing-item .listing-merchant a {
+	color: #969595;
+}
+
+li.listing-item .listing-price {
+	line-height: 16px;
+        color: #70a41e;
+}
+
+
+
+
+
+/*------------------------------------------------------------------------------*/
+/*	FOOTER (MOVE TO BASE.CSS)
+/*------------------------------------------------------------------------------*/
+
+footer {
+	border-top-color: #FFF;
+	border-top-style: solid;
+	border-top-width: 3px;
+	color: #666666;
+	position: relative;
+	height:70px;
+	margin-top: -70px;
+	padding-top: 8px;
+	background: #e8dcc9;
+	clear: both;
+}
+
+footer > div {
+	/*display:inline-block;
+	margin:0px 60px 0px 10px;*/
+	margin: 0 auto;
+	width: 990px;
+}
+
+footer ul.footer-nav {
+	list-style: none;
+	margin-top: 5px;
+	/*float: right;*/
+}
+
+footer ul.footer-nav li a {
+	float: left;
+	margin: 5px;
+	padding: 5px;
+        color: #92796b;
+}
+
+
+footer p#copy {
+	float: right;
+	margin-top: 15px;
+        margin-right: 5px;
+        color: #92796b;
+	
+}
+
+
+
+/*------------------------------------------------------------------------------*/
+/*	(single listing ) MAIN-CONTENT
+/*------------------------------------------------------------------------------*/
+
+/* PRIMARY */
+
+article#main-content {
+    margin-bottom: 20px;
+}
+
+
+article#main-content .primary {
+	float: left;
+	width: 660px;
+	margin-top: 10px;
+/*	margin-right: 10px;
+*/	padding-top: 10px;
+
+}
+
+.primary #exp-title {
+	padding-bottom: 5px;
+	font-family: georgia;
+	color: #545550;
+	
+}
+
+#exp-thumbs {
+	overflow: hidden;
+	position: relative;
+	margin-top: 6px;
+}
+
+.exp-thumbs-img {
+	width: 70px;
+	height: 70px;
+	cursor: pointer;
+	border: 3px solid white;
+	margin-right: 2px;
+}
+
+.primary #exp-thumbs ul {
+	list-style: none;	
+}
+
+.primary #exp-thumbs li {
+	float: left;
+	padding: 5px;
+	margin-right: 5px;
+}
+
+.primary #exp-description {
+	display: inline-block;
+	margin-top: 10px;
+	padding-top: 10px;
+	border-top-color: #EEEEEE;
+	border-top-style: solid;
+	border-top-width: 1px; 
+}
+
+
+/* SECONDARY */
+
+article#main-content .secondary {
+	float: right;
+	width: 320px;
+	padding-top: 5px;
+        margin-top: 10px;
+}
+
+.secondary #price {
+	font-size: 3em;
+	font-family: georgia;
+	color: #87a824;
+	padding-bottom: 5px;
+        
+}
+
+.secondary h2 {
+    color: #87765b;
+}
+
+.secondary #buy-now {
+	margin-top: 5px;
+	padding: 15px;
+	position: relative;
+}
+
+.secondary #buy-now span {
+	margin-top: 10px;
+	position: absolute;
+	top: 10px;
+	right: 40px;
+}
+	
+.secondary #merchant-listing {
+	margin-top: 10px;
+        margin-bottom: 10px;
+	padding: 15px;
+	position: relative;
+	height: 115px;
+}
+
+.secondary #merchant-listing #merchant-image {
+	float: left;
+}
+
+.secondary #merchant-listing #merchant-details {
+	position: absolute;
+	top: 15px;
+	left: 135px;
+	padding: 5px;
+	line-height: 1.25em;
+        color: #87765B;
+}
+
+.secondary #merchant-listing #merchant-details a {
+        color: #87765B;
+        font-size: 1.5em;
+        line-height: 1.5em;
+}
+
+.secondary #merchant-listing #merchant-details li#location {
+	font-size: 10px;
+}
+
+
+.secondary #merchant-listing #merchant-rating {
+	margin-top: 3px;
+	padding-left: 3px;
+	display: inline-block;
+	font-size: 0.9em;
+}
+
+
+article#main-content .secondary #exp-stats {
+	margin-top: 10px;
+	padding: 15px;
+	font-size: 0.8em;
+	line-height: 1.7em;
+}
+
+/* this is a hack I did because w.out the button the share images overlay the
+  section background... and it doesn't stretch.. I don't really know why... must
+  solve at some point... maybe ask Steve Etheridge */
+button.hidden {
+	visibility: hidden;
+}
+
+
+.section {
+    background-color: #f5eada;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+
+/* ask chong han about this code below.. where is that .main-image thing working?
+  what is it about position relative for tag and absolute for class?
+  where is that class in the code?
+*/
+
+
+#exp-main-image {
+	width: 640px;
+	height: 480px;
+	position: relative;
+}
+
+.main-image {
+	width: 640px;
+	height: 480px;
+	position: absolute;
+	left: 5px;
+	top: 5px;
+}
+
+/* wrapper for merchant image */
+.image-wrapper {
+    border: solid 1px #EAEAEA;
+    padding: 5px;
+    text-align: center;	
+}
+
+
+
+
+
+
+/*------------------------------------------------------------------------------*/
+/*	BUTTONS
+/*------------------------------------------------------------------------------*/
+
+a.button {
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font: 18px/150% helvetica, sans-serif;
+    padding: .5em 2em .55em;
+    text-shadow: 0 1px 1px rgba(0,0,0,.3);
+    -webkit-border-radius: .5em; 
+    -moz-border-radius: .5em;
+    border-radius: .5em;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    width:200px;
+}
+
+
+.green {
+    color: #fdf4e5;
+    /*border: solid 1px #3a4b06;*/
+    background: #0095cd;
+    background: -webkit-gradient(linear, left top, left bottom, from(#a5c642), to(#87a824));
+    background: -moz-linear-gradient(top,  #a5c642,  #87a824);
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#a5c642', endColorstr='#87a824');
+}
+
+
+
+
+/*.blue:hover {
+    background: #007ead;
+    background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
+    background: -moz-linear-gradient(top,  #0095cc,  #00678e);
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0095cc', endColorstr='#00678e');
+}
+
+.blue:active {
+    color: #80bed6;
+    background: -webkit-gradient(linear, left top, left bottom, from(#0078a5), to(#00adee));
+    background: -moz-linear-gradient(top,  #0078a5,  #00adee);
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0078a5', endColorstr='#00adee');
+}*/
+
+
+
+/*------------------------------------------------------------------------------*/
+/*	REVIEWS
+/*------------------------------------------------------------------------------*/
+
+
+.primary #reviews {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top-color: #fdf4e5;
+    border-top-style: solid;
+    border-top-width: 1px; 
+}
+
+#reviews {
+    border-top: 1px solid red;
+}
+
+#reviews .review-item {
+    margin-top: 5px;
+    /*border: 3px solid red;*/
+    height: 200px;
+    padding-bottom: 10px; /* you need padding in case the content is really long
+			    and reaching close to 200px in height. */
+    border-bottom: 1px solid #fdf4e5;
+}
+
+
+#reviews .review-item .reviewer-listing {
+    margin-top: 10px;
+    /*border: 3px solid blue;*/
+    height: 70px;
+}
+
+
+#reviews .review-item .reviewer-listing #reviewer-wrap {
+    float: left;
+    margin: 5px 0 0 5px;
+}
+
+
+#reviews .review-item .reviewer-listing #ratings {
+    float: right;
+    /*border: 1px solid black;*/
+    margin-top: 5px;
+    width: 200px;
+}
+
+
+#reviews .review-item .reviewer-listing #reviewer-wrap #reviewer-image {
+    float: left;
+}
+
+
+#reviews .review-item .reviewer-listing #reviewer-wrap #reviewer-details {
+    float: right;
+    padding: 5px;
+    margin-left:5px;
+    color: #545550
+   /* border: 1px solid green;*/
+}
+
+#review-body {
+    /*border: 2px solid cyan;*/
+    margin-top: 5px;
+}
+
+#review-body p {
+    padding: 5px;
+}
+
+
+
+/*------------------------------------------------------------------------------*/
+/*	ABOUT
+/*------------------------------------------------------------------------------*/
+
+article#about-content {
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 10px;
+    padding-right: 50px;
+    padding-bottom: 20px;
+    
+    
+}
+
+#t-shirt-blurb {
+    margin-top: 10px;
+    border-top: #E8DCC9 solid 3px;
+    padding-top: 10px;
+}
+
+#feed-the-movement-blurb {
+    margin-top: 10px;
+    border-top: #E8DCC9 solid 3px;
+    padding-top: 10px;
+}
+
+
+button.hidden {
+    visibility: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
