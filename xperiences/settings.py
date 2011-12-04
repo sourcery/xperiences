@@ -149,6 +149,7 @@ if not DEBUG:
     MIDDLEWARE_CLASSES.append('django.middleware.cache.FetchFromCacheMiddleware')
 
 TEMPLATE_CONTEXT_PROCESSORS = (
+    'backend.middleware.context_processor',
     "socialauth.context_processors.facebook_api_key",
     'django.core.context_processors.media',
     "django.contrib.auth.context_processors.auth",

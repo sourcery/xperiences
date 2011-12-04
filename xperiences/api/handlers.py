@@ -122,17 +122,17 @@ class MyBaseHandler(BaseHandler):
 
 class UserHandler(MyBaseHandler):
     model = User
-    fields = ('first_name','last_name','full_name','short_name','email')
+    fields = ('id','first_name','last_name','full_name','short_name','email')
 
 class MerchantHandler(MyBaseHandler):
 
     model = models.UserExtension
-    fields = ('name', 'description','user')
+    fields = ('id','name', 'description','user')
 
 class ExperienceHandler(MyBaseHandler):
     allowed_methods = ('GET',)
     model = Experience
-    fields = ('title','description','merchant','price','capacity','valid_from','valid_until',)
+    fields = ('id', 'title','description','merchant','price','capacity','valid_from','valid_until',)
 
     def read(self,request,*args,**kwargs):
         params = dict([ (k,request.GET[k]) for k in request.GET])
@@ -152,8 +152,6 @@ class ExperienceHandler(MyBaseHandler):
                 lat = request.user_extension.xp_location.lat
                 lng = request.user_extension.xp_location.lng
             if lat and lng:
-                qry = Experience.objects.proximity_query( { 'lat' : float(lat), 'lng' : float(lng)})
+                return Experience.objects.proximity_query( { 'lat' : float(lat), 'lng' : float(lng)}, query=kwargs)
             else:
-                qry = Experience.objects.all()
-            qry = qry.filter(*args,**kwargs)
-            return qry
+                return super(ExperienceHandler,self).read(request,*args,**kwargs)

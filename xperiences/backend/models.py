@@ -66,7 +66,9 @@ class XPDBManager(MongoDBManager):
         field_name = kwargs.get('field','xp_location')
         lat = location['lat']
         lng = location['lng']
-        return self.raw_query({field_name : {'$near' : { 'lat' : lat, 'lng':lng},'$maxDistance' : max_distance }})
+        query = kwargs.get('query',{})
+        query[field_name] = {'$near' : { 'lat' : lat, 'lng':lng} }
+        return self.raw_query(query)
 
 
 class GeoModel(models.Model):

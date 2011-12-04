@@ -1,6 +1,17 @@
 {% extends "base.html" %}
 
 {% block title %}{{ experience.title }}{% endblock %}
+{% block extra_head %}
+<script type='text/javascript' src='https://maps-api-ssl.google.com/maps/api/js?v=3&sensor=false&language=he&libraries=places' ></script>
+<script type='text/javascript' src='/static/maps.js'></script>
+
+<script type='text/javascript' >
+    $(document).ready(function()
+    {
+        $('#location_field').geoview({ 'map_id' : 'map'});
+    });
+</script>
+{% endblock %}
 
 {% block content %}
         
@@ -158,9 +169,9 @@
                     </ul>
                 </div>
             </div>
-            
-            <div id="map">
-                <iframe width="320" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=6375+Nautilus+Dr+Boulder,+CO+80301&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=61.153041,92.988281&amp;vpsrc=0&amp;ie=UTF8&amp;hq=&amp;hnear=6375+Nautilus+Dr,+Boulder,+Colorado+80301&amp;ll=40.062308,-105.204048&amp;spn=0.016423,0.018024&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe><br /><small><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=6375+Nautilus+Dr+Boulder,+CO+80301&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=61.153041,92.988281&amp;vpsrc=0&amp;ie=UTF8&amp;hq=&amp;hnear=6375+Nautilus+Dr,+Boulder,+Colorado+80301&amp;ll=40.062308,-105.204048&amp;spn=0.016423,0.018024&amp;z=14&amp;iwloc=A" style="color:#0000FF;text-align:left">View Larger Map</a></small>
+            <input type='hidden' id='location_field' value='{{ location }}' />
+            <div id="map" style='width:300px; height:200px;'>
+                <!--iframe width="320" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=6375+Nautilus+Dr+Boulder,+CO+80301&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=61.153041,92.988281&amp;vpsrc=0&amp;ie=UTF8&amp;hq=&amp;hnear=6375+Nautilus+Dr,+Boulder,+Colorado+80301&amp;ll=40.062308,-105.204048&amp;spn=0.016423,0.018024&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe><br /><small><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=6375+Nautilus+Dr+Boulder,+CO+80301&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=61.153041,92.988281&amp;vpsrc=0&amp;ie=UTF8&amp;hq=&amp;hnear=6375+Nautilus+Dr,+Boulder,+Colorado+80301&amp;ll=40.062308,-105.204048&amp;spn=0.016423,0.018024&amp;z=14&amp;iwloc=A" style="color:#0000FF;text-align:left">View Larger Map</a></small-->
             </div><!-- close map -->
             
             <div id="exp-stats" class="section">

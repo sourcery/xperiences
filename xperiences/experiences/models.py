@@ -37,6 +37,13 @@ class Experience(GeoModel):
     capacity = models.CharField(max_length=7,default='1-5',choices=[('1-5','1-5'),('6-10','6-10'),('11-15','11-15'),('16-20','16-20'),('20+','More than 20'),('+','until I\'ll ran out of food')])
 
 
+    def get_location_address(self):
+        if self.use_saved_address:
+            return self.merchant.xp_location , self.merchant.address
+        else:
+            return self.xp_location, self.address
+
+
     @property
     def slug(self):
         """accepts self and returns a string which is the slugified version of
