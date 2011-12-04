@@ -56,20 +56,14 @@ html {
 }
 
 body {
-	background: url(../images/background_balloon.jpg) repeat-x center top;
-	font-family: helvetica;
+	font-family: calluna-sans, "helvetica", "ariel", sans-serif;
 	font-size: 12pt;
 	color: #7a7a7a;
 }
 
-#topbar {
-	height: 5px;
-	background: #52c4ff;
-}
-
 #wrapper {
 	width: 1000px;
-	margin: 0 auto;
+	padding: 10px 0 0 20px;
 }
 
 /*
@@ -78,7 +72,10 @@ body {
 
 h1, h2 {
 	font-family: museo-sans-rounded;
-	font-size: 140%;
+	font-size: 180%;
+	color: #a58ab3;
+	text-shadow: 0.5px 0.5px 0.5px #CCC;
+	margin: 20px 0 30px;
 }
 
 /*
@@ -86,30 +83,25 @@ h1, h2 {
  */
 
 header {
-	padding-top: 20px;
-	margin-bottom: 50px;
+	background: #030f26;
+	padding: 20px 20px 8px;
+	border-bottom: 3px solid #a58ab3;
 }
 
 #logo {
-	width: 305px;
-	height: 151px;
-	background: url(../images/logo.png) no-repeat;
 	float: left;
+	color: white;
+	font-family: museo-sans-rounded;
 }
 
 #service-list {
 	width: 140px;
-	height: 25px;
-	background: url(../images/service-list.png) no-repeat;
 	color: white;
 	text-shadow: 1px 1px #666666;
 	font-family: museo-sans-rounded;
-	padding: 5px 10px 0 0;
 	text-align: right;
-	float: left;
+	float: right;
 	position: relative;
-	top: 110px;
-	left: 20px;
 }
 
 #service-list:hover {
@@ -122,7 +114,6 @@ header {
 	background: url(../images/fb-login.png) no-repeat;
 	float: right;
 	position: relative;
-	top: 120px;
 	margin-right: 20px;
 }
 
@@ -133,7 +124,6 @@ header {
 fieldset {
 	border: 1px solid #cccccc;
 	box-shadow: 1px 1px #bbbbbb;
-	border-radius: 5px;
 	background: white;
 	width: 60%;
 	padding: 30px 20px;
@@ -144,6 +134,7 @@ fieldset h3 {
 	font-size: 120%;
 	color: #666;
 	font-family: museo-sans-rounded;
+	margin: 2px 0 10px;
 }
 
 fieldset label {
@@ -158,9 +149,9 @@ fieldset label {
 }
 
 input {
-	padding: 6px 0 6px 10px;
-	margin: 2px 0 5px;
-	border-radius: 5px;
+	padding: 6px 0 6px 6px;
+	margin: 1px 1px 6px;
+	border-radius: 4px;
 	border: 1px solid #999999;
 	box-shadow: 1px 1px #888888;
 	font: museo-sans-rounded; 
@@ -168,8 +159,26 @@ input {
 	width: 500px;
 }
 
+select {
+	padding: 6px 0 6px 10px;
+	margin: 2px 0 5px;
+	border-radius: 4px;
+	border: 1px solid #999999;
+	box-shadow: 1px 1px #888888;
+	font: museo-sans-rounded; 
+	font-size: 110%;
+
+}
+
+input.inp-checkbox {
+	width: 20px;
+	height: 20px;
+}
+
 input:focus {
-	border: 2px solid #52c4ff;
+	border: 2px solid #a58ab3;
+	margin: 0px 0px 5px;
+	box-shadow: none;
 }
 
 input.long {
@@ -279,7 +288,12 @@ input#search-button {
 
 footer {
 	height: 180px;
-	margin: 50px 20px;
+	padding: 30px 20px;
+	margin-top: 50px;
+	background: #485367;
+	color: #DDD;
+	text-shadow: none;
+	font-size: 90%;
 }
 
 footer ul.footer-nav li {
@@ -310,6 +324,8 @@ footer .copyright {
 	position: absolute;
 	left: 0;
 	top: 0;
-	padding: 6px 0 6px 10px;
+	color: #BBBBBB;
+	padding: 15px 0 6px 10px;
 	overflow: hidden;
+	text-shadow: none;
 }
