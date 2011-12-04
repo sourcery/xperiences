@@ -7,14 +7,16 @@
  */
 
 var maps = new Array();
-var geocoder = new google.maps.Geocoder();
+var geocoder = window.google ? new google.maps.Geocoder() : null;
 
 $.prototype.geopicker = function(params)
 {
+    if(!this.length)
+        return this;
     var defaults = {};
     params = params || {};
-//    Object.update(params,defaults);
-//    defaults.update(params);
+    for(var key in params)
+        defaults[key] = params[key];
     var elm = $(this);
     var address_input = defaults['address_field'];
     if(!address_input)
@@ -24,10 +26,18 @@ $.prototype.geopicker = function(params)
     var center;
     var init = function()
     {
-        var num = Number(new Date());
-        var id = 'map' + num;
-        $('<div class="geopicker_map" id="' + id + '"></div>').insertAfter(elm);
-        $('<div class="my_location">My Location</div>').insertAfter(elm).click(function()
+        var map_id = defaults['map_id'];
+        if(!map_id)
+        {
+            var num = Number(new Date());
+            map_id = 'map' + num;
+            $('<div class="geopicker_map" id="' + map_id + '"></div>').insertAfter(elm);
+        }
+
+        var button_id = defaults['button_id'];
+        var button = button_id ? $('#' + button_id) : $('<div class="my_location">My Location</div>').insertAfter(elm);
+
+        button.click(function()
         {
             user_position(function(loc)
             {
@@ -39,7 +49,7 @@ $.prototype.geopicker = function(params)
 
         var m_init_map = function()
         {
-            map = init_map(id,center);
+            map = init_map(map_id,center);
             marker = add_draggable_marker(map, center, function(loc)
             {
                 update_location(loc);
@@ -54,7 +64,7 @@ $.prototype.geopicker = function(params)
                 }
             });
             if(address_input)
-                address_autocomplete(address_input,id, function(location) {
+                address_autocomplete(address_input,map_id, function(location) {
                     update_location(location.geometry.location);
                     marker.setPosition(location.geometry.location);
                 });
@@ -87,6 +97,40 @@ $.prototype.geopicker = function(params)
     init();
 };
 
+$.prototype.geoview = function(params)
+{
+    if(!this.length)
+        return this;
+
+    var defaults = {};
+    params = params || {};
+    for(var key in params)
+        defaults[key] = params[key];
+    var elm = $(this);
+
+    var map;
+    var marker;
+    var center;
+    var init = function()
+    {
+        var map_id = defaults['map_id'];
+        var map_div = null;
+        if(!map_id)
+        {
+            var num = Number(new Date());
+            map_id = 'map' + num;
+            $('<div class="geopicker_map" id="' + map_id + '"></div>').insertAfter(elm);
+        }
+        var latlng = elm.val() || '0,0';
+        center = { lat: latlng.split(',')[0], lng: latlng.split(',')[1]};
+        map = init_map(map_id,center);
+        marker = add_draggable_marker(map, center);
+    };
+
+    init();
+
+};
+
 $(document).ready(function()
 {
    $('.geopicker').geopicker();
@@ -115,7 +159,7 @@ function init_map( id , center){
       if (!center) center = new google.maps.LatLng(-34.397, 34.644);
       else center = new google.maps.LatLng(center.lat, center.lng);
       var myOptions = {
-        zoom: 8,
+        zoom: 12,
         center: center,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       }
@@ -131,11 +175,13 @@ function add_draggable_marker(map,center, location_changed)
         map: map,
         position: center
     });
-    marker.setDraggable(true);
-    google.maps.event.addListener(marker, 'dragend', function(me) {
-        if(location_changed)
-            location_changed(me.latLng);
-    });
+    if(location_changed)
+    {
+        marker.setDraggable(true);
+        google.maps.event.addListener(marker, 'dragend', function(me) {
+                location_changed(me.latLng);
+        });
+    }
     return marker;
 }
 

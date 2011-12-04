@@ -1,4 +1,6 @@
 from django.contrib.auth.models import User
+from django.db import models
+from backend.models import UserExtension
 from experiences.models import Experience
 
 __author__ = 'ishai'
@@ -11,7 +13,10 @@ from piston.resource import UploadRequestHandler
 from piston.utils import rc, throttle
 import logging
 from piston.handler import BaseHandler
-from backend import models
+from backend import models as my_models
+import api
+
+Emitter.register('json', api.EmpeericJSONEmitter, 'application/json; charset=utf-8')
 
 # Base class for handler
 class MyBaseHandler(BaseHandler):
@@ -21,16 +26,18 @@ class MyBaseHandler(BaseHandler):
     update_fields = ()
     # maps a handler for a model, defines the data emition for related objects by foreign-keys
     mappings = {}
-    # if True, will also return the calling user details, returned object will have .data for the requested data and .user for the calling user ( uses MeHandler)
-    return_user = False
 
-    def update(self, request, id,additions=None,keep_fields=None,*args, **kwargs):
+    def update(self, request, additions=None,update_fields=None,*args, **kwargs):
         if not self.has_model():
             return rc.NOT_IMPLEMENTED
+        update_fields = update_fields or self.update_fields
 
         attrs = self.flatten_dict(request.POST)
         if additions:
             attrs.update(additions)
+        pkfield = self.model._meta.pk.name
+
+        id = attrs.get(pkfield)
 
         fields_by_name = dict((f.name,f) for f in self.model._meta.fields)
 
@@ -43,7 +50,7 @@ class MyBaseHandler(BaseHandler):
                 else:
                     inst = self.model.objects.get(**attrs)
             for k,v in attrs.items():
-                if (len(self.update_fields) == 0 or k in self.update_fields) and ( not keep_fields or k in keep_fields):
+                if (len(update_fields) == 0 or k in update_fields):
                     try:
                         key = k.split('_id')[0]
                         field = fields_by_name[key]
@@ -122,38 +129,38 @@ class MyBaseHandler(BaseHandler):
 
 class UserHandler(MyBaseHandler):
     model = User
-    fields = ('first_name','last_name','full_name','short_name','email')
+    fields = ('id','first_name','last_name','full_name','short_name','email')
 
 class MerchantHandler(MyBaseHandler):
 
-    model = models.UserExtension
-    fields = ('name', 'description','user')
+    model = UserExtension
+    fields = ('id','name', 'description','user','photo')
 
 class ExperienceHandler(MyBaseHandler):
-    allowed_methods = ('GET',)
+    allowed_methods = ('GET','PUT',)
     model = Experience
-    fields = ('title','description','merchant','price','capacity','valid_from','valid_until',)
+    fields = ('id', 'title','description','merchant','photo1','photo2','photo3','photo4','photo5','price','capacity','valid_from','valid_until','is_active')
+    update_fields = ('is_active',)
 
     def read(self,request,*args,**kwargs):
         params = dict([ (k,request.GET[k]) for k in request.GET])
+        of_merchant = 'of_merchant' in params and request.merchant
+        if of_merchant:
+            params['merchant'] = request.merchant
+            del params['of_merchant']
+        else:
+            params['is_active'] = True
         lat = params.get('lat')
         lng = params.get('lng')
         if lat:
             del params['lat']
         if lng:
             del params['lng']
-        kwargs.update(params)
-        if kwargs.get('id','') == '':
-            del kwargs['id']
-        if 'id' in kwargs:
-            return super(ExperienceHandler,self).read(request,*args,**kwargs)
+
+        if 'id' in params or not lat  or not lng:
+            return super(ExperienceHandler,self).read(request,*args,**params)
         else:
-            if (not lat and not lng) and request.user_extension:
-                lat = request.user_extension.xp_location.lat
-                lng = request.user_extension.xp_location.lng
-            if lat and lng:
-                qry = Experience.objects.proximity_query( { 'lat' : float(lat), 'lng' : float(lng)})
-            else:
-                qry = Experience.objects.all()
-            qry = qry.filter(*args,**kwargs)
-            return qry
+            return Experience.objects.proximity_query( { 'lat' : float(lat), 'lng' : float(lng)}, query=params)
+
+    def update(self,request,*args,**kwargs):
+        return super(ExperienceHandler,self).update(request)

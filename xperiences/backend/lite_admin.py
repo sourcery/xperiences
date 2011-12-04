@@ -22,3 +22,7 @@ class UserExtensionAdmin(admin.ModelAdmin):
 
 lite_admin = LiteAdmin("lite_admin", "lite_admin")
 lite_admin.register(UserExtension, UserExtensionAdmin)
+
+import sorl
+
+lite_admin.register(sorl.thumbnail.models.KVStore)
