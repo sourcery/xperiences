@@ -48,8 +48,12 @@ table {
 }
 
 /*
-	Document CSS
-*/
+ * Document CSS
+ *
+ * COLOR CODES
+ * PURPLE: #a58ab3
+ * TEAL: #0a9aaf
+ */
 
 html {
 	background: url(../images/background.jpg);
@@ -59,23 +63,53 @@ body {
 	font-family: calluna-sans, "helvetica", "ariel", sans-serif;
 	font-size: 12pt;
 	color: #7a7a7a;
+	line-height: 1.3;
+	text-shadow: 1px 1px 1px #ccc;
 }
 
 #wrapper {
 	width: 1000px;
-	padding: 10px 0 0 20px;
+	padding: 40px 0 0 20px;
 }
 
 /*
  * Standard stuff
  */
 
-h1, h2 {
+h1, h2, h3, h4, h5, h6 {
 	font-family: museo-sans-rounded;
-	font-size: 180%;
 	color: #a58ab3;
 	text-shadow: 0.5px 0.5px 0.5px #CCC;
-	margin: 20px 0 30px;
+	margin: 0 0 1em;
+}
+
+h1, h2 {
+	font-size: 180%;
+}
+
+h3 {
+	font-size: 130%;
+}
+
+p {
+	margin: 0.5em 0 1em;
+}
+
+
+/*
+ * Layout Constrains
+ */
+
+.constrain-width {
+	max-width: 1000px;
+}
+
+/*
+ * Instructions
+ */
+#form-instructions {
+	width: 300px;
+	float: right;
 }
 
 /*
@@ -128,6 +162,7 @@ fieldset {
 	width: 60%;
 	padding: 30px 20px;
 	margin: 0 0 10px;
+	text-shadow: none;
 }
 
 fieldset h3 {
@@ -148,10 +183,24 @@ fieldset label {
 	color: #999;
 }
 
-input {
-	padding: 6px 0 6px 6px;
+.row {
+
+}
+
+.column {
+	display: inline-block;
+	margin: 0 30px 0 0;
+	vertical-align: top;
+}
+
+.half {
+	width: 40%;
+}
+
+input, textarea {
+	padding: 4px;
 	margin: 1px 1px 6px;
-	border-radius: 4px;
+	border-radius: 3px;
 	border: 1px solid #999999;
 	box-shadow: 1px 1px #888888;
 	font: museo-sans-rounded; 
@@ -159,46 +208,63 @@ input {
 	width: 500px;
 }
 
+input[type="file"] {
+	border: none;
+	box-shadow: none;
+}
+
 select {
-	padding: 6px 0 6px 10px;
+	padding: 4px;
 	margin: 2px 0 5px;
-	border-radius: 4px;
+	border-radius: 3px;
 	border: 1px solid #999999;
 	box-shadow: 1px 1px #888888;
 	font: museo-sans-rounded; 
 	font-size: 110%;
-
 }
 
-input.inp-checkbox {
+input[type="radio"], input[type="checkbox"] {
+	margin: 0 15px 0 0;
 	width: 20px;
 	height: 20px;
 }
 
-input:focus {
-	border: 2px solid #a58ab3;
-	margin: 0px 0px 5px;
+input:focus, textarea:focus {
+	border: 2px solid #0a9aaf;
+	margin: 1px 0px 4px;
 	box-shadow: none;
 }
 
-input.long {
+.help-text {
+	color: #999;
+	margin: 2px 0 5px;
+	font-size: 90%;
+}
+
+.long {
 	width: 500px;
 }
 
-input.short {
+.medium {
+	width: 300px;
+}
+
+.short {
 	width: 200px;
 }
 
-textarea {
-	padding: 6px 0 6px 10px;
-	margin: 5px 0 5px;
-	border-radius: 5px;
-	border: 1px solid #999999;
-	font: museo-sans-rounded; 
-	box-shadow: 1px 1px #888888;
-	width: 500px;
-	height: 200px;
-	resize: none;
+.shorter {
+	width: 120px;
+}
+
+.tall {
+	height: 180px;
+}
+
+input[type="submit"].go-button {
+	width: 200px;
+	background: green;
+	color: white;
 }
 
 /**
@@ -280,7 +346,9 @@ input#search-button {
 	float: right;
 }
 
-
+.eula {
+	
+}
 
 /**
  * Footer

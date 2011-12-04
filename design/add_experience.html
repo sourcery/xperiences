@@ -2,34 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-        
+
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<script src="js/textwrap.plugin.js"></script>
 	<script src="js/main.js"></script>
 	<script type="text/javascript" src="http://use.typekit.com/qzv2oav.js"></script>
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 	<link rel="stylesheet" href="css/style.css">
-    <title>Add a new listing</title>    
+	<title>Add a new listing</title>    
 </head>
 <body>
 	<header>
-	<div id="logo">Come Play Learn</div>
-	<div id="facebook-connect"></div>
-	<div id="service-list">List your activity</div>
-	<div class="clear"></div>
+	<div class="constrain-width">
+		<div id="logo">Come Play Learn</div>
+		<div id="facebook-connect"></div>
+		<div id="service-list">List your activity</div>
+		<div class="clear"></div>
+	</div>
 	</header>
 	<div id="wrapper">
 		<div class="content">
 			<h2>Add listing form</h2><!-- we can change this title based on the niche-->
-			
+			<div id="form-instructions">
+				<h3>Welcome!</h3>
+				<p>Hamburger corned beef turkey, fatback pancetta leberkäse pork chop pork ham hock short ribs. Rump tail pork chop pork meatloaf. Beef short loin rump, capicola leberkäse drumstick chicken short ribs. Capicola jerky tail hamburger tri-tip, kielbasa sirloin brisket frankfurter swine. Shankle turducken bresaola ground round pig. Meatball sausage chuck, strip steak fatback leberkäse sirloin boudin shankle filet mignon tenderloin kielbasa. Ball tip boudin pancetta shank, leberkäse spare ribs pork chop strip steak bacon sausage swine turducken flank.</p>
+				<p>Shoulder andouille short loin chicken venison. Pork loin chicken sausage, hamburger t-bone flank beef ribs kielbasa drumstick turducken. Pastrami sausage shoulder t-bone, filet mignon prosciutto leberkäse drumstick short loin flank spare ribs meatball chicken. Short ribs ball tip short loin t-bone, drumstick boudin kielbasa capicola shankle tongue beef tri-tip. Shankle short loin frankfurter, fatback jerky pancetta bacon ham hock tenderloin leberkäse kielbasa t-bone boudin ham brisket. Meatloaf shank bacon, rump ham venison swine fatback turkey corned beef jowl brisket kielbasa. Tongue tri-tip capicola, t-bone ribeye kielbasa flank chicken brisket jerky spare ribs meatball.</p>
+			</div>
+
 			<form action="#" method="POST" enctype="multipart/form-data">
 				<fieldset>
 					<h3>Describe your offering</h3>
 					<label>Title</label>
 					<input class="default-val" type="text" value="Think of a name that describes your activity" maxlength="32" required="required" name="title"/>
 					<label>Description</label>
-					<span class="description">tell us about your cooking, the setting, yourself... anything that helps tell your story</span>
-					<textarea rows="20" cols="50" id="description" required="required" name="description"></textarea>
+					<p class="help-text">tell us about your cooking, the setting, yourself... anything that helps tell your story</p>
+					<textarea class="tall" id="description" required="required" name="description"></textarea>
 				</fieldset>
 				<fieldset>
 					<h3>Tell your story visually</h3>
@@ -48,81 +55,105 @@
 					<h3>Location</h3>
 					<input class="inp-checkbox" type="checkbox" name="use_saved_address" />Use my address
 					<address><!-- html 5 semantic markup -->
+
 						<label>Address</label>
-						<input class="space_common" type="text" name="address" />
-						<label>City</label>
-						<input class="space_common" type="text" name="city">
-						<label>State</label>
-						<select name="state">
-							<option>AL</option>
-							<option>BM</option>
-							<option>CA</option>
-							<option>PA</option>
-							<option>NY</option>
-							<option>NH</option>
-							<option>MA</option>
-						</select>
-						<div>
-						<label>Zipcode</label>
-						<input class="short" type="text" name="zipcode">
+						<input type="text" name="address" />
+						<div class="row">
+							<div class="column">
+								<label>City</label>
+								<input class="medium" type="text" name="city">
+							</div>
+							<div class="column">
+								<label>State</label>
+								<select name="state">
+									<option>AL</option>
+									<option>BM</option>
+									<option>CA</option>
+									<option>PA</option>
+									<option>NY</option>
+									<option>NH</option>
+									<option>MA</option>
+								</select>
+							</div>
 						</div>
-						<label>Country  <!-- eveyrthing is going to be in the U.S. for now--> 
-							<select name="country">
-							   <option>United States</option>
-							</select>
-						</label>
+						<div class="row">
+							<div class="column">
+								<label>Zipcode</label>
+								<input class="short" type="text" name="zipcode">
+							</div>
+							<div class="column">
+								<label>Country  <!-- eveyrthing is going to be in the U.S. for now--> </label>
+								<select class="short" name="country">
+									<option>United States</option>
+								</select>
+							</div>
+						</div>
 					</address>
 				</fieldset>
 				<fieldset>
 					<h3>Available dates and times</h3>
-					<p> Pick available dates </p>
-					<!-- how to enable them select specific dates as well as 'from' 'to'? -->
-					<!-- the calendar here is just a place holder --> 
-					<iframe id='cv_if1' src='http://cdn.instantcal.com/cvir.html?id=cv_nav1&theme=RE&ntype=cv_datepickerm&file=http%3A%2F%2Fwww.instantcal.com%2Ftest.ics' allowTransparency='true' scrolling='no' frameborder=0 height=250 width=250></iframe>
-					<br />
-					<p>Pick available times</p>
-					<!-- here I want to include a better time widget, perhaps a slider like in Kayak. -->
-					<input type="radio" name="mornings" />Mornings<br />
-					<input type="radio" name="evenings" />Evenings<br /> 
-					<input type="radio" name="all_day" />All day<br />
+					<div class="half column">
+						<label>Pick available dates </label>
+						<!-- how to enable them select specific dates as well as 'from' 'to'? -->
+						<!-- the calendar here is just a place holder --> 
+						<iframe id='cv_if1' src='http://cdn.instantcal.com/cvir.html?id=cv_nav1&theme=RE&ntype=cv_datepickerm&file=http%3A%2F%2Fwww.instantcal.com%2Ftest.ics' allowTransparency='true' scrolling='no' frameborder=0 height=250 width=250></iframe>
+					</div>
+					<div class="column half">
+						<label>Pick available times</label>
+						<!-- here I want to include a better time widget, perhaps a slider like in Kayak. -->
+						<input type="radio" name="mornings" />Mornings<br />
+						<input type="radio" name="evenings" />Evenings<br /> 
+						<input type="radio" name="all_day" />All day<br />
+					</div>
 				</fieldset>
 				<fieldset>
 					<h3>Give more details to help people find you</h3>
-					<label>Tags <input type="text" alue maxlength="10" name="tags"></label><br /><br /><!-- I need to learn how to do this... -->
+					<div class="row">
+						<label>Tags</label>
+						<input type="text" name="tags">
+					</div>
 					<input type="checkbox" name="my_place">Hosting at my place<br />
 					<input type="checkbox" name="delivery">Delivery<br />
 					<input type="checkbox" name="pick-up">Pick up<br /><br />
 				</fieldset>
 				<fieldset>
 					<h3>Price and capacity</h3>
-					<label for="price">Price</label>
-					<span>$</span>
-					<input type="text" id="price" name="price"/>
-					<span>USD</span><br /><br />
-					<label for="capacity">How many people can you feed?
+					<div class="half column">
+						<label for="price">Price</label>
+						<p class="help-text">How much do you intend to charge</p>
+						<span>$</span>
+						<input class="shorter" type="text" id="price" name="price"/>
+						<span>USD</span>
+					</div>
+					<div class="half column">
+						<label for="capacity">Capacity</label>
+						<p class="help-text">How many people can you feed?</p>
 						<select name="capcaity">
 							<option>1-5</option>
 							<option>6-10</option>
 							<option>11-15</option>
 							<option>16-20</option>
 							<option>more than 20</option>
-						</select></label>
-						<input type="checkbox" name="run_out_of_food"> until I run out of food<br />
-				</fieldset>       
-				
-				<br /><br />
-				
-				<input type="submit" class="button" value="View listing">
-
+						</select>
+						<div class="row">
+							<input type="checkbox" name="run_out_of_food"> until I run out of food
+						</div>
+					<div class="row">
+				</fieldset>       	
+				<p class="eula">Capicola meatloaf t-bone, ham hock tenderloin corned beef bresaola boudin jerky. Beef venison meatball tri-tip andouille pork chop flank ham hock pork belly turducken pork loin. Ham turkey beef, sirloin hamburger meatloaf kielbasa leberkäse strip steak t-bone tenderloin meatball pork swine short ribs. Sirloin andouille brisket kielbasa pork loin, pig filet mignon ham tail pastrami pork leberkäse capicola. Corned beef pork boudin capicola. Turkey jerky ground round meatloaf. Sausage shankle ball tip shank meatball venison chicken short ribs flank beef ribs\w.
+				</p>
+				<input type="submit" class="go-button" value="View listing">
 			</form>
 		</div>
 	</div>
 	<footer>
-		<ul class="footer-nav">
-			<li>About</li>
-			<li>Contact</li>
-		</ul>
-		<div class="copyright">© 2011 Come Play Learn</div>
+		<div class="constrain-width">
+			<ul class="footer-nav">
+				<li>About</li>
+				<li>Contact</li>
+			</ul>
+			<div class="copyright">© 2011 Come Play Learn</div>
+		</div>
 	</footer>
 </body>
 </html>
