@@ -11,7 +11,7 @@ from db_manage import db
 
 
 def experience_by_category(request, category):
-    recent_experiences = Experience.objects.filter(category=category)
+#    recent_experiences = Experience.objects.filter(category=category)
 
     template_name = 'experiences/index.html'  # aren't we supposed to have something like experiences/category/list_experiences.html?
     # or is that something that'll be determined by the urls.py?   I think this url should change!!

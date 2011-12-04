@@ -7,6 +7,9 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext  # I still need to understand better the concept of RequestContext
 #from experiences.models import Experience
 #from merchants.models import Merchant
+from django.http import HttpResponse
+from experiences.forms import ExperienceForm
+from experiences.models import Experience
 from merchants.forms import MerchantForm
 
 
@@ -37,7 +40,24 @@ def register(request):
         form = MerchantForm(instance=request.merchant)
 #        return render_to_response(template, context_instance=RequestContext(request, context))
         return render_to_response(template_name, {'form':form, 'status': status, 'merchant':request.merchant}, context_instance=RequestContext(request))
-    
+
+@merchant_required()
+def experiences(request):
+    return render_to_response('merchants/experiences.html', context_instance=RequestContext(request))
+
+@merchant_required()
+def edit_experience(request,id):
+    exp = Experience.objects.get(id=id)
+    if request.method == 'GET':
+        form = ExperienceForm(instance=exp)
+        return render_to_response('merchants/edit_experience.html', context_instance=RequestContext(request,{'form' : form}) )
+    else:
+        form = ExperienceForm(request.POST,instance=exp)
+        if form.is_valid():
+            form.save()
+            return HttpResponse('saved')
+        else:
+            return render_to_response('merchants/edit_experience.html', context_instance=RequestContext(request,{'form' : form}) )
 
 
     

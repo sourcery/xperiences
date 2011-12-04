@@ -12,6 +12,9 @@ from piston.utils import rc, throttle
 import logging
 from piston.handler import BaseHandler
 from backend import models
+import api
+
+Emitter.register('json', api.EmpeericJSONEmitter, 'application/json; charset=utf-8')
 
 # Base class for handler
 class MyBaseHandler(BaseHandler):
@@ -127,30 +130,34 @@ class UserHandler(MyBaseHandler):
 class MerchantHandler(MyBaseHandler):
 
     model = models.UserExtension
-    fields = ('id','name', 'description','user')
+    fields = ('id','name', 'description','user','photo')
 
 class ExperienceHandler(MyBaseHandler):
     allowed_methods = ('GET',)
     model = Experience
-    fields = ('id', 'title','description','merchant','price','capacity','valid_from','valid_until',)
+    fields = ('id', 'title','description','merchant','photo1','photo2','photo3','photo4','photo5','price','capacity','valid_from','valid_until','is_active')
 
     def read(self,request,*args,**kwargs):
         params = dict([ (k,request.GET[k]) for k in request.GET])
+        of_merchant = 'of_merchant' in params and request.merchant
+        if of_merchant:
+            params['merchant'] = request.merchant
+            del params['of_merchant']
+        else:
+            params['is_active'] = True
         lat = params.get('lat')
         lng = params.get('lng')
         if lat:
             del params['lat']
         if lng:
             del params['lng']
+
         kwargs.update(params)
         if kwargs.get('id','') == '':
             del kwargs['id']
         if 'id' in kwargs:
             return super(ExperienceHandler,self).read(request,*args,**kwargs)
         else:
-            if (not lat and not lng) and request.user_extension:
-                lat = request.user_extension.xp_location.lat
-                lng = request.user_extension.xp_location.lng
             if lat and lng:
                 return Experience.objects.proximity_query( { 'lat' : float(lat), 'lng' : float(lng)}, query=kwargs)
             else:
