@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load thumbnail %}
 {% block title %}{{ experience.title }}{% endblock %}
 {% block extra_head %}
 <script type='text/javascript' src='https://maps-api-ssl.google.com/maps/api/js?v=3&sensor=false&language=he&libraries=places' ></script>
@@ -26,12 +26,22 @@
                 <div id="exp-main-image" class="image-wrapper"></div>
                 <div id="exp-thumbs">
                 
-                    {% if experience.photo1 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo1.url}}">{% endif %}
-                    {% if experience.photo2 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo2.url}}">{% endif %}
-                    {% if experience.photo3 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo3.url}}">{% endif %}
-                    {% if experience.photo4 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo4.url}}">{% endif %}
-                    {% if experience.photo5 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo5.url}}">{% endif %}
-               
+                    {% thumbnail experience.photo1 "450x300" crop="center" as im %}
+                        <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                    {% endthumbnail %}
+                    {% thumbnail experience.photo2 "450x300" crop="center" as im %}
+                        <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                    {% endthumbnail %}
+                    {% thumbnail experience.photo3 "450x300" crop="center" as im %}
+                        <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                    {% endthumbnail %}
+                    {% thumbnail experience.photo4 "450x300" crop="center" as im %}
+                        <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                    {% endthumbnail %}
+                    {% thumbnail experience.photo5 "450x300" crop="center" as im %}
+                        <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                    {% endthumbnail %}
+
                 </div><!-- close exp-thumbs -->  
             </div><!-- close img-gallery -->
             <div id="exp-description">

@@ -5,7 +5,6 @@ from django.forms.fields import CharField
 from django.template.defaultfilters import slugify
 from backend.forms import PointWidgetWithAddressField, RichTextEditorWidget
 from django_mongodb_engine.contrib import MongoDBManager
-
 __author__ = 'ishai'
 
 from django.db import models
@@ -111,6 +110,11 @@ class UserLog(models.Model):
             log.user = user
             log.save()
 
+class XPImageField(models.ImageField):
+    thumb_field = None
+
+from sorl.thumbnail import ImageField
+
 class UserExtension(GeoModel):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, unique=True,primary_key=True)
@@ -135,7 +139,8 @@ class UserExtension(GeoModel):
     user_interests = models.TextField(max_length=755,default='',blank=True)
     activities = models.TextField(max_length=755,default='',blank=True)
     friends = models.TextField(max_length=2500,default='',blank=True)
-    photo = models.FileField(upload_to='photos_merchent',null=True,blank=True)
+    photo = ImageField(upload_to='photos_merchent',null=True,blank=True)
+
 
 
     @staticmethod

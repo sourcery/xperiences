@@ -35,4 +35,6 @@ admin.site.register(UserExtension,UserExtensionAdmin)
 
 admin.site.register(UserLog)
 
-#admin.site.register(Listing)
+import sorl
+
+admin.site.register(sorl.thumbnail.models.KVStore)

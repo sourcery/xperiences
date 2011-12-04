@@ -13,10 +13,22 @@
         {
             params = params || {};
             params['of_merchant'] = true;
-            $.get('/api/experiences//json',params,function(data)
+            $.get('/api/experiences/json',params,function(data)
             {
                 $('#experience_item_template').tmpl(data).appendTo('ul.image-gallery');
             });
+        }
+
+        function update_status(sender, ex_id)
+        {
+            var is_active = sender.checked ? true : false;
+            $.ajax( { url : '/api/experiences/json', data : { is_active : is_active, id:ex_id } , type : 'PUT', success : function()
+            {
+                alert('saved');
+            }, error : function()
+            {
+                alert('error');
+            } });
         }
 
     </script>
@@ -51,7 +63,7 @@
                                 <span class="currency-code"></span>
                             </p>
                         </div>
-                        Active: {% t_var is_active %}
+                        Active: <input type=checkbox value='{% t_var is_active %}' {% t_if is_active %}checked='checked'{% t_endif %} onchange='update_status(this,"{% t_var id %}");' />
                     </li>
     </script>
    {% endblock %}

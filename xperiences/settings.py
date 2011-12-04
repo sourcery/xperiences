@@ -181,7 +181,8 @@ INSTALLED_APPS = (
     'djangotoolbox',
     'socialauth',
     'openid_consumer',
-    # Uncomment the next line to enable admin documentation:
+    'sorl.thumbnail',
+        # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
 AUTHENTICATION_BACKENDS = (

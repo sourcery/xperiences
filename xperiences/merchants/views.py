@@ -43,7 +43,8 @@ def register(request):
 
 @merchant_required()
 def experiences(request):
-    return render_to_response('merchants/experiences.html', context_instance=RequestContext(request))
+    if request.method == 'GET':
+        return render_to_response('merchants/experiences.html', context_instance=RequestContext(request))
 
 @merchant_required()
 def edit_experience(request,id):

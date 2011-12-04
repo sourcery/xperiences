@@ -24,7 +24,8 @@
         {% if category %}
             params['category'] = '{{ category }}';
         {% endif %}
-        $.get('/api/experiences//json',params,function(data)
+
+        $.get('/api/experiences/json',params,function(data)
         {
             $('#experience_item_template').tmpl(data).appendTo('ul.image-gallery');
         });
