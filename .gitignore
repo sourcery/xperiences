@@ -10,6 +10,9 @@ xperiences/django/db/backends
 dump
 *.pyc
 *.pyo
+*.swp
+*.psd
+.DS_Store
 src
 MongoFiles
 pip-log.txt

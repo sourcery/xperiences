@@ -12,14 +12,13 @@
     <title>Add a new listing</title>    
 </head>
 <body>
-	<div id="topbar"></div>
+	<header>
+	<div id="logo">Come Play Learn</div>
+	<div id="facebook-connect"></div>
+	<div id="service-list">List your activity</div>
+	<div class="clear"></div>
+	</header>
 	<div id="wrapper">
-		<header>
-		<div id="logo"></div>
-		<div id="service-list">List your activity</div>
-		<div id="facebook-connect"></div>
-		<div class="clear"></div>
-		</header>
 		<div class="content">
 			<h2>Add listing form</h2><!-- we can change this title based on the niche-->
 			
@@ -31,29 +30,23 @@
 					<label>Description</label>
 					<span class="description">tell us about your cooking, the setting, yourself... anything that helps tell your story</span>
 					<textarea rows="20" cols="50" id="description" required="required" name="description"></textarea>
-					<!--<label>Category
-					<select name="category">
-						<option>Category 1</option>
-						<option>Category 2</option>
-						<option>Category 3</option>
-						<option>Category 4</option>
-						<option>Category 5</option>
-					</select>
-					</label><br /><br />-->
 				</fieldset>
 				<fieldset>
 					<h3>Tell your story visually</h3>
 					<label>Upload your images</label>
-						<input type="file" name="image_1" size="20">
-						<input type="file" name="image_2" size="20">
-						<input type="file" name="image_3" size="20">
-						<input type="file" name="image_4" size="20">
-						<input type="file" name="image_5" size="20">
-					<label>Link to a video <input type="text" value maxlength="32" name="video_link"/></label>
+					<ol>
+						<li><input type="file" name="image_1" size="20"></ul>
+						<li><input type="file" name="image_2" size="20"></ul>
+						<li><input type="file" name="image_3" size="20"></ul>
+						<li><input type="file" name="image_4" size="20"></ul>
+						<li><input type="file" name="image_5" size="20"></ul>
+					</ol>
+					<label>Link to a video</label>
+					<input type="text" value maxlength="32" name="video_link"/>
 				</fieldset>
 				<fieldset>    
 					<h3>Location</h3>
-					<input type="checkbox" name="use_saved_address" />Use my address<br />
+					<input class="inp-checkbox" type="checkbox" name="use_saved_address" />Use my address
 					<address><!-- html 5 semantic markup -->
 						<label>Address</label>
 						<input class="space_common" type="text" name="address" />
@@ -69,8 +62,10 @@
 							<option>NH</option>
 							<option>MA</option>
 						</select>
-						<label>Zip-code</label>
-						<input class="space_common" type="text" name="zipcode">
+						<div>
+						<label>Zipcode</label>
+						<input class="short" type="text" name="zipcode">
+						</div>
 						<label>Country  <!-- eveyrthing is going to be in the U.S. for now--> 
 							<select name="country">
 							   <option>United States</option>
@@ -121,14 +116,14 @@
 
 			</form>
 		</div>
-		<footer>
-			<ul class="footer-nav">
-				<li>About</li>
-				<li>Contact</li>
-			</ul>
-			<div class="copyright">© 2011 Come Play Learn</div>
-		</footer>
 	</div>
+	<footer>
+		<ul class="footer-nav">
+			<li>About</li>
+			<li>Contact</li>
+		</ul>
+		<div class="copyright">© 2011 Come Play Learn</div>
+	</footer>
 </body>
 </html>
 
