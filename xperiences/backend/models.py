@@ -116,8 +116,8 @@ class UserExtension(GeoModel):
     is_merchant = models.BooleanField(default=False)
     is_approved = models.BooleanField(default=False)
     credit = models.FloatField(default=0.0)
-    FB_ID = models.CharField(max_length=40, null=True)
-    FB_token = models.CharField(max_length=255,null=True)
+    FB_ID = models.CharField(max_length=40, null=True,blank=True)
+    FB_token = models.CharField(max_length=255,null=True,blank=True)
     referred_by = models.ForeignKey(User, null=True, blank=True, related_name='referred_by')
 
     name = models.CharField(max_length=50)  # by default blank=false and null=false, means that both fields are mandatory in both admin and DB
@@ -153,7 +153,7 @@ class UserExtension(GeoModel):
 
     @staticmethod
     def create_from_user(user):
-        ext = UserExtension(user=user,name=user.username )
+        ext = UserExtension(user=user, name=user.username )
         return ext
 
     def reward_credit(self,reward):
@@ -172,7 +172,6 @@ class UserExtension(GeoModel):
     # by 'name' in the admin interface.
     class Meta:
         ordering = ['name'] # This is a list that specifies the ordering
-        db_table = 'user_extension2'
 
     def __str__(self):
         return self.name

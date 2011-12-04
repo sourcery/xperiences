@@ -22,3 +22,6 @@ def make_admin_view(form_type,template='admin_form.html', success_template='admi
     return view
 
 configurations = make_admin_view(SiteConfigurationForm)
+
+def test(request):
+    return render_to_response('test.html')

@@ -1,6 +1,9 @@
+from django.contrib.auth.models import User
+from experiences.models import Experience
+
 __author__ = 'ishai'
 
-from datetime import timedelta
+from datetime import timedelta, datetime
 import threading
 from piston.emitters import Emitter, JSONEmitter
 from django.db.models.base import Model
@@ -8,7 +11,7 @@ from piston.resource import UploadRequestHandler
 from piston.utils import rc, throttle
 import logging
 from piston.handler import BaseHandler
-import models
+from backend import models
 
 # Base class for handler
 class MyBaseHandler(BaseHandler):
@@ -117,3 +120,40 @@ class MyBaseHandler(BaseHandler):
         else:
             return None
 
+class UserHandler(MyBaseHandler):
+    model = User
+    fields = ('first_name','last_name','full_name','short_name','email')
+
+class MerchantHandler(MyBaseHandler):
+
+    model = models.UserExtension
+    fields = ('name', 'description','user')
+
+class ExperienceHandler(MyBaseHandler):
+    allowed_methods = ('GET',)
+    model = Experience
+    fields = ('title','description','merchant','price','capacity','valid_from','valid_until',)
+
+    def read(self,request,*args,**kwargs):
+        params = dict([ (k,request.GET[k]) for k in request.GET])
+        lat = params.get('lat')
+        lng = params.get('lng')
+        if lat:
+            del params['lat']
+        if lng:
+            del params['lng']
+        kwargs.update(params)
+        if kwargs.get('id','') == '':
+            del kwargs['id']
+        if 'id' in kwargs:
+            return super(ExperienceHandler,self).read(request,*args,**kwargs)
+        else:
+            if (not lat and not lng) and request.user_extension:
+                lat = request.user_extension.xp_location.lat
+                lng = request.user_extension.xp_location.lng
+            if lat and lng:
+                qry = Experience.objects.proximity_query( { 'lat' : float(lat), 'lng' : float(lng)})
+            else:
+                qry = Experience.objects.all()
+            qry = qry.filter(*args,**kwargs)
+            return qry

@@ -64,7 +64,7 @@ TIME_ZONE = 'America/Chicago'
 LANGUAGE_CODE = 'en-us'
 
 
-SITE_ID = '4eba73fe96cf4c019c00001d'
+SITE_ID = '4eba73fe96cf4c019c00001d' if PRODUCTION else '4ed7858b76a6f6052c00001d'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
@@ -134,6 +134,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     #'django.middleware.csrf.CsrfViewMiddleware',
+    'backend.middleware.ReferralMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'backend.middleware.UserExtensionMiddleware',
     'backend.middleware.UserLogMiddleware',
@@ -264,3 +265,10 @@ AWS_ACCESS_KEY_ID = 'AKIAJYBGEQMSD3MMPTYA'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'my_prod_xpr_uploads'
 AWS_S3_CUSTOM_DOMAIN = 'd1hg4pg1k1dk6u.cloudfront.net'
+
+IP_GEOLOCATOR_API_KEY = '6c7d7c6a66737d6a216d7e7c'
+if PRODUCTION:
+    IP_GEOLOCATOR_API_KEY = '6c7d7c6a66737d6a216d7e7c'
+
+if STAGING:
+    IP_GEOLOCATOR_API_KEY = '7160697d6a647a6a6a7d3c7570612f61757e60687475797f20727e78'

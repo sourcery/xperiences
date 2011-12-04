@@ -1,6 +1,8 @@
 import logging
 import urllib
+from backend.models import UserExtension
 from django.db import transaction
+from django.db.transaction import commit_on_success
 
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
@@ -12,6 +14,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import logout
 
 from openid_consumer.views import begin
+from socialauth.auth_backends import create_user_from_session, get_referrer_from_request, get_user_extension_from_request
 from socialauth.lib import oauthtwitter2 as oauthtwitter
                             
 from socialauth.lib.linkedin import *
@@ -68,6 +71,7 @@ def login_page(request):
             context.update({'next': request.POST.get('next', LOGIN_REDIRECT_URL), 'login_failed' : True })
             return render_to_response('sign_up.html', context_instance=RequestContext(request, context))
 
+@commit_on_success()
 def sign_in(request):
     if request.method == 'POST':
         try:
@@ -75,9 +79,12 @@ def sign_in(request):
             password = request.POST['register_password']
             if User.objects.filter(username__exact=email).count() > 0:
                 raise IntegrityError()
-            user = User.objects.create_user(email, email, password)
+            user = create_user_from_session(request,email,email,password)
             user.is_active = False
             user.save()
+            ext = get_user_extension_from_request(user,request)
+            ext.save()
+
             user = authenticate(username=email, password=password)
             login(request,user)
             utils.send_validation_mail_to_user(user.id, email, user=user)
@@ -301,6 +308,7 @@ def try_again(request):
     return redirect('/accounts/login/')
 
 
+@commit_on_success()
 def facebook_login_done(request):
     user = authenticate(request=request)
 
