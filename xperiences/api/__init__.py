@@ -1,7 +1,9 @@
 import datetime
+from django.template.context import Context
 from django.utils import simplejson
 import time
 from django.db.models.fields.files import FileField, FieldFile
+from django.template import loader
 from piston.emitters import Emitter
 from piston.utils import Mimer
 
@@ -18,10 +20,15 @@ class EmpeericJSONEncoder(simplejson.JSONEncoder):
 Mimer.register(lambda *a: None, ('application/x-www-form-urlencoded; charset=UTF-8',))
 
 def parse_file_field(thing):
-    if thing:
-        return { 'url' : thing.url }
-    else:
+    if not thing:
         return None
+    c = Context({'photo' : thing })
+    html_template = loader.get_template('photo.json')
+    if html_template == None:
+        return None
+    content = html_template.render(c)
+    print content
+    return simplejson.loads(content)
 
 class EmpeericJSONEmitter(Emitter):
     """
