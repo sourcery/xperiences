@@ -57,12 +57,11 @@
         <div id="main-nav-bg">
             <div id="main-nav">
                 <ul>
-                    <li {% if category == 'hosted meals' %}id="selected"{% endif %}>
-                        <a href="{% url experiences.views.experience_by_category category='hosted meals'%}">Hosted Meals</a>
-                    </li>
-                    <li {% if category == 'homemade takeout' %}id="selected"{% endif %}>
-                        <a href="{% url experiences.views.experience_by_category category='homemade takeout'%}">Homemade Takeout</a>
-                    </li>
+                    {% for cat in categories %}
+                        <li {% if category == cat %}id="selected"{% endif %}>
+                            <a href="{% url experiences.views.experience_by_category category=cat%}">{{ cat }}</a>
+                        </li>
+                    {% endfor %}
                 </ul>
             </div><!-- close main-nav -->
         </div>
@@ -97,6 +96,10 @@
             </ul>
         </div>
     </footer>{% endblock %}
+    <div style='display:none;'>
+        {% block hidden_templates %}
+        {% endblock %}
+    </div>
 </body>    
 </html>
 

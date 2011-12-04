@@ -53,3 +53,7 @@ class ReferralMiddleware(object):
         if 'referrer' in request.GET:
             request.session['referrer'] = request.GET['referrer']
 
+import settings
+CONTEXT = { 'IP_GEOLOCATOR_API_KEY' : settings.IP_GEOLOCATOR_API_KEY }
+def context_processor(request):
+    return CONTEXT

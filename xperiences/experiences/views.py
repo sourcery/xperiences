@@ -11,12 +11,12 @@ from db_manage import db
 
 
 def experience_by_category(request, category):
-    recent_experiences = Experience.objects.filter(category=category)
+#    recent_experiences = Experience.objects.filter(category=category)
 
     template_name = 'experiences/index.html'  # aren't we supposed to have something like experiences/category/list_experiences.html?
     # or is that something that'll be determined by the urls.py?   I think this url should change!!
 
-    return render_to_response(template_name, {'recent_experiences': recent_experiences, 'category': category}, context_instance=RequestContext(request))
+    return render_to_response(template_name, context_instance=RequestContext(request,{'category': category, 'categories':get_categories() }))
 
 
 def experience_profile(request, id):
@@ -37,8 +37,10 @@ def experience_profile(request, id):
     
     more_experiences = merchant_obj.experience_set.all()[:10]
 
+    location ,address = experience.get_location_address()
+
     return render_to_response(template_name,
-            {'experience': experience, 'merchant': merchant_obj, 'more_experiences': more_experiences},
+            {'experience': experience, 'merchant': merchant_obj, 'more_experiences': more_experiences ,'location' : location, 'address':address},
                               context_instance=RequestContext(request))
 
 
@@ -67,9 +69,8 @@ def index(request):
     hits = request.session.get('hits', 0) + 1
     request.session['hits'] = hits
 
-    recent_experiences = Experience.objects.order_by("-pud_date")[:9]
-
-    home_page_categories = get_categories()
+    # moved through the API
+#    recent_experiences = Experience.objects.order_by("-pud_date")[:9]
 
     experience_of_the_day = get_experience_of_the_day()
 
@@ -78,8 +79,7 @@ def index(request):
     print "I am the index!"
 
     return render_to_response(template_name,
-            {'hits': hits, 'recent_experiences': recent_experiences, 'categories': home_page_categories,
-             'eofd': experience_of_the_day}, context_instance=RequestContext(request))
+            {'hits': hits, 'eofd': experience_of_the_day, 'categories':get_categories()}, context_instance=RequestContext(request))
 
 
 # how to extract active categories from Mongo to populate this list?
