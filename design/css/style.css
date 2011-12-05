@@ -84,11 +84,22 @@ body {
 	padding: 10px 0 50px 0;
 }
 
+.command-bar-container {
+	height: 50px;
+}
+
 .command-bar {
 	background: #a58ab3;
-	height: 50px;
 	border-radius: 3px;
 	margin: 10px;
+	font-size: 12pt;
+	padding: 10px 20px;
+	color: white;
+}
+
+.command-bar input {
+	margin-left: 6px;
+	margin-right: 6px;
 }
 
 /*
@@ -119,26 +130,19 @@ p {
 	margin: 0.5em 0 1em;
 }
 
-
-/*
- * Layout Constrains
- */
-
-.constrain-width {
-	max-width: 1000px;
-}
-
-/*
- * Instructions
- */
-#form-instructions {
-	width: 300px;
-	float: right;
-}
-
 /*
  * Layout
  */
+
+.two-col-left-narrow-float {
+	width: 280px;
+	float: left;
+}
+
+.two-col-right-wide {
+	width: 700px;
+	margin-left: 300px;
+}
 
 .two-col-left {
 	width: 600px;
@@ -203,13 +207,44 @@ header .header-wrap {
  * forms and Inputs
  */
 
-fieldset, .search-result {
-	border: 1px solid #cccccc;
-	box-shadow: 1px 1px #bbbbbb;
+.search-result {
+	width: 320px;
+	display: inline-block;
+	margin-right: 5px;
+}
+
+.search-result img {
+	width: 320px;
+	border: #E0E0E0;
+	margin: 0 auto;
+}
+
+.search-result h4 {
+	font-size: 14pt;
+	margin-bottom: 2px;
+}
+
+.search-result .price {
+	width: 34px;
+	height: 32px;
+	padding-top: 2px;
+	border-radius: 17px;
+	font-size: 14pt;
+	color: white;
+	text-align: center;
+	background: #0a9aaf;
+	float: right;
+}
+
+fieldset, .search-result, .panel {
+	border: 1px solid #E0E0E0;
+	border-radius: 2px;
+
 	background: white;
-	padding: 30px 20px;
-	margin: 0 0 10px;
+	padding: 10px 10px;
+	margin-bottom: 10px;
 	text-shadow: none;
+	vertical-align: bottom;
 }
 
 fieldset h3 {
@@ -280,7 +315,7 @@ input[type="radio"], input[type="checkbox"] {
 
 input[type="submit"] {
 	background: #60a01f;
-	font-size: 13pt;
+	font-size: 11pt;
 	color: white;
 	
 	padding: 4px 20px 4px;
@@ -362,6 +397,14 @@ input.shorter {
 	margin-left: 8px;
 	margin-right: 8px;
 	border: 1px solid white;
+}
+
+#search-left-bar {
+	background: #0a9aaf;
+	padding: 20px 20px 10px;
+	color: white;
+	text-align: left;
+	text-shadow: none;
 }
 
 .map {
