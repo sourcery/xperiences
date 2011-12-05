@@ -15,17 +15,24 @@ config = read_configurations()
 
 def update_configurations(dict):
     from backend.models import SiteConfiguration
-    global config
+    global config, categories
     for key in dict:
         value = dict[key]
         config[key] = str(value)
     conf, _ = SiteConfiguration.objects.get_or_create(name='default')
     conf.conf = simplejson.dumps(config)
     conf.save()
+    categories = None
     config = read_configurations()
 
-
+categories = None
 def get_categories():
-    global config
-    return config.get('CATEGORIES',[('cat','cat')])
+    global config, categories
+    if not categories:
+        categories = config.get('CATEGORIES','cat1,cat2').split(',')
+    return categories
+
+def get_categories_as_choices():
+    cats = get_categories()
+    return [(cat,cat) for cat in cats]
 
