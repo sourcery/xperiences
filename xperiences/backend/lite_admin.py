@@ -1,6 +1,7 @@
 from backend import utils
 from django.contrib import admin
 from django.contrib.admin.sites import AdminSite
+from experiences.models import Experience
 from models import UserExtension
 
 
@@ -20,9 +21,10 @@ merchant_actions = [approve_merchant]
 class UserExtensionAdmin(admin.ModelAdmin):
     actions = merchant_actions
 
+class ExperienceAdmin(admin.ModelAdmin):
+    list_display = ('title', 'category', 'pub_date', 'photo1')
+
+
 lite_admin = LiteAdmin("lite_admin", "lite_admin")
 lite_admin.register(UserExtension, UserExtensionAdmin)
-
-import sorl
-
-lite_admin.register(sorl.thumbnail.models.KVStore)
+lite_admin.register(Experience, ExperienceAdmin)

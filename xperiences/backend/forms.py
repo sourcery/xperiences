@@ -51,7 +51,7 @@ def PointWidgetWithAddressField(address_field):
                 'all': ('map.css',)
             }
             js = ('http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js',
-                  'https://maps-api-ssl.google.com/maps/api/js?v=3&sensor=false&language=he&libraries=places',
+                  'https://maps-api-ssl.google.com/maps/api/js?v=3&sensor=false&language=en&libraries=places',
                   'http://www.iplocationtools.com/iplocationtools.js?key=' + settings.IP_GEOLOCATOR_API_KEY,
                   'maps.js')
 

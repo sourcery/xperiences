@@ -7,7 +7,7 @@ from sorl.thumbnail import ImageField
 
 
 #from merchants.models import Merchant
-choices = [(cat,cat) for cat in configurations.get_categories()]
+choices = configurations.get_categories()
 
 class Experience(GeoModel):
     merchant = models.ForeignKey(UserExtension,null=True)
@@ -16,7 +16,7 @@ class Experience(GeoModel):
 
     title = models.CharField(max_length=50)  # by default blank=false and null=false, meaning that both fields are mandatory in both admin and DB
     description = RichTextField()
-    category = models.CharField(max_length=50,choices=choices)
+    category = models.CharField(max_length=50, choices=choices)
     price = models.PositiveIntegerField(default=0)
     unit_name = models.CharField(max_length=100) # eg.: week, meal, day...
     unit_count = models.PositiveIntegerField(default=0, null=True, blank=True)
