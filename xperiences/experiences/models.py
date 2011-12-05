@@ -1,6 +1,6 @@
 import datetime
 from backend import configurations
-from backend.models import GeoModel, UserExtension, RichTextField
+from backend.models import GeoModel, UserExtension, RichTextField, XPImageField
 from django.db import models
 from django.template.defaultfilters import slugify
 from sorl.thumbnail import ImageField
@@ -20,11 +20,11 @@ class Experience(GeoModel):
     unit_name = models.CharField(max_length=100, null=True, blank=True) # eg.: week, meal, day...
     unit_count = models.PositiveIntegerField(default=0, null=True, blank=True)
     pub_date = models.DateField(default=datetime.date.today,null=True)
-    photo1 = ImageField(upload_to='%Y%m%d%H%M%S',null=True,blank=True)
-    photo2 = ImageField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
-    photo3 = ImageField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
-    photo4 = ImageField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
-    photo5 = ImageField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
+    photo1 = XPImageField(upload_to='%Y%m%d%H%M%S',null=True,blank=True)
+    photo2 = XPImageField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
+    photo3 = XPImageField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
+    photo4 = XPImageField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
+    photo5 = XPImageField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
     video_link = models.TextField(max_length=150,null=True,blank=True)
     use_saved_address = models.BooleanField(default=True)
 

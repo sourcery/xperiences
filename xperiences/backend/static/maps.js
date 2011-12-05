@@ -124,7 +124,9 @@ $.prototype.geoview = function(params)
         var latlng = elm.val() || '0,0';
         center = { lat: latlng.split(',')[0], lng: latlng.split(',')[1]};
         map = init_map(map_id,center);
-        marker = add_draggable_marker(map, center);
+        marker = add_draggable_marker(map, center,null,function(me){
+            init_street_view(map_id,marker.getPosition());
+        });
     };
 
     init();
@@ -167,7 +169,7 @@ function init_map( id , center){
       maps[ id ] = map;
      return map;
 }
-function add_draggable_marker(map,center, location_changed)
+function add_draggable_marker(map,center, location_changed, onclick)
 {
     if (!center) center = new google.maps.LatLng(-34.397, 34.644);
     else center = new google.maps.LatLng(center.lat, center.lng);
@@ -175,6 +177,8 @@ function add_draggable_marker(map,center, location_changed)
         map: map,
         position: center
     });
+    if( onclick)
+        google.maps.event.addListener(marker,'click',onclick);
     if(location_changed)
     {
         marker.setDraggable(true);

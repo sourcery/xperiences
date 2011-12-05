@@ -4,6 +4,7 @@ from django.utils import simplejson
 import time
 from django.db.models.fields.files import FileField, FieldFile
 from django.template import loader
+from backend.models import XPImageField
 from piston.emitters import Emitter
 from piston.utils import Mimer
 
@@ -22,13 +23,15 @@ Mimer.register(lambda *a: None, ('application/x-www-form-urlencoded; charset=UTF
 def parse_file_field(thing):
     if not thing:
         return None
-    c = Context({'photo' : thing })
-    html_template = loader.get_template('photo.json')
-    if html_template == None:
-        return None
-    content = html_template.render(c)
-    print content
-    return simplejson.loads(content)
+    if isinstance(thing, XPImageField):
+        c = Context({'photo' : thing })
+        html_template = loader.get_template('photo.json')
+        if html_template == None:
+            return None
+        content = html_template.render(c)
+        print content
+        return simplejson.loads(content)
+    return { 'url' : thing.url }
 
 class EmpeericJSONEmitter(Emitter):
     """

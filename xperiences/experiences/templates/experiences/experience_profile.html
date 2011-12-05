@@ -26,19 +26,19 @@
                 <div id="exp-main-image" class="image-wrapper"></div>
                 <div id="exp-thumbs">
                 
-                    {% thumbnail experience.photo1 "450x300" crop="center" as im %}
+                    {% thumbnail experience.photo1 experience.photo1.thumbnail_size_str crop="center" as im %}
                         <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
                     {% endthumbnail %}
-                    {% thumbnail experience.photo2 "450x300" crop="center" as im %}
+                    {% thumbnail experience.photo2 experience.photo2.thumbnail_size_str crop="center" as im %}
                         <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
                     {% endthumbnail %}
-                    {% thumbnail experience.photo3 "450x300" crop="center" as im %}
+                    {% thumbnail experience.photo3 experience.photo3.thumbnail_size_str crop="center" as im %}
                         <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
                     {% endthumbnail %}
-                    {% thumbnail experience.photo4 "450x300" crop="center" as im %}
+                    {% thumbnail experience.photo4 experience.photo4.thumbnail_size_str crop="center" as im %}
                         <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
                     {% endthumbnail %}
-                    {% thumbnail experience.photo5 "450x300" crop="center" as im %}
+                    {% thumbnail experience.photo5 experience.photo5.thumbnail_size_str crop="center" as im %}
                         <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
                     {% endthumbnail %}
 
