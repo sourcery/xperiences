@@ -20,7 +20,7 @@ class Experience(GeoModel):
     description = RichTextField()
     category = models.CharField(max_length=50,choices=choices)
     price = models.PositiveIntegerField(default=0)
-    unit_name = models.CharField(max_length=100) # eg.: week, meal, day...
+    unit_name = models.CharField(max_length=100, null=True, blank=True) # eg.: week, meal, day...
     unit_count = models.PositiveIntegerField(default=0, null=True, blank=True)
     pub_date = models.DateField(default=datetime.date.today,null=True)
     photo1 = ImageField(upload_to='%Y%m%d%H%M%S',null=True,blank=True)
