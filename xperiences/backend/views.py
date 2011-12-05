@@ -1,10 +1,8 @@
-from backend.admin import SiteConfigurationForm
+from backend.forms import SiteConfigurationForm
 from django.contrib.auth.decorators import user_passes_test
-from django.contrib.auth.models import User
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 
-__author__ = 'ishai'
 
 def make_admin_view(form_type,template='admin_form.html', success_template='admin_form_saved.html'):
 

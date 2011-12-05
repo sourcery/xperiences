@@ -1,9 +1,6 @@
+from backend.lite_admin import lite_admin
 from django.contrib import admin
 
 from experiences.models import *
 
-class ExperienceAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category')
-
-
-admin.site.register(Experience, ExperienceAdmin)
+admin.site.register(Experience)

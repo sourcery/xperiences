@@ -14,9 +14,9 @@
 {% endblock %}
 
 {% block content %}
-        
-    
-        
+
+
+
     <article id="main-content">
         <div class="primary">
             <div id="exp-title">
@@ -47,7 +47,7 @@
             <div id="exp-description">
                 {{ experience.description|safe }}
             </div><!-- close exp-description -->
-            
+
             <!-- there needs to be a loop here.. or disqus... not sure how this will work -->
             <div id="reviews">
                 <!--<h3> What People Say</h3>-->
@@ -61,10 +61,10 @@
                         <div id="reviewer-details">
                             <p>Na'ama Moran</p>
                             <p class="location">San-Francisco, CA</p>
-                        </div><!-- close reviewer-details -->    
+                        </div><!-- close reviewer-details -->
                     </div><!-- close reviewer-wrap-->
                     <div id="ratings"><img width: 60px src="{{ MEDIA_URL }}/images/stars.png"></div><!-- close ratings -->
-                </div><!-- close reviewer listing -->    
+                </div><!-- close reviewer listing -->
                 <div id="review-body">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing
                     elit. Vivamus eleifend rutrum porta. Integer magna sem,
@@ -77,37 +77,9 @@
                     fermentum, turpis odio convallis lectus, ut laoreet nibh
                     ligula vel dolor. Maecenas volutpat cursus dictum. Donec
                     varius lectus et leo auctor faucibus.</p>
-                </div> <!-- close review-body --> 
-            </div><!-- close review_item -->            
-        
-            <div class="review-item">
-                <div class="reviewer-listing">
-                    <div id="reviewer-wrap">
-                        <div id="reviewer-image">
-                            <img width="50" height="50" alt="#" src="{{ MEDIA_URL }}/images/Picture_Necklace_sml.jpg">
-                        </div><!-- close reviewer-image-->
-                        <div id="reviewer-details">
-                            <p>Na'ama Moran</p>
-                            <p class="location">San-Francisco, CA</p>
-                        </div><!-- close reviewer-details -->    
-                    </div><!-- close reviewer-wrap-->
-                    <div id="ratings"><img width: 60px src="{{ MEDIA_URL }}/images/stars.png"></div><!-- close ratings -->
-                </div><!-- close reviewer listing -->    
-                <div id="review-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit. Vivamus eleifend rutrum porta. Integer magna sem,
-                    ultricies nec ultricies suscipit, ullamcorper sit amet
-                    purus. Sed vulputate dolor in urna varius tempor. Sed
-                    elementum molestie elit at pharetra. Suspendisse nec
-                    imperdiet turpis. Nam vitae ante urna, sit amet luctus
-                    lorem. Integer eu turpis id urna imperdiet tempor sit
-                    amet vitae elit. Nullam viverra, arcu eget hendrerit
-                    fermentum, turpis odio convallis lectus, ut laoreet nibh
-                    ligula vel dolor. Maecenas volutpat cursus dictum. Donec
-                    varius lectus et leo auctor faucibus.</p>
-                </div> <!-- close review-body --> 
+                </div> <!-- close review-body -->
             </div><!-- close review_item -->
-                    
+
             <div class="review-item">
                 <div class="reviewer-listing">
                     <div id="reviewer-wrap">
@@ -117,10 +89,10 @@
                         <div id="reviewer-details">
                             <p>Na'ama Moran</p>
                             <p class="location">San-Francisco, CA</p>
-                        </div><!-- close reviewer-details -->    
+                        </div><!-- close reviewer-details -->
                     </div><!-- close reviewer-wrap-->
                     <div id="ratings"><img width: 60px src="{{ MEDIA_URL }}/images/stars.png"></div><!-- close ratings -->
-                </div><!-- close reviewer listing -->    
+                </div><!-- close reviewer listing -->
                 <div id="review-body">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing
                     elit. Vivamus eleifend rutrum porta. Integer magna sem,
@@ -133,17 +105,45 @@
                     fermentum, turpis odio convallis lectus, ut laoreet nibh
                     ligula vel dolor. Maecenas volutpat cursus dictum. Donec
                     varius lectus et leo auctor faucibus.</p>
-                </div> <!-- close review-body --> 
-            </div><!-- close review_item -->            
+                </div> <!-- close review-body -->
+            </div><!-- close review_item -->
+
+            <div class="review-item">
+                <div class="reviewer-listing">
+                    <div id="reviewer-wrap">
+                        <div id="reviewer-image">
+                            <img width="50" height="50" alt="#" src="{{ MEDIA_URL }}/images/Picture_Necklace_sml.jpg">
+                        </div><!-- close reviewer-image-->
+                        <div id="reviewer-details">
+                            <p>Na'ama Moran</p>
+                            <p class="location">San-Francisco, CA</p>
+                        </div><!-- close reviewer-details -->
+                    </div><!-- close reviewer-wrap-->
+                    <div id="ratings"><img width: 60px src="{{ MEDIA_URL }}/images/stars.png"></div><!-- close ratings -->
+                </div><!-- close reviewer listing -->
+                <div id="review-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing
+                    elit. Vivamus eleifend rutrum porta. Integer magna sem,
+                    ultricies nec ultricies suscipit, ullamcorper sit amet
+                    purus. Sed vulputate dolor in urna varius tempor. Sed
+                    elementum molestie elit at pharetra. Suspendisse nec
+                    imperdiet turpis. Nam vitae ante urna, sit amet luctus
+                    lorem. Integer eu turpis id urna imperdiet tempor sit
+                    amet vitae elit. Nullam viverra, arcu eget hendrerit
+                    fermentum, turpis odio convallis lectus, ut laoreet nibh
+                    ligula vel dolor. Maecenas volutpat cursus dictum. Donec
+                    varius lectus et leo auctor faucibus.</p>
+                </div> <!-- close review-body -->
+            </div><!-- close review_item -->
         </div><!-- close reviews -->
-            
+
         </div><!-- close primary -->
-        
-    
+
+
         <div class="secondary">
             <div id="price">
                 $ {{ experience.price }} <a href="#"></a><!-- the href is for when we will quote in different currencies... thinking far ahead here :-) -->
-            </div><!-- close price -->    
+            </div><!-- close price -->
             <div id="buy-now" class="section">
                 <h2> How many people?</h2>
                 <span>
@@ -162,7 +162,7 @@
                 </span><br /><br />
                 <a href="google form goes here" id="book-now" class="button green">I want it!</a>
             </div><!-- close buy-now section -->
-            
+
             <div id="merchant-listing" class="section">
                 <div id="merchant-image">
                     {% comment %} <a title={{ merchant.name }} href="{% url merchant_profile merchant.id %}">{% endcomment %}
@@ -190,11 +190,11 @@
                 <p>{{ experience.wish_list_adds }} added this experience to their wish list</p>
                 <p><a href="#" title="report an experience">Report this experience</a></p>
             </div><!-- close exp_stats section -->
-            
+
         </div><!-- close secondary -->
     </article>
 {% endblock %}
-    
-    
 
-    
+
+
+
