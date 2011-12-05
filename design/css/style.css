@@ -72,16 +72,23 @@ body {
 	font-size: 10pt;
 }
 
-#wrapper {
+.content-body {
 	min-height: 600px;
 	background: url(../images/background.jpg);
-	padding: 40px 0 50px;
 	box-shadow: 0px 5px 3px #5d667c;
 }
 
-.wrapper-constrain {
+.main-content {
 	width: 1000px;
-	padding: 0 0 0 20px;
+	margin: 0 auto;
+	padding: 10px 0 50px 0;
+}
+
+.command-bar {
+	background: #a58ab3;
+	height: 50px;
+	border-radius: 3px;
+	margin: 10px;
 }
 
 /*
@@ -91,12 +98,17 @@ body {
 h1, h2, h3, h4, h5, h6 {
 	font-family: museo-sans-rounded;
 	color: #a58ab3;
-	text-shadow: 0.5px 0.5px 0.5px #CCC;
-	margin: 0 0 1em;
+	text-shadow: 0.5px 0.5px 0.5px #FFFFFF;
+	margin: 0 0 0.5em;
 }
 
-h1, h2 {
-	font-size: 180%;
+h1 {
+	font-size: 150%;
+	margin:30px 0 10px 10px;
+}
+
+h2 {
+	font-size: 150%;
 }
 
 h3 {
@@ -125,6 +137,21 @@ p {
 }
 
 /*
+ * Layout
+ */
+
+.two-col-left {
+	width: 600px;
+	margin: 10px 10px 0 10px;
+}
+
+.two-col-right {
+	width: 350px;
+	margin: 10px 20px 0 20px;
+	float: right;
+}
+
+/*
  * Header
  */
 
@@ -135,12 +162,15 @@ header {
 
 header .header-wrap {
 	background: #030f26;
-	width: 1000px;
+	width: 960px;
+	margin: 0 auto;
 	padding: 20px 20px 8px;
 }
 
 #logo {
 	float: left;
+	font-size: 130%;
+	text-shadow: none;
 	color: white;
 	font-family: museo-sans-rounded;
 }
@@ -173,11 +203,10 @@ header .header-wrap {
  * forms and Inputs
  */
 
-fieldset {
+fieldset, .search-result {
 	border: 1px solid #cccccc;
 	box-shadow: 1px 1px #bbbbbb;
 	background: white;
-	width: 60%;
 	padding: 30px 20px;
 	margin: 0 0 10px;
 	text-shadow: none;
@@ -220,7 +249,6 @@ input, textarea {
 	margin: 1px 1px 6px;
 	border-radius: 3px;
 	border: 1px solid #999999;
-	box-shadow: 1px 1px #888888;
 	font: museo-sans-rounded; 
 	font-size: 13pt;
 }
@@ -336,16 +364,6 @@ input.shorter {
 	border: 1px solid white;
 }
 
-.search-result {
-	background: white;
-	border-radius: 5px;
-	border: 1px #cccccc solid;
-	height: 100px;
-	width: 640px;
-	margin: 10px 20px 10px 0;
-	padding: 10px;
-}
-
 .map {
 	background: white;
 	border-radius: 5px;
@@ -370,6 +388,11 @@ footer {
 	color: #FFFFFF;
 	text-shadow: none;
 	font-size: 90%;
+}
+
+.footer-constrain {
+	width: 1000px;
+	margin: 0 auto;
 }
 
 footer ul.footer-nav li {
