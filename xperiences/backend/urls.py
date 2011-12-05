@@ -3,6 +3,7 @@ from backend import views
 
 urlpatterns = patterns('',
     (r'^test/', views.test),
+    (r'^geo_indexes/', views.geo_indexes),
     (r'^configurations/', views.configurations),
 )
 

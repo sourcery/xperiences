@@ -2,6 +2,8 @@ from backend.forms import SiteConfigurationForm
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
+from backend.management.commands.ensure_geo_fields import ensure_geo_fields
+from django.http import HttpResponse
 
 
 def make_admin_view(form_type,template='admin_form.html', success_template='admin_form_saved.html'):
@@ -23,3 +25,7 @@ configurations = make_admin_view(SiteConfigurationForm)
 
 def test(request):
     return render_to_response('test.html')
+
+@user_passes_test(lambda u: u.is_superuser)
+def geo_indexes(request):
+    return HttpResponse(ensure_geo_fields())
