@@ -58,9 +58,15 @@ def PointWidgetWithAddressField(address_field):
 
     return PointWidget
 
+from db_manage import db
+
+def get_all_experiences_as_choices():
+    all = db.experience.find({'is_active':True})
+    return [(str(e['_id']), str(e['title'])) for e in all]
 
 class SiteConfigurationForm(django_forms.forms.Form):
     CATEGORIES = django_forms.CharField()
+    EXPERIENCE_OF_THE_DAY = django_forms.ChoiceField(get_all_experiences_as_choices())
 
     def __init__(self, data=None):
         from backend import configurations

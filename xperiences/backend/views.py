@@ -8,7 +8,7 @@ from django.http import HttpResponse
 
 def make_admin_view(form_type,template='admin_form.html', success_template='admin_form_saved.html'):
 
-    @user_passes_test(lambda u: u.is_superuser)
+    @user_passes_test(lambda u: u.is_superuser,login_url='/admin/')
     def view(request):
         if request.method == 'GET':
             form = form_type()
