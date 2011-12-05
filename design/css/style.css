@@ -95,7 +95,20 @@ body {
 	font-size: 12pt;
 	padding: 10px 20px;
 	color: white;
+	height: 30px;
 }
+
+
+.command-bar li {
+	float: left;
+	padding: 5px;
+	margin-right: 130px;
+}
+
+.command-bar li:last-child {
+	float: right;
+}
+
 
 .command-bar input {
 	margin-left: 6px;
@@ -168,7 +181,7 @@ header .header-wrap {
 	background: #030f26;
 	width: 960px;
 	margin: 0 auto;
-	padding: 20px 20px 8px;
+	padding: 20px 20px 8px; /* top - right+left - bottom */
 }
 
 #logo {
@@ -225,7 +238,7 @@ header .header-wrap {
 }
 
 .search-result .price {
-	width: 34px;
+	width: 34px;  /*This is not enough width to 3 digit numbers*/
 	height: 32px;
 	padding-top: 2px;
 	border-radius: 17px;
@@ -239,7 +252,6 @@ header .header-wrap {
 fieldset, .search-result, .panel {
 	border: 1px solid #E0E0E0;
 	border-radius: 2px;
-
 	background: white;
 	padding: 10px 10px;
 	margin-bottom: 10px;
@@ -471,3 +483,50 @@ footer .copyright {
 	overflow: hidden;
 	text-shadow: none;
 }
+
+
+/* dashboard / all listings page */
+
+/* this doesn't work for me... */
+.listing-item img .thumb {
+	width: 100px;
+	height: 100px;
+}
+
+div.activate {
+	float: right;
+}
+
+
+ul.listings li.listing-item {
+	float: left;
+}
+
+li.listing-item * {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+
+listing-stats {
+	display: block;
+}
+
+listing-stats * {
+	display: block;
+	float: left;
+}
+
+listing-actions {
+	display: block;
+}
+
+listing-actions * {
+	display: block;
+	float: left;
+}
+
+
+
+
+
