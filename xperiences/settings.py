@@ -6,7 +6,7 @@ PRODUCTION = 'MONGOLAB_URI' in os.environ
 STAGING = os.environ.get('IS_STAGING') == 'True'
 if STAGING:
     PRODUCTION = False
-STAGING = True
+PRODUCTION = True
 
 BASE_URL = 'http://dev.empeeric.com'
 
