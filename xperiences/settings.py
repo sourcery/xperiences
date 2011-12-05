@@ -26,29 +26,29 @@ ADMINS = (
 MANAGERS = ADMINS
 
 import urlparse
-if PRODUCTION or STAGING:
-    _DB_PARAMS = urlparse.urlparse(os.environ['MONGOLAB_URI'].replace('mongodb', 'http'))
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django_mongodb_engine',
-            'NAME': _DB_PARAMS[2][1:],
-            'USER': _DB_PARAMS.username,
-            'PASSWORD': _DB_PARAMS.password,
-            'HOST': _DB_PARAMS.hostname,
-            'PORT': _DB_PARAMS.port,
-        }
+#if PRODUCTION or STAGING:
+_DB_PARAMS = urlparse.urlparse(os.environ['MONGOLAB_URI'].replace('mongodb', 'http'))
+DATABASES = {
+    'default': {
+        'ENGINE': 'django_mongodb_engine',
+        'NAME': _DB_PARAMS[2][1:],
+        'USER': _DB_PARAMS.username,
+        'PASSWORD': _DB_PARAMS.password,
+        'HOST': _DB_PARAMS.hostname,
+        'PORT': _DB_PARAMS.port,
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django_mongodb_engine',
-            'NAME': 'xperiences',
-            'USER': '',
-            'PASSWORD': '',
-            'HOST': 'localhost',
-            'PORT': '27017',
-        }
-    }
+}
+#else:
+#    DATABASES = {
+#        'default': {
+#            'ENGINE': 'django_mongodb_engine',
+#            'NAME': 'xperiences',
+#            'USER': '',
+#            'PASSWORD': '',
+#            'HOST': 'localhost',
+#            'PORT': '27017',
+#        }
+#    }
 
 
 # Local time zone for this installation. Choices can be found here:
