@@ -5,16 +5,13 @@ __author__ = 'ishai'
 
 from django.core.management.base import BaseCommand
 from django.db.models import get_models
-import pymongo
+
 
 class Command(BaseCommand):
 
 
     def handle(self, *args, **options):
         return ensure_geo_fields()
-
-conn = pymongo.Connection()
-db = pymongo.database.Database(conn,settings.DATABASES['default']['NAME'])
 
 def ensure_geo_fields(*args, **kwargs):
 
