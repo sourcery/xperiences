@@ -44,6 +44,12 @@ class Experience(GeoModel):
         else:
             return self.xp_location, self.address
 
+    def save(self, *args, **kwargs):
+        if self.use_saved_address:
+            self.xp_location = self.merchant.xp_location
+            self.address = self.merchant.address
+        return super(Experience,self).save(self,*args,**kwargs)
+
 
     @property
     def slug(self):
