@@ -1,17 +1,15 @@
 import datetime
 from backend import configurations
 from backend.models import GeoModel, UserExtension, RichTextField
-from django.contrib.auth.models import User
 from django.db import models
 from django.template.defaultfilters import slugify
 from sorl.thumbnail import ImageField
 
+
 #from merchants.models import Merchant
 choices = [(cat,cat) for cat in configurations.get_categories()]
-print choices
 
 class Experience(GeoModel):
-
     merchant = models.ForeignKey(UserExtension,null=True)
 
     is_active = models.BooleanField(default=True)

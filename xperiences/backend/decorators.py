@@ -1,13 +1,9 @@
-__author__ = 'ishai'
 import urlparse
-try:
-    from functools import wraps
-except ImportError:
-    from django.utils.functional import wraps  # Python 2.4 fallback.
-
+from functools import wraps
 from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.utils.decorators import available_attrs
+
 
 def merchant_required(login_url=None, redirect_field_name=REDIRECT_FIELD_NAME):
     def decorator(view_func):

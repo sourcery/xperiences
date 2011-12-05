@@ -1,10 +1,9 @@
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from backend import utils
 from backend.decorators import merchant_required
 from backend.models import UserExtension
 from django.shortcuts import render_to_response
-from django.template import RequestContext  # I still need to understand better the concept of RequestContext
+from django.template import RequestContext
 #from experiences.models import Experience
 #from merchants.models import Merchant
 from django.http import HttpResponse
@@ -61,7 +60,7 @@ def edit_experience(request,id):
             return render_to_response('merchants/edit_experience.html', context_instance=RequestContext(request,{'form' : form}) )
 
 
-    
+
 def wrapmongo(o):
     """Lets you access dict.id to get dict._id"""
     class MongoDict(dict):
@@ -74,4 +73,4 @@ def wrapmongo(o):
             return (MongoDict(i) for i in o)
     else:
         return MongoDict(o)
-        
+
