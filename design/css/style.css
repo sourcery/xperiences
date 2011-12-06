@@ -649,6 +649,7 @@ ul.listings li.listing-item {
 
 .listing-value {
 	font-size: 150%;
+	margin-top: 5px;
 }
 
 .listing-actions {
@@ -661,24 +662,85 @@ ul.listings li.listing-item {
 	margin-left: 10px;
 }
 
-listing-stats {
-	display: block;
+
+
+/* Inbox */
+
+.message {
+	padding: 10px;
+	margin-bottom: 10px;
+	border-top: 1px solid #E0E0E0;
 }
 
-listing-stats * {
-	display: block;
-	float: left;
+.user {
+	width: 150px;
+	display: inline-block;
+	text-align: left;
+	margin-right: 10px;
+	vertical-align: middle;
+	overflow: hidden;
 }
 
-listing-actions {
-	display: block;
+.user-name {
+	font-size: 90%;
 }
 
-listing-actions * {
-	display: block;
-	float: left;
+.user-location {
+	font-size: 80%;
 }
 
+.user-image  {
+	width: 100px;
+	display: inline-block;
+	text-align: center;
+	margin-right: 30px;
+	vertical-align: middle;
+}
+
+.messsage-summary {
+	width: 500px;
+	display: inline-block;
+	text-align: left;
+	margin-right: 10px;
+	vertical-align: middle;
+	overflow: hidden;
+}
+
+.message-subject {
+	font-size: 120%;
+}
+
+.message-body {
+	margin-top: 5px;
+}
+
+
+.msg-right-block {
+	width: 200px;
+	display: inline-block;
+	text-align: center;
+	margin-top: 35px;
+	vertical-align: middle;
+	float: right;
+}
+
+.message-timestamp {
+	width: 200px;
+	display: inline-block;
+	text-align: right;
+	vertical-align: middle;
+/*	overflow: hidden;*/
+}
+
+.message-actions {
+	vertical-align: middle;
+	margin-top: 5px;
+	float: right;
+}
+
+.message-actions button {
+	margin-left: 10px;
+}
 
 
 
