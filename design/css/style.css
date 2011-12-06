@@ -86,7 +86,7 @@ body {
 }
 
 .command-bar-container {
-	height: 50px;
+	height: 70px;
 }
 
 .command-bar {
@@ -145,6 +145,10 @@ h4 {
 
 p {
 	margin: 0.5em 0 1em;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 .dark h4 {
@@ -380,6 +384,17 @@ input[type="submit"] {
 	cursor: pointer;
 }
 
+button {
+	font-size: 11pt;
+	padding: 4px 20px 4px;
+	box-shadow: 0px 0px 2px #7a7a7a;
+	background: #0a9aaf;
+	border: none;
+	color: white;
+	border-radius: 3px;
+	font-family: museo-sans-rounded;
+	cursor: pointer;
+}
 input[type="submit"]:hover {
 	background: #50821d;
 }
@@ -600,14 +615,51 @@ div.activate {
 
 
 ul.listings li.listing-item {
-	float: left;
 }
 
-li.listing-item * {
+.listing {
+}
+
+.listing h4 a {
+	text-decoration: none;
+	color: #a58ab3;
+}
+
+.listing-title {
+	width: 150px;
 	display: inline-block;
 	margin-right: 10px;
 }
 
+.listing-image  {
+	width: 150px;
+	display: inline-block;
+	text-align: center;
+	margin-right: 30px;
+	vertical-align: middle;
+}
+
+.listing-item-short {
+	width: 120px;
+	display: inline-block;
+	text-align: center;
+	margin-right: 10px;
+	vertical-align: middle;
+}
+
+.listing-value {
+	font-size: 150%;
+}
+
+.listing-actions {
+	vertical-align: middle;
+	margin-top: 30px;
+	float: right;
+}
+
+.listing-actions button {
+	margin-left: 10px;
+}
 
 listing-stats {
 	display: block;
