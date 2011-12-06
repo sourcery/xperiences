@@ -30,7 +30,7 @@ class Experience(GeoModel):
 
     valid_from = models.DateTimeField(default=datetime.datetime.now)
     valid_until = models.DateTimeField(null=True,blank=True)
-    tags = models.CharField(max_length=100,default='')
+    tags = models.CharField(max_length=100,default='', null=True,blank=True)
 
     my_place = models.BooleanField(default=False,verbose_name='Hosting at my place')
     delivery = models.BooleanField(default=False,verbose_name='Delivery')
