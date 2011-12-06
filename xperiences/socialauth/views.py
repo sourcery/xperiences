@@ -50,6 +50,8 @@ def merchant_login_page(request):
     return login_page(request)
 
 def login_page(request):
+    if 'next' in request.GET:
+        request.session['openid_next'] = request.GET.get('next')
     if request.method == 'GET':
         return render_to_response('sign_up.html', {'next': request.GET.get('next', LOGIN_REDIRECT_URL)}, context_instance=RequestContext(request))
     else:

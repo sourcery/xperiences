@@ -119,10 +119,19 @@ class UserLog(models.Model):
             log.user = user
             log.save()
 
-class XPImageField(models.ImageField):
-    thumb_field = None
-
 from sorl.thumbnail import ImageField
+
+class XPImageField(ImageField):
+    thumbnail_size = None
+
+    def __init__(self,*args,**kwargs):
+        self.thumbnail_size = kwargs.get('thumbnail_size', (450,300))
+        if 'thumbnail_size' in kwargs:
+            del kwargs['thumbnail_size']
+        super(XPImageField,self).__init__(*args,**kwargs)
+
+    def thumbnail_size_str(self):
+        return '%dx%d' % self.thumbnail_size
 
 class UserExtension(GeoModel):
     id = models.AutoField(primary_key=True)
@@ -148,7 +157,7 @@ class UserExtension(GeoModel):
     user_interests = models.TextField(max_length=755, default='', blank=True)
     activities = models.TextField(max_length=755, default='', blank=True)
     friends = models.TextField(max_length=2500, default='', blank=True)
-    photo = ImageField(upload_to='photos_merchent',null=True,blank=True)
+    photo = XPImageField(upload_to='photos_merchent',null=True,blank=True)
 
 
 

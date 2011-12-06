@@ -1,14 +1,28 @@
 {% extends 'base.html' %}
 {% block title %}Sign Up{% endblock %}
 {% block extra_head %}
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/lib/openid-jquery.js"></script>
+    <!---script type="text/javascript" src="{{ MEDIA_URL }}js/openid-jquery.js"></script--->
+    <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            openid.init('openid_identifier');
+          //  openid.init('openid_identifier');
+
+            FB.init({ 'apiKey' : '{{ FACEBOOK_APP_ID }}', status: true, cookie: true, xfbml: true });
         });
         function facebook_onlogin()
         {
-            window.location = "/accounts/facebook_login/?next={{ next }}"
+            FB.login(on_complete, {'perms' : '{{ FACEBOOK_PERMISSIONS }}' });
+        }
+
+        function on_complete(rsp)
+        {
+            rsp['next'] = $('input[name=next]').val();
+            var qry = '';
+            for(var k in rsp)
+            {
+                qry += encodeURIComponent(k) + '=' + encodeURIComponent(rsp[k])+ '&';
+            }
+            window.location.href = '/accounts/facebook_login/done/?' + qry;
         }
 
         function validate_this()
@@ -55,7 +69,8 @@
 {% block content %}
     <div id="content" class="clearfix signup">
 
-        <div class="sign-in floatLeft">
+        <a href="javascript:void(0);" onclick='facebook_onlogin();' class="fb-connect" style='font-size:150%;'>Login via Facebook</a>
+        <div class="sign-in floatLeft" style='display:none;'>
             <form method="post" action="/accounts/login/">
                 <h3 class="form-title">Sign In</h3>
                 <div class="line clearfix">
@@ -74,11 +89,10 @@
             <a href="sign_up.html#" class="forgot-pass">Forgot your password ?</a>
             <div class="existing-acc">
                 <h3 class="form-title">Or Use an Existing Account</h3>
-                <a href="/accounts/facebook_login/?next={{ next }}" class="fb-connect">Facebook</a>
-                <a href="#" class="google-connect" onclick="openid.signin('google');">Google</a>
+                <a href="sign_up.html#" class="google-connect" onclick="openid.signin('google');">Google</a>
             </div>
         </div>
-        <div class="new-customer floatLeft">
+        <div class="new-customer floatLeft" style='display:none;'>
             <form id="register_form" method="post" action="/accounts/sign_in/">
                 <input type="hidden" name="next" value="{{ next }}" />
                 <h3 class="form-title">New Customer</h3>

@@ -36,7 +36,7 @@ class UserLogMiddleware(object):
         assert hasattr(request, 'session'), "The Django authentication middleware requires session middleware to be installed. Edit your MIDDLEWARE_CLASSES setting to insert 'django.contrib.sessions.middleware.SessionMiddleware'."
         user = request.user
         url = request.get_full_path()
-        if url.startswith('/admin') or url.startswith('/media') or url.startswith('/static') or url.endswith('.ico'):
+        if url.startswith('/admin') or url.startswith('/super_admin') or url.startswith('/media') or url.startswith('/static') or url.endswith('.ico'):
             return
         if user and not isinstance(user, AnonymousUser):
             log = UserLog.create_from_user(user,url)

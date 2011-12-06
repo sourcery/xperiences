@@ -52,7 +52,7 @@ def edit_experience(request,id):
         form = ExperienceForm(instance=exp)
         return render_to_response('merchants/edit_experience.html', context_instance=RequestContext(request,{'form' : form}) )
     else:
-        form = ExperienceForm(request.POST,instance=exp)
+        form = ExperienceForm(request.POST,request.FILES,instance=exp)
         if form.is_valid():
             form.save()
             return HttpResponse('saved')

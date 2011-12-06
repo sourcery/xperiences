@@ -1,13 +1,12 @@
 import datetime
 from backend import configurations
-from backend.models import GeoModel, UserExtension, RichTextField
+from backend.models import GeoModel, UserExtension, RichTextField, XPImageField
 from django.db import models
 from django.template.defaultfilters import slugify
 from sorl.thumbnail import ImageField
 
 
 #from merchants.models import Merchant
-choices = configurations.get_categories()
 
 class Experience(GeoModel):
     merchant = models.ForeignKey(UserExtension,null=True)
@@ -16,16 +15,16 @@ class Experience(GeoModel):
 
     title = models.CharField(max_length=50)  # by default blank=false and null=false, meaning that both fields are mandatory in both admin and DB
     description = RichTextField()
-    category = models.CharField(max_length=50, choices=choices)
+    category = models.CharField(max_length=50, choices=configurations.get_categories_as_choices())
     price = models.PositiveIntegerField(default=0)
-    unit_name = models.CharField(max_length=100) # eg.: week, meal, day...
+    unit_name = models.CharField(max_length=100, null=True, blank=True) # eg.: week, meal, day...
     unit_count = models.PositiveIntegerField(default=0, null=True, blank=True)
     pub_date = models.DateField(default=datetime.date.today,null=True)
-    photo1 = ImageField(upload_to='%Y%m%d%H%M%S',null=True,blank=True)
-    photo2 = ImageField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
-    photo3 = ImageField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
-    photo4 = ImageField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
-    photo5 = ImageField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
+    photo1 = XPImageField(upload_to='%Y%m%d%H%M%S',null=True,blank=True)
+    photo2 = XPImageField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
+    photo3 = XPImageField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
+    photo4 = XPImageField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
+    photo5 = XPImageField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
     video_link = models.TextField(max_length=150,null=True,blank=True)
     use_saved_address = models.BooleanField(default=True)
 
@@ -44,6 +43,12 @@ class Experience(GeoModel):
             return self.merchant.xp_location , self.merchant.address
         else:
             return self.xp_location, self.address
+
+    def save(self, *args, **kwargs):
+        if self.use_saved_address:
+            self.xp_location = self.merchant.xp_location
+            self.address = self.merchant.address
+        return super(Experience,self).save(self,*args,**kwargs)
 
 
     @property

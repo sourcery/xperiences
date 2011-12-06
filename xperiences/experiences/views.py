@@ -195,7 +195,7 @@ def add_experience(request):
             status = 'you must upload at least one image'
 
         new_object = Experience(merchant=request.merchant)
-        form = ExperienceForm(request.POST,instance=new_object)
+        form = ExperienceForm(request.POST,request.FILES,instance=new_object)
         if form.is_valid() and status == '':
             new_object = form.save()
             return redirect(reverse(experience_profile,kwargs = {'id':new_object.id}))
