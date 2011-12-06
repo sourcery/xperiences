@@ -594,12 +594,6 @@ footer .copyright {
 
 /* dashboard / all listings page */
 
-/* this doesn't work for me... */
-.listing-item img .thumb {
-	width: 100px;
-	height: 100px;
-}
-
 div.activate {
 	float: right;
 }
