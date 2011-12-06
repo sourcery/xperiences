@@ -23,37 +23,41 @@
 		</header>
 		<div class="content-body">
 			<div class="main-content">
-				<div class="command-bar">
-					<ul>
-						<li><a href="add_experience.html">Add new listing</a></li>
-						<li><a href="#">View all listings</a></li>
-						<li><a href="inbox.html">Inbox</a></li>
-						<li><a href="account.html">Account</a></li>
-					</ul>			
+				<div class="command-bar-container">
+					<div class="command-bar">
+						<ul>
+							<li><a href="add_experience.html">Add new listing</a></li>
+							<li><a href="#">View all listings</a></li>
+							<li><a href="inbox.html">Inbox</a></li>
+							<li><a href="account.html">Account</a></li>
+						</ul>			
+					</div>
 				</div>
 				<div class="listings-container">
 					<ul class="listings">
-						<li class="listing-item">
-							<h4><a href="experience_profile.html">This is the activity title</a></h4>
-							
-							<div class="thumb" class="half column">
-								<a href="experience_profile.html">
-									<img src="images/activity1.jpg" class="thumb" width="150" height="100">
-								</a>
-							</div>
-							<div class="activate" class="half column">
-								<form>
-									<button>activate</button>
-								</form>
-							</div><!-- close activate -->
-							<div class="listing-stats" class="half column">
+						<li class="listing panel">
+							<h4>
+								<a href="experience_profile.html">This is the activity title</a>
+							</h4>
+							<a class="listing-image" href="experience_profile.html">
+								<img src="images/activity1.jpg" width="150" height="70">
+							</a>
+							<div class="listing-item-short">
 								<div>Money earned</div>
+								<div class="listing-value">$100</div>
+							</div>
+							<div class="listing-item-short">
 								<div>Requests</div>
-								<div>Page views</div> 
-							</div><!-- close listing-stats -->
-							<div class="listing-actions" class="half column">
-								<div>Edit listing</div>
-								<div>View listing</div>
+								<div class="listing-value">10</div>
+							</div>
+							<div class="listing-item-short">
+								<div>Page views</div>
+								<div class="listing-value">200</div>
+							</div>
+							<div class="listing-actions">
+								<button>edit</button>
+								<button>view</button>
+								<button>activate</button>
 							</div>
 						</li>
 					</ul>	
