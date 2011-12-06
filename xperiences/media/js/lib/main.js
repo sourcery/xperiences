@@ -91,6 +91,11 @@ function setMainImage(imgPath) {
 	}
 }
 
+$.prototype.cjObjectScaler = function(params)
+{
+	image_autoscale($(this), params);
+}
+
 function image_autoscale(obj, params)
 {
 

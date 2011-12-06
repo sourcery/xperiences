@@ -13,7 +13,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         return ensure_geo_fields()
 
-conn = pymongo.Connection()
+conn = pymongo.Connection(host=settings.DATABASES['default']['HOST'], port=int(settings.DATABASES['default']['PORT']))
 db = pymongo.database.Database(conn,settings.DATABASES['default']['NAME'])
 
 def ensure_geo_fields(*args, **kwargs):
@@ -27,7 +27,7 @@ def ensure_geo_fields(*args, **kwargs):
     for model in models:
         for field in model._meta.fields:
             if issubclass(GeoField,type(field)):
-                ensure_index(model._meta.app_label + '_' + model._meta.module_name, str(field.name))
+                ensure_index(model._meta.db_table, str(field.column))
     return 'Done'
 
 

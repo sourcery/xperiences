@@ -134,6 +134,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     #'django.middleware.csrf.CsrfViewMiddleware',
+    'backend.middleware.ReferralMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'backend.middleware.UserExtensionMiddleware',
     'backend.middleware.UserLogMiddleware',
@@ -148,6 +149,7 @@ if not DEBUG:
     MIDDLEWARE_CLASSES.append('django.middleware.cache.FetchFromCacheMiddleware')
 
 TEMPLATE_CONTEXT_PROCESSORS = (
+    'backend.middleware.context_processor',
     "socialauth.context_processors.facebook_api_key",
     'django.core.context_processors.media',
     "django.contrib.auth.context_processors.auth",
@@ -179,7 +181,8 @@ INSTALLED_APPS = (
     'djangotoolbox',
     'socialauth',
     'openid_consumer',
-    # Uncomment the next line to enable admin documentation:
+    'sorl.thumbnail',
+        # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
 AUTHENTICATION_BACKENDS = (
@@ -264,3 +267,10 @@ AWS_ACCESS_KEY_ID = 'AKIAJYBGEQMSD3MMPTYA'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'my_prod_xpr_uploads'
 AWS_S3_CUSTOM_DOMAIN = 'd1hg4pg1k1dk6u.cloudfront.net'
+
+IP_GEOLOCATOR_API_KEY = '6c7d7c6a66737d6a216d7e7c'
+if PRODUCTION:
+    IP_GEOLOCATOR_API_KEY = '6c7d7c6a66737d6a216d7e7c'
+
+if STAGING:
+    IP_GEOLOCATOR_API_KEY = '7160697d6a647a6a6a7d3c7570612f61757e60687475797f20727e78'

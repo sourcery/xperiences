@@ -113,7 +113,13 @@ class Emitter(object):
                 if inspect.ismethod(f) and len(inspect.getargspec(f)[0]) == 1:
                     ret = _any(f())
             else:
-                ret = smart_unicode(thing, strings_only=True)
+                found_special = False
+                for type in self.special_types:
+                    if isinstance(thing,type):
+                        found_special = True
+                        ret = self.special_types[type](thing)
+                if not found_special:
+                    ret = smart_unicode(thing, strings_only=True)
 
             return ret
 
