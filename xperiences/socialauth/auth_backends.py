@@ -281,6 +281,7 @@ class FacebookBackend:
                 qry = User.objects.filter(email=email)[:1]
                 if len(qry) == 1:
                     user = qry[0]
+                    user.is_active = True
 
             if not user:
                 name_count = User.objects.filter(username__startswith = username).count()
@@ -358,9 +359,6 @@ class FacebookBackend:
 
             ext.save()
 
-            qry = UserExtension.objects.filter(user=user)[:1]
-            if len(qry) > 0:
-                ext = qry[0]
             auth_meta = AuthMeta(user=user, provider='Facebook').save()
 
             request.user_extension = ext

@@ -17,7 +17,7 @@ from backend import models as my_models
 import api
 
 Emitter.register('json', api.EmpeericJSONEmitter, 'application/json; charset=utf-8')
-
+MAX_RESULTS_PER_QUERY = 100
 # Base class for handler
 class MyBaseHandler(BaseHandler):
     allowed_methods = ()
@@ -157,10 +157,19 @@ class ExperienceHandler(MyBaseHandler):
         if lng:
             del params['lng']
 
+        limit = params.get('limit',50)
+        if 'limit' in params:
+            del params['limit']
+        if limit > MAX_RESULTS_PER_QUERY:
+            limit = MAX_RESULTS_PER_QUERY
+        offset = params.get('offset',0)
+        if 'offset' in params:
+            del params['offset']
+
         if 'id' in params or not lat  or not lng:
-            return super(ExperienceHandler,self).read(request,*args,**params)
+            return super(ExperienceHandler,self).read(request,*args,**params)[offset:limit]
         else:
-            return Experience.objects.proximity_query( { 'lat' : float(lat), 'lng' : float(lng)}, query=params)
+            return Experience.objects.proximity_query( { 'lat' : float(lat), 'lng' : float(lng)}, query=params)[offset:limit]
 
     def update(self,request,*args,**kwargs):
         return super(ExperienceHandler,self).update(request)

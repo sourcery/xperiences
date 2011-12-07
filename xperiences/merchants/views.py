@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from backend import utils
 from backend.decorators import merchant_required
-from backend.models import UserExtension
+from backend.models import UserExtension, MerchantMessage
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 #from experiences.models import Experience
@@ -9,7 +9,7 @@ from django.template import RequestContext
 from django.http import HttpResponse
 from experiences.forms import ExperienceForm
 from experiences.models import Experience
-from merchants.forms import MerchantForm
+from merchants.forms import MerchantForm, MerchantMessageForm
 
 
 def merchant_profile(request, username):
@@ -44,6 +44,36 @@ def register(request):
 def experiences(request):
     if request.method == 'GET':
         return render_to_response('merchants/experiences.html', context_instance=RequestContext(request))
+
+@merchant_required()
+def merchant_inbox(request):
+    comments = MerchantMessage.objects.filter(merchant=request.merchant)
+    return render_to_response('merchants/inbox.html', {'comments' : comments},context_instance=RequestContext(request))
+
+def comment_merchant(request,username):
+    if request.method == 'GET':
+        form = MerchantMessageForm()
+        return render_to_response('merchants/comment.html',context_instance=RequestContext(request, {'form':form}))
+    else:
+        merchant = UserExtension.get_merchant(name=username)
+        if merchant:
+            msg = MerchantMessage(merchant=merchant)
+            if request.user_extension:
+                msg.sender = request.user_extension
+            else:
+                msg.sender_session = request.session.session_key
+            message = request.POST.get('message')
+            msg.message = message
+            form = MerchantMessageForm(request.POST,instance=msg)
+            if form.is_valid():
+                form.save()
+                return HttpResponse('ok sent')
+            else:
+                return render_to_response('merchants/comment.html',context_instance=RequestContext(request, {'form':form}))
+        else:
+            return HttpResponse('no such merchant')
+
+
 
 @merchant_required()
 def edit_experience(request,id):

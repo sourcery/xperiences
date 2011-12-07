@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block wrapper %}
+    {% block content %}
+        <ul >
+        {% for message in comments %}
+            <li id="#" class="listing-item">
+                {% if message.sender %}
+                {% include 'profile_image.html' with merchant=message.sender %}
+                {% endif %}
+                <div id="thumb-details">
+                    <p class="listing-title">
+                        {{ message.title }}
+                    </p>
+                    <p class="listing-merchant">
+                        {{ message.message }}
+                    </p>
+                    <p>
+                        {{ message.time }}
+                    </p>
+                </div>
+
+            </li>
+        {% endfor %}
+        </ul>
+    {% endblock %}
+{% endblock %}
+
+

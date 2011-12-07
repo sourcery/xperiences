@@ -1,6 +1,6 @@
 import datetime
 from backend import configurations
-from backend.fields import GeoModel, RichTextField, XPImageField, TextSearchField
+from backend.fields import GeoModel, RichTextField, XPImageField, TextSearchField, TextSearchModel
 from backend.models import UserExtension
 from django.db import models
 from django.template.defaultfilters import slugify
@@ -8,7 +8,7 @@ from django.template.defaultfilters import slugify
 
 #from merchants.models import Merchant
 
-class Experience(GeoModel):
+class Experience(GeoModel,TextSearchModel):
     merchant = models.ForeignKey(UserExtension,null=True)
 
     is_active = models.BooleanField(default=True)

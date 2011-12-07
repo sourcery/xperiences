@@ -1,7 +1,7 @@
 import datetime
 from django.dispatch.dispatcher import receiver
 from django.template.defaultfilters import slugify
-from backend.fields import  RichTextField, XPImageField, GeoModel
+from backend.fields import  RichTextField, XPImageField, GeoModel, TextSearchModel, TextSearchField
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import signals
@@ -39,7 +39,7 @@ class UserLog(models.Model):
 
 
 
-class UserExtension(GeoModel):
+class UserExtension(GeoModel,TextSearchModel):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, unique=True, null=True)
     validation_code = models.CharField(max_length=20, null=True, blank=True)
@@ -114,6 +114,14 @@ class UserExtension(GeoModel):
 
     def __unicode__(self):  # this is for the presentation in the admin site
         return self.name
+
+class MerchantMessage(TextSearchModel):
+    merchant = models.ForeignKey(UserExtension, related_name='merchant_user')
+    sender = models.ForeignKey(UserExtension, related_name='sender_user', null=True,blank=True)
+    sender_session = models.CharField(max_length=100, null=True, blank=True)
+    time = models.DateTimeField(default=datetime.datetime.now,editable=False)
+    title = TextSearchField(max_length=50,null=True,blank=True)
+    message = TextSearchField(max_length=255,null=True,blank=True)
 
 
 class SiteConfiguration(models.Model):

@@ -135,18 +135,18 @@ _FULL_TEXT_STOP_WORDS = frozenset([
     'where', 'whether', 'which', 'while', 'who', 'whose', 'why', 'widely',
     'will', 'with', 'within', 'without', 'would', 'yet', 'you'])
 
-
-class GeoModel(models.Model):
-    xp_location = GeoField(address_field='address')
-    address = models.CharField(max_length=100, default='', blank=True)
-    keywords = ListField(editable=False)
-
+class XPModel(models.Model):
     objects = XPDBManager()
 
+    class Meta:
+        abstract = True
+
+class TextSearchModel(XPModel):
+    keywords = ListField(editable=False)
     originals = {}
 
     def __init__(self,*args,**kwargs):
-        super(GeoModel,self).__init__(*args,**kwargs)
+        super(TextSearchModel,self).__init__(*args,**kwargs)
         for field in self._meta.fields:
             if isinstance(field,TextSearchField):
                 self.originals[field.name] = getattr(self,field.name)
@@ -173,8 +173,16 @@ class GeoModel(models.Model):
                         all_words[word] = True
             all_words_list = all_words.keys()
             self.keywords = all_words_list
-        obj = super(GeoModel,self).save(*args, **kwargs)
+        obj = super(TextSearchModel,self).save(*args, **kwargs)
         return obj
+
+    class Meta:
+        abstract = True
+
+class GeoModel(XPModel):
+    xp_location = GeoField(address_field='address')
+    address = models.CharField(max_length=100, default='', blank=True)
+
 
     def update_location(self, lat, lng):
         self.xp_location.lat = lat
