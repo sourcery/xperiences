@@ -1,4 +1,5 @@
 pymongo
+sorl-thumbnail
 django-storages
 boto
 configObj

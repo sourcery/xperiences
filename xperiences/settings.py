@@ -64,7 +64,7 @@ TIME_ZONE = 'America/Chicago'
 LANGUAGE_CODE = 'en-us'
 
 
-SITE_ID = '4eba73fe96cf4c019c00001d' if PRODUCTION else '4ed7858b76a6f6052c00001d'
+SITE_ID = '4eba73fe96cf4c019c00001d'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
@@ -149,6 +149,7 @@ if not DEBUG:
     MIDDLEWARE_CLASSES.append('django.middleware.cache.FetchFromCacheMiddleware')
 
 TEMPLATE_CONTEXT_PROCESSORS = (
+    'backend.middleware.context_processor',
     "socialauth.context_processors.facebook_api_key",
     'django.core.context_processors.media',
     "django.contrib.auth.context_processors.auth",
@@ -180,7 +181,8 @@ INSTALLED_APPS = (
     'djangotoolbox',
     'socialauth',
     'openid_consumer',
-    # Uncomment the next line to enable admin documentation:
+    'sorl.thumbnail',
+        # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
 AUTHENTICATION_BACKENDS = (

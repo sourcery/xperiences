@@ -4,7 +4,7 @@ from backend.models import UserExtension, UserLog
 __author__ = 'ishai'
 
 class LazyUserExtension(object):
-    def __get__(self, request, obj_type=None):
+    def __get__(self, request, _=None):
         if not hasattr(request, '_cached_user_ext'):
             if request.user and not isinstance(request.user,AnonymousUser):
                 try:
@@ -16,7 +16,7 @@ class LazyUserExtension(object):
         return request._cached_user_ext
 
 class LazyMerchant(object):
-    def __get__(self, request, obj_type=None):
+    def __get__(self, request, _=None):
         if request.user_extension and request.user_extension.is_merchant:
             return request.user_extension
         else:
@@ -36,7 +36,7 @@ class UserLogMiddleware(object):
         assert hasattr(request, 'session'), "The Django authentication middleware requires session middleware to be installed. Edit your MIDDLEWARE_CLASSES setting to insert 'django.contrib.sessions.middleware.SessionMiddleware'."
         user = request.user
         url = request.get_full_path()
-        if url.startswith('/admin') or url.startswith('/media') or url.startswith('/static') or url.endswith('.ico'):
+        if url.startswith('/admin') or url.startswith('/super_admin') or url.startswith('/media') or url.startswith('/static') or url.endswith('.ico'):
             return
         if user and not isinstance(user, AnonymousUser):
             log = UserLog.create_from_user(user,url)
@@ -44,7 +44,7 @@ class UserLogMiddleware(object):
         else:
             log = UserLog.create_from_session(request.session.session_key,url)
             log.save()
-        
+
 
 
 class ReferralMiddleware(object):
@@ -53,3 +53,7 @@ class ReferralMiddleware(object):
         if 'referrer' in request.GET:
             request.session['referrer'] = request.GET['referrer']
 
+import settings
+CONTEXT = { 'IP_GEOLOCATOR_API_KEY' : settings.IP_GEOLOCATOR_API_KEY }
+def context_processor(request):
+    return CONTEXT

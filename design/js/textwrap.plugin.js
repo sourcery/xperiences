@@ -19,8 +19,7 @@
 
 			this.on("focus", function(e) {
 				valueDiv.animate({
-					'width': 0,
-					'height': 0 
+					opacity: 0
 				});
 			});
 
@@ -31,8 +30,7 @@
 				var curEl = $(e.currentTarget);
 				if(curEl.val() == '') {
 					valueDiv.animate({
-						'width': w,
-						'height': h
+						opacity: 1
 					});
 				}
 			});

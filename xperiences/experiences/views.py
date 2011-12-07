@@ -11,34 +11,36 @@ from db_manage import db
 
 
 def experience_by_category(request, category):
-    recent_experiences = Experience.objects.filter(category=category)
+#    recent_experiences = Experience.objects.filter(category=category)
 
     template_name = 'experiences/index.html'  # aren't we supposed to have something like experiences/category/list_experiences.html?
     # or is that something that'll be determined by the urls.py?   I think this url should change!!
 
-    return render_to_response(template_name, {'recent_experiences': recent_experiences, 'category': category}, context_instance=RequestContext(request))
+    return render_to_response(template_name, context_instance=RequestContext(request,{'category': category, 'categories':get_categories() }))
 
 
 def experience_profile(request, id):
-    experience = Experience.objects.get(id=id) 
+    experience = Experience.objects.get(id=id)
 
     #experience = wrapmongo(db.experience.find_one({'_id': pymongo.objectid.ObjectId(id)}))
 
     #merchant_tuple = experience["merchant"] # get a tuple with ObjectId and name
 
     #merchant_obj = wrapmongo(db.merchant.find_one({"_id": merchant_tuple[0]})) # get a merchant object
-    
+
     merchant_obj = experience.merchant
 
     template_name = 'experiences/experience_profile.html' # should we slugify the name of experience?
 
     #more_experiences = wrapmongo(db.experience.find({'merchant': experience.get('merchant')}).limit(10))
     #more_experiences = [e for e in more_experiences if e['_id'] != experience['_id']]
-    
+
     more_experiences = merchant_obj.experience_set.all()[:10]
 
+    location ,address = experience.get_location_address()
+
     return render_to_response(template_name,
-            {'experience': experience, 'merchant': merchant_obj, 'more_experiences': more_experiences},
+            {'experience': experience, 'merchant': merchant_obj, 'more_experiences': more_experiences ,'location' : location, 'address':address},
                               context_instance=RequestContext(request))
 
 
@@ -67,9 +69,8 @@ def index(request):
     hits = request.session.get('hits', 0) + 1
     request.session['hits'] = hits
 
-    recent_experiences = Experience.objects.order_by("-pud_date")[:9]
-
-    home_page_categories = get_categories()
+    # moved through the API
+#    recent_experiences = Experience.objects.order_by("-pud_date")[:9]
 
     experience_of_the_day = get_experience_of_the_day()
 
@@ -78,8 +79,7 @@ def index(request):
     print "I am the index!"
 
     return render_to_response(template_name,
-            {'hits': hits, 'recent_experiences': recent_experiences, 'categories': home_page_categories,
-             'eofd': experience_of_the_day}, context_instance=RequestContext(request))
+            {'hits': hits, 'eofd': experience_of_the_day, 'categories':get_categories()}, context_instance=RequestContext(request))
 
 
 # how to extract active categories from Mongo to populate this list?
@@ -93,7 +93,7 @@ def get_categories():
 def get_experience_of_the_day():
     try:
         Experience.objects.get(id=configurations.config['EXPERIENCE_OF_THE_DAY'])
-    except Experience.DoesNotExist:
+    except Exception:
         return None
 
 def add_experience_to_favorites(request):
@@ -146,13 +146,13 @@ def add_experience(request):
     status = ''
     if request.method == 'POST':
         data = request.POST
-        if len(data['title']) == 0:
+        if not len(data['title']):
             status = 'You must enter a title for the experience, otherwise how can people know how to find you?'
         elif len(data['title']) > 140:
             status = 'Title cannot be longer than 140 characters'
         else:
             pass
-        if len(data['description']) == 0:
+        if not len(data['description']):
             status = 'Please enter a description, so people can get a sense of the experience you are offering'
         if len(data['description']) > 2000:
             status = 'Please limit description to 2000 characters, to improve the chances that people will actually read it'
@@ -165,7 +165,7 @@ def add_experience(request):
         if data['use_saved_address'] is True:
             pass    # here I should assign the merchant's address to the experience...
             # not sure how to do it b/c the experience is still not in created in mongo...
-        elif len(data['address']) == 0:  # are these supposed to be elif?
+        elif not len(data['address']):  # are these supposed to be elif?
             status = 'Please enter a valid address'
 #        elif len(data['city']) == 0:
 #            status = 'Please enter city'
@@ -177,7 +177,7 @@ def add_experience(request):
 #            status = 'You must select a country'
 #        else:
 #            pass
-        if len(data['price']) == 0:
+        if not len(data['price']):
             status = 'Please enter price'
             #elif data['price'] is not a number:
             # status = 'Price must be a number'
@@ -195,7 +195,7 @@ def add_experience(request):
             status = 'you must upload at least one image'
 
         new_object = Experience(merchant=request.merchant)
-        form = ExperienceForm(request.POST,instance=new_object)
+        form = ExperienceForm(request.POST,request.FILES,instance=new_object)
         if form.is_valid() and status == '':
             new_object = form.save()
             return redirect(reverse(experience_profile,kwargs = {'id':new_object.id}))
@@ -233,8 +233,8 @@ def about(request):
     template_name = '/about.html'
     return render_to_response(template_name, context_instance=RequestContext(request))
 
-    
-   
+
+
 
 
 

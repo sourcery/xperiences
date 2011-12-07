@@ -1,37 +1,71 @@
 <!-- THIS IS THE HOME PAGE INDEX.HTML SAVED IN THE EXPERIENCES APP -->
 {% extends "base.html" %}
+{% load x_tags %}
+{% block extra_head %}
+    <script type='text/javascript' src='http://www.iplocationtools.com/iplocationtools.js?key={{ IP_GEOLOCATOR_API_KEY }}' ></script>
+    <script type='text/javascript' src='/static/jq.templates.js' ></script>
+    <script type='text/javascript' src='/static/maps.js'></script>
+
+    <script type='text/javascript' >
+    $(document).ready(function()
+    {
+        user_position(function(loc)
+        {
+            get_experiences(loc);
+        },function()
+        {
+            get_experiences();
+        });
+    });
+
+    function get_experiences(params)
+    {
+        params = params || {};
+        {% if category %}
+            params['category'] = '{{ category }}';
+        {% endif %}
+
+        $.get('/api/experiences/json',params,function(data)
+        {
+            $('#experience_item_template').tmpl(data).appendTo('ul.image-gallery');
+        });
+    }
+
+    </script>
+{% endblock %}
 
 
-    
+
     {% block wrapper %}
         <!--<h1>hits: {{ hits }}</h1>-->
         {% block content %}
             <div class="image-grid">
                 <ul class="image-gallery">
-                {% for experience in recent_experiences %}
-                    <li id="#" class="listing-item">
-                        <a class="#" title="{{ experience.title }}" href="{% url experience_profile experience.id %}">
-                            <img width="310" height="207" alt="{{ experience.title }}" {% if experience.photo1 %}src="{{ experience.photo1.url }}"{% endif %}>
-                        </a>
-                        <div id="thumb-details">
-                            <p class="listing-title">
-                                <a title="{{ experience.title }}" href="{% url experience_profile experience.id %}"> {{ experience.title }} </a>
-                            </p>
-                            <p class="listing-merchant">
-                                <a title="{{ experience.merchant.name }}" href=""> {{ experience.merchant.name }}, {{ experience.merchant.city }} {{ experience.merchant.state }}</a>
-                            </p>
-                            <p class="listing-price">
-                                <span class="currency-symbol">$</span>
-                                {{ experience.price }}
-                                <span class="currency-code"></span>
-                            </p>
-                        </div>
-                    </li>
-                {% endfor %}
                 </ul>
             </div><!-- end image-grid div -->
         {% endblock %}<!-- end content block -->
     {% endblock %}<!-- end wrapper block
-    
-    
-    {% url merchant_profile merchant.id %}
+
+
+    {% block hidden_templates %}
+    <script type='text/x_jquery_tempaltes' id='experience_item_template'>
+                    <li id="#" class="listing-item">
+                        <a class="#" title=" {% t_var title %}" href="{% t_url experience_profile id %}">
+                            <img width="310" height="207" alt="{% t_var title %}" {% t_if photo1 %}src="{% t_var photo1.url %}"{% t_endif %}>
+                        </a>
+                        <div id="thumb-details">
+                            <p class="listing-title">
+                                <a title="{% t_var title %}" href="{% t_url experience_profile id %}"> {% t_var title %} </a>
+                            </p>
+                            <p class="listing-merchant">
+                                <a title="{% t_var merchant.name %}" href=""> {% t_var merchant.name %}, {% t_var merchant.city %} {% t_var merchant.state %}</a>
+                            </p>
+                            <p class="listing-price">
+                                <span class="currency-symbol">$</span>
+                                {% t_var price %}
+                                <span class="currency-code"></span>
+                            </p>
+                        </div>
+                    </li>
+    </script>
+   {% endblock %}
