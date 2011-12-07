@@ -235,6 +235,20 @@ header .header-wrap {
 	position: relative;
 }
 
+#facebook-connect-large {
+	width: 334px;
+	height: 50px;
+	background: url(../images/fb-login-large.png) no-repeat;
+	margin-bottom: 10px;
+	/*float: right;
+	position: relative;*/
+}
+
+
+
+
+
+
 /**
  * forms and Inputs
  */
