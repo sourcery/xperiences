@@ -1,93 +1,11 @@
 import datetime
 from django.dispatch.dispatcher import receiver
-from django.forms.fields import CharField
 from django.template.defaultfilters import slugify
-from django_mongodb_engine.contrib import MongoDBManager
+from backend.fields import  RichTextField, XPImageField, GeoModel
 from django.db import models
-from djangotoolbox.fields import EmbeddedModelField
 from django.contrib.auth.models import User
 from django.db.models import signals
-from backend.forms import PointWidgetWithAddressField, RichTextEditorWidget
 
-
-
-class Coordinate(models.Model):
-    lat = models.FloatField(default=0.0)
-    lng = models.FloatField(default=0.0)
-
-    geom_type = 'POINT'
-
-
-    def __str__(self):
-        return '%f,%f' % (self.lat, self.lng)
-
-
-class GeoField(EmbeddedModelField):
-    address_field = ''
-
-
-    def __init__(self, **kwargs):
-        kwargs['default'] = Coordinate
-        #        kwargs['editable'] = False
-        if 'address_field' in kwargs:
-            self.address_field = 'id_' + kwargs.get('address_field', '')
-            del kwargs['address_field']
-        super(GeoField, self).__init__(Coordinate, **kwargs)
-
-
-    def formfield(self, **kwargs):
-    # A file widget is provided, but use model FileField or ImageField
-        # for storing specific files most of the time
-        defaults = {'widget': PointWidgetWithAddressField(self.address_field)}
-        #        attrs = kwargs.get('attrs',{})
-        #        attrs['address_field'] = self.address_field
-        defaults.update(kwargs)
-        #        defaults['attrs'] = attrs
-        return super(GeoField, self).formfield(self.FormClass, **defaults)
-
-
-    class FormClass(CharField):
-        def to_python(self, (lat, lng)):
-            return Coordinate(lat=lat, lng=lng)
-
-
-class RichTextField(models.TextField):
-    def __init__(self, **kwargs):
-        defaults = {'max_length': 255}
-        defaults.update(kwargs)
-        super(RichTextField, self).__init__(**defaults)
-
-
-    def formfield(self, **kwargs):
-        kwargs['widget'] = RichTextEditorWidget
-        return super(RichTextField, self).formfield(**kwargs)
-
-
-class XPDBManager(MongoDBManager):
-    def proximity_query(self, location, **kwargs):
-        max_distance = kwargs.get('max_distance', 10)
-        field_name = kwargs.get('field', 'xp_location')
-        lat = location['lat']
-        lng = location['lng']
-        query = kwargs.get('query',{})
-        query[field_name] = {'$near' : { 'lat' : lat, 'lng':lng} }
-        return self.raw_query(query)
-
-
-class GeoModel(models.Model):
-    xp_location = GeoField(address_field='address')
-    address = models.CharField(max_length=100, default='', blank=True)
-
-    objects = XPDBManager()
-
-
-    def update_location(self, lat, lng):
-        self.xp_location.lat = lat
-        self.xp_location.lng = lng
-
-
-    class Meta:
-        abstract = True
 
 
 class UserLog(models.Model):
@@ -119,19 +37,7 @@ class UserLog(models.Model):
             log.user = user
             log.save()
 
-from sorl.thumbnail import ImageField
 
-class XPImageField(ImageField):
-    thumbnail_size = None
-
-    def __init__(self,*args,**kwargs):
-        self.thumbnail_size = kwargs.get('thumbnail_size', (450,300))
-        if 'thumbnail_size' in kwargs:
-            del kwargs['thumbnail_size']
-        super(XPImageField,self).__init__(*args,**kwargs)
-
-    def thumbnail_size_str(self):
-        return '%dx%d' % self.thumbnail_size
 
 class UserExtension(GeoModel):
     id = models.AutoField(primary_key=True)

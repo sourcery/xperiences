@@ -18,7 +18,7 @@ def update_configurations(dict):
     global config, categories
     for key in dict:
         value = dict[key]
-        config[key] = str(value)
+        config[key] = value
     conf, _ = SiteConfiguration.objects.get_or_create(name='default')
     conf.conf = simplejson.dumps(config)
     conf.save()

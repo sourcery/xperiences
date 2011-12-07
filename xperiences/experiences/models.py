@@ -1,9 +1,9 @@
 import datetime
 from backend import configurations
-from backend.models import GeoModel, UserExtension, RichTextField, XPImageField
+from backend.fields import GeoModel, RichTextField, XPImageField, TextSearchField
+from backend.models import UserExtension
 from django.db import models
 from django.template.defaultfilters import slugify
-from sorl.thumbnail import ImageField
 
 
 #from merchants.models import Merchant
@@ -13,7 +13,7 @@ class Experience(GeoModel):
 
     is_active = models.BooleanField(default=True)
 
-    title = models.CharField(max_length=50)  # by default blank=false and null=false, meaning that both fields are mandatory in both admin and DB
+    title = TextSearchField(max_length=50)  # by default blank=false and null=false, meaning that both fields are mandatory in both admin and DB
     description = RichTextField()
     category = models.CharField(max_length=50, choices=configurations.get_categories_as_choices())
     price = models.PositiveIntegerField(default=0)

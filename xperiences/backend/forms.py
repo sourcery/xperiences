@@ -1,5 +1,6 @@
 import django.forms as django_forms
 from django.forms.widgets import Textarea, DateTimeInput
+import simplejson
 import settings
 
 
@@ -72,9 +73,16 @@ class SiteConfigurationForm(django_forms.forms.Form):
         from backend import configurations
         if data is None:
             data = configurations.config
+            data['CATEGORIES'] = simplejson.dumps(data['CATEGORIES'])
         super(SiteConfigurationForm, self).__init__(data)
 
 
     def save_data(self):
         from backend import configurations
+        categories = self.data['CATEGORIES']
+        if not categories.startswith('['):
+            categories = '[' + categories
+        if not categories.endswith(']'):
+            categories += ']'
+        self.data['CATEGORIES'] = simplejson.loads(categories)
         configurations.update_configurations(self.data)

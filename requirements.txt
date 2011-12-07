@@ -2,4 +2,5 @@ pymongo
 sorl-thumbnail
 django-storages
 boto
+lxml
 configObj
