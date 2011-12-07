@@ -139,7 +139,7 @@ class MerchantHandler(MyBaseHandler):
 class ExperienceHandler(MyBaseHandler):
     allowed_methods = ('GET','PUT',)
     model = Experience
-    fields = ('id', 'title','description','merchant','photo1','photo2','photo3','photo4','photo5','price','capacity','valid_from','valid_until','is_active')
+    fields = ('slug_id', 'title','description','merchant','photo1','photo2','photo3','photo4','photo5','price','capacity','valid_from','valid_until','is_active')
     update_fields = ('is_active',)
 
     def read(self,request,*args,**kwargs):

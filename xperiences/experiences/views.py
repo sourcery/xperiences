@@ -20,7 +20,7 @@ def experience_by_category(request, category):
 
 
 def experience_profile(request, id):
-    experience = Experience.objects.get(id=id)
+    experience = Experience.get_by_slug(id)
 
     #experience = wrapmongo(db.experience.find_one({'_id': pymongo.objectid.ObjectId(id)}))
 

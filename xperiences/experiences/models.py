@@ -14,6 +14,7 @@ class Experience(GeoModel):
     is_active = models.BooleanField(default=True)
 
     title = TextSearchField(max_length=50)  # by default blank=false and null=false, meaning that both fields are mandatory in both admin and DB
+    slug_id = models.CharField(max_length=50,editable=False)
     description = RichTextField()
     category = models.CharField(max_length=50, choices=configurations.get_categories_as_choices())
     price = models.PositiveIntegerField(default=0)
@@ -44,10 +45,15 @@ class Experience(GeoModel):
         else:
             return self.xp_location, self.address
 
+    @staticmethod
+    def get_by_slug(slug_id):
+        return Experience.objects.get(slug_id=slug_id)
+
     def save(self, *args, **kwargs):
         if self.use_saved_address:
             self.xp_location = self.merchant.xp_location
             self.address = self.merchant.address
+        self.slug_id = self.slug
         return super(Experience,self).save(self,*args,**kwargs)
 
 
