@@ -63,7 +63,6 @@ def comment_merchant(request,username):
             else:
                 msg.sender_session = request.session.session_key
             message = request.POST.get('message')
-            msg.message = message
             form = MerchantMessageForm(request.POST,instance=msg)
             if form.is_valid():
                 form.save()

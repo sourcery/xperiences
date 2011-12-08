@@ -5,7 +5,7 @@
         {% for message in comments %}
             <li id="#" class="listing-item">
                 {% if message.sender %}
-                {% include 'profile_image.html' with merchant=message.sender %}
+                {% include 'profile_image.html' with user_extension=message.sender %}
                 {% endif %}
                 <div id="thumb-details">
                     <p class="listing-title">

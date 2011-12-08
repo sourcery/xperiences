@@ -123,6 +123,9 @@ class MerchantMessage(TextSearchModel):
     title = TextSearchField(max_length=50,null=True,blank=True)
     message = TextSearchField(max_length=255,null=True,blank=True)
 
+    def __str__(self):
+        return str(self.title)
+
 
 class SiteConfiguration(models.Model):
     name = models.CharField(max_length=50, primary_key=True)
