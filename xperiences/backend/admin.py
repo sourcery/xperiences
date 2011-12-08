@@ -1,4 +1,4 @@
-from backend.models import MerchantMessage
+from backend.models import UserMessage
 from models import UserExtension, UserLog, SiteConfiguration
 from django.contrib import admin
 
@@ -10,4 +10,4 @@ import sorl
 
 admin.site.register(sorl.thumbnail.models.KVStore)
 
-admin.site.register(MerchantMessage)
+admin.site.register(UserMessage)

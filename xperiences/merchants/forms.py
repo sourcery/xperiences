@@ -1,5 +1,5 @@
 from django import forms
-from backend.models import UserExtension, MerchantMessage
+from backend.models import UserExtension, UserMessage
 
 
 class MerchantForm(forms.ModelForm):
@@ -9,5 +9,5 @@ class MerchantForm(forms.ModelForm):
 
 class MerchantMessageForm(forms.ModelForm):
     class Meta:
-        model = MerchantMessage
+        model = UserMessage
         fields = ('title','message')
