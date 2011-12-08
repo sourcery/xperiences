@@ -282,6 +282,7 @@ class FacebookBackend:
                 if len(qry) == 1:
                     user = qry[0]
                     user.is_active = True
+                    user.save()
 
             if not user:
                 name_count = User.objects.filter(username__startswith = username).count()
