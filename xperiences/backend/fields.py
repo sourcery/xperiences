@@ -173,7 +173,7 @@ class TextSearchModel(XPModel):
                 for word in words:
                     word = word.strip()
                     word = word.lower()
-                    if word not in _FULL_TEXT_STOP_WORDS:
+                    if word != '' and word not in _FULL_TEXT_STOP_WORDS:
                         all_words[word] = True
             all_words_list = all_words.keys()
             self.keywords = all_words_list
