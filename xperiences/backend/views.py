@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from backend import utils
-from backend.forms import SiteConfigurationForm, PreconfiguredMerchant, PerconfiguredMerchantExt, UserForm, UserExtensionForm
+from backend.forms import SiteConfigurationForm, UserForm, UserExtensionForm
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
@@ -39,6 +39,7 @@ def geo_indexes(request):
 
 #preconfigured_merchant = make_admin_view(PerconfiguredMerchantExt)#PreconfiguredMerchant)
 
+@user_passes_test(lambda u: u.is_superuser,login_url='/admin/')
 def preconfigured_merchant(request):
     if request.method == 'GET':
         form_user = UserForm()
