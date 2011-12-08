@@ -7,7 +7,7 @@ from django.db import models
 from django.forms.fields import CharField
 from django_mongodb_engine.contrib import MongoDBManager
 from djangotoolbox.fields import EmbeddedModelField, ListField
-from backend.forms import PointWidgetWithAddressField, RichTextEditorWidget
+from backend.widgets import PointWidgetWithAddressField, RichTextEditorWidget
 
 class XPDBManager(MongoDBManager):
     def proximity_query(self, location, **kwargs):
@@ -81,7 +81,10 @@ class RichTextField(TextSearchField):
         super(RichTextField, self).__init__(**defaults)
 
     def get_text(self, instance):
-        t = lxml.html.fromstring(getattr(instance,self.name))
+        s = getattr(instance,self.name)
+        if not s:
+            return None
+        t = lxml.html.fromstring()
         return t.text_content()
 
     def formfield(self, **kwargs):
@@ -161,7 +164,8 @@ class TextSearchModel(XPModel):
                 value = field.get_text(self)
                 if self.originals[field.name] != value:
                     is_changed = True
-                all_text.append(value)
+                if value:
+                    all_text.append(value)
         if is_changed:
             all_words = {}
             for text in all_text:
@@ -169,7 +173,7 @@ class TextSearchModel(XPModel):
                 for word in words:
                     word = word.strip()
                     word = word.lower()
-                    if word not in _FULL_TEXT_STOP_WORDS:
+                    if word != '' and word not in _FULL_TEXT_STOP_WORDS:
                         all_words[word] = True
             all_words_list = all_words.keys()
             self.keywords = all_words_list

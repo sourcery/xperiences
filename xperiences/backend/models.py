@@ -65,6 +65,9 @@ class UserExtension(GeoModel,TextSearchModel):
     friends = models.TextField(max_length=2500, default='', blank=True)
     photo = XPImageField(upload_to='photos_merchent',null=True,blank=True)
 
+    offering = RichTextField(default='',blank=True)
+    target_customers = RichTextField(default='',blank=True)
+
 
 
     class Meta:  # this is for the admin
@@ -115,13 +118,16 @@ class UserExtension(GeoModel,TextSearchModel):
     def __unicode__(self):  # this is for the presentation in the admin site
         return self.name
 
-class MerchantMessage(TextSearchModel):
-    merchant = models.ForeignKey(UserExtension, related_name='merchant_user')
+class UserMessage(TextSearchModel):
+    to = models.ForeignKey(UserExtension, related_name='merchant_user')
     sender = models.ForeignKey(UserExtension, related_name='sender_user', null=True,blank=True)
     sender_session = models.CharField(max_length=100, null=True, blank=True)
     time = models.DateTimeField(default=datetime.datetime.now,editable=False)
     title = TextSearchField(max_length=50,null=True,blank=True)
     message = TextSearchField(max_length=255,null=True,blank=True)
+
+    def __str__(self):
+        return str(self.title)
 
 
 class SiteConfiguration(models.Model):

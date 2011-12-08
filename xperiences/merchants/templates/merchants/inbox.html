@@ -5,9 +5,10 @@
         {% for message in comments %}
             <li id="#" class="listing-item">
                 {% if message.sender %}
-                {% include 'profile_image.html' with merchant=message.sender %}
+                {% include 'profile_image.html' with user_extension=message.sender %}
                 {% endif %}
                 <div id="thumb-details">
+                    <a href="{% url view_message message.id %}">
                     <p class="listing-title">
                         {{ message.title }}
                     </p>
@@ -17,6 +18,7 @@
                     <p>
                         {{ message.time }}
                     </p>
+                    </a>
                 </div>
 
             </li>

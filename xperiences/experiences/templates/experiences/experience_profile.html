@@ -166,7 +166,7 @@
             <div id="merchant-listing" class="section">
                 <div id="merchant-image">
                     {% comment %} <a title={{ merchant.name }} href="{% url merchant_profile merchant.id %}">{% endcomment %}
-                        {% include 'profile_image.html' with merchant=merchant %}
+                        {% include 'profile_image.html' with user_extension=merchant %}
                     </a>
                 </div>
                 <div id="merchant-details">

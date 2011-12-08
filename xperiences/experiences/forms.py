@@ -1,6 +1,6 @@
 from django import forms
 from django.forms.fields import DateTimeField
-from backend.forms import XPDatePicker
+from backend.widgets import XPDatePicker
 from models import Experience
 
 
