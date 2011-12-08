@@ -164,6 +164,7 @@ TEMPLATE_DIRS = (
     os.path.join(CODE_ROOT, 'experiences/templates'),
     os.path.join(CODE_ROOT, 'merchants/templates'),
     os.path.join(CODE_ROOT, 'socialauth/templates'),
+    os.path.join(CODE_ROOT, 'backend/templates'),
 )
 
 INSTALLED_APPS = (

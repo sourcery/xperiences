@@ -1,0 +1,15 @@
+{% extends "admin/base_site.html" %}
+{% block extrahead %}
+    {{ block.super }}
+    {{ form_user.media }}
+    {{ form_user_extension.media }}
+{% endblock %}
+{% block content %}
+    <form enctype="multipart/form-data" action="" method="post">{% csrf_token %}
+        {{ form_user.errors }}
+        {{ form_user_extension.errors }}
+        {{ form_user.as_p }}
+        {{ form_user_extension.as_p }}
+        <input type="submit" value="Submit" />
+    </form>
+{% endblock %}

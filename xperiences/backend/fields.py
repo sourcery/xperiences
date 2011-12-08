@@ -7,7 +7,7 @@ from django.db import models
 from django.forms.fields import CharField
 from django_mongodb_engine.contrib import MongoDBManager
 from djangotoolbox.fields import EmbeddedModelField, ListField
-from backend.forms import PointWidgetWithAddressField, RichTextEditorWidget
+from backend.widgets import PointWidgetWithAddressField, RichTextEditorWidget
 
 class XPDBManager(MongoDBManager):
     def proximity_query(self, location, **kwargs):
