@@ -27,6 +27,18 @@ class MyBaseHandler(BaseHandler):
     # maps a handler for a model, defines the data emition for related objects by foreign-keys
     mappings = {}
 
+    def read(self,request,*args,**kwargs):
+        limit = int(kwargs.get('limit',50))
+        if 'limit' in kwargs:
+            del kwargs['limit']
+        if limit > MAX_RESULTS_PER_QUERY:
+            limit = MAX_RESULTS_PER_QUERY
+        offset = int(kwargs.get('offset',0))
+        if 'offset' in kwargs:
+            del kwargs['offset']
+        return super(MyBaseHandler,self).read(request,*args,**kwargs)[offset:limit]
+
+
     def update(self, request, additions=None,update_fields=None,*args, **kwargs):
         if not self.has_model():
             return rc.NOT_IMPLEMENTED
@@ -157,18 +169,19 @@ class ExperienceHandler(MyBaseHandler):
         if lng:
             del params['lng']
 
-        limit = params.get('limit',50)
-        if 'limit' in params:
-            del params['limit']
-        if limit > MAX_RESULTS_PER_QUERY:
-            limit = MAX_RESULTS_PER_QUERY
-        offset = params.get('offset',0)
-        if 'offset' in params:
-            del params['offset']
 
         if 'id' in params or not lat  or not lng:
-            return super(ExperienceHandler,self).read(request,*args,**params)[offset:limit]
+            return super(ExperienceHandler,self).read(request,*args,**params)
         else:
+            limit = int(params.get('limit',50))
+            if 'limit' in params:
+                del params['limit']
+            if limit > MAX_RESULTS_PER_QUERY:
+                limit = MAX_RESULTS_PER_QUERY
+            offset = int(params.get('offset',0))
+            if 'offset' in params:
+                del params['offset']
+
             return Experience.objects.proximity_query( { 'lat' : float(lat), 'lng' : float(lng)}, query=params)[offset:limit]
 
     def update(self,request,*args,**kwargs):
