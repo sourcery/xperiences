@@ -1,6 +1,9 @@
+import random
+from django.contrib.auth.models import User
 import django.forms as django_forms
 from django.forms.widgets import Textarea, DateTimeInput
 import simplejson
+
 import settings
 
 
@@ -86,3 +89,21 @@ class SiteConfigurationForm(django_forms.forms.Form):
             categories += ']'
         self.data['CATEGORIES'] = simplejson.loads(categories)
         configurations.update_configurations(self.data)
+
+class PreconfiguredMerchant(django_forms.Form):
+    email = django_forms.CharField(required=True)
+    username = django_forms.CharField()
+
+    def save_data(self):
+        from backend import utils
+        from backend.models import UserExtension
+        email = self.data['email']
+        username = self.data.get('username',email)
+        password = ''.join([random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789') for i in xrange(12)])
+        user = User(username=username, email=email,password=password)
+        user.is_active = False
+        user.save()
+        ext = UserExtension.create_merchant(user=user)
+        ext.save()
+        utils.send_email_for_preconfigured_merchant(ext)
+        return user

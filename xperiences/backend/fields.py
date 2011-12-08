@@ -81,7 +81,10 @@ class RichTextField(TextSearchField):
         super(RichTextField, self).__init__(**defaults)
 
     def get_text(self, instance):
-        t = lxml.html.fromstring(getattr(instance,self.name))
+        s = getattr(instance,self.name)
+        if not s:
+            return None
+        t = lxml.html.fromstring()
         return t.text_content()
 
     def formfield(self, **kwargs):
@@ -161,7 +164,8 @@ class TextSearchModel(XPModel):
                 value = field.get_text(self)
                 if self.originals[field.name] != value:
                     is_changed = True
-                all_text.append(value)
+                if value:
+                    all_text.append(value)
         if is_changed:
             all_words = {}
             for text in all_text:

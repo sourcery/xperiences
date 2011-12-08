@@ -1,4 +1,4 @@
-from backend.forms import SiteConfigurationForm
+from backend.forms import SiteConfigurationForm, PreconfiguredMerchant
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
@@ -29,3 +29,5 @@ def test(request):
 @user_passes_test(lambda u: u.is_superuser)
 def geo_indexes(request):
     return HttpResponse(ensure_geo_fields())
+
+preconfigured_merchant = make_admin_view(PreconfiguredMerchant)
