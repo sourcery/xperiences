@@ -1,3 +1,5 @@
+from experiences.models import Experience
+
 __author__ = 'ishai'
 
 from django.core.management.base import BaseCommand, NoArgsCommand
@@ -9,4 +11,9 @@ class Command(NoArgsCommand):
     requires_model_validation = False
 
     def handle_noargs(self, **options):
-        pass
+        exps = Experience.objects.all()
+        for exp in exps:
+            for org in exp.originals:
+                exp.originals[org] = None
+            exp.save()
+

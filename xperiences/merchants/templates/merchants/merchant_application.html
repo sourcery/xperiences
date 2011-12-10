@@ -3,22 +3,27 @@
 <head>
     <meta charset="utf-8">
         
-    <title>Apply to be listed</title>    
+    <title>Apply to be listed</title>
+    {{ form.media }}
 </head>
 <body>
     
     <h2>Apply to be listed on our site</h2><!-- we can change this title based on the niche-->
-    
+    {% if status == 'saved' %}
+        Sent, application will be reviewed
+    {% else %}
+    {{ form.errors }}
     <form action="#" method="POST" enctype="multipart/form-data">
         <fieldset>
             <legend>Contact information</legend>
             <!-- the following fields: name, adress, email and phone number should be populated by facebook info if available-->
-            <label>Name <input type="text" value maxlength="32" name="name"/></label><br /><br />
-            <label>Email <input type="text" value maxlength="32" name="email"/></label><br /><br />
-            <label>Phone number <input type="text" value maxlength="32" name="name"/></label><br /><br />
+            <label>Name <input type="text" maxlength="32" name="name" value='{{ form.name.value }}'/></label><br /><br />
+            <label>Email <input type="text" value='{{ user.email }}' maxlength="32" name="email"/></label><br /><br />
+            <label>Phone number <input type="text" value='{{ form.phone_number.value }}' maxlength="32" name="phone_number"/></label><br /><br />
             <!--<address>--><!-- html 5 semantic markup -->
-                <label>Address <input class="space_common" type="text" name="address"></label><br />
-                <label>City  <input class="space_common" type="text" name="city"></label><br />
+                <label>Address <input class="space_common" type="text" name="address" value='{{ form.address.value }}'></label><br />
+                {{ form.xp_location }}
+                <!--label>City  <input class="space_common" type="text" name="city"></label><br />
                 <label>State  
                     <select name="state">
                         <option>AL</option>
@@ -43,7 +48,7 @@
          
         <fieldset>
             <legend>Tell us about yourself</legend>
-            <textarea rows="20" cols="100" id="vendor_description" name="vendor_description"></textarea><br /><br />
+            <textarea rows="20" cols="100" id="vendor_description" name="description" value='{{ form.description.value }}'></textarea><br /><br />
         </fieldset>
         
         <br /><br />
@@ -51,7 +56,7 @@
         <fieldset>
             <legend>What are you offering?</legend>    
             <label>Tell us more about your service, product or skills<br />
-            <textarea rows="20" cols="100" id="vendor_description" name="vendor_description"></textarea><br /><br />
+            <textarea rows="20" cols="100" id="vendor_description" name="offering" value='{{ form.offering.value }}'></textarea><br /><br />
             </label><br /><br />
         </fieldset>
         
@@ -60,7 +65,7 @@
         <fieldset>
             <legend>Who are your customers?</legend>    
             <label>Describe your target customers<br />
-            <textarea rows="20" cols="100" id="target_customers_description" name="target_customers_description"></textarea><br /><br />
+            <textarea rows="20" cols="100" id="target_customers_description" name="target_customers" value='{{ form.target_customers.value }}'></textarea><br /><br />
             </label><br /><br />
         </fieldset>
         
@@ -69,7 +74,7 @@
         <input type="submit" class="button" value="SUBMIT YOUR APPLICATION">
 
     </form>
-    
+    {% endif %}
 </body>
 </html>
 

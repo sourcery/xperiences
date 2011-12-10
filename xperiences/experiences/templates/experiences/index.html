@@ -50,12 +50,12 @@
     {% block hidden_templates %}
     <script type='text/x_jquery_tempaltes' id='experience_item_template'>
                     <li id="#" class="listing-item">
-                        <a class="#" title=" {% t_var title %}" href="{% t_url experience_profile id %}">
+                        <a class="#" title=" {% t_var title %}" href="{% t_url experience_profile slug_id %}">
                             <img width="310" height="207" alt="{% t_var title %}" {% t_if photo1 %}src="{% t_var photo1.url %}"{% t_endif %}>
                         </a>
                         <div id="thumb-details">
                             <p class="listing-title">
-                                <a title="{% t_var title %}" href="{% t_url experience_profile id %}"> {% t_var title %} </a>
+                                <a title="{% t_var title %}" href="{% t_url experience_profile slug_id %}"> {% t_var title %} </a>
                             </p>
                             <p class="listing-merchant">
                                 <a title="{% t_var merchant.name %}" href=""> {% t_var merchant.name %}, {% t_var merchant.city %} {% t_var merchant.state %}</a>

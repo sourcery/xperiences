@@ -64,7 +64,7 @@ TIME_ZONE = 'America/Chicago'
 LANGUAGE_CODE = 'en-us'
 
 
-SITE_ID = '4eba73fe96cf4c019c00001d'
+SITE_ID = '4eba73fe96cf4c019c00001d' if PRODUCTION or STAGING else '4ed7858b76a6f6052c00001d'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
@@ -164,6 +164,7 @@ TEMPLATE_DIRS = (
     os.path.join(CODE_ROOT, 'experiences/templates'),
     os.path.join(CODE_ROOT, 'merchants/templates'),
     os.path.join(CODE_ROOT, 'socialauth/templates'),
+    os.path.join(CODE_ROOT, 'backend/templates'),
 )
 
 INSTALLED_APPS = (

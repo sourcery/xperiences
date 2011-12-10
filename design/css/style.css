@@ -235,6 +235,17 @@ header .header-wrap {
 	position: relative;
 }
 
+#facebook-connect-large {
+	width: 334px;
+	height: 50px;
+	background: url(../images/fb-login-large.png) no-repeat;
+}
+
+
+
+
+
+
 /**
  * forms and Inputs
  */
@@ -742,6 +753,57 @@ ul.listings li.listing-item {
 	margin-left: 10px;
 }
 
+
+/* Referrals */
+
+.referral-action-menu {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.share {
+	display: inline-block;
+	margin-right: 60px;
+}
+
+
+/* I shamelessly copied this from Airbnb... we probably need to change colors or whatnot */
+.button-glossy {
+	border: 1px solid #459A00;
+	background: #4AA400;
+	background: -webkit-gradient(linear,center top,center bottom,from(#5CCD00),to(#4AA400));
+	background: -moz-linear-gradient(top,#5CCD00,#4AA400);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5ccd00',endColorstr='#ff4aa400',GradientType=0);
+	display: inline-block;
+	text-align: center;
+	min-width: 5em;
+	min-height: 2em;
+	cursor: pointer;
+	position: relative;
+	border-radius: .3em;
+	-moz-border-radius: .3em;
+	-webkit-border-radius: .3em;
+	line-height: 2em;
+	padding: 0 1em;
+	font-size: 1.15em;
+	font-weight: bold;
+	color: white!important;
+	text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.5);
+	text-decoration: none;
+	box-shadow: inset 0 0 .2em rgba(255,255,255,0.3),inset 0 0 .2em rgba(255,255,255,0.3),0 1px 2px rgba(0,0,0,0.3);
+	-o-box-shadow: inset 0 0 .2em rgba(255,255,255,0.3),inset 0 0 .2em rgba(255,255,255,0.3),0 1px 2px rgba(0,0,0,0.3);
+	-moz-box-shadow: inset 0 0 .2em rgba(255,255,255,0.3),inset 0 0 .2em rgba(255,255,255,0.3),0 1px 2px rgba(0,0,0,0.3);
+	-webkit-box-shadow: inset 0 0 .2em rgba(255,255,255,0.3),inset 0 0 .2em rgba(255,255,255,0.3),0 1px 2px rgba(0,0,0,0.3);
+}
+
+.fb {
+	background: #1D95CB;
+	border: 1px solid #5771a9;
+}
+
+#button-share {
+	margin-top: 20px;
+}
 
 
 

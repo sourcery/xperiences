@@ -49,6 +49,9 @@ def approve_merchant(merchant):
     merchant.save()
     send_email_with_template(settings.EMAIL_HOST_USER,[merchant.user.email],'Your Application is approved', 'app_approved.txt','app_approved.html',{ 'merchant':merchant})
 
+def send_email_for_preconfigured_merchant(merchant):
+    send_email_with_template(settings.EMAIL_HOST_USER,[merchant.user.email],'Join us', 'preconfigured_merchant.txt', 'preconfigured_merchant.txt', {'merchant':merchant})
+
 def send_email_with_template(from_email, to_list, subject, text_file_name, html_file_name, context):
     context['BASE_URL'] = settings.BASE_URL
     c = Context(context)
