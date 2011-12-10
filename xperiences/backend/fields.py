@@ -1,29 +1,27 @@
-#__author__ = 'ishai'
-#
-
-#
-import urllib2
+import lxml.html
 from django.db import models
 from django.forms.fields import CharField
 from django_mongodb_engine.contrib import MongoDBManager
 from djangotoolbox.fields import EmbeddedModelField, ListField
 from backend.widgets import PointWidgetWithAddressField, RichTextEditorWidget
+from sorl.thumbnail import ImageField
+
 
 class XPDBManager(MongoDBManager):
     def proximity_query(self, location, **kwargs):
-        max_distance = kwargs.get('max_distance', 10)
+    #        max_distance = kwargs.get('max_distance', 10)
         field_name = kwargs.get('field', 'xp_location')
         lat = location['lat']
         lng = location['lng']
-        query = kwargs.get('query',{})
-        query[field_name] = {'$near' : { 'lat' : lat, 'lng':lng} }
+        query = kwargs.get('query', {})
+        query[field_name] = {'$near': {'lat': lat, 'lng': lng}}
         return self.raw_query(query)
+
 
     def text_search(self, keyword, **kwargs):
-        query = kwargs.get('query',{})
+        query = kwargs.get('query', {})
         query['keywords'] = keyword
         return self.raw_query(query)
-
 
 
 class Coordinate(models.Model):
@@ -65,42 +63,42 @@ class GeoField(EmbeddedModelField):
         def to_python(self, (lat, lng)):
             return Coordinate(lat=lat, lng=lng)
 
-from django.utils.html import strip_tags
 
 class TextSearchField(models.TextField):
-
     def get_text(self, instance):
-        return getattr(instance,self.name)
+        return getattr(instance, self.name)
 
-import lxml.html
+
 class RichTextField(TextSearchField):
-
     def __init__(self, **kwargs):
         defaults = {'max_length': 255}
         defaults.update(kwargs)
         super(RichTextField, self).__init__(**defaults)
 
+
     def get_text(self, instance):
-        s = getattr(instance,self.name)
+        s = getattr(instance, self.name)
         if not s:
             return None
-        t = lxml.html.fromstring()
-        return t.text_content()
+        t = lxml.html.fromstring(getattr(instance, self.attname, ''))
+        return t.text
+
 
     def formfield(self, **kwargs):
         kwargs['widget'] = RichTextEditorWidget
         return super(RichTextField, self).formfield(**kwargs)
 
-from sorl.thumbnail import ImageField
 
 class XPImageField(ImageField):
     thumbnail_size = None
 
-    def __init__(self,*args,**kwargs):
-        self.thumbnail_size = kwargs.get('thumbnail_size', (450,300))
+
+    def __init__(self, *args, **kwargs):
+        self.thumbnail_size = kwargs.get('thumbnail_size', (450, 300))
         if 'thumbnail_size' in kwargs:
             del kwargs['thumbnail_size']
-        super(XPImageField,self).__init__(*args,**kwargs)
+        super(XPImageField, self).__init__(*args, **kwargs)
+
 
     def thumbnail_size_str(self):
         return '%dx%d' % self.thumbnail_size
@@ -138,23 +136,28 @@ _FULL_TEXT_STOP_WORDS = frozenset([
     'where', 'whether', 'which', 'while', 'who', 'whose', 'why', 'widely',
     'will', 'with', 'within', 'without', 'would', 'yet', 'you'])
 
+
 class XPModel(models.Model):
     objects = XPDBManager()
 
+
     class Meta:
         abstract = True
+
 
 class TextSearchModel(XPModel):
     keywords = ListField(editable=False)
     originals = {}
 
-    def __init__(self,*args,**kwargs):
-        super(TextSearchModel,self).__init__(*args,**kwargs)
-        for field in self._meta.fields:
-            if isinstance(field,TextSearchField):
-                self.originals[field.name] = getattr(self,field.name)
 
-    def save(self,*args, **kwargs):
+    def __init__(self, *args, **kwargs):
+        super(TextSearchModel, self).__init__(*args, **kwargs)
+        for field in self._meta.fields:
+            if isinstance(field, TextSearchField):
+                self.originals[field.name] = getattr(self, field.name)
+
+
+    def save(self, *args, **kwargs):
         # process text fields
         fields = self._meta.fields
         is_changed = False
@@ -177,20 +180,22 @@ class TextSearchModel(XPModel):
                         all_words[word] = True
             all_words_list = all_words.keys()
             self.keywords = all_words_list
-        obj = super(TextSearchModel,self).save(*args, **kwargs)
+        obj = super(TextSearchModel, self).save(*args, **kwargs)
         return obj
+
 
     class Meta:
         abstract = True
+
 
 class GeoModel(XPModel):
     xp_location = GeoField(address_field='address')
     address = models.CharField(max_length=100, default='', blank=True)
 
 
-    def update_location(self, lat, lng):
-        self.xp_location.lat = lat
-        self.xp_location.lng = lng
+    def update_location(self, arg_lat, arg_lng):
+        self.xp_location.lat = arg_lat
+        self.xp_location.lng = arg_lng
 
 
     class Meta:

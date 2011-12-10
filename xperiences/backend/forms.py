@@ -1,7 +1,7 @@
 import random
 from django.contrib.auth.models import User
 import django.forms as django_forms
-import simplejson
+import json
 
 import settings
 
@@ -20,7 +20,7 @@ class SiteConfigurationForm(django_forms.forms.Form):
         from backend import configurations
         if data is None:
             data = configurations.config
-            data['CATEGORIES'] = simplejson.dumps(data['CATEGORIES'])
+            data['CATEGORIES'] = json.dumps(data['CATEGORIES'])
         super(SiteConfigurationForm, self).__init__(data)
 
 
@@ -31,7 +31,7 @@ class SiteConfigurationForm(django_forms.forms.Form):
             categories = '[' + categories
         if not categories.endswith(']'):
             categories += ']'
-        self.data['CATEGORIES'] = simplejson.loads(categories)
+        self.data['CATEGORIES'] = json.loads(categories)
         configurations.update_configurations(self.data)
 
 #class PreconfiguredMerchant(django_forms.Form):
