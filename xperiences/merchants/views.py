@@ -98,8 +98,8 @@ def comment_merchant(request,username):
 
 
 @merchant_required()
-def edit_experience(request,id):
-    exp = Experience.objects.get(id=id)
+def edit_experience(request, slug_id):
+    exp = Experience.objects.get(slug_id=slug_id)
     if request.method == 'GET':
         form = ExperienceForm(instance=exp)
         return render_to_response('merchants/edit_experience.html', context_instance=RequestContext(request,{'form' : form}) )

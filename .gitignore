@@ -6,7 +6,6 @@ include
 /share
 .Python
 xperiences/.idea
-xperiences/django/db/backends
 dump
 *.pyc
 *.pyo

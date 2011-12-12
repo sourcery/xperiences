@@ -5,8 +5,8 @@ __author__ = 'ishai'
 
 class LazyUserExtension(object):
     def __get__(self, request, _=None):
-        if not hasattr(request, '_cached_user_ext'):
-            if request.user and not isinstance(request.user,AnonymousUser):
+        if not getattr(request, '_cached_user_ext', None):
+            if request.user.is_authenticated():
                 try:
                     request._cached_user_ext = UserExtension.objects.get(user=request.user)
                 except UserExtension.DoesNotExist:
