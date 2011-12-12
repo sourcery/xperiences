@@ -8,7 +8,6 @@ include
 .DS_Store
 **/.DS_Store
 xperiences/.idea
-xperiences/django/db/backends
 dump
 *.pyc
 *.pyo

@@ -1,26 +1,27 @@
 import datetime
 from backend import configurations
-from backend.models import GeoModel, UserExtension, RichTextField, XPImageField
+from backend.fields import GeoModel, RichTextField, XPImageField, TextSearchField, TextSearchModel
+from backend.models import UserExtension
 from django.db import models
 from django.template.defaultfilters import slugify
-from sorl.thumbnail import ImageField
 
 
 #from merchants.models import Merchant
 
-class Experience(GeoModel):
+class Experience(GeoModel,TextSearchModel):
     merchant = models.ForeignKey(UserExtension,null=True)
 
     is_active = models.BooleanField(default=True)
 
-    title = models.CharField(max_length=50)  # by default blank=false and null=false, meaning that both fields are mandatory in both admin and DB
+    title = TextSearchField(max_length=50)  # by default blank=false and null=false, meaning that both fields are mandatory in both admin and DB
+    slug_id = models.CharField(max_length=50,editable=False)
     description = RichTextField()
     category = models.CharField(max_length=50, choices=configurations.get_categories_as_choices())
     price = models.PositiveIntegerField(default=0)
     unit_name = models.CharField(max_length=100, null=True, blank=True) # eg.: week, meal, day...
     unit_count = models.PositiveIntegerField(default=0, null=True, blank=True)
     pub_date = models.DateField(default=datetime.date.today,null=True)
-    photo1 = XPImageField(upload_to='%Y%m%d%H%M%S',null=True,blank=True)
+    photo1 = XPImageField(upload_to='%Y%m%d%H%M%S')
     photo2 = XPImageField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
     photo3 = XPImageField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
     photo4 = XPImageField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
@@ -44,10 +45,15 @@ class Experience(GeoModel):
         else:
             return self.xp_location, self.address
 
+    @staticmethod
+    def get_by_slug(slug_id):
+        return Experience.objects.get(slug_id=slug_id)
+
     def save(self, *args, **kwargs):
         if self.use_saved_address:
             self.xp_location = self.merchant.xp_location
             self.address = self.merchant.address
+        self.slug_id = self.slug
         return super(Experience,self).save(self,*args,**kwargs)
 
 

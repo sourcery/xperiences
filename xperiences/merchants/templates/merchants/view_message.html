@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block wrapper %}
+    {% block content %}
+        {% if not status or status != 'ok' %}
+            {{ status }}
+            {% if message.sender %}
+                {% include 'profile_image.html' with user_extension=message.sender %}
+            {% endif %}
+            <div id="thumb-details">
+                <p class="listing-title">
+                    {{ message.title }}
+                </p>
+                <p class="listing-merchant">
+                    {{ message.message }}
+                </p>
+                <p>
+                    {{ message.time }}
+                </p>
+            </div>
+            <form method='post'>
+                <textarea rows="20" cols="50" name='reply'></textarea>
+                <br />
+                <input type='submit' value='Send' />
+            </form>
+        {% else %}
+            Sent
+        {% endif %}
+    {% endblock %}
+{% endblock %}
+
+
