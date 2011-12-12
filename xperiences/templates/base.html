@@ -1,42 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+    <meta charset="utf-8">
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<script src="{{ MEDIA_URL }}js/textwrap.plugin.js"></script>
 	<script src="{{ MEDIA_URL }}js/main.js"></script>
 	<script type="text/javascript" src="http://use.typekit.com/qzv2oav.js"></script>
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			image_autoscale($('.image-wrapper img'));
+		});
+	</script>
 	<link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css">
 	<title>{% block title %}{% endblock %}</title>    
+	{% block extra_head %}{% endblock %}
 </head>
 <body>
 	{% block header %}
 	<header>
-	<div class="constrain-width">
-		<div id="logo">Come Play Learn</div>
-		<div id="facebook-connect"></div>
-		<div id="service-list">List your activity</div>
-		<div class="clear"></div>
-	</div>
+		<div class="header-wrap">
+			<div id="logo">Come Play Learn</div>
+			<div id="facebook-connect"></div>
+			<div id="service-list">List your activity</div>
+			<div class="clear"></div>
+		</div>
 	</header>
 	{% endblock %}
-	<div id="wrapper">
-		<div class="content">
+	<div class="content-body">
+		<!-- <div class="main-content">-->
 			{% block content %}{% endblock %}
-		</div>
+			<!--		</div>-->
 	</div>
 	{% block footer %}
-	<footer>
-		<div class="constrain-width">
+		<footer>
+		<div class="footer-constrain">
 			<ul class="footer-nav">
 				<li>About</li>
 				<li>Contact</li>
 			</ul>
 			<div class="copyright">© 2011 Come Play Learn</div>
 		</div>
-	</footer>
+		</footer>
 	{% endblock %}
+    <div style='display:none;'>
+        {% block hidden_templates %}
+        {% endblock %}
+    </div>
 </body>
 </html>

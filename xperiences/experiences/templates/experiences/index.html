@@ -27,45 +27,80 @@
 
         $.get('/api/experiences/json',params,function(data)
         {
-            $('#experience_item_template').tmpl(data).appendTo('ul.image-gallery');
+//			$('#experience_item_template').tmpl(data).appendTo('ul.image-gallery');
+			for(var i = 0; i < 10; i++) {
+				$("#test-template").tmpl(data).appendTo('ul.image-gallery');
+			}
         });
     }
 
     </script>
 {% endblock %}
 
+{% block wrapper %}
+	<!--<h1>hits: {{ hits }}</h1>-->
+	{% block content %}
+		<div class="image-grid">
+			<ul class="image-gallery">
+			</ul>
+		</div><!-- end image-grid div -->
+		<div id="search-box">
+			<div class="search-box-tagline">
+				A whole new experience for your child starts here
+			</div>
+			<form class="search-box-form">
+				I want to find
+				<input class="shorter" type="text" />
+				near
+				<input class="short" type="text" />
+				<input type="submit" value="search" />
+			</form>
+		</div>
+	{% endblock %}<!-- end content block -->
+{% endblock %}<!-- end wrapper block
 
 
-    {% block wrapper %}
-        <!--<h1>hits: {{ hits }}</h1>-->
-        {% block content %}
-            <div class="image-grid">
-                <ul class="image-gallery">
-                </ul>
-            </div><!-- end image-grid div -->
-        {% endblock %}<!-- end content block -->
-    {% endblock %}<!-- end wrapper block
-
-
-    {% block hidden_templates %}
-    <script type='text/x_jquery_tempaltes' id='experience_item_template'>
-                    <li id="#" class="listing-item">
-                        <a class="#" title=" {% t_var title %}" href="{% t_url experience_profile id %}">
-                            <img width="310" height="207" alt="{% t_var title %}" {% t_if photo1 %}src="{% t_var photo1.url %}"{% t_endif %}>
-                        </a>
-                        <div id="thumb-details">
-                            <p class="listing-title">
-                                <a title="{% t_var title %}" href="{% t_url experience_profile id %}"> {% t_var title %} </a>
-                            </p>
-                            <p class="listing-merchant">
-                                <a title="{% t_var merchant.name %}" href=""> {% t_var merchant.name %}, {% t_var merchant.city %} {% t_var merchant.state %}</a>
-                            </p>
-                            <p class="listing-price">
-                                <span class="currency-symbol">$</span>
-                                {% t_var price %}
-                                <span class="currency-code"></span>
-                            </p>
-                        </div>
-                    </li>
-    </script>
-   {% endblock %}
+{% block hidden_templates %}
+<script type='text/x_jquery_templates' id='test-template'>
+	<li id="#" class="front-page-item">
+		<a class="#" title="Test title">
+			<img alt="title" src="/media/images/test1.jpg">
+		</a>
+		<a class="thumb-frame"  href="{% t_url experience_profile id %}">
+			<div class="thumb-details">
+				<div class="fp-item-price">
+					<span class="currency-symbol">$</span>
+					100
+					<span class="currency-code"></span>
+				</div>
+				<div class="fp-item-title">
+					<a title="test" href="#">Something here</a>
+				</div>
+				<div class="fp-item-merchant">
+					<a title="David" href=""> David, SF California</a>
+				</div>
+			</div>
+		</a>
+	</li>
+</script>
+<script type='text/x_jquery_tempaltes' id='experience_item_template'>
+				<li id="#" class="listing-item">
+					<a class="#" title=" {% t_var title %}" href="{% t_url experience_profile id %}">
+						<img width="310" height="207" alt="{% t_var title %}" {% t_if photo1 %}src="{% t_var photo1.url %}"{% t_endif %}>
+					</a>
+					<div id="thumb-details">
+						<p class="listing-title">
+							<a title="{% t_var title %}" href="{% t_url experience_profile id %}"> {% t_var title %} </a>
+						</p>
+						<p class="listing-merchant">
+							<a title="{% t_var merchant.name %}" href=""> {% t_var merchant.name %}, {% t_var merchant.city %} {% t_var merchant.state %}</a>
+						</p>
+						<p class="listing-price">
+							<span class="currency-symbol">$</span>
+							{% t_var price %}
+							<span class="currency-code"></span>
+						</p>
+					</div>
+				</li>
+</script>
+{% endblock %}
