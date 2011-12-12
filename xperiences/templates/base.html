@@ -18,35 +18,8 @@
 	{% block extra_head %}{% endblock %}
 </head>
 <body>
-	{% block header %}
-	<header>
-		<div class="header-wrap">
-			<div id="logo">Come Play Learn</div>
-			<div id="facebook-connect"></div>
-			<div id="service-list">List your activity</div>
-			<div class="clear"></div>
-		</div>
-	</header>
+	{% block body %}
+
 	{% endblock %}
-	<div class="content-body">
-		<!-- <div class="main-content">-->
-			{% block content %}{% endblock %}
-			<!--		</div>-->
-	</div>
-	{% block footer %}
-		<footer>
-		<div class="footer-constrain">
-			<ul class="footer-nav">
-				<li>About</li>
-				<li>Contact</li>
-			</ul>
-			<div class="copyright">© 2011 Come Play Learn</div>
-		</div>
-		</footer>
-	{% endblock %}
-    <div style='display:none;'>
-        {% block hidden_templates %}
-        {% endblock %}
-    </div>
 </body>
 </html>

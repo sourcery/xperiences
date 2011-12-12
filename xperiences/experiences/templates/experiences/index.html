@@ -1,106 +1,62 @@
 <!-- THIS IS THE HOME PAGE INDEX.HTML SAVED IN THE EXPERIENCES APP -->
 {% extends "base.html" %}
+
 {% load x_tags %}
+
 {% block extra_head %}
     <script type='text/javascript' src='http://www.iplocationtools.com/iplocationtools.js?key={{ IP_GEOLOCATOR_API_KEY }}' ></script>
     <script type='text/javascript' src='/static/jq.templates.js' ></script>
     <script type='text/javascript' src='/static/maps.js'></script>
 
-    <script type='text/javascript' >
-    $(document).ready(function()
-    {
-        user_position(function(loc)
-        {
-            get_experiences(loc);
-        },function()
-        {
-            get_experiences();
-        });
-    });
-
-    function get_experiences(params)
-    {
-        params = params || {};
-        {% if category %}
-            params['category'] = '{{ category }}';
-        {% endif %}
-
-        $.get('/api/experiences/json',params,function(data)
-        {
-//			$('#experience_item_template').tmpl(data).appendTo('ul.image-gallery');
-			for(var i = 0; i < 10; i++) {
-				$("#test-template").tmpl(data).appendTo('ul.image-gallery');
-			}
-        });
-    }
-
-    </script>
+	<script type='text/javascript' src='{{ MEDIA_URL }}js/front_page.js'></script>
 {% endblock %}
 
-{% block wrapper %}
-	<!--<h1>hits: {{ hits }}</h1>-->
-	{% block content %}
-		<div class="image-grid">
-			<ul class="image-gallery">
-			</ul>
-		</div><!-- end image-grid div -->
-		<div id="search-box">
-			<div class="search-box-tagline">
-				A whole new experience for your child starts here
-			</div>
-			<form class="search-box-form">
-				I want to find
-				<input class="shorter" type="text" />
-				near
-				<input class="short" type="text" />
-				<input type="submit" value="search" />
-			</form>
-		</div>
-	{% endblock %}<!-- end content block -->
-{% endblock %}<!-- end wrapper block
+{% block body %}
+<!--<h1>hits: {{ hits }}</h1>-->
+<div id="front-page">
+	<div class="top-spacer"></div>
+	<div class="image-grid"></div>
+	<div id="search-box">
+		<!--			<div class="search-box-tagline">
+			A whole new experience for your child starts here
+		</div>-->
+		<form class="search-box-form">
+			I want to find
+			<input class="shorter" type="text" />
+			near
+			<input class="short" type="text" />
+			<input type="submit" value="search" />
+		</form>
+	</div>
+	
+	<div class="clear"></div>
+	{% include "header.html" %}
+</div>
+{% include "footer.html" %}
 
-
-{% block hidden_templates %}
-<script type='text/x_jquery_templates' id='test-template'>
-	<li id="#" class="front-page-item">
-		<a class="#" title="Test title">
-			<img alt="title" src="/media/images/test1.jpg">
-		</a>
-		<a class="thumb-frame"  href="{% t_url experience_profile id %}">
+<div style='display:none;'>
+	<script type='text/x_jquery_templates' id='test-template'>
+		<li class="front-page-item">
+			<a href="/experiences/{% t_var slug_id %}">
+				<img alt=" {% t_var title %} "{% t_if photo1 %}src="{% t_var photo1.url %}"{% t_endif %}/>
+			</a>
 			<div class="thumb-details">
 				<div class="fp-item-price">
 					<span class="currency-symbol">$</span>
-					100
+					{% t_var price %}
 					<span class="currency-code"></span>
 				</div>
-				<div class="fp-item-title">
-					<a title="test" href="#">Something here</a>
-				</div>
-				<div class="fp-item-merchant">
-					<a title="David" href=""> David, SF California</a>
+				<div class="fp-item-wrapper">
+					<div class="fp-item-title">
+						<a title="{% t_var title %}" href="/experiences/{% t_var slug_id %}">{% t_var title %}</a>
+					</div>
+					<div class="fp-item-merchant">
+						<a title="{% t_var merchant.name %}" href="">{% t_var merchant.name %}{% t_if merchant.city %}, {% t_var merchant.city %} {% t_var merchant.state %} {% t_endif %}</a>
+					</div>
 				</div>
 			</div>
-		</a>
-	</li>
-</script>
-<script type='text/x_jquery_tempaltes' id='experience_item_template'>
-				<li id="#" class="listing-item">
-					<a class="#" title=" {% t_var title %}" href="{% t_url experience_profile id %}">
-						<img width="310" height="207" alt="{% t_var title %}" {% t_if photo1 %}src="{% t_var photo1.url %}"{% t_endif %}>
-					</a>
-					<div id="thumb-details">
-						<p class="listing-title">
-							<a title="{% t_var title %}" href="{% t_url experience_profile id %}"> {% t_var title %} </a>
-						</p>
-						<p class="listing-merchant">
-							<a title="{% t_var merchant.name %}" href=""> {% t_var merchant.name %}, {% t_var merchant.city %} {% t_var merchant.state %}</a>
-						</p>
-						<p class="listing-price">
-							<span class="currency-symbol">$</span>
-							{% t_var price %}
-							<span class="currency-code"></span>
-						</p>
-					</div>
-				</li>
-</script>
+		</li>
+	</script>
+
+</div>
 {% endblock %}
