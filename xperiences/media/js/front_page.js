@@ -4,6 +4,7 @@ $(document).ready(function() {
 	},function() {
 		get_experiences();
 	});
+
 });
 
 var data;
@@ -11,14 +12,12 @@ var data;
 function get_experiences(params) {
 	params = params || {};
 	$.get('/api/experiences/json', params, function(_data){
-		console.log(_data.length);
 		data = _data;
 		render(_data);
 	});
 };
 
 function render(data) {
-	console.log($(window).width());
 	var totalWidth = $(window).width() - 20;
 
 	var REQ_MARGIN = 6;
@@ -59,8 +58,17 @@ function render(data) {
 }
 
 $(window).resize(function(e){
-	console.log("resizing");
 	if(data != null) {
 		render(data);
 	}
 })
+
+
+$(document).scroll(function(e){
+	var top = $(e.currentTarget).scrollTop();
+	if (top > 30) {
+		$("#search-box").addClass("has-shadow");
+	} else {
+		$("#search-box").removeClass("has-shadow");
+	}
+});

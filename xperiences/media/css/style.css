@@ -219,7 +219,7 @@ header .header-wrap {
 
 #logo span {
 	display: inline-block;
-	padding: 10px 17px;
+	padding: 10px 17px 5px;
 }
 
 #logo-come {
@@ -228,6 +228,8 @@ header .header-wrap {
 
 #logo-play {
 	background: #a0d8ef;
+	top: 5px;
+	position: relative;
 }
 
 #logo-learn {
@@ -241,9 +243,12 @@ header .header-wrap {
 	float: right;
 	position: relative;
 	background: #fe9e21;
-	margin: 10px 20px 0 0;
+	border: 1px solid #f68d04;
+	margin: 7px 20px 0 0;
 	padding: 5px 10px;
 	border-radius: 3px;
+	text-decoration: none;
+	box-shadow:inset 0px 0px 1px #DEDEDE;
 }
 
 #service-list:hover {
@@ -314,6 +319,7 @@ fieldset, .search-result, .panel {
 	margin-bottom: 10px;
 	text-shadow: none;
 	vertical-align: bottom;
+	-moz-transition: 1s;
 }
 
 .search-result:hover {
@@ -323,8 +329,9 @@ fieldset, .search-result, .panel {
 }
 
 fieldset:hover, .panel:hover {
-	border: 1px solid #cccccc;
-	-moz-transition: border 1s;
+	border: 1px solid #CCC;
+	box-shadow: 0px 0px 1px #DDD;
+	-moz-transition: 1s;
 }
 
 fieldset h3 {
@@ -405,6 +412,7 @@ input[type="submit"] {
 	text-shadow: 1px 1px 1px #999;
 	cursor: pointer;
 	vertical-align: middle;
+	box-shadow: inset 0px 0px 2px #dedede;
 }
 
 button {
@@ -471,11 +479,15 @@ input.tiny {
 	margin: 40px auto 50px;
 	text-align: left;
 	text-shadow: none;
-	box-shadow: 0px 0px 10px #666666;
 	top: 50px;
 	left: 50%;
 	margin-left: -325px;
 	position: absolute;
+}
+
+.has-shadow {
+	-moz-transition: 0.5s;
+	box-shadow: 0px 0px 5px #666666;
 }
 
 .search-box-tagline {
@@ -875,12 +887,13 @@ ul.listings li.listing-item {
 .front-page-item .fp-item-price {
 	float: right;
 	width: 40px;
-	font-size: 12pt;
+	font-size: 14pt;
 	text-align: center;
 	background: #df595f;
 	color: white;
-	margin-right: 10px;
-	padding: 5px 10px;
+	margin: -5px 10px 0 0;
+	box-shadow: 0px 0px 2px #999;
+	padding: 5px 10px 10px;
 }
 
 .front-page-item .fp-item-title, 
@@ -903,6 +916,11 @@ ul.listings li.listing-item {
 	text-decoration: none;
 }
 
-
-
-
+/* Login */
+#login {
+	width: 400px;
+	height: 300px;
+	font-size: 20pt;
+	text-align: center;
+	margin: 0 auto;
+}
