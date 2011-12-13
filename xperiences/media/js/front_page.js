@@ -5,6 +5,10 @@ $(document).ready(function() {
 		get_experiences();
 	});
 
+	$(".default").each(function(i, el) {
+		$(el).defaultVal();
+	});
+
 });
 
 var data;

@@ -9,6 +9,7 @@
     <script type='text/javascript' src='/static/maps.js'></script>
 
 	<script type='text/javascript' src='{{ MEDIA_URL }}js/front_page.js'></script>
+	<link rel="stylesheet" href="{{ MEDIA_URL }}css/front-page.css" />
 {% endblock %}
 
 {% block body %}
@@ -22,9 +23,9 @@
 		</div>-->
 		<form class="search-box-form">
 			I want to find
-			<input class="shorter" type="text" />
+			<input class="default shorter" type="text" alt="activities"/>
 			near
-			<input class="short" type="text" />
+			<input class="default short" type="text" alt="address or zip code"/>
 			<input type="submit" value="search" />
 		</form>
 	</div>
