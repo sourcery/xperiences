@@ -207,7 +207,7 @@ header .header-wrap {
 
 #logo {
 	float: left;
-	font-size: 16pt;
+	font-size: 17pt;
 	color: white;
 	font-family: cronos-pro, sans-serif;
 	display: inline-block;
@@ -219,7 +219,7 @@ header .header-wrap {
 
 #logo span {
 	display: inline-block;
-	padding: 10px 17px 5px;
+	padding: 12px 18px 6px;
 }
 
 #logo-come {
@@ -228,7 +228,7 @@ header .header-wrap {
 
 #logo-play {
 	background: #a0d8ef;
-	top: 5px;
+	top: 7px;
 	position: relative;
 }
 
@@ -413,8 +413,13 @@ input[type="submit"] {
 	text-shadow: 1px 1px 1px #999;
 	cursor: pointer;
 	vertical-align: middle;
-	box-shadow: inset 0px 0px 2px #dedede;
 }
+
+input[type="submit"]:hover {
+	box-shadow: 0px 0px 1px #666;
+	background: #aace08;
+}
+
 
 button {
 	font-size: 11pt;
@@ -426,9 +431,6 @@ button {
 	border-radius: 3px;
 	font-family: museo-sans-rounded;
 	cursor: pointer;
-}
-input[type="submit"]:hover {
-	background: #50821d;
 }
 
 input:focus, textarea:focus {
