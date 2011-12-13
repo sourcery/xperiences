@@ -41,7 +41,7 @@
 		this.on("focus", function(e) {
 			valueDiv.animate({
 				opacity: 0
-			});
+			}, 300);
 		});
 
 		var w = this.width();
@@ -52,7 +52,7 @@
 			if(curEl.val() == '') {
 				valueDiv.animate({
 					opacity: 1
-				});
+				}, 300);
 			}
 		});
 
