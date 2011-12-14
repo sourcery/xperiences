@@ -81,6 +81,23 @@ def index(request):
     return render_to_response(template_name,
             {'hits': hits, 'eofd': experience_of_the_day, 'categories':get_categories()}, context_instance=RequestContext(request))
 
+# test search
+def search_experience(request):
+    #recent_experiences = Experience.objects.get(pub_date=recent) # look into get function and SQL, Django ORM
+    hits = request.session.get('hits', 0) + 1
+    request.session['hits'] = hits
+
+    # moved through the API
+    #    recent_experiences = Experience.objects.order_by("-pud_date")[:9]
+
+    experience_of_the_day = get_experience_of_the_day()
+
+    template_name = 'experiences/search.html'
+
+    print "I am the index!"
+
+    return render_to_response(template_name,
+            {'hits': hits, 'eofd': experience_of_the_day, 'categories':get_categories()}, context_instance=RequestContext(request))
 
 # how to extract active categories from Mongo to populate this list?
 #active_categories = ['Adventure', 'Funky', 'save the world', 'Travel', 'Music', 'Skills']
