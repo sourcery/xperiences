@@ -7,7 +7,7 @@ __author__ = 'ishai'
 from piston.resource import Resource
 from api.handlers import *
 
-OPEN_MODELS = [UserExtension,UserLog,UserMessage,Experience]
+OPEN_MODELS = [UserLog,UserMessage]
 
 
 def generic_handler(model_param):

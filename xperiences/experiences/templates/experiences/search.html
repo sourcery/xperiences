@@ -1,0 +1,109 @@
+<!-- THIS IS THE HOME PAGE INDEX.HTML SAVED IN THE EXPERIENCES APP -->
+{% extends "base.html" %}
+{% load x_tags %}
+{% block extra_head %}
+    <script type='text/javascript' src='http://www.iplocationtools.com/iplocationtools.js?key={{ IP_GEOLOCATOR_API_KEY }}' ></script>
+    <script type='text/javascript' src='/static/jq.templates.js' ></script>
+    <script type='text/javascript' src='/static/maps.js'></script>
+
+    <script type='text/javascript' >
+    $(document).ready(function()
+    {
+        var query_params = read_query_params();
+        $('#search_field').val(query_params['keywords'] || '');
+        if(query_params['lat'] && query_params['lng'])
+            get_experiences(query_params);
+        else
+        {
+            user_position(function(loc)
+            {
+                for(var key in loc)
+                    query_params[key] = loc[key];
+                $('#lat_field').val(loc.lat);
+                $('#lng_field').val(loc.lng);
+                get_experiences(query_params);
+            },function()
+            {
+                get_experiences(query_params);
+            });
+        }
+    });
+
+    function get_experiences(params)
+    {
+        params = params || {};
+        {% if category %}
+            params['category'] = '{{ category }}';
+        {% endif %}
+
+        $.get('/api/experiences/json',params,function(data)
+        {
+            $('#experience_item_template').tmpl(data).appendTo('ul.image-gallery');
+        });
+    }
+
+    function read_query_params()
+    {
+        var querystr;
+        var parts = window.location.href.split('?');
+        if( parts.length != 2)
+            querystr = '';
+        else
+        {
+            var q_set_split = parts[1].split('#');
+            querystr = q_set_split[0];
+        }
+        parts = decodeURIComponent(querystr).split('&');
+        var query_params = {};
+        for( var i =0; i<parts.length; i++)
+        {
+            query_params[parts[i].split('=')[0]] = parts[i].split('=')[1];
+        }
+        return query_params;
+    }
+
+    </script>
+{% endblock %}
+
+
+
+    {% block wrapper %}
+        <!--<h1>hits: {{ hits }}</h1>-->
+        {% block content %}
+            <form method='get'>
+                <input id='search_field' type='text' name='keywords' value='' />
+                <input type='hidden' name='lat' id='lat_field' />
+                <input type='hidden' name='lng' id='lng_field' />
+                <input type='submit' value='Search' />
+            </form>
+
+            <div class="image-grid">
+                <ul class="image-gallery">
+                </ul>
+            </div><!-- end image-grid div -->
+        {% endblock %}<!-- end content block -->
+    {% endblock %}<!-- end wrapper block
+
+
+    {% block hidden_templates %}
+    <script type='text/x_jquery_tempaltes' id='experience_item_template'>
+                    <li id="#" class="listing-item">
+                        <a class="#" title=" {% t_var title %}" href="{% t_url experience_profile slug_id %}">
+                            <img width="310" height="207" alt="{% t_var title %}" {% t_if photo1 %}src="{% t_var photo1.url %}"{% t_endif %}>
+                        </a>
+                        <div id="thumb-details">
+                            <p class="listing-title">
+                                <a title="{% t_var title %}" href="{% t_url experience_profile slug_id %}"> {% t_var title %} </a>
+                            </p>
+                            <p class="listing-merchant">
+                                <a title="{% t_var merchant.name %}" href=""> {% t_var merchant.name %}, {% t_var merchant.city %} {% t_var merchant.state %}</a>
+                            </p>
+                            <p class="listing-price">
+                                <span class="currency-symbol">$</span>
+                                {% t_var price %}
+                                <span class="currency-code"></span>
+                            </p>
+                        </div>
+                    </li>
+    </script>
+   {% endblock %}

@@ -140,20 +140,37 @@ $(document).ready(function()
 
 function user_position(success,error)
 {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(loc)
-        {
-            success({ lat: loc.coords.latitude, lng:loc.coords.longitude });
-        }, error);
-    } else {
+	var fallbacked = false;
+	function fallback()
+	{
+		// get from ip
+		if(fallbacked)
+			return;
+		fallbacked = true;
         if(window.ip2location_latitude && window.ip2location_longitude)
         {
             var lat = ip2location_latitude();
             var lng = ip2location_longitude();
             success({ lat:Number(lat), lng: Number(lng)});
         }
-        //"http://www.geoplugin.net/json.gp?jsoncallback=?"
         error('not supported');
+	}
+	// if have HTML5
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(loc)
+        {	
+			// no need for fallbacks
+			fallbacked = true;
+            success({ lat: loc.coords.latitude, lng:loc.coords.longitude });
+        },function(error)
+		{
+			fallback();
+		},{timeout:15000});
+		// our own timeout
+		setTimeout(fallback, 5000);
+    } else {
+		// no HTML5
+		fallback();
     }
 }
 
