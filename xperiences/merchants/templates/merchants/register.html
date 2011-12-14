@@ -1,43 +1,92 @@
 {% extends 'base.html' %}
 {% block extra_head %}
-    {{ form.media }}
+{{ form.media }}
 {% endblock %}
 {% block content %}
-<h2>{{ status }}</h2>    
-<form id="form" name="form" method="post" action="#">
-    <p>Name {{ form.name }} </p>
-    <p>Email {{ user.email }} <!--input class="space_common" type="text" onfocus="if(this.value=='Email')this.value='';" value="Email" name="email"--></p>
-    <!--p>username  <input class="space_common" type="text" onfocus="if(this.value=='username')this.value='';" value="username" name="username"></p-->
-    {{ form.xp_location }}
-    <address><p>Address  {{ form.address }}</p>
-        <!--p>City  <input class="space_common" type="text" name="city" ></p>
-        <p>State  
-            <select name="state">
-                <option>AL</option>
-                <option>BM</option>
-                <option>CA</option>
-                <option>PA</option>
-                <option>NY</option>
-                <option>NH</option>
-                <option>MA</option>
-            </select>
-        </p>
-        <p>Zip-code  <input class="space_common" type="text" name="zipcode"></p>
-        <p>Country  
-            <select name="country">
-                <option>United States</option>
-                <!--<option>BM</option>
-                <option>CA</option>
-                <option>PA</option>
-                <option>NY</option>
-                <option>NH</option>
-                <option>MA</option>>
-            </select>
-        </p-->
-    </address>
-    <p>Phone number  {{ form.phone_number }}</p>
-    {{ form.description }}
-    <input class="button" type="submit" value="Save">
-</form>
+<div class="command-bar-container">
+	<!--<div class="command-bar">
+		This can be hidden if not in use
+	</div>-->
+</div>
+<div class="two-col-right">
+</div>
+<div class="two-col-left">
+	<h1>{{ status }}</h1>
+	<form id="form" name="form" method="post" action="#">
+		<fieldset><!-- most of the information below should be pre-filled from Facebook Connect -->
+			<h3>Contact information</h3>
+			<label>Name</label>
+			<div class="input-medium">
+				{{ form.name }}
+			</div>
+			<label>Email</label>
+			<div class="input-medium">
+				{{ user.email }}
+			</div>
+			<label>Phone number</label>
+			<div class="input-medium">
+				{{ form.phone-number}}
+			</div>
+			{{ form.xp_location }}
+			<address><!-- html 5 semantic markup -->
+				<label>Address</label>
+				{{ form.address }}
+				<!--               <label>Address</label>
+				<input type="text" name="address" />
+				<div class="row">
+					<div class="column">
+						<label>City</label>
+						<input class="medium" type="text" name="city">
+					</div>
+					<div class="column">
+						<label>State</label>
+						<select name="state">
+							<option>AL</option>
+							<option>BM</option>
+							<option>CA</option>
+							<option>PA</option>
+							<option>NY</option>
+							<option>NH</option>
+							<option>MA</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="column">
+						<label>Zipcode</label>
+						<input class="short" type="text" name="zipcode">
+					</div>
+					}}     <div class="column">
+						<label>Country  <!-- eveyrthing is going to be in the U.S. for now--> </label>
+						<select class="short" name="country">
+							<option>United States</option>
+						</select>
+					</div>
+				</div>
+			</address> Not sure how the address field looks-->
+		</fieldset>
 
+		<fieldset>
+			<h3>Tell us about yourself</h3>
+			<p class="help-text">Tell us about yourself, how long have you been doing this, what sets you apart... anything that helps tell your story</p>
+			<!--                             <textarea class="tall" class="description" required="required" name="merchant_app_description"></textarea> -->
+			<div class="input-tall description">
+				{{ form.description }}
+			</div>
+		</fieldset>
+
+		<fieldset>
+			<h3>What are you offering?</h3>
+			<p class="help-text">Tell us about your services, what makes your work appealing and unique to your customers</p>
+			<textarea class="tall description" required="required" name="offering_app_description"></textarea>
+		</fieldset>
+
+		<fieldset>
+			<h3>Who are your customers?</h3>
+			<p class="help-text">Describe your target customers (age, charateristics, lifestyle, etc.)</p>
+			<textarea class="tall description" required="required" name="target_customers_app_description"></textarea>
+		</fieldset>
+		<input type="submit" class="margin-top-30" value="View listing">
+	</form>
+</div>
 {% endblock %}
