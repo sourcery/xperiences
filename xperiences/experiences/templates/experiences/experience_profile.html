@@ -2,7 +2,7 @@
 {% load thumbnail %}
 {% block title %}{{ experience.title }}{% endblock %}
 {% block extra_head %}
-    <script type='text/javascript' src='/static/jq.templates.js' ></script>
+<script type='text/javascript' src='/static/jq.templates.js' ></script>
 <script type='text/javascript' src='https://maps-api-ssl.google.com/maps/api/js?v=3&sensor=false&language=he&libraries=places' ></script>
 <script type='text/javascript' src='/static/maps.js'></script>
 
@@ -22,7 +22,7 @@
 			<div id="action-bar" class="panel">
 				<div class="price">
 					${{ experience.price }}<a href="#"></a><!-- the href is for when we will quote in different currencies... thinking far ahead here :-) --> 
-					<span class="unit">per session</span>
+					<span class="unit">per session</span><!-- this per session will have ot be replaced by the unit type -->
 				</div>
 				<div class="section">
 					<span class="label">When?</span>

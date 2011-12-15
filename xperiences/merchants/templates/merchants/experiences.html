@@ -34,14 +34,54 @@
     </script>
 {% endblock %}
 
-{% block wrapper %}
-    {% block content %}
-        <div class="image-grid">
-            <ul class="image-gallery">
-            </ul>
-        </div>
-    {% endblock %}
+{% block content %}
+    <div class="main-content">
+            <div class="command-bar-container">
+                <div class="command-bar">
+                    <ul>
+                        <li><a href="add_experience.html">Add new listing</a></li>
+                        <li><a href="#">View all your listings</a></li>
+                        <li><a href="inbox.html">Inbox</a></li>
+                        <li><a href="account.html">Account</a></li>
+                    </ul>			
+                </div>
+            </div>
+            <div class="listings-container">
+                <ul class="listings">
+                    
+                    <script type='text/x_jquery_tempaltes' id='experience_item_template'>
+                        <li id="#" class="listing panel">
+                            <h4>
+                                <a href="/experiences/{% t_var slug_id %}">{% t_var title %}</a>
+                            </h4>
+                            <a class="listing-image" title=" {% t_var title %}" href="/experiences/{% t_var slug_id %}">
+                                <img width="150" height="70" alt="{% t_var title %}" {% t_if photo1 %} src="{% t_var photo1.url %}"{% t_endif %}>
+                            </a>
+                            <div class="listing-item-short">
+                                <div>Money earned</div>
+                                <div class="listing-value">$100</div>/* I don't know how to pull this from experience...*/
+                            </div>
+                            <div class="listing-item-short">
+                                <div>Requests</div>
+                                <div class="listing-value">10</div>/* I don't know how to pull this from experience...it's the number of people who bought it...*/
+                            </div>
+                            <div class="listing-item-short">
+                                <div>Page views</div>
+                                <div class="listing-value">200</div>/* again not sure how to hook this up to the model */
+                            </div>
+                            <div class="listing-actions">
+                                <button><a href="{% t_url merchant_edit_experience slug_id %}">edit</a></button>
+                                <button><a href="/experiences/{% t_var slug_id %}">view</a></button>
+                                Active: <input type=checkbox value='{% t_var is_active %}' {% t_if is_active %}checked='checked'{% t_endif %} onchange='update_status(this,"{% t_var id %}");' />
+                                
+                            </div>
+                        </li>
+                    </script>
+                </ul>
+            </div><!-- closing listings-container -->
+    </div><!-- closing main-content -->
 {% endblock %}
+
 
 
     {% block hidden_templates %}
