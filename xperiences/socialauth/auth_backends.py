@@ -225,17 +225,19 @@ class TwitterBackend:
         
 class FacebookBackend:
     def authenticate(self, request, user=None):
-        cookie = None
-        try:
-            cookie = facebook.get_user_from_cookie(request.COOKIES, FACEBOOK_APP_ID, FACEBOOK_SECRET_KEY)
-        except:
-            traceback.print_exc()
-        if cookie:
-            uid = cookie['uid']
-            access_token = cookie['access_token']
-            fb_user = None
-            fb_data = None
-        else:
+        uid = request.GET.get('userID')
+        access_token = request.GET.get('accessToken')
+        fb_data = None
+        if not uid or not access_token:
+            try:
+                cookie = facebook_api.get_user_from_cookie(request.COOKIES, FACEBOOK_APP_ID, FACEBOOK_SECRET_KEY)
+            except:
+                traceback.print_exc()
+            if cookie:
+                uid = cookie['uid']
+                access_token = cookie['access_token']
+                fb_user = None
+        if not uid or not access_token:
             print 'asking for access token'
             # if cookie does not exist
             # assume logging in normal way

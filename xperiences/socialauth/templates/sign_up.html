@@ -11,7 +11,7 @@
         });
         function facebook_onlogin()
         {
-            FB.login(on_complete, {'perms' : '{{ FACEBOOK_PERMISSIONS }}' });
+            FB.login(on_complete, {'scope' : '{{ FACEBOOK_PERMISSIONS }}' });
         }
 
         function on_complete(rsp)
@@ -20,6 +20,9 @@
             var qry = '';
             for(var k in rsp)
             {
+				if(typeof(rsp[k]) == 'object')
+						for (var ik in rsp[k])
+							qry += encodeURIComponent(ik) + '=' + encodeURIComponent(rsp[k][ik])+ '&';
                 qry += encodeURIComponent(k) + '=' + encodeURIComponent(rsp[k])+ '&';
             }
             window.location.href = '/accounts/facebook_login/done/?' + qry;
