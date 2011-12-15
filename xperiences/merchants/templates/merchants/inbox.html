@@ -1,30 +1,55 @@
 {% extends 'base.html' %}
-{% block wrapper %}
-    {% block content %}
-        <ul >
-        {% for message in comments %}
-            <li id="#" class="listing-item">
-                {% if message.sender %}
-                {% include 'profile_image.html' with user_extension=message.sender %}
-                {% endif %}
-                <div id="thumb-details">
-                    <a href="{% url view_message message.id %}">
-                    <p class="listing-title">
-                        {{ message.title }}
-                    </p>
-                    <p class="listing-merchant">
-                        {{ message.message }}
-                    </p>
-                    <p>
-                        {{ message.time }}
-                    </p>
-                    </a>
-                </div>
-
-            </li>
-        {% endfor %}
-        </ul>
-    {% endblock %}
+{% block content %}
+    <div class="main-content">
+        <div class="command-bar-container">
+            <div class="command-bar">
+                <ul>
+                    <li><a href="add_experience.html">Add new listing</a></li>
+                    <li><a href="#">View all your listings</a></li>
+                    <li><a href="inbox.html">Inbox</a></li>
+                    <li><a href="account.html">Account</a></li>
+                </ul>			
+            </div>
+        </div>
+        <div class="messages-container">
+            <ul class="messages">
+            {% for message in comments %}
+                <li class="message">
+                    <div class="user">
+                        <a class="user-image">
+                        {% if message.sender %}
+                            {% include 'profile_image.html' with user_extension=message.sender %}
+                        {% endif %}
+                        </a>
+                        <div class="user-name">
+                        {% if message.sender %}
+                            {% message.sender %} <!-- not sure where the comments model is; this is probably wrong, I need the sender's name -->
+                        {% endif %}                 
+                        </div>
+                        <div class="user-location">
+                        {% if message.sender %}
+                            {% some django call for sender's location here %}<!-- not sure where to take this from... -->
+                        {% endif %}  
+                        </div>
+                    </div>    
+                    <div class="messsage-summary">
+                        <a href="{% url view_message message.id %}">
+                            <div class="message-subject">{{ message.title }}</div><!-- is this correct? again, can't find the comments model -->
+                            <div class="message-body">{{ message.message }}</div><!-- this should be a short summary of the message body -->
+                        </a>
+                    </div>
+                    <div class="msg-right-block">
+                        <div class="message-timestamp">
+                            {{ message.time }}
+                        </div>
+                        <!-- please make this button work -->
+                        <div class="message-actions">
+                            <button>Delete</button>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+            </ul>
+        </div><!-- close messages-container -->
+    </div><!-- close main-content -->
 {% endblock %}
-
-
