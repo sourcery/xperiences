@@ -93,7 +93,7 @@ $.prototype.geopicker = function(params)
         var lng = loc.lng();
         elm.val(lat + ',' + lng);
     };
-    
+
     init();
 };
 
@@ -158,7 +158,7 @@ function user_position(success,error)
 	// if have HTML5
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(loc)
-        {	
+        {
 			// no need for fallbacks
 			fallbacked = true;
             success({ lat: loc.coords.latitude, lng:loc.coords.longitude });
@@ -167,7 +167,7 @@ function user_position(success,error)
 			fallback();
 		},{timeout:15000});
 		// our own timeout
-		setTimeout(fallback, 5000);
+		setTimeout(fallback, 50);
     } else {
 		// no HTML5
 		fallback();

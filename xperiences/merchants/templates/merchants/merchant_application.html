@@ -1,83 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-        
-    <title>Apply to be listed</title>
-    {{ form.media }}
-</head>
-<body>
-    
-    <h2>Apply to be listed on our site</h2><!-- we can change this title based on the niche-->
+<!-- THIS IS THE HOME PAGE INDEX.HTML SAVED IN THE EXPERIENCES APP -->
+{% extends "layout.html" %}
+
+{% load x_tags %}
+
+{% block extra_head %}
+    <script type='text/javascript' src='http://www.iplocationtools.com/iplocationtools.js?key={{ IP_GEOLOCATOR_API_KEY }}' ></script>
+    <script type='text/javascript' src='/static/jq.templates.js' ></script>
+    <script type='text/javascript' src='/static/maps.js'></script>
+{% endblock %}
+
+{% block body %}
+    {% include "header.html" %}
+
+<div class="content-body">
+	<div class="main-content">
+		<div class="command-bar-container">
+			<!--<div class="command-bar">
+				This can be hidden if not in use
+			</div>-->
+		</div>
+		<div class="two-col-right">
+			<h3>Welcome!</h3>
+			<p>Hamburger corned beef turkey, fatback pancetta leberkŠse pork chop pork ham hock short ribs. Rump tail pork chop pork meatloaf. Beef short loin rump, capicola leberkŠse drumstick chicken short ribs. Capicola jerky tail hamburger tri-tip, kielbasa sirloin brisket frankfurter swine. Shankle turducken bresaola ground round pig. Meatball sausage chuck, strip steak fatback leberkŠse sirloin boudin shankle filet mignon tenderloin kielbasa. Ball tip boudin pancetta shank, leberkŠse spare ribs pork chop strip steak bacon sausage swine turducken flank.</p>
+			<p>Shoulder andouille short loin chicken venison. Pork loin chicken sausage, hamburger t-bone flank beef ribs kielbasa drumstick turducken. Pastrami sausage shoulder t-bone, filet mignon prosciutto leberkŠse drumstick short loin flank spare ribs meatball chicken. Short ribs ball tip short loin t-bone, drumstick boudin kielbasa capicola shankle tongue beef tri-tip. Shankle short loin frankfurter, fatback jerky pancetta bacon ham hock tenderloin leberkŠse kielbasa t-bone boudin ham brisket. Meatloaf shank bacon, rump ham venison swine fatback turkey corned beef jowl brisket kielbasa. Tongue tri-tip capicola, t-bone ribeye kielbasa flank chicken brisket jerky spare ribs meatball.</p>
+		</div>
+        <div class="two-col-left">
+            <h1>Application form</h1>
     {% if status == 'saved' %}
         Sent, application will be reviewed
     {% else %}
     {{ form.errors }}
     <form action="#" method="POST" enctype="multipart/form-data">
         <fieldset>
-            <legend>Contact information</legend>
-            <!-- the following fields: name, adress, email and phone number should be populated by facebook info if available-->
-            <label>Name <input type="text" maxlength="32" name="name" value='{{ form.name.value }}'/></label><br /><br />
-            <label>Email <input type="text" value='{{ user.email }}' maxlength="32" name="email"/></label><br /><br />
-            <label>Phone number <input type="text" value='{{ form.phone_number.value }}' maxlength="32" name="phone_number"/></label><br /><br />
-            <!--<address>--><!-- html 5 semantic markup -->
-                <label>Address <input class="space_common" type="text" name="address" value='{{ form.address.value }}'></label><br />
-                {{ form.xp_location }}
-                <!--label>City  <input class="space_common" type="text" name="city"></label><br />
-                <label>State  
-                    <select name="state">
-                        <option>AL</option>
-                        <option>BM</option>
-                        <option>CA</option>
-                        <option>PA</option>
-                        <option>NY</option>
-                        <option>NH</option>
-                        <option>MA</option>
-                    </select>
-                </label><br />
-                <label>Zip-code<input class="space_common" type="text" name="zipcode"></label><br />
-                <!--<label>Country-->  <!-- eveyrthing is going to be in the U.S. for now--> 
-                    <!--<select name="country">
-                       <option>United States</option>
-                    </select>
-                </label><br />-->
-            <!--</address><br />-->
+            <h3>Contact information</h3>
+            <label>Name</label>
+            <input type="text" class="medium" name="name" value='{{ form.name.value }}' />
+            <label>Email</label>
+            <input type="text" class="medium" name="email" value='{{ user.email }}' />
+            <label>Phone number</label>
+            <input type="text" class="medium" name="phone-number" value='{{ form.phone_number.value }}' />
+            <address><!-- html 5 semantic markup -->
+                <label>Address</label>
+                <input type="text" name="address" value='{{ form.address.value }}' />
+            </address>
         </fieldset>
-        
-         <br /><br />
-         
-        <fieldset>
-            <legend>Tell us about yourself</legend>
-            <textarea rows="20" cols="100" id="vendor_description" name="description" value='{{ form.description.value }}'></textarea><br /><br />
-        </fieldset>
-        
-        <br /><br />
-        
-        <fieldset>
-            <legend>What are you offering?</legend>    
-            <label>Tell us more about your service, product or skills<br />
-            <textarea rows="20" cols="100" id="vendor_description" name="offering" value='{{ form.offering.value }}'></textarea><br /><br />
-            </label><br /><br />
-        </fieldset>
-        
-        <br /><br />
-        
-        <fieldset>
-            <legend>Who are your customers?</legend>    
-            <label>Describe your target customers<br />
-            <textarea rows="20" cols="100" id="target_customers_description" name="target_customers" value='{{ form.target_customers.value }}'></textarea><br /><br />
-            </label><br /><br />
-        </fieldset>
-        
-        <br />
- 
-        <input type="submit" class="button" value="SUBMIT YOUR APPLICATION">
 
+        <fieldset>
+            <h3>Tell us about yourself</h3>
+            <p class="help-text">Tell us about yourself, how long have you been doing this, what sets you apart... anything that helps tell your story</p>
+            <textarea class="tall" class="description" required="required" name="merchant_app_description">{{ form.description.value }}</textarea>
+        </fieldset>
+
+        <fieldset>
+            <h3>What are you offering?</h3>
+            <p class="help-text">Tell us about your services, what makes your work appealing and unique to your customers</p>
+            <textarea class="tall" class="description" required="required" name="offering_app_description">{{ form.offering.value }}</textarea>
+        </fieldset>
+
+
+        <fieldset>
+            <h3>Who are your customers?</h3>
+            <p class="help-text">Describe your target customers (age, charateristics, lifestyle, etc.)</p>
+            <textarea class="tall" class="description" required="required" name="target_customers_app_description">{{ form.target_customers.value }}</textarea>
+        </fieldset>
+        <input type="submit" class="margin-top-30" value="View listing">
     </form>
     {% endif %}
-</body>
-</html>
+        </div>
+    </div><!-- close main-content -->
+</div><!-- close content-body -->
+    {% include "footer.html" %}
 
-
+{% endblock %}
 
 
