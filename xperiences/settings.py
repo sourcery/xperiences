@@ -4,6 +4,7 @@ CODE_ROOT = os.path.dirname(os.path.realpath(__file__))
 
 PRODUCTION = 'MONGOLAB_URI' in os.environ
 STAGING = os.environ.get('IS_STAGING') == 'True'
+KIDS = os.environ.get('KIDS') == 'True'
 if STAGING:
     PRODUCTION = False
 
@@ -14,6 +15,10 @@ if STAGING:
 
 if PRODUCTION:
     BASE_URL = 'http://xperiences.herokuapp.com/'
+
+if KIDS:
+    BASE_URL = 'http://kids-xperiences.herokuapp.com/'
+    STAGING = True
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -239,6 +244,9 @@ if not PRODUCTION and not STAGING:
     FACEBOOK_API_KEY = '317196991641774'
     FACEBOOK_SECRET_KEY = '80f852f3296fc76863fd9eaf44b9c7a0'
 
+if KIDS:
+    FACEBOOK_APP_ID = FACEBOOK_API_KEY = '264002770325375'
+    FACEBOOK_SECRET_KEY = '608c99b02c5c1185ec466b42e4602d8c'
 
 EMAIL_HOST_USER = 'peeri.empeeric@gmail.com'
 
