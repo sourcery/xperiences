@@ -1,6 +1,6 @@
 # Django settings for Experience project.
 import os
-CODE_ROOT = os.path.dirname(__file__)
+CODE_ROOT = os.path.dirname(os.path.realpath(__file__))
 
 PRODUCTION = 'MONGOLAB_URI' in os.environ
 STAGING = os.environ.get('IS_STAGING') == 'True'
@@ -64,7 +64,7 @@ TIME_ZONE = 'America/Chicago'
 LANGUAGE_CODE = 'en-us'
 
 
-SITE_ID = '4eba73fe96cf4c019c00001d' if PRODUCTION or STAGING else '4ed7858b76a6f6052c00001d'
+SITE_ID = '4eba73fe96cf4c019c00001d'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 

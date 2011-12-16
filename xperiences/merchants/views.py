@@ -1,11 +1,9 @@
 from django.contrib.auth.models import User
 from backend import utils
-from backend.decorators import merchant_required, user_extension_required
+from backend.decorators import merchant_required
 from backend.models import UserExtension, UserMessage
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-#from experiences.models import Experience
-#from merchants.models import Merchant
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from experiences.forms import ExperienceForm
@@ -19,7 +17,7 @@ def merchant_profile(request, username):
     return render_to_response(template_name, {'merchant': merchant}, context_instance=RequestContext(request))
 
 
-@merchant_required()
+@login_required()
 def register(request):
     status = ''
     template_name = 'merchants/merchant_application.html'
