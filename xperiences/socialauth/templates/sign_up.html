@@ -11,7 +11,7 @@
         });
         function facebook_onlogin()
         {
-            FB.login(on_complete, {'scope' : '{{ FACEBOOK_PERMISSIONS }}' });
+            FB.login(on_complete, {'scope' : '{{ settings.FACEBOOK_PERMISSIONS }}' });
         }
 
         function on_complete(rsp)
@@ -52,7 +52,7 @@
                 $('#register_form').submit();
         }
     </script>
-    
+
 {% endblock %}
 {% block message_bar %}
     <div id='msg_span' class='error_span' style='background-color: #ed0000; width:100%;
@@ -65,7 +65,7 @@
         your email and password are not in are database
 {% endif %}
 {% if reason == 'already_exists' %}
-    there is already an account with '{{ email }}' as email 
+    there is already an account with '{{ email }}' as email
 {% endif %}
     </div>
 {% endblock %}
