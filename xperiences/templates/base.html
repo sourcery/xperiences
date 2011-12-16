@@ -1,107 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8" />
-<link rel="stylesheet" href="{{ MEDIA_URL }}css/reset.css" type="text/css" media="screen, print" />
-<link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css" media="screen, print" />
-<!--script src="{{ MEDIA_URL }}js/lib/jquery-1.7.min.js"></script-->
-<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
-<title>{% block title %}Book meals with people from around the world. Learn new dishes and share with your friends. Order homemade takeout.{% endblock %}</title>
-<script src="{{ MEDIA_URL }}js/lib/main.js"></script>
-<!--[if !IE 7]>
-	<style type="text/css">
-		#wrap {display:table;height:100%}
-	</style>
-<![endif]-->
-<!-- Google Analytics -->
-<script type="text/javascript">
+{% extends "layout.html" %}
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-27207596-1']);
-  _gaq.push(['_setDomainName', '.neighborlymeals.com']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-  $(document).ready(function()
-  {
-      image_autoscale($('.image-wrapper img'));
-  });
-
-</script>
-{% block extra_head %}{% endblock %}
-</head>
-
-<body>
-    {% block header %}
-    <header id="header">
-        <div id="top-banner-bg">
-            <div id="top-banner">
-                <ul>
-                    <li>
-                        <!--https://my_dev_xpr_uploads.s3.amazonaws.com/photos/logo.png-->
-                        <a href="/" id="logo">
-                            <img width="312" height="59" alt="neighborly-meals" src="{{ MEDIA_URL }}images/logo.png">
-                        </a>
-                    </li>
-                    <li><h1>Experience Different Cultures through Food and Family</h1>
-                    <h3>Book meals with people from around the world. Get home cooked food delivered to your door</h3></li>
-                </ul>
-                <div class="clear"></div>
-            </div>
-        </div>
-        <div id="main-nav-bg">
-            <div id="main-nav">
-                <ul>
-                    {% for cat in categories %}
-                        <li {% if category.0 == cat %}id="selected"{% endif %}>
-                            <a href="{% url experiences.views.experience_by_category category=cat.0%}">{{ cat.0 }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div><!-- close main-nav -->
-        </div>
-    </header>
-    {% endblock %}<!-- close header -->
-
-    <div id="wrapper">
-        <div id="content">{% block content %}This is the body for now{% endblock %}</div>
-    </div>
-
-    <!-- footer -->
-    {% block footer %}
-    <footer>
-        <div>
-            <p id="copy">&copy; 2011 Neighborly Meals</p>
-            <ul class="footer-nav">
-                <li>
-                    <a title="About" href="#">About</a>
-                </li>
-                <!--<li>
-                    <a title="Careers" href="#">Careers</a>
-                </li>
-                <li>
-                    <a title="Press" href="#">Press</a>
-                </li>
-                <li>
-                    <a title="Terms" href="#">Terms</a>
-                </li>-->
-                <li>
-                    <a title="Contact" href="#">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </footer>{% endblock %}
-    <div style='display:none;'>
-        {% block hidden_templates %}
-        {% endblock %}
-    </div>
-</body>
-</html>
-
-
-
+{% block body %}
+	{% include "header.html" %}
+	<div class="content-body">
+		<!-- <div class="main-content">-->
+			{% block content %}{% endblock %}
+			<!--		</div>-->
+	</div>
+	{% include "footer.html" %}
+{% endblock %}

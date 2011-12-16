@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="{{ MEDIA_URL }}js/textwrap.plugin.js"></script>
+	<script src="{{ MEDIA_URL }}js/main.js"></script>
+	<script type="text/javascript" src="http://use.typekit.com/qzv2oav.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			image_autoscale($('.image-wrapper img'));
+		});
+	</script>
+	<link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css">
+	<title>{% block title %}{% endblock %}</title>    
+	{% block extra_head %}{% endblock %}
+</head>
+<body>
+	{% block body %}
+
+	{% endblock %}
+</body>
+</html>

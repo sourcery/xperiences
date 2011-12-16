@@ -70,9 +70,16 @@
     </div>
 {% endblock %}
 {% block content %}
+	<div id="fb-root"></div>
+
+	<div class="command-bar-container"></div>
+	<div id="login" class="panel">
+		Please login using facebook!
+		<a href="javascript:void(0);" onclick='facebook_onlogin();' class="fb-connect">Login <span class="text-80">with</span> Facebook</a>
+	</div>
+
     <div id="content" class="clearfix signup">
 
-        <a href="javascript:void(0);" onclick='facebook_onlogin();' class="fb-connect" style='font-size:150%;'>Login via Facebook</a>
         <div class="sign-in floatLeft" style='display:none;'>
             <form method="post" action="/accounts/login/">
                 <h3 class="form-title">Sign In</h3>
