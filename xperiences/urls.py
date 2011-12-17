@@ -21,6 +21,9 @@ urlpatterns = patterns('',
     (r'^super_admin/', include(admin.site.urls)),
     (r'^admin/', include(lite_admin.urls)),
     (r'^about', direct_to_template, {'template': 'about.html'}),
+    (r'^jobs', direct_to_template, {'template': 'jobs.html'}),
+    (r'^terms', direct_to_template, {'template': 'terms.html'}),
+    (r'^share', direct_to_template, {'template': 'share.html'}),
     (r'^$', include('experiences.urls')),
 
 ) + static(settings.MEDIA_URL, document_root=settings.STATIC_DOC_ROOT)
