@@ -195,7 +195,7 @@ a:hover {
 
 header {
 	width: 100%;
-	-moz-box-shadow: 0px 0px 1px 1px #999;
+	-moz-box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.35);
 	background: #241901;
 }
 
@@ -230,6 +230,7 @@ header .header-wrap {
 	background: #a0d8ef;
 	top: 7px;
 	position: relative;
+	box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.35);
 }
 
 #logo-learn {
@@ -445,27 +446,27 @@ input:focus, textarea:focus {
 	font-size: 90%;
 }
 
-input.long {
+input.long, .input-long input {
 	width: 500px;
 }
 
-input.medium {
+input.medium, .input-medium input {
 	width: 300px;
 }
 
-input.short {
+input.short, .input-short input {
 	width: 200px;
 }
 
-input.shorter {
+input.shorter, .input-shorter input {
 	width: 120px;
 }
 
-input.tiny {
+input.tiny, .input-tiny input {
 	width: 80px;
 }
 
-.tall {
+.tall, .tall textarea {
 	height: 180px;
 }
 
@@ -474,10 +475,10 @@ input.tiny {
  */
 
 #search-box {
-	background: #df595f;
-	color: white;
+/*	background: #df595f; */
+/*	color: white;
 	padding: 12px 20px 12px;
-	border-radius: 2px;
+	border-radius: 2px;*/
 	width: 650px;
 	margin: 40px auto 50px;
 	text-align: left;
