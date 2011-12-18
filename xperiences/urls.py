@@ -24,6 +24,8 @@ urlpatterns = patterns('',
     (r'^jobs', direct_to_template, {'template': 'jobs.html'}),
     (r'^terms', direct_to_template, {'template': 'terms.html'}),
     (r'^share', direct_to_template, {'template': 'share.html'}),
+    (r'^start', direct_to_template, {'template': 'start.html'}),
+    (r'^contact', direct_to_template, {'template': 'contact.html'}),
     (r'^$', include('experiences.urls')),
 
 ) + static(settings.MEDIA_URL, document_root=settings.STATIC_DOC_ROOT)
