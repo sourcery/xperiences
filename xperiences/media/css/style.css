@@ -1,52 +1,3 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-body {
-	line-height: 1;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
 /*
  * Document CSS
  *
@@ -60,16 +11,7 @@ html {
 
 body {
 	font-family: calluna-sans, "helvetica", "ariel", sans-serif;
-	font-size: 10pt;
 	background: url(../images/background.jpg);
-	color: #555;
-	line-height: 1.3;
-}
-
-.secondary {
-	color: #999999;
-	font-size: 10pt;
-	text-shadow: 1px 1px 1px white;
 }
 
 .content-body {
@@ -313,17 +255,6 @@ header .header-wrap {
 	font-weight: bold;
 }
 
-fieldset, .search-result, .panel {
-	border: 1px solid #E0E0E0;
-	border-radius: 2px;
-	background: white;
-	padding: 10px 10px;
-	margin-bottom: 10px;
-	text-shadow: none;
-	vertical-align: bottom;
-	-moz-transition: 1s;
-}
-
 .search-result:hover {
 	border: 1px solid #cccccc;
 	box-shadow: 0px 0px 3px #999;
@@ -367,19 +298,6 @@ fieldset label {
 	width: 40%;
 }
 
-input, textarea {
-	padding: 4px;
-	margin: 1px 1px 6px;
-	border-radius: 3px;
-	border: 1px solid #999999;
-	font: museo-sans-rounded; 
-	font-size: 13pt;
-}
-
-input[type="text"], textarea {
-	width: 500px;
-}
-
 input[type="file"] {
 	border: none;
 	box-shadow: none;
@@ -400,44 +318,6 @@ input[type="radio"], input[type="checkbox"] {
 	width: 20px;
 	height: 20px;
 	vertical-align: bottom;
-}
-
-input[type="submit"] {
-	background: #9cc500;
-	border: 1px solid #9cc500;
-
-	font-size: 12pt;
-	color: white;
-	
-	padding: 6px 30px 5px;
-	border-radius: 5px;
-	text-shadow: 1px 1px 1px #999;
-	cursor: pointer;
-	vertical-align: middle;
-}
-
-input[type="submit"]:hover {
-	box-shadow: 0px 0px 1px #666;
-	background: #aace08;
-}
-
-
-button {
-	font-size: 11pt;
-	padding: 4px 20px 4px;
-	box-shadow: 0px 0px 2px #7a7a7a;
-	background: #0a9aaf;
-	border: none;
-	color: white;
-	border-radius: 3px;
-	font-family: museo-sans-rounded;
-	cursor: pointer;
-}
-
-input:focus, textarea:focus {
-	border: 2px solid #0a9aaf;
-	margin: 1px 0px 4px;
-	box-shadow: none;
 }
 
 .help-text {
@@ -475,18 +355,11 @@ input.tiny, .input-tiny input {
  */
 
 #search-box {
-/*	background: #df595f; */
-/*	color: white;
-	padding: 12px 20px 12px;
-	border-radius: 2px;*/
-	width: 650px;
 	margin: 40px auto 50px;
 	text-align: left;
-	text-shadow: none;
 	top: 50px;
 	left: 50%;
 	margin-left: -325px;
-	position: absolute;
 }
 
 .has-shadow {
@@ -501,26 +374,7 @@ input.tiny, .input-tiny input {
 }
 
 .search-box-form {
-	padding: 10px 0 0;
 	font-size: 120%;
-}
-
-#search-box input[type="submit"] {
-	float: right;
-}
-
-#search-box input[type="text"] {
-	margin-left: 8px;
-	margin-right: 8px;
-	border: 1px solid white;
-}
-
-#search-left-bar {
-	background: #0a9aaf;
-	padding: 20px 20px 10px;
-	color: white;
-	text-align: left;
-	text-shadow: none;
 }
 
 #map {

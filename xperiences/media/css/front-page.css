@@ -22,6 +22,7 @@
 #front-page #search-box {
 	position: fixed;
 	top: 40px;
+	font-size: 12pt;
 }
 
 .image-grid {
