@@ -1,7 +1,7 @@
 <!-- THIS IS THE HOME PAGE INDEX.HTML SAVED IN THE EXPERIENCES APP -->
 {% extends "layout.html" %}
 
-{% load x_tags %}
+{% load x_tags %} <!-- what are x_tags? -->
 
 {% block extra_head %}
     <script type='text/javascript' src='http://www.iplocationtools.com/iplocationtools.js?key={{ IP_GEOLOCATOR_API_KEY }}' ></script>
@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block body %}
-    {% include "header.html" %}
+    {% include "header.html" %} <!-- why extends base.html isn't working? -->
 
 <div class="content-body">
 	<div class="main-content">
@@ -19,20 +19,20 @@
 				This can be hidden if not in use
 			</div>-->
 		</div>
-		<div class="two-col-right">
+		<!--<div class="two-col-right">
 			<h3>Welcome!</h3>
 			<p>Hamburger corned beef turkey, fatback pancetta leberkŠse pork chop pork ham hock short ribs. Rump tail pork chop pork meatloaf. Beef short loin rump, capicola leberkŠse drumstick chicken short ribs. Capicola jerky tail hamburger tri-tip, kielbasa sirloin brisket frankfurter swine. Shankle turducken bresaola ground round pig. Meatball sausage chuck, strip steak fatback leberkŠse sirloin boudin shankle filet mignon tenderloin kielbasa. Ball tip boudin pancetta shank, leberkŠse spare ribs pork chop strip steak bacon sausage swine turducken flank.</p>
 			<p>Shoulder andouille short loin chicken venison. Pork loin chicken sausage, hamburger t-bone flank beef ribs kielbasa drumstick turducken. Pastrami sausage shoulder t-bone, filet mignon prosciutto leberkŠse drumstick short loin flank spare ribs meatball chicken. Short ribs ball tip short loin t-bone, drumstick boudin kielbasa capicola shankle tongue beef tri-tip. Shankle short loin frankfurter, fatback jerky pancetta bacon ham hock tenderloin leberkŠse kielbasa t-bone boudin ham brisket. Meatloaf shank bacon, rump ham venison swine fatback turkey corned beef jowl brisket kielbasa. Tongue tri-tip capicola, t-bone ribeye kielbasa flank chicken brisket jerky spare ribs meatball.</p>
-		</div>
+		</div>-->
         <div class="two-col-left">
-            <h1>Application form</h1>
+            <h1>Apply to be listed and start selling</h1>
     {% if status == 'saved' %}
-        Sent, application will be reviewed
+        Sent! Your application will be reviewed by our team, and we'll get back you prompotly.
     {% else %}
     {{ form.errors }}
     <form action="#" method="POST" enctype="multipart/form-data">
         <fieldset>
-            <h3>Contact information</h3>
+            <h3>Your contact information</h3>
             <label>Name</label>
             <input type="text" class="medium" name="name" value='{{ form.name.value }}' />
             <label>Email</label>
@@ -40,8 +40,37 @@
             <label>Phone number</label>
             <input type="text" class="medium" name="phone-number" value='{{ form.phone_number.value }}' />
             <address><!-- html 5 semantic markup -->
-                <label>Address</label>
+                <label>Address</label><!-- not sure if all these fields are necessary... need to undestand what form.address.value is -->
                 <input type="text" name="address" value='{{ form.address.value }}' />
+                <div class="row">
+                    <div class="column">
+                        <label>City</label>
+                        <input class="medium" type="text" name="city">
+                    </div>
+                    <div class="column">
+                        <label>State</label>
+                        <select name="state">
+                            <option>AL</option>
+                            <option>BM</option>
+                            <option>CA</option>
+                            <option>PA</option>
+                            <option>NY</option>
+                            <option>NH</option>
+                            <option>MA</option>
+                        </select>    
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <label>Zipcode</label>
+                        <input class="short" type="text" name="zipcode">
+                    </div>
+                    <div class="column">
+                        <label>Country</label>
+                        <select class="short" name="country">
+                            <option>United States</option>
+						</select>
+                    </div>
             </address>
         </fieldset>
 
@@ -63,7 +92,7 @@
             <p class="help-text">Describe your target customers (age, charateristics, lifestyle, etc.)</p>
             <textarea class="tall" class="description" required="required" name="target_customers_app_description">{{ form.target_customers.value }}</textarea>
         </fieldset>
-        <input type="submit" class="margin-top-30" value="View listing">
+        <input type="submit" class="margin-top-30" value="Send application">
     </form>
     {% endif %}
         </div>
