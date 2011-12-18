@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="main-content">
+        <div class="command-bar-container">
+            <div class="command-bar">
+                <ul>
+                    <li><a href="add_experience.html">Add new listing</a></li>
+                    <li><a href="#">View all your listings</a></li>
+                    <li><a href="inbox.html">Inbox</a></li>
+                    <li><a href="account.html">Account</a></li>
+                </ul>			
+            </div>
+        </div>
+        <fieldset>
+            <h2>Your public profile </h2>
+            <div class="input-group">
+                <label class="label" for="profile-image">Profile Picture</label>
+                <div class="change-profile-image">
+                    <div class="image-wrapper">{% include 'profile_image.html' with user_extension=merchant %}</div>
+                    <input type="file" class="upload-new-profile-image" name="profile-image" size="15">
+                </div>
+            </div>
+            <hr>
+            <div class="input-group">
+                <label class="label" for="name">Your name</label>
+                <input type="text" name="name" value="{{ merchant.name }}"><a href="#">Edit</a>
+            </div>
+            <hr>
+            <div class="input-group">
+                <label class="label" for="address">Your address</label>
+                <input type="text" name="name" value="{{ merchant.address }}"><a href="#">Edit</a>
+            </div>
+            <hr>
+            <div class="input-group">
+                <label class="label" for="about">About you</label>
+                <textarea name="about" value="{{ form.description.value }}" style="overflow-x: hidden; overflow-y: hidden; height: 75px;"></textarea>
+                <a href="#">Edit</a>
+            </div>
+        </fieldset>
+        
+        <fieldset>
+            <h2>Completed earnings</h2>
+            <ul>
+                <li>
+                    <div class="listing-item-short">
+                        <div>Date</div>
+                        <div class="listing-value">27/12/2012</div>
+                    </div>
+                    <div class="listing-item-short">
+                        <div>Money earned</div>
+                        <div class="listing-value">$100</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="listing-item-short">
+                        
+                        <div class="listing-value">27/12/2012</div>
+                    </div>
+                    <div class="listing-item-short">
+                        
+                        <div class="listing-value">$100</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="listing-item-short">
+                        
+                        <div class="listing-value">27/12/2012</div>
+                    </div>
+                    <div class="listing-item-short">
+                        <div class="listing-value">$100</div>
+                    </div>
+                </li>
+            </ul>	
+        </fieldset>        
+    </div>
+{% endblock %}

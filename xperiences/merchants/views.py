@@ -53,6 +53,14 @@ def merchant_inbox(request):
     comments = UserMessage.objects.filter(to=request.merchant)
     return render_to_response('merchants/inbox.html', {'comments' : comments},context_instance=RequestContext(request))
 
+
+
+@merchant_required()
+def account(request):
+    if request.method == 'GET':
+        return render_to_response('merchants/account.html', context_instance=RequestContext(request))
+
+
 @login_required()
 def view_message(request,id):
     if request.method == 'GET':
