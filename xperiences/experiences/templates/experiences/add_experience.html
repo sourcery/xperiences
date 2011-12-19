@@ -11,10 +11,11 @@
             <label>Title {{ form.title }}</label><br /><br />
             <label>Description (tell us about your cooking, the setting, yourself... anything that helps tell your story)<br />
             {{ form.description }}</label><br /><br />
-
+            {% comment %}
             <label>Category
             {{ form.category }}
             </label><br /><br />
+            {% endcomment %}
         </fieldset>
 
         <br /><br />
@@ -35,9 +36,9 @@
 
         <fieldset>
             <legend>Location</legend>
-            {{ form.use_saved_address }}
+            {{ form.use_saved_address }} Use my address
             <address><!-- html 5 semantic markup -->
-                Address:
+                Or enter a new address for this listing:
                 {{ form.address }}
                 <br />
                 <!--label>Address <input class="space_common" type="text" name="address"></label><br />
@@ -59,7 +60,9 @@
                        <option>United States</option>
                     </select>
                 </label><br /-->
+                {% comment %}
                 {{ form.xp_location }}
+                {% endcomment %}
             </address><br />
         </fieldset>
 
@@ -68,17 +71,19 @@
         <fieldset>
             <legend>Available dates and times</legend>
             <p> Pick available dates </p>
-            From:
-            {{ form.valid_from }}
+            {{ form.date }}
             <br />
-            Until:
+            <!--Until:-->
+            {% comment %}
             {{ form.valid_until }}
+            {% endcomment %}
             <!-- how to enable them select specific dates as well as 'from' 'to'? -->
             <!-- the calendar here is just a place holder -->
 
             <!--iframe id='cv_if1' src='http://cdn.instantcal.com/cvir.html?id=cv_nav1&theme=RE&ntype=cv_datepickerm&file=http%3A%2F%2Fwww.instantcal.com%2Ftest.ics' allowTransparency='true' scrolling='no' frameborder=0 height=250 width=250></iframe-->
             <br />
             <p>Pick available times</p>
+            {{ form.time }}
             <!-- here I want to include a better time widget, perhaps a slider like in Kayak. -->
             <!--input type="radio" name="mornings" />Mornings<br />
             <input type="radio" name="evenings" />Evenings<br />
@@ -89,7 +94,8 @@
 
         <fieldset>
             <legend>Give more details to help people find you</legend>
-            <label>Tags {{ form.tags }}</label><br /><br /><!-- I need to learn how to do this... -->
+            <label>Tags (seperate by commans){{ form.tags }}</label><br /><br /><!-- I need to learn how to do this... -->
+            {% comment %}
             {{ form.my_place.label_tag }}
             {{ form.my_place }}
             <br />
@@ -99,6 +105,7 @@
             {{ form.pick_up.label_tag }}
             {{ form.pick_up }}
             <br />
+            {% endcomment %}
         </fieldset>
 
         <br /><br />

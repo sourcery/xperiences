@@ -63,8 +63,8 @@ class GeoField(EmbeddedModelField):
         def to_python(self, (lat, lng)):
             return Coordinate(lat=lat, lng=lng)
 
-
-class TextSearchField(models.TextField):
+#TextField
+class TextSearchField(models.CharField):
     def get_text(self, instance):
         return getattr(instance, self.name)
 
