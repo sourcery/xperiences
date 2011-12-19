@@ -16,21 +16,11 @@
 				</div>
 				<div class="panel">
 					<div id="exp-thumbs">
-						{% thumbnail experience.photo1 experience.photo1.thumbnail_size_str crop="center" as im %}
-							<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-						{% endthumbnail %}
-						{% thumbnail experience.photo2 experience.photo2.thumbnail_size_str crop="center" as im %}
-							<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-						{% endthumbnail %}
-						{% thumbnail experience.photo3 experience.photo3.thumbnail_size_str crop="center" as im %}
-							<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-						{% endthumbnail %}
-						{% thumbnail experience.photo4 experience.photo4.thumbnail_size_str crop="center" as im %}
-							<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-						{% endthumbnail %}
-						{% thumbnail experience.photo5 experience.photo5.thumbnail_size_str crop="center" as im %}
-							<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-						{% endthumbnail %}
+                    {% if experience.photo1 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo1.url}}">{% endif %}
+                    {% if experience.photo2 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo2.url}}">{% endif %}
+                    {% if experience.photo3 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo3.url}}">{% endif %}
+                    {% if experience.photo4 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo4.url}}">{% endif %}
+                    {% if experience.photo5 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo5.url}}">{% endif %}
 					</div><!-- close exp-thumbs -->
 				</div>
 			</div><!-- close img-gallery -->
