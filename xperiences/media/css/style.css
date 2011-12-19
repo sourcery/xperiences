@@ -15,6 +15,10 @@ a {
 	color: #ffaa00;
 }
 
+h1, h2, h3, h4, h5, h6 {
+	font-family: cronos-pro;
+}
+
 .content-body {
 	width: 1000px;
 	min-height: 600px;
@@ -214,7 +218,7 @@ footer a:hover {
 	background: white;
 	border: 1px #cccccc solid;
 	width: 280px;
-	height: 300px;
+	height: 200px;
 }
 
 /**
@@ -225,25 +229,66 @@ footer a:hover {
 }
 
 #action-bar .price {
-	font-size: 30pt;
+	font-size: 18pt;
+	font-weight: bold;
+	color: white;
+	margin-left: -10px;
+	margin-right: -10px;
+	margin-top: 7px;
+	background: #DF595F;
+	padding: 4px 8px;
+	box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.4);
+	position: relative;
+	border-top: 1px solid #b2474c;
+	border-bottom: 1px solid #b2474c;
 	text-align: center;
+	text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+#action-bar .price::before, #action-bar .price::after {
+	content: '';
+	position: absolute;
+	border-style: solid;
+	border-color: transparent;
+	bottom: -5px;
+}
+
+#action-bar .price::before {
+	border-width: 0 10px 5px 0;
+	border-right-color: #863539;
+	left: 0;
+}
+
+#action-bar .price::after {
+	border-width: 0px 0px 5px 10px;
+	border-left-color: #863539;
+	right: 0;
 }
 
 #action-bar .price .unit {
-	font-size: 18pt;
+	font-size: 14pt;
 }
 
-#action-bar .section {
-	text-align: left;
-	margin: 3px;
+#action-bar .row {
+	border-top: #d6d6d6 1px solid;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
-#action-bar .label {
-	display: inline-block;
-	width: 40px;
+#action-bar .row:hover {
+	background: #FFAA00;
+	color: white;
 }
 
-#action-bar input[type="submit"] {
+#action-bar .row .date {
+	margin-right: 10px;
+}
+
+#action-bar .row input[type="submit"] {
 	float: right;
 }
 

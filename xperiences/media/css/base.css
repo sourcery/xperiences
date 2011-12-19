@@ -206,6 +206,10 @@ hr {
 	width: 940px;
 }
 
+.pad8 {
+	padding: 8px;
+}
+
 .pad15 {
 	padding: 15px;
 }
@@ -216,6 +220,10 @@ hr {
 
 .block {
 	display: inline-block;
+}
+
+.space10 {
+	height: 10px;
 }
 
 .space30 {

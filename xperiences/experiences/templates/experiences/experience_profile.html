@@ -15,9 +15,8 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-		<div class="command-bar-container">
-		</div>
+<div class="container">
+	<div class="space30"></div>
 		<div class="span8 column">
 			<h1>{{ experience.title }}</h1>
 			<div id="img-gallery">
@@ -49,18 +48,16 @@
                 {{ experience.description|safe }}
 			</div>
 		</div>
-		<div class="span3 column">
-			<div id="action-bar" class="panel span3">
+		<div class="span4 column">
+			<h1>&nbsp;</h1>
+			<div id="action-bar" class="panel span4 font12">
 				<div class="price">
 					${{ experience.price }}<a href="#"></a><!-- the href is for when we will quote in different currencies... thinking far ahead here :-) -->
-					<span class="unit">{{ experience.unit_name }}</span><!-- this per session will have ot be replaced by the unit type -->
+					<span class="unit">{{ experience.unit_name }} per person</span><!-- this per session will have ot be replaced by the unit type -->
 				</div>
-				<div class="section">
-					<span class="label">When?</span>
-					<input class="short">
-				</div>
-				<div class="section">
-					<span class="label">Who?</span>
+				<div class="space10"></div>
+				<div class="row">
+					<span class="date">Dec 18, 2pm</span>
 					<select>
 						<option>1</option>
 						<option>2</option>
@@ -73,7 +70,39 @@
 						<option>9</option>
 						<option>10</option>
 					</select>
-					<input type="submit" value="I want it" />
+					<input type="submit" class="btn" value="buy" />
+				</div>
+				<div class="row">
+					<span class="date">Dec 18, 2pm</span>
+					<select>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+					</select>
+					<input type="submit" class="btn" value="buy" />
+				</div>
+				<div class="row">
+					<span class="date">Dec 18, 2pm</span>
+					<select>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+					</select>
+					<input type="submit" class="btn" value="buy" />
 				</div>
 			</div>
 			<div id="seller-info" class="panel">
@@ -84,6 +113,13 @@
                         {% include 'profile_image.html' with user_extension=merchant %}
                     </a>
                 </div>
+				<a class="center btn btn-blue font14">contact me</a>
+				</div>
+			</div>
+			<div class="pad8 panel">
+				<div id="map">
+					<input type='hidden' id='location_field' value='{{ location }}' />
+				</div>
 				<div id="merchant-details">
 					<ul>
 						<li id="location">{{ merchant.city}} {{ merchant.state }}
@@ -92,11 +128,6 @@
 						</li>
 					</ul>
                 </div>
-				<input class="center btn btn-blue font14" value="Contact me"/>
-				</div>
-			</div>
-			<div id="map" class="panel">
-				<input type='hidden' id='location_field' value='{{ location }}' />
 			</div>
 			<div class="secondary">
 				<ul>
