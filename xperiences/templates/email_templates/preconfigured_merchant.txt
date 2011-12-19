@@ -1,5 +1,0 @@
-{% extends 'email_templates/email_base.txt' %}
-{% block content %}
-    Hello {{ merchant.user.username }},
-    You can register <a href="{{ BASE_URL }}/merchants/register/">here</a>
-{% endblock %}

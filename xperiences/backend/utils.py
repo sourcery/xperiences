@@ -28,7 +28,7 @@ def send_validation_mail_to_user(user_id, email=None, **kwargs):
     if email is None:
         email = user.email
     context = {'validation_link': settings.HTTP_BASE_URL + reverse('socialauth.views.validate') + '?id=%s&code=%s' % (user_id, validation_code)}
-    return send_email_with_template(settings.EMAIL_HOST_USER,[email],'Welcome to Let\'s Bench', 'email_validation.txt', 'email_validation.html', context)
+    return send_email_with_template(settings.EMAIL_HOST_USER,[email],'Welcome to Let\'s Bench', 'email_validation.html', context)
 
 def validate_user(user_id, code):
     user = User.objects.get(id=user_id)
@@ -42,26 +42,21 @@ def validate_user(user_id, code):
     return False
 
 def merchant_onreview_email(merchant):
-    send_email_with_template(settings.EMAIL_HOST_USER,[merchant.user.email],'Your Application is on review', 'app_review.txt','app_review.html',{ 'merchant':merchant})
+    send_email_with_template(settings.EMAIL_HOST_USER,[merchant.user.email],'Your Application is on review', 'app_review.html',{ 'merchant':merchant})
 
 def approve_merchant(merchant):
     merchant.is_approved = True
     merchant.save()
-    send_email_with_template(settings.EMAIL_HOST_USER,[merchant.user.email],'Your Application is approved', 'app_approved.txt','app_approved.html',{ 'merchant':merchant})
+    send_email_with_template(settings.EMAIL_HOST_USER,[merchant.user.email],'Your Application is approved', 'app_approved.html',{ 'merchant':merchant})
 
 def send_email_for_preconfigured_merchant(merchant):
-    send_email_with_template(settings.EMAIL_HOST_USER,[merchant.user.email],'Join us', 'preconfigured_merchant.txt', 'preconfigured_merchant.txt', {'merchant':merchant})
+    send_email_with_template(settings.EMAIL_HOST_USER,[merchant.user.email],'Join us', 'preconfigured_merchant.html', {'merchant':merchant})
 
-def send_email_with_template(from_email, to_list, subject, text_file_name, html_file_name, context):
+def send_email_with_template(from_email, to_list, subject, html_file_name, context):
     context['BASE_URL'] = settings.BASE_URL
     c = Context(context)
-    text_template = loader.get_template('email_templates/' + text_file_name)
     html_template = loader.get_template('email_templates/' + html_file_name)
-    if text_template is None:
-        return False
-
-    text_content = text_template.render(c)
-    msg = EmailMultiAlternatives(subject, text_content, from_email, to_list)
+    msg = EmailMultiAlternatives(subject, '', from_email, to_list)
     if html_template is not None:
         html_content = html_template.render(c)
         msg.attach_alternative(html_content, "text/html")
