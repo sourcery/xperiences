@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+
+{% load x_tags %}
+
 {% block content %}
     <div class="main-content">
         <div class="command-bar-container">
@@ -8,7 +11,7 @@
                     <li><a href="/merchants/experiences">View all your listings</a></li>
                     <li><a href="/merchants/inbox">Inbox</a></li>
                     <li><a href="/merchants/account">Account</a></li>
-                </ul>			
+                </ul>
             </div>
         </div>
         <fieldset>
@@ -17,27 +20,27 @@
                 <label class="label" for="profile-image">Profile Picture</label>
                 <div class="change-profile-image">
                     <div class="image-wrapper">{% include 'profile_image.html' with user_extension=merchant %}</div>
-                    <input type="file" class="upload-new-profile-image" name="profile-image" size="15">
+                    <input type="file" class="upload-new-profile-image" id="profile-image" name="profile-image" size="15">
                 </div>
             </div>
             <hr>
             <div class="input-group">
                 <label class="label" for="name">Your name</label>
-                <input type="text" name="name" value="{{ merchant.name }}"><a href="#">Edit</a>
+                <input type="text" name="name" id="name" value="{{ merchant.name }}"><a href="#">Edit</a>
             </div>
             <hr>
             <div class="input-group">
                 <label class="label" for="address">Your address</label>
-                <input type="text" name="name" value="{{ merchant.address }}"><a href="#">Edit</a>
+                <input type="text" name="name" id="address" value="{{ merchant.address }}"><a href="#">Edit</a>
             </div>
             <hr>
             <div class="input-group">
                 <label class="label" for="about">About you</label>
-                <textarea name="about" value="{{ form.description.value }}" style="overflow-x: hidden; overflow-y: hidden; height: 75px;"></textarea>
+                <textarea name="about" id="about" value="{{ form.description.value }}" style="overflow-x: hidden; overflow-y: hidden; height: 75px;"></textarea>
                 <a href="#">Edit</a>
             </div>
         </fieldset>
-        
+
         <fieldset>
             <h2>Completed earnings</h2>
             <ul>
@@ -53,24 +56,72 @@
                 </li>
                 <li>
                     <div class="listing-item-short">
-                        
+
                         <div class="listing-value">27/12/2012</div>
                     </div>
                     <div class="listing-item-short">
-                        
+
                         <div class="listing-value">$100</div>
                     </div>
                 </li>
                 <li>
                     <div class="listing-item-short">
-                        
+
                         <div class="listing-value">27/12/2012</div>
                     </div>
                     <div class="listing-item-short">
                         <div class="listing-value">$100</div>
                     </div>
                 </li>
-            </ul>	
-        </fieldset>        
+            </ul>
+        </fieldset>
     </div>
+    <div id="experiences"></div>
+
+
+<script type='text/x_jquery_templates' id='res_template'>
+    <li class="front-page-item">
+        <a href="/experiences/{% t_var slug_id %}">
+            <img alt="{% t_var title %}" {% t_if photo1 %}src="{% t_var photo1.url %}"{% t_endif %}/>
+        </a>
+        <div class="thumb-details">
+            <div class="fp-item-price">
+                <span class="currency-symbol">$</span>
+                {% t_var price %}
+                <span class="currency-code"></span>
+            </div>
+            <div class="fp-item-wrapper">
+                <div class="fp-item-title">
+                    <a title="{% t_var title %}" href="/experiences/{% t_var slug_id %}">{% t_var title %}</a>
+                </div>
+                <div class="fp-item-merchant">
+                    <a title="{% t_var merchant.name %}" href="">{% t_var merchant.name %}{% t_if merchant.city %}, {% t_var merchant.city %} {% t_var merchant.state %} {% t_endif %}</a>
+                </div>
+            </div>
+        </div>
+    </li>
+</script>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+var _merchant_id = '{{ marchent.id}}'
+function get_experiences(params) {
+    params = params || {};
+    $.get('/api/experiences/json', params, render);
+}
+
+
+function render(data) {
+    var holder = $("#experiences");
+    $.each(data, function(idx, obj) {
+        $("#res_template").tmpl(obj).appendTo(holder);
+    });
+}
+
+
+$(document).ready(function(){
+    get_experiences({"merchant_id": _merchant_id });
+});
+</script>
 {% endblock %}
