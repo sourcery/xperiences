@@ -51,7 +51,7 @@
 							<div class="row">
 								<div>
 								<label>Pick a date</label>
-								<div class="span3-wrapper">{{ form.date }}</div>
+								<div class="span3-wrapper">{{ form.valid_from }}</div>
 								</div>
 							</div>
 						{% comment %}
@@ -64,7 +64,7 @@
 						<div class="row">
 							<div>
 								<label>Pick available times</label>
-								<div class="span3-wrapper">{{ form.time }}</div>
+								<div class="span3-wrapper">{{ form.valid_until }}</div>
 							</div>
 						</div>
 						<!-- here I want to include a better time widget, perhaps a slider like in Kayak. -->

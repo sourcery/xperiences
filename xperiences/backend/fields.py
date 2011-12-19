@@ -63,7 +63,9 @@ class GeoField(EmbeddedModelField):
         def to_python(self, (lat, lng)):
             return Coordinate(lat=lat, lng=lng)
 
-#TextField
+# The reason I changed TextField to CharField was to avoid that text area it
+# creating in the add_experience form. However, I am not sure how it's going
+# affect search... I guess it needs to be TextField to be searchable?
 class TextSearchField(models.CharField):
     def get_text(self, instance):
         return getattr(instance, self.name)
