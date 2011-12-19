@@ -1,18 +1,8 @@
 {% extends "base.html" %}
-{% load thumbnail %}
-{% block title %}{{ experience.title }}{% endblock %}
-{% block extra_head %}
-<script type='text/javascript' src='/static/jq.templates.js' ></script>
-<script type='text/javascript' src='https://maps-api-ssl.google.com/maps/api/js?v=3&sensor=false&libraries=places' ></script>
-<script type='text/javascript' src='/static/maps.js'></script>
 
-<script type='text/javascript' >
-    $(document).ready(function()
-    {
-        $('#location_field').geoview({ 'map_id' : 'map'});
-    });
-</script>
-{% endblock %}
+{% load thumbnail %}
+
+{% block title %}{{ experience.title }}{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -109,9 +99,9 @@
 				<div class="pad15">
 				<h3>Hi! I'm {{merchant.name}}</h3>
                 <div id="merchant-image">
-                    {% comment %} <a title={{ merchant.name }} href="{% url merchant_profile merchant.id %}">{% endcomment %}
-                        {% include 'profile_image.html' with user_extension=merchant %}
-                    </a>
+                    <div class="image-wrapper" style='width:100px; height:100px; position:relative;'>
+                        <img alt="{{ merchant.name }}" src="{% if merchant.photo %}{{ merchant.photo.url }}{% else %}http://graph.facebook.com/{{ merchant.FB_ID }}/picture/?type=large{% endif %}">
+                    </div>
                 </div>
 				<a class="center btn btn-blue font14">contact me</a>
 				</div>
@@ -142,6 +132,14 @@
 	</div>
 {% endblock %}
 
+{% block extra_scripts %}
+<script>
+    $(document).ready(function()
+    {
+        $('#location_field').geoview({ 'map_id' : 'map'});
+    });
+</script>
+{% endblock %}
 
 
 
