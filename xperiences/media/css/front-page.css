@@ -66,6 +66,7 @@
 	line-height: 0;
 	box-shadow: 0px 0px 3px #AAA;
 	background: white;
+	pointer: cursor;
 }
 
 .front-page-item:hover {

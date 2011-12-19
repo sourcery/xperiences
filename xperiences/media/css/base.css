@@ -385,7 +385,7 @@ input.span5, textarea.span5 {
 	margin-left: 0;
 }
 
-input.span6, textarea.span6 {
+input.span6, textarea.span6, .span6-wrapper input, .span6-wrapper textarea {
 	width: 450px;
 	display: inline-block;
 	float: none;
