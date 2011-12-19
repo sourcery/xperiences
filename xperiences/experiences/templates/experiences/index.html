@@ -34,7 +34,7 @@
 	<script type='text/x_jquery_templates' id='test-template'>
 		<li class="front-page-item">
 			<a href="/experiences/{% t_var slug_id %}">
-				<img alt=" {% t_var title %} "{% t_if photo1 %}src="{% t_url photo1.url %}"{% t_endif %}/>
+				<img alt=" {% t_var title %} "{% t_if photo1 %}src="{% t_var photo1.url %}"{% t_endif %}/>
 			</a>
 			<div class="thumb-details">
 				<div class="fp-item-price">
