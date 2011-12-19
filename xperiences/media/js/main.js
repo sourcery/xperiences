@@ -5,6 +5,9 @@ var wrapperW;
 var wrapperH;
 
 $(document).ready(function() {
+
+	$(".datepicker").datetimepicker();
+
 	var mainImg = $("#exp-main-image");
 	var thumbs = $(".exp-thumbs-img");
 	var thumbswrapper = $("#exp-thumbs");
@@ -48,6 +51,8 @@ $(document).ready(function() {
 
 		setMainImage(thumbs.first().prop("src"));
 	}
+
+
 });
 
 function setImageToMain(item) {
