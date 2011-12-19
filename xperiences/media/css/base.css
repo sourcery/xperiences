@@ -138,6 +138,10 @@ hr {
 	margin-bottom: 15px;
 }
 
+.row:last-child {
+	margin-bottom: 0px;
+}
+
 .row > [class*="span"] {
 	margin-left: 20px;
 	display: inline;
@@ -157,6 +161,13 @@ hr {
 	clear: both;
 }
 
+.row span {
+	display: inline-block;
+	float: left;
+	position: relative;
+	top: 10px;
+	margin: 0px 0px 0 10px;
+}
 
 .span1 {
 	width: 60px;
@@ -350,35 +361,35 @@ label {
 	display: block;
 }
 
-input.span1, textarea.span1 {
+input.span1, textarea.span1, .span1-wrapper input, .span1-wrapper textarea {
 	display: inline-block;
 	float: none;
 	margin-left: 0;
 	width: 50px;
 }
 
-input.span2, textarea.span2 {
+input.span2, textarea.span2, .span2-wrapper input, .span2-wrapper textarea {
 	width: 130px;
 	display: inline-block;
 	float: none;
 	margin-left: 0;
 }
 
-input.span3, textarea.span3 {
+input.span3, textarea.span3, .span3-wrapper input, .span3-wrapper textarea  {
 	width: 210px;
 	display: inline-block;
 	float: none;
 	margin-left: 0;
 }
 
-input.span4, textarea.span4 {
+input.span4, textarea.span4, .span4-wrapper input, .span4-wrapper textarea {
 	width: 290px;
 	display: inline-block;
 	float: none;
 	margin-left: 0;
 }
 
-input.span5, textarea.span5 {
+input.span5, textarea.span5, .span5-wrapper input, .span5-wrapper textarea {
 	width: 370px;
 	display: inline-block;
 	float: none;
@@ -392,35 +403,35 @@ input.span6, textarea.span6, .span6-wrapper input, .span6-wrapper textarea {
 	margin-left: 0;
 }
 
-input.span7, textarea.span7 {
+input.span7, textarea.span7, .span7-wrapper input, .span7-wrapper textarea {
 	width: 530px;
 	display: inline-block;
 	float: none;
 	margin-left: 0;
 }
 
-input.span8, textarea.span8 {
+input.span8, textarea.span8, .span8-wrapper input, .span8-wrapper textarea {
 	width: 610px;
 	display: inline-block;
 	float: none;
 	margin-left: 0;
 }
 
-input.span9, textarea.span9 {
+input.span9, textarea.span9, .span9-wrapper input, .span9-wrapper textarea {
 	width: 690px;
 	display: inline-block;
 	float: none;
 	margin-left: 0;
 }
 
-input.span10, textarea.span10 {
+input.span10, textarea.span10, .span10-wrapper input, .span10-wrapper textarea {
 	width: 770px;
 	display: inline-block;
 	float: none;
 	margin-left: 0;
 }
 
-input.span11, textarea.span11 {
+input.span11, textarea.span11, .span11-wrapper input, .span11-wrapper textarea {
 	width: 850px;
 	display: inline-block;
 	float: none;
