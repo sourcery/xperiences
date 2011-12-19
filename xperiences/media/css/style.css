@@ -6,12 +6,13 @@
  * TEAL: #0a9aaf
  */
 
-html {
+body {
+	font-family: "helvetica", "arial", sans-serif;
+	background: url(../images/background.jpg);
 }
 
-body {
-	font-family: calluna-sans, "helvetica", "ariel", sans-serif;
-	background: url(../images/background.jpg);
+a {
+	color: #ffaa00;
 }
 
 .content-body {
@@ -57,153 +58,90 @@ body {
 }
 
 /*
- * Standard stuff
- */
-
-h1, h2, h3, h4, h5, h6 {
-	font-family: cronos-pro;
-	text-shadow: 0.5px 0.5px 0.5px #FFFFFF;
-	margin: 0 0 0.5em;
-}
-
-h1 {
-	font-size: 25pt;
-}
-
-h2 {
-	font-size: 150%;
-}
-
-h3 {
-	font-size: 130%;
-}
-
-h4 {
-	font-size: 120%;
-}
-
-p {
-	margin: 0.5em 0 1em;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
-.dark {
-	color: white;
-}
-
-.dark h4 {
-	color: white;
-	text-shadow: none;
-}
-
-/*
- * Layout
- */
-
-.two-col-left-narrow-float {
-	width: 280px;
-	float: left;
-}
-
-.two-col-right-wide {
-	width: 700px;
-	margin-left: 300px;
-}
-
-.two-col-left {
-	width: 640px;
-	margin: 10px 10px 0 10px;
-}
-
-.two-col-right {
-	width: 300px;
-	margin: 10px 20px 0 20px;
-	float: right;
-}
-
-.margin-top-10 {
-	margin-top: 10px;
-}
-
-.margin-top-30 {
-	margin-top: 30px;
-}
-/*
  * Header
  */
 
 header {
 	width: 100%;
-	-moz-box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.35);
-	background: #241901;
+	-moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.5);
+	background: #2D2218 url(../images/header_background.png);
 }
 
 header .header-wrap {
 	width: 960px;
 	margin: 0 auto;
-/*	padding: 20px 20px 8px;*/ /* top - right+left - bottom */
+	padding: 8px 0;
+}
+
+header .header-wrap::after {
+	content: "";
+	display: table;
+	clear:both;
+}
+
+header .bottom-border {
+	height: 3px;
+	background: url(../images/header_border.png);
 }
 
 #logo {
 	float: left;
-	font-size: 17pt;
 	color: white;
-	font-family: cronos-pro, sans-serif;
 	display: inline-block;
-}
-
-#logo a {
-	text-decoration: none;
+	background: url(../images/logo.png);
+	width: 118px;
+	height: 33px;
 }
 
 #logo span {
-	display: inline-block;
-	padding: 12px 18px 6px;
-}
-
-#logo-come {
-	background: #9cc500;
-}
-
-#logo-play {
-	background: #a0d8ef;
-	top: 7px;
-	position: relative;
-	box-shadow: 0px 1px 0px 1px rgba(0, 0, 0, 0.35);
-}
-
-#logo-learn {
-	background: #df595f; 
+	display: none;
 }
 
 #service-list {
-	color: white;
-	text-shadow: 1px 1px #666666;
-	font-family: cronos-pro;
-	font-size: 12pt;
+	background: linear-gradient(top, #FFAA00, #ea9500);
+	background: -moz-linear-gradient(top, #FFAA00, #ea9500);
+	background: -ms-linear-gradient(top, #FFAA00, #ea9500);
+	background: -o-linear-gradient(top, #FFAA00, #ea9500);
+	background: -webkit-linear-gradient(top, #FFAA00, #ea9500);
 	float: right;
-	position: relative;
-	background: #fe9e21;
-	border: 1px solid #f68d04;
-	margin: 7px 20px 0 0;
-	padding: 4px 10px;
-	border-radius: 3px;
-	text-decoration: none;
-	box-shadow:inset 0px 0px 1px #DEDEDE;
+	color: #2D2218;
+	border: 1px solid #ea9500;
+	text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(255, 255, 255, 0.2);
 }
 
-#service-list:hover {
+/**
+ * Footer
+ */
+
+footer {
+	padding: 0px 0 30px 0px;
+	color: #ACACAC;
+	text-shadow: none;
+	margin-top: 80px;
 }
 
-#facebook-connect {
-	width: 154px;
-	height: 22px;
-	background: url(../images/fb-login.png) no-repeat;
+.footer-constrain {
+	width: 1000px;
+	margin: 0 auto;
+	border-top: 1px solid #DEDEDE;
+	padding: 10px 7px 0;
+}
+
+footer ul.footer-nav li {
+	float: left;
+	margin-right: 20px;
+}
+
+footer .copyright {
 	float: right;
-	position: relative;
+}
+
+footer a {
+	color: #b9b9b9;
+}
+
+footer a:hover {
+	color: #7a7a7a;
 }
 
 /**
@@ -261,120 +199,15 @@ header .header-wrap {
 	-moz-transition: box-shadow 0.5s;
 }
 
-fieldset:hover, .panel:hover {
-	border: 1px solid #CCC;
-	box-shadow: 0px 0px 1px #DDD;
-	-moz-transition: 1s;
-}
-
-fieldset h3 {
-	font-size: 120%;
-	color: #666;
-	font-family: museo-sans-rounded;
-	margin: 2px 0 10px;
-}
-
-fieldset label {
-	display: block;
-	margin: 20px 0 5px;
-	font-weight: bold;
-}
-
-.description {
-	font-size: 11pt;
-}
-
-.row {
-
-}
-
-.column {
-	display: inline-block;
-	margin: 0 30px 0 0;
-	vertical-align: top;
-}
-
-.half {
-	width: 40%;
-}
-
-input[type="file"] {
-	border: none;
-	box-shadow: none;
-}
-
-select {
-	padding: 4px;
-	margin: 2px 0 5px;
-	border-radius: 3px;
-	border: 1px solid #999999;
-	box-shadow: 1px 1px #888888;
-	font: museo-sans-rounded; 
-	font-size: 110%;
-}
-
-input[type="radio"], input[type="checkbox"] {
-	margin: 0 8px 0 0;
-	width: 20px;
-	height: 20px;
-	vertical-align: bottom;
-}
-
 .help-text {
 	color: #999;
 	margin: 2px 0 5px;
 	font-size: 90%;
 }
 
-input.long, .input-long input {
-	width: 500px;
-}
-
-input.medium, .input-medium input {
-	width: 300px;
-}
-
-input.short, .input-short input {
-	width: 200px;
-}
-
-input.shorter, .input-shorter input {
-	width: 120px;
-}
-
-input.tiny, .input-tiny input {
-	width: 80px;
-}
-
-.tall, .tall textarea {
-	height: 180px;
-}
-
-/**
- * Search-box
- */
-
-#search-box {
-	margin: 40px auto 50px;
-	text-align: left;
-	top: 50px;
-	left: 50%;
-	margin-left: -325px;
-}
-
 .has-shadow {
 	-moz-transition: 0.5s;
 	box-shadow: 0px 0px 5px #666666;
-}
-
-.search-box-tagline {
-	font-size: 150%;
-	border-bottom: 1px solid white;
-	padding: 2px 0 13px;
-}
-
-.search-box-form {
-	font-size: 120%;
 }
 
 #map {
@@ -412,48 +245,6 @@ input.tiny, .input-tiny input {
 
 #action-bar input[type="submit"] {
 	float: right;
-}
-
-/**
- * Footer
- */
-
-footer {
-	padding: 0px 0 30px 0px;
-	color: #ACACAC;
-	text-shadow: none;
-	margin-top: 20px;
-}
-
-.footer-constrain {
-	width: 1000px;
-	margin: 0 auto;
-	border-top: 1px solid #DEDEDE;
-	padding: 15px 7px 0;
-}
-
-footer ul.footer-nav li {
-	float: left;
-	margin-right: 20px;
-}
-
-footer .copyright {
-	float: right;
-}
-
-/*
- * Generics
- */
-.centered {
-	margin: 0 auto;
-}
-
-.clear {
-	clear: both;
-}
-
-.text-80 {
-	font-size: 80%;
 }
 
 /**
@@ -519,25 +310,6 @@ footer .copyright {
 	float: left;
 }
 
-/**
- * Default Val CSS
- */
-
-.default-val-parent {
-	position: relative;
-}
-
-.default-val-text {
-	position: absolute;
-	left: 0;
-	top: 0;
-	color: #BBBBBB;
-	padding: 15px 0 6px 10px;
-	overflow: hidden;
-	text-shadow: none;
-}
-
-
 /* dashboard / all listings page */
 
 div.activate {
@@ -592,8 +364,6 @@ ul.listings li.listing-item {
 .listing-actions button {
 	margin-left: 10px;
 }
-
-
 
 /* Inbox */
 
@@ -710,36 +480,6 @@ ul.listings li.listing-item {
 .share {
 	display: inline-block;
 	margin-right: 60px;
-}
-
-
-/* I shamelessly copied this from Airbnb... we probably need to change colors or whatnot */
-.button-glossy {
-	border: 1px solid #459A00;
-	background: #4AA400;
-	background: -webkit-gradient(linear,center top,center bottom,from(#5CCD00),to(#4AA400));
-	background: -moz-linear-gradient(top,#5CCD00,#4AA400);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5ccd00',endColorstr='#ff4aa400',GradientType=0);
-	display: inline-block;
-	text-align: center;
-	min-width: 5em;
-	min-height: 2em;
-	cursor: pointer;
-	position: relative;
-	border-radius: .3em;
-	-moz-border-radius: .3em;
-	-webkit-border-radius: .3em;
-	line-height: 2em;
-	padding: 0 1em;
-	font-size: 1.15em;
-	font-weight: bold;
-	color: white!important;
-	text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.5);
-	text-decoration: none;
-	box-shadow: inset 0 0 .2em rgba(255,255,255,0.3),inset 0 0 .2em rgba(255,255,255,0.3),0 1px 2px rgba(0,0,0,0.3);
-	-o-box-shadow: inset 0 0 .2em rgba(255,255,255,0.3),inset 0 0 .2em rgba(255,255,255,0.3),0 1px 2px rgba(0,0,0,0.3);
-	-moz-box-shadow: inset 0 0 .2em rgba(255,255,255,0.3),inset 0 0 .2em rgba(255,255,255,0.3),0 1px 2px rgba(0,0,0,0.3);
-	-webkit-box-shadow: inset 0 0 .2em rgba(255,255,255,0.3),inset 0 0 .2em rgba(255,255,255,0.3),0 1px 2px rgba(0,0,0,0.3);
 }
 
 .fb {

@@ -9,6 +9,7 @@
 #front-page header {
 	position: fixed;
 	top: 0;
+	box-shadow: none;
 }
 
 #front-page .header-wrap {
@@ -16,13 +17,24 @@
 }
 
 #front-page .top-spacer {
-	height: 200px;
+	height: 80px;
+	background: url(../images/header_border.png) left;
+	box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
 }
 
 #front-page #search-box {
 	position: fixed;
-	top: 40px;
+	top: 100px;
 	font-size: 12pt;
+	width: 810px;
+	left: 50%;
+	margin-left: -400px;
+	background: #2D2218 url(../images/header_background.png);
+	border-radius: 3px;
+}
+
+#search-box input[type="submit"] {
+	float: right;
 }
 
 .image-grid {

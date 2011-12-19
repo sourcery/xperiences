@@ -1,64 +1,82 @@
 (function($){
-	$.fn.defaultVal = function() {
-		var curVal = this.val();
-		var value = this.prop("alt");
-		var self = this;
+	var PARENT_CLASS_NAME = "textwrap-parent";
+	var HOLDER_CLASS_NAME = "textwrap-holder";
 
-		var parentDiv = $("<div>");
-		parentDiv.addClass("default-val-parent");
-		var valueDiv = $("<div>");
-		valueDiv.addClass("default-val-text").text(value);
-		this.before(parentDiv);
-		this.remove();
-		parentDiv.append(this);
-		parentDiv.append(valueDiv);
+	$.fn.textWrap = function(className) {
+		return this.each(function() { 
+			var $this = $(this);
+			var curVal = $this.val();
+			var value = $this.prop("alt");
+			console.log(value);
 
-		parentDiv.css({
-			"margin-left": this.css("margin-left"),
-			"margin-right": this.css("margin-right"),
-			"margin-top": this.css("margin-top"),
-			"margin-bottom": this.css("margin-bottom")
-		});
+			var parentDiv = $("<div>");
+			parentDiv;
+			var valueDiv = $("<div>");
+			valueDiv.text(value);
+			$this.before(parentDiv);
+			$this.remove();
+			parentDiv.append($this);
+			parentDiv.append(valueDiv);
 
-		parentDiv.css({
-			"display": "inline-block",
-			"width": this.outerWidth()
-		})
+			parentDiv.css({
+				"margin-left": $this.css("margin-left"),
+				"margin-right": $this.css("margin-right"),
+				"margin-top": $this.css("margin-top"),
+				"margin-bottom": $this.css("margin-bottom")
+			});
 
-		valueDiv.css({
-			"padding-left": this.css("padding-left"),
-			"padding-right": this.css("padding-right"),
-			"padding-top": this.css("padding-top"),
-			"padding-bottom": this.css("padding-bottom")
-		})
+			parentDiv.css({
+				"display": "inline-block",
+				"width": $this.outerWidth(),
+				"position": "relative"
+			})
 
-		this.css("margin", 0);
+			valueDiv.css({
+				"padding-left": parseInt($this.css("padding-left"), 10) + 2,
+				"padding-right": $this.css("padding-right"),
+				"padding-top": $this.css("padding-top"),
+				"padding-bottom": $this.css("padding-bottom"),
+				"position": "absolute",
+				"top": 0
+			});
 
-		valueDiv.on('click', function(e) {
-			self.focus();
-		});
+			if(className) {
+				valueDiv.addClass(className);
+			}
 
-		this.on("focus", function(e) {
-			valueDiv.animate({
-				opacity: 0
-			}, 300);
-		});
+			$this.css("margin", 0);
 
-		var w = this.width();
-		var h = this.height();
+			valueDiv.on('click', function(e) {
+				$this.focus();
+			});
 
-		this.on('blur', function(e){
-			var curEl = $(e.currentTarget);
-			if(curEl.val() == '') {
-				valueDiv.animate({
-					opacity: 1
-				}, 300);
+			function keyupHandler(e) {
+				var target = $(e.currentTarget);
+				if(target.val() != "") {
+					valueDiv.css("opacity", 0);
+					target.unbind("keyup");
+				}	
+			}
+
+			var w = $this.width();
+			var h = $this.height();
+
+			$this.on('blur', function(e){
+				var curEl = $(e.currentTarget);
+				if(curEl.val() == '') {
+					valueDiv.animate({
+						opacity: 1
+					}, 300);
+				}
+				curEl.keyup(keyupHandler);
+			});
+
+			$this.keyup(keyupHandler);
+
+			if(curVal != "") {
+				valueDiv.css("opacity", 0);
 			}
 		});
-
-		if(curVal != "") {
-			valueDiv.css("opacity", 0);
-		}
 
 	};
 })(jQuery);

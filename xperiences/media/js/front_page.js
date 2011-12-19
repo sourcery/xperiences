@@ -5,10 +5,7 @@ $(document).ready(function() {
 		get_experiences();
 	});
 
-	$(".default").each(function(i, el) {
-		$(el).defaultVal();
-	});
-
+	$(".default").textWrap("holder");
 });
 
 var data;

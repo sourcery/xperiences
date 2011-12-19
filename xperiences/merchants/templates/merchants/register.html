@@ -1,4 +1,4 @@
- {% extends 'base.html' %}
+{% extends 'base.html' %}
 {% block extra_head %}
 {{ form.media }}
 {% endblock %}
@@ -8,15 +8,13 @@
 		This can be hidden if not in use
 	</div>-->
 </div>
-<div class="two-col-right">
-</div>
-<div class="two-col-left">
+<div class="span9">
 	<h1>{{ status }}</h1>
 	<form id="form" name="form" method="post" action="#">
-		<fieldset><!-- most of the information below should be pre-filled from Facebook Connect -->
+		<fieldset class="panel"><!-- most of the information below should be pre-filled from Facebook Connect -->
 			<h3>Contact information</h3>
 			<label>Name</label>
-			<div class="input-medium">
+			<div class="span6">
 				{{ form.name }}
 			</div>
 			<label>Email</label>
