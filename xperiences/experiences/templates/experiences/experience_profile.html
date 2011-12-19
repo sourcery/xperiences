@@ -15,69 +15,12 @@
 {% endblock %}
 
 {% block content %}
-    <div class="main-content">
+    <div class="container">
 		<div class="command-bar-container">
 		</div>
-		<div class="two-col-right">
-			<div id="action-bar" class="panel">
-				<div class="price">
-					${{ experience.price }}<a href="#"></a><!-- the href is for when we will quote in different currencies... thinking far ahead here :-) -->
-					<span class="unit">{{ experience.unit_name }}</span><!-- this per session will have ot be replaced by the unit type -->
-				</div>
-				<div class="section">
-					<span class="label">When?</span>
-					<input class="short">
-				</div>
-				<div class="section">
-					<span class="label">Who?</span>
-					<select>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-						<option>6</option>
-						<option>7</option>
-						<option>8</option>
-						<option>9</option>
-						<option>10</option>
-					</select>
-					<input type="submit" value="I want it" />
-				</div>
-			</div>
-			<div id="seller-info" class="panel">
-                <div id="merchant-image">
-                    {% comment %} <a title={{ merchant.name }} href="{% url merchant_profile merchant.id %}">{% endcomment %}
-                        {% include 'profile_image.html' with user_extension=merchant %}
-                    </a>
-                </div>
-                <div id="merchant-details">
-					<ul>
-						<li>{% comment %}<a href="{% url merchant_profile merchant.id %}">{% endcomment %}{{ merchant.name }}</a></li>
-						<li id="location">{{ merchant.city}} {{ merchant.state }}
-						<br />
-						{{ merchant.country }}
-						</li>
-					</ul>
-                </div>
-				<input class="centered" type="submit" value="Chat with {{ merchant.name}}"/>
-			</div>
-			<div id="map" class="panel">
-				<input type='hidden' id='location_field' value='{{ location }}' />
-			</div>
-			<div class="secondary">
-				<ul>
-                <li>Experience listed on {{ experience.pub_date }}</li>
-                <li>{{ experience.views }} views</li><!-- we don't have these attributes, make sure we add them. Ask Joseph how? -->
-                <li>{{ experience.wish_list_adds }} added this experience to their wish list</li>
-				<li><a href="#" title="report an experience">Report this experience</a></li>
-				</ul>
-			</div>
-		</div>
-
-		<div class="two-col-left">
+		<div class="span8 column">
 			<h1>{{ experience.title }}</h1>
-			<div id=img-gallery>
+			<div id="img-gallery">
 				<div id="exp-main-image-outer">
 					<div id="exp-main-image" class="image-wrapper"></div>
 					<div id="exp-main-image-frame"></div>
@@ -106,6 +49,65 @@
                 {{ experience.description|safe }}
 			</div>
 		</div>
+		<div class="span3 column">
+			<div id="action-bar" class="panel span3">
+				<div class="price">
+					${{ experience.price }}<a href="#"></a><!-- the href is for when we will quote in different currencies... thinking far ahead here :-) -->
+					<span class="unit">{{ experience.unit_name }}</span><!-- this per session will have ot be replaced by the unit type -->
+				</div>
+				<div class="section">
+					<span class="label">When?</span>
+					<input class="short">
+				</div>
+				<div class="section">
+					<span class="label">Who?</span>
+					<select>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+					</select>
+					<input type="submit" value="I want it" />
+				</div>
+			</div>
+			<div id="seller-info" class="panel">
+				<div class="pad15">
+				<h3>Hi! I'm {{merchant.name}}</h3>
+                <div id="merchant-image">
+                    {% comment %} <a title={{ merchant.name }} href="{% url merchant_profile merchant.id %}">{% endcomment %}
+                        {% include 'profile_image.html' with user_extension=merchant %}
+                    </a>
+                </div>
+				<div id="merchant-details">
+					<ul>
+						<li id="location">{{ merchant.city}} {{ merchant.state }}
+						<br />
+						{{ merchant.country }}
+						</li>
+					</ul>
+                </div>
+				<input class="center btn btn-blue font14" value="Contact me"/>
+				</div>
+			</div>
+			<div id="map" class="panel">
+				<input type='hidden' id='location_field' value='{{ location }}' />
+			</div>
+			<div class="secondary">
+				<ul>
+                <li>Experience listed on {{ experience.pub_date }}</li>
+                <li>{{ experience.views }} views</li><!-- we don't have these attributes, make sure we add them. Ask Joseph how? -->
+                <li>{{ experience.wish_list_adds }} added this experience to their wish list</li>
+				<li><a href="#" title="report an experience">Report this experience</a></li>
+				</ul>
+			</div>
+		</div>
+
 	</div>
 {% endblock %}
 
