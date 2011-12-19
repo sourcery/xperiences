@@ -33,6 +33,16 @@
 	border-radius: 3px;
 }
 
+#search-box span {
+	position: relative;
+	top: 3px;
+}
+
+#search-box input {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
 #search-box input[type="submit"] {
 	float: right;
 }
