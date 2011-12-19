@@ -308,7 +308,7 @@ body .dark {
 }
 
 p, ul {
-	margin: 0.3em 0 1em;
+	margin: 0.3em 0 0.7em;  /* I decreased it from 1 to 0.7em - NM */
 }
 
 .dark .secondary {
@@ -326,7 +326,7 @@ p, ul {
 .panel {
 	border: 1px solid #d9d9d9;
 	background: white;
-	-moz-transition: all 0.5s;
+	-moz-transition: all 0.5s; /* what does this transition property do */
 	-webkit-transition: all 0.5s;
 	margin: 10px 0 15px;
 }

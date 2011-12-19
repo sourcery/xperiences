@@ -61,9 +61,10 @@ h1, h2, h3, h4, h5, h6 {
 	margin-right: 6px;
 }
 
-/*
- * Header
- */
+/*------------------------------------------------------------------------------*/
+/*	HEADER
+/*------------------------------------------------------------------------------*/
+
 
 header {
 	width: 100%;
@@ -113,9 +114,10 @@ header .bottom-border {
 	text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(255, 255, 255, 0.2);
 }
 
-/**
- * Footer
- */
+/*------------------------------------------------------------------------------*/
+/*	FOOTER
+/*------------------------------------------------------------------------------*/
+
 
 footer {
 	padding: 0px 0 30px 0px;
@@ -148,9 +150,10 @@ footer a:hover {
 	color: #7a7a7a;
 }
 
-/**
- * forms and Inputs
- */
+/*------------------------------------------------------------------------------*/
+/*	FORMS AND INPUTS
+/*------------------------------------------------------------------------------*/
+
 
 .search-result {
 	width: 320px;
@@ -221,9 +224,10 @@ footer a:hover {
 	height: 200px;
 }
 
-/**
- * Experiences page
- */
+/*------------------------------------------------------------------------------*/
+/*	EXPERIENCE PROFILE
+/*------------------------------------------------------------------------------*/
+
 
 #action-bar {
 }
@@ -292,9 +296,10 @@ footer a:hover {
 	float: right;
 }
 
-/**
- * Image carasoul
- */
+/*------------------------------------------------------------------------------*/
+/*	IMAGE CAROUSEL
+/*------------------------------------------------------------------------------*/
+
 
 #exp-main-image-outer {
 	border: 1px solid #EFEFEF;
@@ -410,7 +415,10 @@ ul.listings li.listing-item {
 	margin-left: 10px;
 }
 
-/* Inbox */
+/*------------------------------------------------------------------------------*/
+/*	INBOX
+/*------------------------------------------------------------------------------*/
+
 
 .message {
 	padding: 10px;
@@ -515,7 +523,9 @@ ul.listings li.listing-item {
 }
 
 
-/* Share (send referrals) */
+/*------------------------------------------------------------------------------*/
+/*	SHARE
+/*------------------------------------------------------------------------------*/
 
 .referral-action-menu {
 	text-align: center;
@@ -537,7 +547,105 @@ ul.listings li.listing-item {
 }
 
 
+/*------------------------------------------------------------------------------*/
+/*	ABOUT
+/*------------------------------------------------------------------------------*/
 
+#about p {
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 10px;
+    padding-right: 50px;
+    padding-bottom: 20px;
+	color: #545550;
+	/*font-family: georgia;*/
+	margin-top: 30px;
+	width: 750px;
+	display: inline-block;
+	
+}
+
+
+button.hidden {
+    visibility: hidden;
+}
+
+#collage {
+	padding: 10px;
+	margin-top: 10px;
+}
+
+#collage ul {
+	list-style: none;
+}
+
+#collage li {
+	float: left;
+	padding: 7px;
+	margin: 0px;
+	width: 220px;
+	border: solid 1px #e8dcc9;
+	background: #fefefe 
+}
+
+
+#collage #img-1 {
+-webkit-transform: rotate(-5deg);
+-moz-transform: rotate(-5deg);
+}
+
+#collage #img-2 {
+-webkit-transform: rotate(3deg);
+-moz-transform: rotate(3deg);
+}
+
+#collage #img-3 {
+-webkit-transform: rotate(-6deg);
+-moz-transform: rotate(-6deg);
+}
+
+#collage #img-4 {
+-webkit-transform: rotate(5deg);
+-moz-transform: rotate(5deg);
+}
+
+#collage #img-5 {
+-webkit-transform: rotate(6deg);
+-moz-transform: rotate(6deg);
+}
+
+#collage #img-6 {
+-webkit-transform: rotate(-3deg);
+-moz-transform: rotate(-3deg);
+}
+
+#collage #img-7 {
+-webkit-transform: rotate(4deg);
+-moz-transform: rotate(4deg);
+}
+
+#collage #img-8 {
+-webkit-transform: rotate(-5deg);
+-moz-transform: rotate(-5deg);
+}
+
+
+
+ul.ul-image-replace {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+
+/* this is kind of ugly, but the most decent image I could find right now */
+ul.ul-image-replace li {
+background-image: url(../images/check_mark_blue.png);
+background-repeat: no-repeat;
+background-position: 0.6em;
+padding-left: 3em;
+line-height: 1.5em;
+}
 
 
 
