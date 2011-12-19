@@ -29,16 +29,19 @@ class Experience(GeoModel,TextSearchModel):
     video_link = models.CharField(max_length=150,null=True,blank=True) #TextField makes it be a text area which is not what we want
     use_saved_address = models.BooleanField(default=True)
     
-    date = models.DateField()
-    time = models.TimeField()
-    #valid_from = models.DateTimeField(default=datetime.datetime.now)
-    #valid_until = models.DateTimeField(null=True,blank=True)
+    #date = models.DateField()
+    #time = models.TimeField()
+    valid_from = models.DateTimeField(default=datetime.datetime.now)
+    valid_until = models.DateTimeField(null=True,blank=True)
     tags = models.CharField(max_length=100,default='', null=True,blank=True)
 
     my_place = models.BooleanField(default=False,verbose_name='Hosting at my place')
     delivery = models.BooleanField(default=False,verbose_name='Delivery')
     pick_up = models.BooleanField(default=False,verbose_name='Pick up')
-    capacity = models.CharField(max_length=7,default='1-5',choices=[('1-5','1-5'),('6-10','6-10'),('11-15','11-15'),('16-20','16-20'),('20+','More than 20'),('+','until I\'ll ran out of food')])
+    capacity = models.CharField(max_length=7,default='1-5',choices=[('1-5','1-5'),('6-10','6-10'),('11-15','11-15'),('16-20','16-20'),('20+','More than 20'),('+','until I run out of food')])
+
+    
+    #capacity = models.CharField(max_length=7,default='1-5',choices=[('1-5','1-5'),('6-10','6-10'),('11-15','11-15'),('16-20','16-20'),('20+','More than 20'),('+','until I run out of food')])
 
 
     def get_location_address(self):

@@ -71,7 +71,7 @@
         <fieldset>
             <legend>Available dates and times</legend>
             <p> Pick available dates </p>
-            {{ form.date }}
+            {{ form.valid_from }}
             <br />
             <!--Until:-->
             {% comment %}
@@ -83,7 +83,7 @@
             <!--iframe id='cv_if1' src='http://cdn.instantcal.com/cvir.html?id=cv_nav1&theme=RE&ntype=cv_datepickerm&file=http%3A%2F%2Fwww.instantcal.com%2Ftest.ics' allowTransparency='true' scrolling='no' frameborder=0 height=250 width=250></iframe-->
             <br />
             <p>Pick available times</p>
-            {{ form.time }}
+            {{ form.valid_until }}
             <!-- here I want to include a better time widget, perhaps a slider like in Kayak. -->
             <!--input type="radio" name="mornings" />Mornings<br />
             <input type="radio" name="evenings" />Evenings<br />
