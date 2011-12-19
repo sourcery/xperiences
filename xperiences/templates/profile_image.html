@@ -1,6 +1,3 @@
-<div class="image-wrapper" style='width:100px; height:100px;
-position:relative;'>
-    <img alt="{{ user_extension.name }}" src="{% if user_extension.photo %}{{
-    user_extension.photo.url }}{% else %}http://graph.facebook.com/{{
-    user_extension.FB_ID }}/picture/?type=large{% endif %}">
+<div class="image-wrapper" style='width:100px; height:100px; position:relative;'>
+    <img alt="{{ user_extension.name }}" src="{% if user_extension.photo %}{{ user_extension.photo.url }}{% else %}http://graph.facebook.com/{{ user_extension.FB_ID }}/picture/?type=large{% endif %}">
 </div>
