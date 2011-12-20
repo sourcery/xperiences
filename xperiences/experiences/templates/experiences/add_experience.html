@@ -6,6 +6,11 @@
 <script src="{{MEDIA_URL}}js/jquery-ui-1.8.16.custom.min.js"></script>
 <script src="{{MEDIA_URL}}js/jquery-ui-timepicker-addon.js"></script>
 <link rel="stylesheet" href="{{MEDIA_URL}}css/ui-lightness/jquery-ui-1.8.16.custom.css" />
+<script>
+	$(document).ready(function(e){
+		$(".datepicker").datetimepicker();
+	});
+</script>
 {% endblock %}
 
 {% block content %}
