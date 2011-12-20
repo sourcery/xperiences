@@ -358,6 +358,7 @@ p, ul {
 label {
 	font-weight: bold;
 	display: block;
+	margin-bottom: 0.2em;
 }
 
 input.span1, textarea.span1, .span1-wrapper input, .span1-wrapper textarea {
@@ -504,6 +505,8 @@ select:focus {
 
 .img-upload.selected {
 	background: #efefef url(../images/tick_sign.png) no-repeat center;
+	border: 1px solid #dfdfdf;
+	box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.3);
 }
 
 .img-upload-border {

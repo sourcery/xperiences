@@ -31,34 +31,29 @@ h1, h2, h3, h4, h5, h6 {
 	padding: 10px 0 50px 0;
 }
 
-.command-bar-container {
-	height: 70px;
+#command-bar {
 }
 
-.command-bar {
-	background: #a58ab3;
-	border-radius: 3px;
-	font-size: 12pt;
-	padding: 10px 20px;
+#command-bar ul {
+	border-top: 1px solid #dfdfdf;
+	border-bottom: 1px solid #efefef;
+}
+
+#command-bar ul li a {
+	display: block;
+	padding: 8px 15px;
+	border-top: 1px solid #efefef;
+	border-bottom: 1px solid #dfdfdf;
+	color :#7a7a7a;
+}
+
+#command-bar ul li:hover {
+}
+
+#command-bar ul li a:hover {
+	background: #FFAA00;
 	color: white;
-	height: 30px;
-}
-
-
-.command-bar li {
-	float: left;
-	padding: 5px;
-	margin-right: 130px;
-}
-
-.command-bar li:last-child {
-	float: right;
-}
-
-
-.command-bar input {
-	margin-left: 6px;
-	margin-right: 6px;
+	text-decoration: none;
 }
 
 /*------------------------------------------------------------------------------*/
@@ -247,6 +242,11 @@ footer a:hover {
 	border-bottom: 1px solid #b2474c;
 	text-align: center;
 	text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+#action-bar .price span {
+	float: none;
+	top: 0;
 }
 
 #action-bar .price::before, #action-bar .price::after {
