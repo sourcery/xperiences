@@ -10,13 +10,15 @@ $(document).ready(function() {
 
 var data;
 
+
 function get_experiences(params) {
 	params = params || {};
 	$.get('/api/experiences/json', params, function(_data){
 		data = _data;
 		render(_data);
 	});
-};
+}
+
 
 function render(data) {
 	var totalWidth = $(window).width() - 20;

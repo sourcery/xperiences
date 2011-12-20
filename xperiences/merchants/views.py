@@ -46,7 +46,7 @@ def register(request):
 @merchant_required()
 def experiences(request):
     if request.method == 'GET':
-        return render_to_response('merchants/experiences.html', context_instance=RequestContext(request))
+        return render_to_response('merchants/experiences.html', {'merchant':request.merchant}, context_instance=RequestContext(request))
 
 @merchant_required()
 def merchant_inbox(request):

@@ -73,7 +73,7 @@ class TextSearchField(models.CharField):
 
 class RichTextField(TextSearchField):
     def __init__(self, **kwargs):
-        defaults = {'max_length': 255}
+        defaults = {'max_length': 4096}
         defaults.update(kwargs)
         super(RichTextField, self).__init__(**defaults)
 

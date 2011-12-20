@@ -1,18 +1,8 @@
 {% extends "base.html" %}
-{% load thumbnail %}
-{% block title %}{{ experience.title }}{% endblock %}
-{% block extra_head %}
-<script type='text/javascript' src='/static/jq.templates.js' ></script>
-<script type='text/javascript' src='https://maps-api-ssl.google.com/maps/api/js?v=3&sensor=false&libraries=places' ></script>
-<script type='text/javascript' src='/static/maps.js'></script>
 
-<script type='text/javascript' >
-    $(document).ready(function()
-    {
-        $('#location_field').geoview({ 'map_id' : 'map'});
-    });
-</script>
-{% endblock %}
+{% load thumbnail %}
+
+{% block title %}{{ experience.title }}{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -26,21 +16,11 @@
 				</div>
 				<div class="panel">
 					<div id="exp-thumbs">
-						{% thumbnail experience.photo1 experience.photo1.thumbnail_size_str crop="center" as im %}
-							<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-						{% endthumbnail %}
-						{% thumbnail experience.photo2 experience.photo2.thumbnail_size_str crop="center" as im %}
-							<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-						{% endthumbnail %}
-						{% thumbnail experience.photo3 experience.photo3.thumbnail_size_str crop="center" as im %}
-							<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-						{% endthumbnail %}
-						{% thumbnail experience.photo4 experience.photo4.thumbnail_size_str crop="center" as im %}
-							<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-						{% endthumbnail %}
-						{% thumbnail experience.photo5 experience.photo5.thumbnail_size_str crop="center" as im %}
-							<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-						{% endthumbnail %}
+                    {% if experience.photo1 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo1.url}}">{% endif %}
+                    {% if experience.photo2 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo2.url}}">{% endif %}
+                    {% if experience.photo3 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo3.url}}">{% endif %}
+                    {% if experience.photo4 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo4.url}}">{% endif %}
+                    {% if experience.photo5 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo5.url}}">{% endif %}
 					</div><!-- close exp-thumbs -->
 				</div>
 			</div><!-- close img-gallery -->
@@ -109,9 +89,9 @@
 				<div class="pad15">
 				<h3>Hi! I'm {{merchant.name}}</h3>
                 <div id="merchant-image">
-                    {% comment %} <a title={{ merchant.name }} href="{% url merchant_profile merchant.id %}">{% endcomment %}
-                        {% include 'profile_image.html' with user_extension=merchant %}
-                    </a>
+                    <div class="image-wrapper" style='width:100px; height:100px; position:relative;'>
+                        <img alt="{{ merchant.name }}" src="{% if merchant.photo %}{{ merchant.photo.url }}{% else %}http://graph.facebook.com/{{ merchant.FB_ID }}/picture/?type=large{% endif %}">
+                    </div>
                 </div>
 				<a class="center btn btn-blue font14">contact me</a>
 				</div>
@@ -142,6 +122,14 @@
 	</div>
 {% endblock %}
 
+{% block extra_scripts %}
+<script>
+    $(document).ready(function()
+    {
+        $('#location_field').geoview({ 'map_id' : 'map'});
+    });
+</script>
+{% endblock %}
 
 
 

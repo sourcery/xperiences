@@ -1,48 +1,100 @@
 {% extends "base.html" %}
 {% block title %}About Us{% endblock %}
 {% block content %}
-    <div class="main-content">
-        <div class="command-bar-container">
-			<!--<div class="command-bar">
-				This can be hidden if not in use
-			</div>-->
-		</div>
-        <div class="two-col-left"> 
-A shared meal is one of those experiences that defines what it means to be human. <br />
-Eating together with family, friends and neighbors strengthens community, bridges cultures, and builds a robust local economy. <br />
-
-We know that there are culinary wonders going on behind countless closed doors.
-Pies cooling on the windowsills, fresh cooking smells wafting by the noses of
-wistful passerbys. We unite them on the web for the first time.
-
-We want to encourage more people to sit down to the table with strangers and get
-up as friends. We want to encourage [amateur and aspiring] gourmands to share
-their favorite dish with travelers and teach their neighbors the secret recipe
-for the perfect loaf of bread.
-
-If you have friends, an appetite and a desire to make your world a richer place,
-join us. Start by offering your own special treat (link to merchant teaser page)
-        </div>
-        
-        <div class="two-col-right">
-            <p>Partake in a Food experience {all the below should link to a relevant Experience Page}</p>
-            <ul>
-                <li>- Grab a homemade bite or meal</li>
-                <li>- Meet a local when you travel</li>
-                <li>- Connect with your neighbors</li>
-                <li>- Learn a new a culinary skill</li>
-                <li>- Support a local foodtrepreneur!</li>
-            </ul>
-            <br /><br />
-            <p>Share a Food Experience  {this should link to Merchant Teaser}</p>
-            <ul>
-                <li>- Host a community building dining experience around a particular theme!</li>
-                <li>- Show off your culinary prowess by offering a DIY class</li>
-                <li>- Spread the world about your soon-to-be world famous...</li>
-                <li>- Make new friends from the comfort of your own home</li>
-                <li>- Test your restaurant idea with someone other than your mother</li>
-                <li>- We can only imagine the delights you can bring to the table.  Surprise us!</li>
-            </ul>
+    <div class="content-body">
+		<div class="container">
+			<div class="space50"></div>
+			<div class="span10 font12">
+				<p>A shared meal is one of those experiences that defines
+				what it means to be human. Eating together with family, friends and
+				neighbors strengthens community, bridges cultures, and builds a robust local
+				economy.</p>
+				<p>We know that there are culinary wonders going on behind countless closed
+				doors. Pies cooling on the windowsills, fresh cooking smells wafting by the
+				noses of wistful passerbys. We unite them and bring them to the web for the first time.</p> 
+				<p>We want to encourage more people to sit down to the table with
+				strangers and get up with friends. We want to encourage (amateur and
+				aspiring) gourmands to share their favorite dish with travelers and teach
+				their neighbors the secret recipe for the perfect loaf of bread.</p>
+				<p>If you have friends, an appetite and a desire to make your world a richer
+				place then<a href="/start"> start by offering your own special treat!</a></p>
+			</div>
+			<div id="collage" style="height: 160px;"><!-- this height is a
+			hack... I couldn't figure out how to space them otherwise-->
+				<ul>
+					<li id="img-1"> 
+						<img width="220" height="165" alt="" src="https://s3.amazonaws.com/my_prod_xpr_uploads/photos/Sharing_a-meal.jpg">   
+					</li>
+					<li id="img-2"> 
+						<img width="220" height="165" alt="" src="https://s3.amazonaws.com/my_prod_xpr_uploads/photos/nice_table.jpg">   
+					</li>
+					<li id="img-3"> 
+						<img width="220" height="165" alt="" src="https://s3.amazonaws.com/my_prod_xpr_uploads/photos/fun_by_table.jpg">
+					</li>
+					<!--<li id="img-4"> 
+						<img width="220" height="165" alt="" src="https://s3.amazonaws.com/my_prod_xpr_uploads/photos/hands_food_table.jpg">
+					</li>
+					<li id="img-5"> 
+						<img width="220" height="165" alt="" src="https://s3.amazonaws.com/my_prod_xpr_uploads/photos/chocolate_pie.jpg">
+					</li>
+					<li id="img-6"> 
+						<img width="220" height="165" alt="" src="https://s3.amazonaws.com/my_prod_xpr_uploads/photos/papa-and-me.jpg">
+					</li>-->
+				</ul>
+			</div>
+			<br /><br />
+			<div class="row">
+				<div class="panel span4 pad15" style="height: 180px;">		
+					<h2>Partake in a Food experience</h2>
+					<div class="space10"></div>
+					<ul class="ul-image-replace font12">
+						<li>Grab a homemade bite or meal</li>
+						<li>Meet a local when you travel</li>
+						<li>Connect with your neighbors</li>
+						<li>Learn a new a culinary skill</li>
+						<li>Support a local foodtrepreneur!</li>
+					</ul>
+				</div>
+				<div class="panel span6 pad15" style="height: 180px;">
+					<h2>Share a Food Experience</h2>
+					<div class="space10"></div>
+					<ul class="ul-image-replace font12">
+						<li>Host a community dinner around a particular theme!</li>
+						<li>Show off your culinary prowess by offering a DIY class</li>
+						<!--<li>Spread the word about your soon-to-be world famous dishes</li>-->
+						<li>Make new friends from the comfort of your own home</li>
+						<li>Test your restaurant idea with someone other than your mother</li>
+					</ul>
+				</div>
+			</div>
+			<div id="collage">
+				<ul>
+					<!--<li id="img-1"> 
+						<img width="220" height="165" alt="" src="https://s3.amazonaws.com/my_prod_xpr_uploads/photos/Sharing_a-meal.jpg">   
+					</li>
+					<li id="img-2"> 
+						<img width="220" height="165" alt="" src="https://s3.amazonaws.com/my_prod_xpr_uploads/photos/nice_table.jpg">   
+					</li>
+					<li id="img-3"> 
+						<img width="220" height="165" alt="" src="https://s3.amazonaws.com/my_prod_xpr_uploads/photos/fun_by_table.jpg">
+					</li>-->
+					<li id="img-4"> 
+						<img width="220" height="165" alt="" src="https://s3.amazonaws.com/my_prod_xpr_uploads/photos/hands_food_table.jpg">
+					</li>
+					<li id="img-5"> 
+						<img width="220" height="165" alt="" src="https://s3.amazonaws.com/my_prod_xpr_uploads/photos/chocolate_pie.jpg">
+					</li>
+					<li id="img-6"> 
+						<img width="220" height="165" alt="" src="https://s3.amazonaws.com/my_prod_xpr_uploads/photos/papa-and-me.jpg">
+					</li>
+					<li id="img-7"> 
+						<img width="220" height="165" alt="" src="https://s3.amazonaws.com/my_prod_xpr_uploads/photos/people_around_table.jpg">
+					</li>
+					<li id="img-8"> 
+						<img width="220" height="165" alt="" src="https://s3.amazonaws.com/my_prod_xpr_uploads/photos/food.jpg">
+					</li>
+				</ul>
+			</div>	
         </div>
     </div>
 {% endblock %}
