@@ -9,5 +9,5 @@ urlpatterns = patterns('merchants.views',
                        url(r'^view_message/(?P<id>[a-f0-9]+)/$', 'view_message', name='view_message'),
                        url(r'^comment/(?P<username>[-\w]+)/$', 'comment_merchant', name='comment_merchant'),
                        url(r'^(?P<username>[-\w]+)/$', 'merchant_profile', name='merchant_profile'),
-
+                       url(r'^$', 'experiences', name='merchant_profile'),
                     )
