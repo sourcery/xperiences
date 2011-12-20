@@ -13,7 +13,7 @@
 				<div class="input-group">
 					<label class="label" for="profile-image">Profile Picture</label>
 					<div class="change-profile-image">
-						<div class="image-wrapper">{% include 'profile_image.html' with user_extension=merchant %}</div>
+                        <div class="image-wrapper">{{ merchant.photo.url }}</div>
 						<input type="file" class="upload-new-profile-image" id="profile-image" name="profile-image" size="15">
 					</div>
 				</div>

@@ -86,19 +86,20 @@
         </div>
         <div id="seller-info" class="panel row">
             <div class="pad15">
-            <h3>{{merchant.name}}</h3>
-            <div id="merchant-image">
-                <div class="image-wrapper" style='width:100px; height:100px; position:relative;'>
-                    <img alt="{{ merchant.name }}" src="{% if merchant.photo %}{{ merchant.photo.url }}{% else %}http://graph.facebook.com/{{ merchant.FB_ID }}/picture/?type=large{% endif %}">
+                <h3>{{merchant.name}}</h3>
+                <div class="row">
+                    <div id="merchant-image">
+                        <div class="image-wrapper" style='width:100px; height:100px; position:relative;'>
+                            <img alt="{{ merchant.name }}" src="{% if merchant.photo %}{{ merchant.photo.url }}{% else %}http://graph.facebook.com/{{ merchant.FB_ID }}/picture/?type=large{% endif %}">
+                        </div>
+                    </div>
+                    <div id="merchant-address">
+                    {{ merchant.address }}<br />
+                    </div>
                 </div>
-            </div>
-            <div id="merchant-address">
-				157A Fair Oaks St.{{ form.address.value }}<br />San Francisco CA 94110
-            </div>
-            <div class="space10"></div>
-            <a class="center btn btn-blue font14">Contact me</a>
-            </div>
-        </div>
+                <a class="btn btn-blue font14" style="float: left; margin-bottom: 10px;">Contact me</a>
+            </div><!-- close pad15 -->
+        </div><!-- close seller-info -->
         <div class="pad8 panel row">
             <div id="map">
                 <input type='hidden' id='location_field' value='{{ location }}' />

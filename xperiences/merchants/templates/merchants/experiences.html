@@ -3,17 +3,10 @@
 {% load x_tags %}
 
 {% block content %}
-<div class="main-content">
-        <div class="command-bar-container">
-            <div class="command-bar">
-            <ul>
-                <li><a href="/experiences/add_experience">Add new listing</a></li>
-                <li><a href="/merchants/experiences">View all your listings</a></li>
-                <li><a href="/merchants/inbox">Inbox</a></li>
-                <li><a href="/merchants/account">Account</a></li>
-            </ul>
-        </div>
-        </div>
+<div class="container">
+	<div class="space30"></div>
+	{% include "merchants/command_bar.html" %}
+    <div class="column span9">
         <div class="listings-container">
             <ul class="listings"></ul>
         </div><!-- closing listings-container -->
@@ -25,7 +18,7 @@
 <script type='text/x_jquery_tempaltes' id='experience_item_template'>
     <li id="#" class="listing-item">
         <a class="#" title=" {% t_var title %}" href="{% t_url merchant_edit_experience slug_id %}">
-            <img width="310" height="207" alt="{% t_var title %}" {% t_if photo1 %}src="{% t_var photo1.url %}"{% t_endif %}>
+            <img width="100" height="100" alt="{% t_var title %}" {% t_if photo1 %}src="{% t_var photo1.url %}"{% t_endif %}>
         </a>
         <div id="thumb-details">
             <p class="listing-title">

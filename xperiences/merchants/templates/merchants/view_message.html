@@ -1,31 +1,38 @@
 {% extends 'base.html' %}
-{% block wrapper %}
-    {% block content %}
+{% block content %}
+<div class="container">
+	<div class="space30"></div>
+	{% include "merchants/command_bar.html" %}
+    <div class="column span9">
         {% if not status or status != 'ok' %}
             {{ status }}
+            <div class="user">
             {% if message.sender %}
                 {% include 'profile_image.html' with user_extension=message.sender %}
             {% endif %}
-            <div id="thumb-details">
-                <p class="listing-title">
-                    {{ message.title }}
-                </p>
-                <p class="listing-merchant">
-                    {{ message.message }}
-                </p>
-                <p>
-                    {{ message.time }}
-                </p>
+            <div class="user-name">
+                {{ message.sender }}
+            </div>
+            <div class="message-timestamp">
+                {{ message.time }}
+            </div>
+            <div class="message-title">
+                {{ message.title }}
+            </div>
+            <div class="message-body">
+                {{ message.message }}
             </div>
             <form method='post'>
-                <textarea rows="20" cols="50" name='reply'></textarea>
-                <br />
-                <input type='submit' value='Send' />
+                <textarea rows="10" cols="50" name='reply'></textarea>
+                <div class="space10"></div>
+                    <input type='submit' value='Send' />
+                </div>
             </form>
         {% else %}
             Sent
         {% endif %}
-    {% endblock %}
+    </div>
+</div>
 {% endblock %}
 
 

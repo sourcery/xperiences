@@ -1,17 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="main-content">
-        <div class="command-bar-container">
-            <div class="command-bar">
-                <ul>
-                    <li><a href="/experiences/add_experience">Add new listing</a></li>
-                    <li><a href="/merchants/experiences">View all your listings</a></li>
-                    <li><a href="/merchants/inbox">Inbox</a></li>
-                    <li><a href="/merchants/account">Account</a></li>
-                </ul>			
-            </div>
-        </div>
-        <div class="messages-container">
+<div class="container">
+	<div class="space30"></div>
+	{% include "merchants/command_bar.html" %}
+    <div class="column span9">
+        <div class="panel row">
             <ul class="messages">
             {% for message in comments %}
                 <li class="message">
@@ -23,18 +16,18 @@
                         </a>
                         <div class="user-name">
                         {% if message.sender %}
-                            {% comment %}{% message.sender %}{% endcomment %} <!-- not sure where the comments model is; this is probably wrong, I need the sender's name -->
+                            {{ message.sender }}
                         {% endif %}                 
                         </div>
                         <div class="user-location">
-                        {% if message.sender %}
-                            {% comment %}{% some django call for sender's location here %}{% endcomment %} <!-- not sure where to take this from... -->
-                        {% endif %}  
+                        {% comment %}{% if message.sender %}
+                            {{ message.sender.address }}
+                        {% endif %}  {% endcomment %}
                         </div>
                     </div>    
                     <div class="messsage-summary">
                         <a href="{% url view_message message.id %}">
-                            <div class="message-subject">{{ message.title }}</div><!-- is this correct? again, can't find the comments model -->
+                            <div class="message-title">{{ message.title }}</div><!-- is this correct? again, can't find the comments model -->
                             <div class="message-body">{{ message.message }}</div><!-- this should be a short summary of the message body -->
                         </a>
                     </div>
@@ -50,6 +43,7 @@
                 </li>
             {% endfor %}
             </ul>
-        </div><!-- close messages-container -->
-    </div><!-- close main-content -->
+        </div>
+    </div>
+</div><!-- close main-content -->
 {% endblock %}

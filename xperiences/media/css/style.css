@@ -297,8 +297,23 @@ footer a:hover {
 }
 
 #seller-info {
-	text-align: center;
+	/*text-align: center;*/
 }
+
+#merchant-image {
+	float: left;
+	width: 100px;
+}
+
+#merchant-address{
+	float: left;
+	width: 120px;
+	margin-left: 20px;
+}
+
+
+
+
 
 /*------------------------------------------------------------------------------*/
 /*	IMAGE CAROUSEL
@@ -434,14 +449,19 @@ ul.listings li.listing-item {
 /*------------------------------------------------------------------------------*/
 
 
+
 .message {
 	padding: 10px;
 	margin-bottom: 10px;
 	border-top: 1px solid #E0E0E0;
 }
 
+.message:first-child {
+	border-top: hidden;
+}
+
 .user {
-	width: 150px;
+	/*width: 150px;*/
 	display: inline-block;
 	text-align: left;
 	margin-right: 10px;
@@ -458,15 +478,15 @@ ul.listings li.listing-item {
 }
 
 .user-image  {
-	width: 100px;
+	/*width: 100px;*/
 	display: inline-block;
 	text-align: center;
-	margin-right: 30px;
+	/*margin-right: 30px;*/
 	vertical-align: middle;
 }
 
 .messsage-summary {
-	width: 500px;
+	width: 400px;
 	display: inline-block;
 	text-align: left;
 	margin-right: 10px;
@@ -474,17 +494,24 @@ ul.listings li.listing-item {
 	overflow: hidden;
 }
 
-.message-subject {
+/* not sure why this doesn't work... I'm trying to select only this particular a tag */
+.message-summary a {
+	color: #444;
+}
+
+.message-title {
 	font-size: 120%;
+	color: #444;
 }
 
 .message-body {
 	margin-top: 5px;
+	color: #444; /* this is just a hack... the hover is still yellow... */
 }
 
 
 .msg-right-block {
-	width: 200px;
+	width: 150px;
 	display: inline-block;
 	text-align: center;
 	margin-top: 35px;
@@ -493,11 +520,11 @@ ul.listings li.listing-item {
 }
 
 .message-timestamp {
-	width: 200px;
+	width: 100px;
 	display: inline-block;
 	text-align: right;
 	vertical-align: middle;
-/*	overflow: hidden;*/
+	float: right;
 }
 
 .message-actions {
