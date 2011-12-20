@@ -6,6 +6,22 @@
 <script src="{{MEDIA_URL}}js/jquery-ui-1.8.16.custom.min.js"></script>
 <script src="{{MEDIA_URL}}js/jquery-ui-timepicker-addon.js"></script>
 <link rel="stylesheet" href="{{MEDIA_URL}}css/ui-lightness/jquery-ui-1.8.16.custom.css" />
+<script>
+	$(document).ready(function(e){
+		$(".datepicker").datetimepicker();
+
+		$(".img-upload input").change(function(e){
+			var $this = $(e.currentTarget);
+			var val = $this.val();
+			console.log(val);
+			if(val != "") {
+				$this.parent().parent().addClass("selected");
+			} else {
+				$this.parent().parent().removeClass("selected");
+			}
+		})
+	});
+</script>
 {% endblock %}
 
 {% block content %}
@@ -15,6 +31,7 @@
 		<h1>Add listing form</h1><!-- we can change this title based on the niche-->
 		{{ form.errors }}
 		<form action="#" method="POST" enctype="multipart/form-data">
+			<div class="row">
 			<fieldset class="panel">
 				<div class="pad15">
 					<h3>Describe your offering</h3>
@@ -46,6 +63,7 @@
 					</div>
 				</div>
 			</fieldset>
+			</div>
 	
 			<div class="row">
 				<div class="span5">
@@ -98,16 +116,17 @@
 				</div>
 			</div>
 
+			<div class="row">
 			<fieldset class="panel">
 				<div class="pad15">
 				<h3>Tell your story visually</h3>
 				<div class="row">
 					<label>Upload your images</label>
-					{{ form.photo1 }}
-					{{ form.photo2 }}
-					{{ form.photo3 }}
-					{{ form.photo4 }}
-					{{ form.photo5 }}
+					<div class="img-upload"><div class="img-upload-border">{{ form.photo1 }}</div></div>
+					<div class="img-upload"><div class="img-upload-border">{{ form.photo2 }}</div></div>
+					<div class="img-upload"><div class="img-upload-border">{{ form.photo3 }}</div></div>
+					<div class="img-upload"><div class="img-upload-border">{{ form.photo4 }}</div></div>
+					<div class="img-upload"><div class="img-upload-border">{{ form.photo5 }}</div></div>
 				</div>
 				<div class="row">
 					<div>
@@ -117,9 +136,9 @@
 				</div>
 				</div>
 			</fieldset>
+			</div>
 
-
-			<div class="span9">	
+			<div class="row">	
 				<fieldset class="panel">
 					<div class="pad15">
 						<h3>Location</h3>
@@ -158,6 +177,7 @@
 				</div>
 			</fieldset>
 		</div>
+		<div class="row">
 		<fieldset class="panel">
 			<div class="pad15">
 				<h3>Give more details to help people find you</h3>
@@ -177,7 +197,9 @@
 				{% endcomment %}
 				</div>
 			</fieldset>
-			<input class="btn" type="submit" value="Add listing">
+		</div>
+		<div class="space30"></div>
+		<input class="btn" type="submit" value="Add listing">
 		</form>
 	</div>
 </div>

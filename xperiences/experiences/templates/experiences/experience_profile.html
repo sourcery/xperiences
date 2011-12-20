@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load thumbnail %}
+{% comment %}{% load thumbnail %}{% endcomment %}
 
 {% block title %}{{ experience.title }}{% endblock %}
 
@@ -27,13 +27,13 @@
         <div class="description">
             {{ experience.description|safe }}
         </div>
-    </div>
+    </div><!-- close span8 column -->
     <div class="span4 column">
         <h1>&nbsp;</h1>
         <div id="action-bar" class="panel span4 font12">
             <div class="price">
                 ${{ experience.price }}<a href="#"></a>
-                <span class="unit">{{ experience.unit_name }} per person</span><!-- this per session will have ot be replaced by the unit type -->
+                <span class="unit">{{ experience.unit_name }} per person</span><!-- this will have to be replaced by the unit_name -->
             </div>
             <div class="space10"></div>
             <div class="row">
@@ -87,7 +87,7 @@
         </div>
         <div id="seller-info" class="panel">
             <div class="pad15">
-            <div id="merchant-address" style="float: right; width: 120px; margin-top: 10px;">
+            <div id="merchant-address" style="float: right; width: 120px; margin-top: 20px; margin-right: 25px;">
                 <ul>
                     <li id="location">157A Fair Oaks St.{{ form.address.value }}</li><!-- I still don't know where to take this address from! -->
                     <li>San Francisco CA 94110</li>
@@ -109,9 +109,118 @@
             </div>
         </div>
         <div class="secondary">
-            <ul>
+
+		<div class="span8 column">
+			<h1>{{ experience.title }}</h1>
+			<div id="img-gallery">
+				<div id="exp-main-image-outer">
+					<div id="exp-main-image" class="image-wrapper"></div>
+				</div>
+				<div id="exp-img-thumbs">
+					<div id="exp-thumbs">
+                    {% if experience.photo1 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo1.url}}">{% endif %}
+                    {% if experience.photo2 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo2.url}}">{% endif %}
+                    {% if experience.photo3 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo3.url}}">{% endif %}
+                    {% if experience.photo4 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo4.url}}">{% endif %}
+                    {% if experience.photo5 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo5.url}}">{% endif %}
+					</div><!-- close exp-thumbs -->
+				</div>
+			</div><!-- close img-gallery -->
+			<div class="description">
+                {{ experience.description|safe }}
+			</div>
+		</div>
+		<div class="span4 column">
+			<h1>&nbsp;</h1>
+			<div class="row">
+			<div id="action-bar" class="panel span4 font12">
+				<div class="price">
+					${{ experience.price }}<a href="#"></a><!-- the href is for when we will quote in different currencies... thinking far ahead here :-) -->
+					<span class="unit">{{ experience.unit_name }} per person</span><!-- this per session will have ot be replaced by the unit type -->
+				</div>
+				<div class="space10"></div>
+				<div class="row">
+					<span class="date">Dec 18, 2pm</span>
+					<select>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+					</select>
+					<input type="submit" class="btn" value="buy" />
+				</div>
+				<div class="row">
+					<span class="date">Dec 18, 2pm</span>
+					<select>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+					</select>
+					<input type="submit" class="btn" value="buy" />
+				</div>
+				<div class="row">
+					<span class="date">Dec 18, 2pm</span>
+					<select>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+					</select>
+					<input type="submit" class="btn" value="buy" />
+				</div>
+			</div>
+			</div>
+			<div class="row">
+						<div id="seller-info" class="panel">
+							<div class="pad15">
+							<h3>Hi! I'm {{merchant.name}}</h3>
+			                <div id="merchant-image">
+			                    <div class="image-wrapper" style='width:100px; height:100px; position:relative;'>
+			                        <img alt="{{ merchant.name }}" src="{% if merchant.photo %}{{ merchant.photo.url }}{% else %}http://graph.facebook.com/{{ merchant.FB_ID }}/picture/?type=large{% endif %}">
+			                    </div>
+			                </div>
+							<a class="center btn btn-blue font14">contact me</a>
+							</div>
+						</div>
+			</div>
+			<div class="row">
+						<div class="pad8 panel">
+							<div id="map">
+								<input type='hidden' id='location_field' value='{{ location }}' />
+							</div>
+							<div id="merchant-details">
+								<ul>
+									<li id="location">{{ merchant.city}} {{ merchant.state }}
+									<br />
+									{{ merchant.country }}
+									</li>
+								</ul>
+			                </div>
+						</div>
+			</div>
+			<div class="secondary">
+				<ul>
                 <li>Experience listed on {{ experience.pub_date }}</li>
-                <li>{{ experience.views }} views</li><!-- we don't have these attributes, make sure we add them. Ask Joseph how? -->
+                <li>{{ experience.views }} views</li><!-- do we track this? where? -->
                 {% comment %}<li>{{ experience.wish_list_adds }} added this experience to their wish list</li>{% endcomment %}
                 <li><a href="#" title="report an experience">Report this experience</a></li>
             </ul>

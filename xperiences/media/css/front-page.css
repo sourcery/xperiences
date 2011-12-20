@@ -17,7 +17,7 @@
 }
 
 #front-page .top-spacer {
-	/*height: 80px;*/ /* I prefer it when you just see a very thin line of the
+	height: 80px; /* I prefer it when you just see a very thin line of the
 	/*backrground image - NM */
 	background: url(../images/header_border.png) left;
 	box-shadow: inset 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
