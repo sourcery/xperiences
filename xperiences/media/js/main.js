@@ -88,10 +88,10 @@ function setMainImage(imgPath) {
 	var mainImg = $("#exp-main-image");
 	var oldImage = mainImg.children("img");
 	var newImage = $("<img>").addClass("main-image").prop("src", imgPath);
+	newImage.css("width", 610);
 	mainImg.prepend(newImage);
 	var h = newImage.width();
 	var w = newImage.height();
-	console.log(h);
 	if(oldImage.length > 0) {
 		oldImage.animate({
 			"opacity": 0	
@@ -105,7 +105,9 @@ function setMainImage(imgPath) {
 
 // Prevent errors in browsers without console support
 if (!console) {
-	console.log = function() {}
+	var console = {
+		log: function() {}
+	}
 }
 
 $.prototype.cjObjectScaler = function(params)
@@ -126,7 +128,7 @@ function image_autoscale(obj, params)
         var parent_width = parent.innerWidth();
         var parent_height = parent.innerHeight();
         var parent_prop = parent_width * 1.0 / parent_height;
-        parent.css({position:'relative;', overflow:'hidden'});
+        parent.css({position:'relative;'});
 
         var width = elm.width();
         var height = elm.height();

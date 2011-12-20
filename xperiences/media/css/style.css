@@ -302,12 +302,14 @@ footer a:hover {
 
 
 #exp-main-image-outer {
-	border: 1px solid #EFEFEF;
+	border-left: 1px solid #DFDFDF;
+	border-right: 1px solid #DFDFDF;
+	border-top: 1px solid #DFDFDF;
 	background: white;
-	margin-bottom: 10px;
-	overflow: hidden;
-	height: 480px; /*450*/
 	position: relative;
+	width: 620px;
+	height: 400px;
+	overflow: hidden;
 }
 
 #exp-main-image-frame {
@@ -317,6 +319,15 @@ footer a:hover {
 	top: 0;
 	height: 480px; /*440*/
 	width: 480px; /*638*/
+}
+
+#exp-img-thumbs {
+	border-left: 1px solid #DFDFDF;
+	border-right: 1px solid #DFDFDF;
+	border-bottom: 1px solid #DFDFDF;
+	width: 620px;
+	background: white;
+	margin-bottom: 30px;
 }
 
 .bottom-pad {
@@ -339,15 +350,14 @@ footer a:hover {
 #exp-thumbs {
 	overflow: hidden;
 	position: relative;
-	margin-top: 3px;
+	margin-top: 4px;
 }
 
 .exp-thumbs-img {
 	width: 70px;
 	height: 70px;
 	cursor: pointer;
-	border: 3px solid white;
-	margin-right: 2px;
+	border: 5px solid white;
 }
 
 .primary #exp-thumbs ul {

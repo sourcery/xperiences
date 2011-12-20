@@ -135,7 +135,7 @@ hr {
 
 .row {
 	margin-top: 5px;
-	margin-bottom: 15px;
+	margin-bottom: 10px;
 }
 
 .row:last-child {
@@ -328,7 +328,6 @@ p, ul {
 	background: white;
 	-moz-transition: all 0.5s; /* what does this transition property do */
 	-webkit-transition: all 0.5s;
-	margin: 10px 0 15px;
 }
 
 .panel:hover {
@@ -492,6 +491,33 @@ select:focus {
 	border: 1px solid #ffaa00;
 	box-shadow: 0px 0px 5px 1px #ffaa00;
 }
+
+.img-upload {
+	width: 100px;
+	height: 80px;
+	float: left;
+	border: 1px solid #efefef;
+	overflow: hidden;
+	background: #efefef url(../images/add_sign.png) no-repeat center;
+	margin-right: 8px;
+}
+
+.img-upload.selected {
+	background: #efefef url(../images/tick_sign.png) no-repeat center;
+}
+
+.img-upload-border {
+	border: 5px solid white;
+}
+
+.img-upload input[type="file"] {
+	height: 70px;
+	font-size: 50px;
+	z-index: 1000;
+	opacity: 0;
+	cursor: pointer;
+}
+
 
 /**
  * Buttons
