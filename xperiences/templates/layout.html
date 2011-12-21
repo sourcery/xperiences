@@ -25,7 +25,8 @@
 	<script type="text/javascript" src="http://use.typekit.com/qvy1ycb.js"></script>
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 	<script>$(document).ready(function() {image_autoscale($('.image-wrapper img'));});</script>
-	<script type="text/javascript">/* Google analytics */
+	<!-- Google analytics -->
+	<script type="text/javascript">
 	var _gaq = _gaq || [];
 	_gaq.push(['_setAccount', 'UA-27207596-2']);
 	_gaq.push(['_trackPageview']);
@@ -38,9 +39,15 @@
    s.parentNode.insertBefore(ga, s);
 	})();
    </script>
- 
-
-
+	<!-- FB JavaScript SDK-->
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
     {% block hidden_templates %}{% endblock %}
 
     {% block extra_scripts %}{% endblock %}
