@@ -1,39 +1,44 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container">
-	<div class="space30"></div>
-	{% include "merchants/command_bar.html" %}
-    <div class="column span9">
-        {% if not status or status != 'ok' %}
-            {{ status }}
-            <div class="user">
-            {% if message.sender %}
-                <div class="image-wrapper" style='width:50px; height:50px; position:relative;'>
-                    <img alt="{{ message.sender.name }}" width="50" height="50" src="{% if message.sender.photo %}{{ message.sender.photo.url }}{% else %}http://graph.facebook.com/{{ message.sender.FB_ID }}/picture/?type=large{% endif %}" />
-                </div>
-            {% endif %}
-            <div class="user-name">
-                {{ message.sender }}
-            </div>
-            <div class="message-timestamp">
-                {{ message.time }}
-            </div>
-            <div class="message-title">
-                {{ message.title }}
-            </div>
-            <div class="message-body">
-                {{ message.message }}
-            </div>
-            <form method='post'>
-                <textarea rows="10" cols="50" name='reply'></textarea>
-                <div class="space10"></div>
-                    <input type='submit' value='Send' />
-                </div>
-            </form>
-        {% else %}
-            Sent
-        {% endif %}
-    </div>
+<div class="space30"></div>
+{% include "merchants/command_bar.html" %}
+<div id="message-read" class="column span9">
+	<div class="panel pad15">
+		{% if not status or status != 'ok' %}
+		{{ status }}
+		<div class="user">
+			{% if message.sender %}
+			<div class="user-details">
+			<div class="image-wrapper" style='width:50px; height:50px; position:relative;'>
+				<img alt="{{ message.sender.name }}" width="50" height="50" src="{% if message.sender.photo %}{{ message.sender.photo.url }}{% else %}http://graph.facebook.com/{{ message.sender.FB_ID }}/picture/?type=large{% endif %}" />
+			</div>
+			<div id="user-data" class="span3">
+				<div class="user-name">
+				{{ message.sender }}
+				</div>
+				<div class="message-timestamp">
+				{{ message.time }}
+				</div>
+			</div>
+			<div class="clear"></div>
+			{% endif %}
+			<div class="message-title">
+				{{ message.title }}
+			</div>
+			<div class="message-body">
+				{{ message.message }}
+			</div>
+			<div class="space30"></div>
+			<form method='post'>
+				<textarea rows="10" cols="50" name='reply'></textarea>
+				<div class="space10"></div>
+				<input class="btn" type='submit' value='Reply' />
+			</form>
+		{% else %}
+		Sent
+		{% endif %}
+		</div>
+	</div>
 </div>
 {% endblock %}
 

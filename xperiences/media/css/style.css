@@ -400,44 +400,24 @@ ul.listings li.listing-item {
 }
 
 .listing {
+	display: block;
+	padding: 5px;
+	border-top: 1px solid #dfdfdf;
 }
 
-.listing h4 a {
-	text-decoration: none;
-	color: #a58ab3;
+.listing-header .listing-value, .listing-header .listing-date {
+	font-weight: bold;
 }
 
-.listing-title {
-	width: 150px;
-	display: inline-block;
-	margin-right: 10px;
-}
-
-.listing-image  {
-	width: 150px;
-	display: inline-block;
-	text-align: center;
-	margin-right: 30px;
-	vertical-align: middle;
-}
-
-.listing-item-short {
-	width: 120px;
-	display: inline-block;
-	text-align: center;
-	margin-right: 10px;
-	vertical-align: middle;
+.listing-date {
+	margin-left: 10px;
+	font-size: 12pt;
 }
 
 .listing-value {
-	font-size: 150%;
-	margin-top: 5px;
-}
-
-.listing-actions {
-	vertical-align: middle;
-	margin-top: 30px;
+	width: 150px;
 	float: right;
+	font-size: 11pt;
 }
 
 .listing-actions button {
@@ -460,8 +440,11 @@ ul.listings li.listing-item {
 	border-top: hidden;
 }
 
+.message * {
+	vertical-align: top;
+}
+
 .user {
-	/*width: 150px;*/
 	display: inline-block;
 	text-align: left;
 	margin-right: 10px;
@@ -471,6 +454,9 @@ ul.listings li.listing-item {
 
 .user-name {
 	font-size: 90%;
+	float: right;
+	width: 80px;
+	vertical-align: bottom;
 }
 
 .user-location {
@@ -485,56 +471,60 @@ ul.listings li.listing-item {
 	vertical-align: middle;
 }
 
-.messsage-summary {
-	width: 400px;
-	display: inline-block;
-	text-align: left;
-	margin-right: 10px;
-	vertical-align: middle;
-	overflow: hidden;
+a.message-link {
+	text-decoration: none;
 }
 
-/* not sure why this doesn't work... I'm trying to select only this particular a tag */
-.message-summary a {
-	color: #444;
-}
-
-.message-title {
+.message-link .message-title {
 	font-size: 120%;
-	color: #444;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	color: #222;
 }
 
-.message-body {
-	margin-top: 5px;
-	color: #444; /* this is just a hack... the hover is still yellow... */
+.message-link .message-body {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	color: #7a7a7a;
 }
 
-
-.msg-right-block {
-	width: 150px;
-	display: inline-block;
-	text-align: center;
-	margin-top: 35px;
+.message-action {
 	vertical-align: middle;
+	margin-top: 5px;
 	float: right;
 }
 
 .message-timestamp {
-	width: 100px;
+	margin-top: 3px;
+}
+
+.empty-inbox {
+	display:block;
+	padding: 15px;
+	text-align: center;
+}
+
+#message-read .image-wrapper {
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.user-data {
+	vertical-align: bottom;
 	display: inline-block;
-	text-align: right;
-	vertical-align: middle;
-	float: right;
 }
 
-.message-actions {
-	vertical-align: middle;
-	margin-top: 5px;
-	float: right;
+#message-read .user-name {
+	width: 400px;
+	float: none;
+	font-size: 120%;
 }
 
-.message-actions button {
-	margin-left: 10px;
+#message-read .message-title {
+	font-size: 150%;
 }
 
 /* Login */
