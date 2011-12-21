@@ -8,6 +8,7 @@
 	<div class="space30"></div>
     <div class="span8 column">
         <h1>{{ experience.title }}</h1>
+            
 		<div id="img-gallery">
 			<div id="exp-main-image-outer">
 				<div id="exp-main-image"></div>
@@ -22,6 +23,22 @@
                 </div><!-- close exp-thumbs -->
             </div>
         </div><!-- close img-gallery -->
+        <div class="share-buttons">
+            <ul>
+                <li>
+                    <div class="fb-like"
+                    data-href="http://naanprofit.com/experiences/{{
+                    experience.slug_id }}" data-send="false"
+                    data-layout="button_count" data-width="100"
+                    data-show-faces="false" data-action="recommend"
+                    data-font="arial">
+                    </div>
+                </li>
+                <li class="twitter-share-button">
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://naanprofit.com" data-hashtags="naanprofit">Tweet</a>
+                </li>
+            </ul>
+        </div>    
         <div class="description">
             {{ experience.description|safe }}
         </div>
@@ -125,6 +142,3 @@
 {% endblock %}
 
 
-<!-- <div class="fb-like" data-href="http://naanprofit.com" data-send="false"
-data-layout="button_count" data-width="450" data-show-faces="false"
-data-action="recommend" data-font="arial"></div>-->

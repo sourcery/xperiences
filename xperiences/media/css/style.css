@@ -312,6 +312,26 @@ footer a:hover {
 }
 
 
+.share-buttons {
+	margin: 0 0 10px 0;
+	display: inline-block;
+	float: right;
+}
+
+.share-buttons ul li {
+	float: left;
+	
+}
+
+.description {
+	display: inline-block;
+	padding-top: 15px; 
+	border-top: 1px solid #D9D9D9;
+}
+
+
+
+
 
 
 
