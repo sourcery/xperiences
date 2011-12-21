@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container">
 	<div class="space30"></div>
 	{% include "merchants/command_bar.html" %}
-    <div class="column span9">
-        <div class="panel row">
+	<div class="column span9">
+		<h1>Inbox</h1>
+		<div class="panel row">
             <ul class="messages">
-            {% for message in comments %}
-                <li class="message">
-                    <div class="user">
+				{% for message in comments %}
+				<li class="message row">
+                    <div class="span2">
                         <a class="user-image">
                         {% if message.sender %}
                             <div class="image-wrapper" style='width:50px; height:50px; position:relative;'>
                                 <img alt="{{ message.sender.name }}" width="50" height="50" src="{% if message.sender.photo %}{{ message.sender.photo.url }}{% else %}http://graph.facebook.com/{{ message.sender.FB_ID }}/picture/?type=large{% endif %}" />
-                            </div>
+							</div>
                         {% endif %}
                         </a>
                         <div class="user-name">
@@ -21,31 +21,30 @@
                             {{ message.sender }}
                         {% endif %}
                         </div>
-                        <div class="user-location">
+                        <!-- <div class="user-location">
                         {% if message.sender %}
                             {{ message.sender.address }}
                         {% endif %}
-                        </div>
-                    </div>
-                    <div class="messsage-summary">
-                        <a href="{% url view_message message.id %}">
+						</div> -->
+					</div>
+                    <div class="span5">
+                        <a class="message-link" href="{% url view_message message.id %}">
                             <div class="message-title">{{ message.title }}</div><!-- is this correct? again, can't find the comments model -->
                             <div class="message-body">{{ message.message }}</div><!-- this should be a short summary of the message body -->
                         </a>
-                    </div>
-                    <div class="msg-right-block">
-                        <div class="message-timestamp">
-                            {{ message.time }}
+                        <div class="message-timestamp secondary">
+                            on {{ message.time }}
                         </div>
+                    </div>
+                    <div class="message-action">
                         <!-- please make this button work -->
-                        <div class="message-actions">
-                            <button>Delete</button>
-                        </div>
-                    </div>
-                </li>
-            {% endfor %}
+                        <button class="btn">Delete</button>
+					</div>
+				</li>
+				{% empty %}
+					<li class="empty-inbox">Your inbox is empty!</li>
+				{% endfor %}
             </ul>
         </div>
     </div>
-</div><!-- close main-content -->
 {% endblock %}

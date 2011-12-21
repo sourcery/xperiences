@@ -25,11 +25,10 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
 	<div class="space30"></div>
 	{% include "merchants/command_bar.html" %}
 	<div class="column span9">
-		<h1>Add listing form</h1><!-- we can change this title based on the niche-->
+		<h1>Add a new experience listing</h1><!-- we can change this title based on the niche-->
 		{{ form.errors }}
 		<form action="#" method="POST" enctype="multipart/form-data">
 			<div class="row">
@@ -203,7 +202,6 @@
 		<input class="btn" type="submit" value="Add listing">
 		</form>
 	</div>
-</div>
 {% endblock %}
 <!-- -- title for listing
 -- text area for description
