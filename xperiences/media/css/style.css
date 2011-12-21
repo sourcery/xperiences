@@ -308,7 +308,7 @@ footer a:hover {
 #merchant-address{
 	float: left;
 	width: 120px;
-	margin-left: 20px;
+	margin-left: 40px;
 }
 
 
@@ -329,6 +329,16 @@ footer a:hover {
 	border-top: 1px solid #D9D9D9;
 }
 
+#merchant-image .image-wrapper {
+	width:100px;
+	height:100px;
+	position:relative;
+}
+
+#seller-info .btn btn-blue font14 {
+	float: left;
+	margin-bottom: 10px;
+}
 
 
 

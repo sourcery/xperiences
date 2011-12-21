@@ -105,7 +105,7 @@
                 <h3>{{merchant.name}}</h3>
                 <div class="row">
                     <div id="merchant-image">
-                        <div class="image-wrapper" style='width:100px; height:100px; position:relative;'>
+                        <div class="image-wrapper">
                             <img alt="{{ merchant.name }}" src="{% if merchant.photo %}{{ merchant.photo.url }}{% else %}http://graph.facebook.com/{{ merchant.FB_ID }}/picture/?type=large{% endif %}">
                         </div>
                     </div>
@@ -113,7 +113,7 @@
                     {{ merchant.address }}<br />
                     </div>
                 </div>
-                <a class="btn btn-blue font14" style="float: left; margin-bottom: 10px;">Contact me</a>
+                <a class="btn btn-blue font14">Contact me</a>
             </div><!-- close pad15 -->
         </div><!-- close seller-info -->
         <div class="pad8 panel row">
