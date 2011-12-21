@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 
-{% comment %}{% load thumbnail %}{% endcomment %}
+{% block extra_head %}
+<meta property="og:title" content="{{ experience.title }}" />
+<meta property="og:type" content="food" />
+<meta property="og:image" content="{{ experience.photo1.url }}" />
+<meta property="og:site_name" content="Naan Profit" />
+<meta property="fb:app_id" content="299479036742472" />
+{% endblock %}
 
 {% block title %}{{ experience.title }}{% endblock %}
 
@@ -8,7 +14,7 @@
 	<div class="space30"></div>
     <div class="span8 column">
         <h1>{{ experience.title }}</h1>
-            
+
 		<div id="img-gallery">
 			<div id="exp-main-image-outer">
 				<div id="exp-main-image"></div>
@@ -38,7 +44,7 @@
                     <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://naanprofit.com" data-hashtags="naanprofit">Tweet</a>
                 </li>
             </ul>
-        </div>    
+        </div>
         <div class="description">
             {{ experience.description|safe }}
         </div>
