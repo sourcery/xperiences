@@ -33,12 +33,14 @@
             <ul>
                 <li>
                     <div class="fb-like"
-                    data-href="http://naanprofit.com/experiences/{{
-                    experience.slug_id }}" data-send="false"
-                    data-layout="button_count" data-width="100"
-                    data-show-faces="false" data-action="recommend"
-                    data-font="arial">
-                    </div>
+                         data-href="http://naanprofit.com/experiences/{{ experience.slug_id }}"
+                         data-send="false"
+                         data-layout="button_count"
+                         data-width="100"
+                         data-show-faces="false"
+                         data-action="recommend"
+                         data-font="arial"
+                    ></div>
                 </li>
                 <li class="twitter-share-button">
                     <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://naanprofit.com" data-hashtags="naanprofit">Tweet</a>
@@ -48,7 +50,7 @@
         <div class="description">
             {{ experience.description|safe }}
         </div>
-        <div class="fb-comments" data-href="http://naanprofit.com" data-num-posts="5" data-width="620"></div>
+        <div class="fb-comments" data-href="http://naanprofit.com/experiences/{{ experience.slug_id }}" data-num-posts="5" data-width="620"></div>
     </div><!-- close span8 column -->
     <div class="span4 column">
         <h1>&nbsp;</h1>
