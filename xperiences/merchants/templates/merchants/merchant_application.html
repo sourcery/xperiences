@@ -21,7 +21,7 @@
 		{% else %}
 		{{ form.errors }}
 		<form action="#" method="POST" enctype="multipart/form-data">
-			<fieldset class="panel">
+			<fieldset class="panel row">
 				<div class="pad15">
 					<h3>Your contact information</h3>
 					<div class="row">
@@ -82,7 +82,7 @@
 				</div>
 			</fieldset>
 
-					<fieldset class="panel">
+					<fieldset class="panel row">
 						<div class="pad15">
 						<h3>Tell us about yourself</h3>
 						<p class="help-text">Tell us about yourself, how long have you been doing this, what sets you apart... anything that helps tell your story</p>
@@ -90,7 +90,7 @@
 					</div>
 					</fieldset>
 
-					<fieldset class="panel">
+					<fieldset class="panel row">
 						<div class="pad15">
 						<h3>What are you offering?</h3>
 						<p class="help-text">Tell us about your services, what makes your work appealing and unique to your customers</p>
@@ -99,13 +99,14 @@
 					</fieldset>
 
 
-					<fieldset class="panel">
+					<fieldset class="panel row">
 						<div class="pad15">
 						<h3>Who are your customers?</h3>
 						<p class="help-text">Describe your target customers (age, charateristics, lifestyle, etc.)</p>
 						<textarea class="span6" class="description" required="required" name="target_customers_app_description">{{ form.target_customers.value }}</textarea>
 					</div>
 					</fieldset>
+					<div class="space30"></div>
 					<input type="submit" class="btn" value="Send application">
 			</form>
 			{% endif %}
