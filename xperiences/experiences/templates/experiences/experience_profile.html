@@ -89,7 +89,7 @@
                 <div class="row">
                     <div id="merchant-image">
                         <div class="image-wrapper" style='width:100px; height:100px; position:relative;'>
-                            <img alt="{{ merchant.name }}" src="{% if merchant.photo %}{{ 3 }}{% else %}http://graph.facebook.com/{{ merchant.FB_ID }}/picture/?type=large{% endif %}">
+                            <img alt="{{ merchant.name }}" src="{% if merchant.photo %}{{ merchant.photo.url }}{% else %}http://graph.facebook.com/{{ merchant.FB_ID }}/picture/?type=large{% endif %}">
                         </div>
                     </div>
                     <div id="merchant-address">
