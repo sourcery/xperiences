@@ -223,7 +223,7 @@ LOGGING = {
     }
 }
 
-AUTH_PROFILE_MODULE = 'backend.models.UserExtension'
+AUTH_PROFILE_MODULE = 'backend.UserExtension'
 
 FACEBOOK_APP_ID = '308665539167964'
 FACEBOOK_API_KEY = '308665539167964'
