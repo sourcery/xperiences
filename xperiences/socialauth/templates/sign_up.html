@@ -7,7 +7,7 @@
         $(document).ready(function() {
           //  openid.init('openid_identifier');
 
-            FB.init({ 'apiKey' : '{{ FACEBOOK_APP_ID }}', status: true, cookie: true, xfbml: true });
+            FB.init({ 'apiKey' : '{{ settings.FACEBOOK_APP_ID }}', status: true, cookie: true, xfbml: true });
         });
         function facebook_onlogin()
         {
