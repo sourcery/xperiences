@@ -15,11 +15,14 @@
 <div class="container">
 	<div class="column span9">
 		<div class="space30"></div>
-		<h1>Apply to be listed and start selling</h1>
-		{% if status == 'saved' %}
-		Sent! Your application will be reviewed by our team, and we'll get back you prompotly.
+        {% if status == 'saved' %}
+		<div class="font12">Thank you! Your application will be reviewed by our team, and we'll get back you prompotly.<br />
+        In the meantime, check out all the cool things you can do on our site.</div>
+        <div class="space10"></div>
+        <div><a class="btn btn-blue font14" href="/">Continue</a></div>
 		{% else %}
 		{{ form.errors }}
+		<h1>Apply to be listed and start selling</h1>
 		<form action="#" method="POST" enctype="multipart/form-data">
 			<fieldset class="panel">
 				<div class="pad15">
