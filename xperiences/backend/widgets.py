@@ -32,12 +32,13 @@ class RichTextEditorWidget(Textarea):
         js = ('ckeditor/ckeditor.js', 'ckeditor/sample.js')
 
 
-def PointWidgetWithAddressField(address_field):
+def PointWidgetWithAddressField(**kwargs):
     class PointWidget(django_forms.TextInput):
         def __init__(self, attrs=None):
             attrs = attrs or {}
             attrs['class'] = 'geopicker'
-            attrs['address_field'] = address_field
+            attrs['address_field'] = kwargs.get('address_field','')
+            attrs['map_id'] = kwargs.get('map_id','')
             attrs['style'] = 'display:none;'
             super(PointWidget, self).__init__(attrs=attrs)
 

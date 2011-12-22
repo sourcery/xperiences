@@ -1,0 +1,64 @@
+<!-- THIS IS THE HOME PAGE INDEX.HTML SAVED IN THE EXPERIENCES APP -->
+{% extends "layout.html" %}
+
+{% load x_tags %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/front-page.css" />
+{% endblock %}
+
+{% block body %}
+    <!--<h1>hits: {{ hits }}</h1>-->
+    <div id="front-page">
+        <div class="top-spacer"></div>
+        <div class="space120"></div>
+        <div class="image-grid"></div>
+        <div id="search-box" class="panel dark">
+            <div class="pad15">
+                <form method='GET'>
+                    <span>I want to find</span>
+                    <input class="default span2" id="keywords_field" type="text" alt="activities" name='keywords'/>
+                    <span>near</span>
+                    <input class="default span3" name='address' id="address_field" type="text" placeholder="address or zip code"/>
+                    <input type='hidden' id="lat_field" name='lat' />
+                    <input type='hidden' id="lng_field" name='lng' />
+                    <input class="btn" type="submit" value="Search" />
+                </form>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+        {% include "header.html" %}
+    </div>
+    {% include "footer.html" %}
+
+    <div style='display:none;'>
+        <script type='text/x_jquery_templates' id='test-template'>
+            <li class="front-page-item">
+                <a href="/experiences/{% t_var slug_id %}">
+                    <img alt=" {% t_var title %} "{% t_if photo1 %}src="{% t_var photo1.url %}"{% t_endif %}/>
+                </a>
+                <div class="thumb-details">
+                    <div class="fp-item-price">
+                        <span class="currency-symbol">$</span>
+                        {% t_var price %}
+                        <span class="currency-code"></span>
+                    </div>
+                    <div class="fp-item-wrapper">
+                        <div class="fp-item-title">
+                            <a title="{% t_var title %}" href="/experiences/{% t_var slug_id %}">{% t_var title %}</a>
+                        </div>
+                        <div class="fp-item-merchant">
+                            <a title="{% t_var merchant.name %}" href="">{% t_var merchant.name %}{% t_if merchant.city %}, {% t_var merchant.city %} {% t_var merchant.state %} {% t_endif %}</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </script>
+
+    </div>
+{% endblock %}
+
+{% block extra_scripts %}
+    <script type='text/javascript' src='{{ MEDIA_URL }}js/front_page.js'></script>
+{% endblock %}

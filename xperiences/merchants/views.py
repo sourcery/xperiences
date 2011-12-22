@@ -59,8 +59,18 @@ def merchant_inbox(request):
 
 @merchant_required()
 def account(request):
-    if request.method == 'GET':
-        return render_to_response('merchants/account.html', context_instance=RequestContext(request))
+    merchant = request.merchant
+    if request.method == 'POST':
+        form = MerchantForm(request.POST,request.FILES, instance=merchant)
+        if form.is_valid():
+            form.save()
+            return render_to_response('merchants/account.html', {'form':form,'merchant':merchant}, context_instance=RequestContext(request))
+        else:
+            errors = form.errors
+            return render_to_response('merchants/account.html', {'form':form,'errors':errors,'merchant':merchant}, context_instance=RequestContext(request))
+    else:
+        form = MerchantForm(instance=merchant)
+        return render_to_response('merchants/account.html', {'form':form, 'merchant':merchant}, context_instance=RequestContext(request))
 
 
 @login_required()
