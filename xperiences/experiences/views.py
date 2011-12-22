@@ -173,12 +173,8 @@ def add_experience(request):
             status = 'Please enter a description, so people can get a sense of the experience you are offering'
         if len(data['description']) > 2000:
             status = 'Please limit description to 2000 characters, to improve the chances that people will actually read it'
-        else:
-            pass
-        if data['category'] is None:
-            status = 'You must choose one category'
-        else:
-            pass
+#        if 'category' not in data:
+#            status = 'You must choose one category'
         if data['use_saved_address'] is True:
             pass    # here I should assign the merchant's address to the experience...
             # not sure how to do it b/c the experience is still not in created in mongo...

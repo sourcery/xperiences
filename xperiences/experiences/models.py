@@ -8,7 +8,7 @@ from django.template.defaultfilters import slugify
 
 #from merchants.models import Merchant
 
-class Experience(GeoModel,TextSearchModel):
+class Experience(GeoModel, TextSearchModel):
     merchant = models.ForeignKey(UserExtension,null=True)
 
     is_active = models.BooleanField(default=True)
@@ -16,7 +16,7 @@ class Experience(GeoModel,TextSearchModel):
     title = TextSearchField(max_length=50)  # by default blank=false and null=false, meaning that both fields are mandatory in both admin and DB
     slug_id = models.CharField(max_length=50,editable=False)
     description = RichTextField()
-    category = models.CharField(max_length=50, choices=configurations.get_categories_as_choices())
+    category = models.CharField(max_length=50, choices=configurations.get_categories_as_choices(), null=True, blank=True)
     price = models.PositiveIntegerField(default=0)
     unit_name = models.CharField(max_length=100, null=True, blank=True) # eg.: week, meal, day...
     unit_count = models.PositiveIntegerField(default=0, null=True, blank=True)
@@ -32,8 +32,8 @@ class Experience(GeoModel,TextSearchModel):
     #date = models.DateField()
     #time = models.TimeField()
     valid_from = models.DateTimeField(default=datetime.datetime.now)
-    valid_until = models.DateTimeField(null=True,blank=True)
-    tags = models.CharField(max_length=100,default='', null=True,blank=True)
+    valid_until = models.DateTimeField(null=True, blank=True)
+    tags = models.CharField(max_length=100, default='', null=True, blank=True)
 
     my_place = models.BooleanField(default=False,verbose_name='Hosting at my place')
     delivery = models.BooleanField(default=False,verbose_name='Delivery')
