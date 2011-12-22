@@ -502,12 +502,12 @@ select:focus {
 	float: left;
 	border: 1px solid #efefef;
 	overflow: hidden;
-	background: #efefef url(../images/add_sign.png) no-repeat center;
+	background: #e6e6e6 url(../images/add_sign.png) no-repeat center;
 	margin-right: 8px;
 }
 
 .img-upload.selected {
-	background: #efefef url(../images/tick_sign.png) no-repeat center;
+	background: #e0e0e0 url(../images/tick_sign.png) no-repeat center;
 	border: 1px solid #dfdfdf;
 	box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.3);
 }
