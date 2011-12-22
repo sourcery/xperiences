@@ -4,7 +4,7 @@
     <script type="text/javascript">
         function facebook_onlogin()
         {
-            FB.login(on_complete, {'scope' : '{{ settings.FACEBOOK_PERMISSIONS }}' });
+            FB.login(on_complete, {'scope' : _FB_SCOPE });
         }
 
         function on_complete(rsp)
