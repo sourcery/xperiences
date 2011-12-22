@@ -21,6 +21,7 @@ merchant_actions = [approve_merchant]
 
 class UserExtensionAdmin(admin.ModelAdmin):
     actions = merchant_actions
+    list_filter = ('is_merchant','is_approved')
 
 class ExperienceAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'pub_date', 'photo1', 'is_active')
