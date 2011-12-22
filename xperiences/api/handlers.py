@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db import models
 from backend.models import UserExtension
@@ -184,5 +185,6 @@ class ExperienceHandler(MyBaseHandler):
 
             return Experience.objects.proximity_query( { 'lat' : float(lat), 'lng' : float(lng)}, query=params)[offset:limit]
 
+    @api.user_enitity_permission()
     def update(self,request,*args,**kwargs):
-        return super(ExperienceHandler,self).update(request)
+        return super(ExperienceHandler,self).update(request, **kwargs)

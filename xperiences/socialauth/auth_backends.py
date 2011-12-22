@@ -302,7 +302,7 @@ class FacebookBackend:
             ext = get_user_extension_from_request(user,request)
             ext.FB_ID = uid
             ext.FB_token = access_token
-            ext.description = fb_data.get('bio','')
+            ext.bio = fb_data.get('bio','')
             ext.website = fb_data.get('website','')
             print fb_data
             friends = []

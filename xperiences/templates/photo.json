@@ -1,1 +1,1 @@
-{% load thumbnail %}{% thumbnail photo photo.thumbnail_size_str crop="center" as im %}{"url":"{{ im.url }}","width":{{ im.width }},"height":{{ im.height }}}{% endthumbnail %}
+{% load thumbnail %}{% thumbnail photo "450x300" crop="center" as im %}{"url":"{{ im.url }}","width":{{ im.width }},"height":{{ im.height }}}{% endthumbnail %}
