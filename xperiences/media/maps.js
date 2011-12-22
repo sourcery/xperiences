@@ -153,7 +153,8 @@ function user_position(success,error)
             var lng = ip2location_longitude();
             success({ lat:Number(lat), lng: Number(lng)});
         }
-        error('not supported');
+		else
+            error('not supported');
 	}
 	// if have HTML5
     if (navigator.geolocation) {

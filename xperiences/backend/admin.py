@@ -11,3 +11,4 @@ import sorl
 admin.site.register(sorl.thumbnail.models.KVStore)
 
 admin.site.register(UserMessage)
+

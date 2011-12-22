@@ -33,6 +33,7 @@ def generic_resource(request, app='backend', model_name='userextension',*args,**
     return rsrc(request, *args,**kwargs)
 
 experiences_resource = Resource(ExperienceHandler)
+message_resource = Resource(MessageHandler)
 
 
 

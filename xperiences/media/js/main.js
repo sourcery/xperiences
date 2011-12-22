@@ -53,6 +53,105 @@ $(document).ready(function() {
 
 });
 
+function delete_message(sender, message_id)
+{
+    $.ajax({ type:'DELETE', url : '/api/message/' + message_id + '/json', success:function(data)
+    {
+        var li = $(sender).parents('li');
+        li.slideUp(800,function()
+        {
+            if(li.siblings().length)
+                li.remove();
+            else
+                $(li.parent()).html('<li class="empty-inbox">Your inbox is empty!</li>');
+        });
+    }, error: function(err){
+        alert(err);
+    }});
+}
+
+function send_message_dialog(merchant_id)
+{
+     open_dialog({ template: 'send_message_template', submit:function(dialog){
+         var dict = read_input_params(dialog);
+         dict['to__id'] = merchant_id;
+         $.ajax({url:'/api/message/json',data:dict,type:'POST',
+         success:function()
+         {
+             message_dialog('message sent');
+         },
+         error: function(err){
+             alert(err);
+         }});
+         return false;
+     }});
+}
+function read_input_params(elm)
+{
+    var dict = {};
+    $('input,textarea',elm).each(function()
+    {
+        var input = $(this);
+        var key = input.attr('name');
+        var value = input.val();
+        dict[key] = value;
+    });
+    return dict;
+}
+function message_dialog(message)
+{
+    open_dialog({template:'message_box', data:{'message':message}});
+}
+
+function open_dialog(params)
+{
+    var dialog;
+
+    function close_dialog()
+    {
+        $('body>.active_dialog,body>.shadow_div').remove();
+    }
+    function on_cancel()
+    {
+        if(params.cancel)
+            if(params.cancel(dialog) ===false)
+                return;
+        close_dialog();
+    }
+
+    params = params || {};
+    var data = params.data || {};
+    $('body>.active_dialog').remove();
+    var shadow = $('<div class="shadow_div" style="background-color:gray; opacity:0.4; width:100%; height:100%; position:absolute; z-index:100;">&nbsp;</div>');
+    shadow.css({height:$('body').outerHeight()});
+    shadow.prependTo('body');
+    shadow.click(on_cancel);
+
+    dialog = $('#' + params.template).tmpl(data);
+    dialog.css({display:'none'});
+    dialog.prependTo('body');
+    dialog.addClass('active_dialog');
+    var width = dialog.outerWidth();
+    var height = dialog.outerHeight();
+    var w = $(window);
+    var top = w.height()/2 + w.scrollTop() - height/2;
+    var left = w.width()/2 - width/2;
+    dialog.css( { position:'absolute', left:left, top:top ,'z-index':101 } );
+    dialog.show('fast', function ()
+    {
+        if(params.load)
+            params.load(dialog);
+    });
+    $('.dialog_close', dialog).click( on_cancel );
+    $('.dialog_submit', dialog).click(function()
+    {
+        if(params.submit)
+            if(params.submit(dialog)===false)
+                return;
+        close_dialog();
+    });
+}
+
 function setImageToMain(item) {
 	var thumbs = $(".exp-thumbs-img");
 	var index = item.prevAll("img").length;
@@ -120,11 +219,12 @@ function image_autoscale(obj, params)
 
     params = params || {};
     var fadeIn = params['fade'] || 800;
-    obj.css({width:'', height:''});
+    obj.css({width:'', height:''}).hide();
     obj.load(function()
     {
         var elm = $(this);
         var parent = $(elm.parent());
+        parent.css({'overflow':'hidden'});
         var parent_width = parent.innerWidth();
         var parent_height = parent.innerHeight();
         var parent_prop = parent_width * 1.0 / parent_height;

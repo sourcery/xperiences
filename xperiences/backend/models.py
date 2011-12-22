@@ -41,7 +41,7 @@ class UserLog(models.Model):
 
 class UserExtension(GeoModel,TextSearchModel):
     id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(User, unique=True, null=True)
+    user = models.OneToOneField(User, null=True)
     validation_code = models.CharField(max_length=20, null=True, blank=True)
     is_merchant = models.BooleanField(default=False)
     is_approved = models.BooleanField(default=False)
@@ -55,6 +55,7 @@ class UserExtension(GeoModel,TextSearchModel):
     phone_number = models.CharField(max_length=15, default='', blank=True)
     website = models.CharField(max_length=100, default='', blank=True)
 
+    bio = models.TextField(max_length=755,default='',blank=True)
     birthday = models.DateField(null=True, blank=True)
     education = models.TextField(max_length=255, default='', blank=True)
     groups = models.TextField(max_length=755, default='', blank=True)
@@ -129,6 +130,13 @@ class UserMessage(TextSearchModel):
     def __str__(self):
         return str(self.title)
 
+    @staticmethod
+    def user_logged_in(user_ext, session):
+        msgs = UserMessage.objects.filter(sender_session=session)
+        for msg in msgs:
+            msg.sender = user_ext
+            msg.save()
+
 
 class SiteConfiguration(models.Model):
     name = models.CharField(max_length=50, primary_key=True)
@@ -138,3 +146,5 @@ class SiteConfiguration(models.Model):
 @receiver(signals.post_save, sender=User)
 def user_post_save(instance, created, **_):
     pass
+
+

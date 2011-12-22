@@ -13,25 +13,25 @@ def get_all_experiences_as_choices():
     return [(str(e['_id']), str(e['title'])) for e in all]
 
 class SiteConfigurationForm(django_forms.forms.Form):
-    CATEGORIES = django_forms.CharField()
+#    CATEGORIES = django_forms.CharField()
     EXPERIENCE_OF_THE_DAY = django_forms.ChoiceField(get_all_experiences_as_choices())
 
     def __init__(self, data=None):
         from backend import configurations
         if data is None:
             data = configurations.config
-            data['CATEGORIES'] = json.dumps(data['CATEGORIES'])
+#            data['CATEGORIES'] = json.dumps(data['CATEGORIES'])
         super(SiteConfigurationForm, self).__init__(data)
 
 
     def save_data(self):
         from backend import configurations
-        categories = self.data['CATEGORIES']
-        if not categories.startswith('['):
-            categories = '[' + categories
-        if not categories.endswith(']'):
-            categories += ']'
-        self.data['CATEGORIES'] = json.loads(categories)
+#        categories = self.data['CATEGORIES']
+#        if not categories.startswith('['):
+#            categories = '[' + categories
+#        if not categories.endswith(']'):
+#            categories += ']'
+#        self.data['CATEGORIES'] = json.loads(categories)
         configurations.update_configurations(self.data)
 
 #class PreconfiguredMerchant(django_forms.Form):

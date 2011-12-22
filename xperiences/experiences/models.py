@@ -7,8 +7,29 @@ from django.template.defaultfilters import slugify
 
 
 #from merchants.models import Merchant
+cached_categories = None
+class Category(models.Model):
+    slug = models.CharField(max_length=30)
+    title = models.CharField(max_length=50)
 
-class Experience(GeoModel,TextSearchModel):
+    def __unicode__(self):
+        return self.title
+
+    @staticmethod
+    def get_all_categories():
+        global cached_categories
+        if not cached_categories:
+            cached_categories = Category.objects.all()
+        return cached_categories
+
+    def save(self, *args, **kwargs):
+        global cached_categories
+        cached_categories = None
+        return super(Category,self).save(*args,**kwargs)
+
+
+class Experience(GeoModel, TextSearchModel):
+    use_saved_address = models.BooleanField(default=True,verbose_name='Use merchant address (if clicked,address above will be ignored)')
     merchant = models.ForeignKey(UserExtension,null=True)
 
     is_active = models.BooleanField(default=True)
@@ -16,7 +37,7 @@ class Experience(GeoModel,TextSearchModel):
     title = TextSearchField(max_length=50)  # by default blank=false and null=false, meaning that both fields are mandatory in both admin and DB
     slug_id = models.CharField(max_length=50,editable=False)
     description = RichTextField()
-    category = models.CharField(max_length=50, choices=configurations.get_categories_as_choices())
+    category = models.ForeignKey(Category,null=True,blank=True)
     price = models.PositiveIntegerField(default=0)
     unit_name = models.CharField(max_length=100, null=True, blank=True) # eg.: week, meal, day...
     unit_count = models.PositiveIntegerField(default=0, null=True, blank=True)
@@ -27,13 +48,12 @@ class Experience(GeoModel,TextSearchModel):
     photo4 = XPImageField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
     photo5 = XPImageField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
     video_link = models.CharField(max_length=150,null=True,blank=True) #TextField makes it be a text area which is not what we want
-    use_saved_address = models.BooleanField(default=True)
-    
+
     #date = models.DateField()
     #time = models.TimeField()
     valid_from = models.DateTimeField(default=datetime.datetime.now)
-    valid_until = models.DateTimeField(null=True,blank=True)
-    tags = models.CharField(max_length=100,default='', null=True,blank=True)
+    valid_until = models.DateTimeField(null=True, blank=True)
+    tags = models.CharField(max_length=100, default='', null=True, blank=True)
 
     my_place = models.BooleanField(default=False,verbose_name='Hosting at my place')
     delivery = models.BooleanField(default=False,verbose_name='Delivery')

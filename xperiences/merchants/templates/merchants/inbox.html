@@ -38,7 +38,7 @@
                     </div>
                     <div class="message-action">
                         <!-- please make this button work -->
-                        <button class="btn">Delete</button>
+                        <button class="btn" onclick='delete_message(this,"{{ message.id }}");'>Delete</button>
 					</div>
 				</li>
 				{% empty %}

@@ -1,6 +1,7 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db import models
-from backend.models import UserExtension
+from backend.models import UserExtension, UserMessage
 from experiences.models import Experience
 
 __author__ = 'ishai'
@@ -114,7 +115,7 @@ class MyBaseHandler(BaseHandler):
                             value = v
                         elif type(field) == models.BooleanField:
                             value = v == True or v == 'true'
-                        elif type(field) == models.IntegerField or type(field) == models.BigIntegerField or type(field) == models.ForeignKey:
+                        elif type(field) == models.IntegerField or type(field) == models.BigIntegerField:
                             value = int(v)
                         elif type(field) == models.FloatField:
                             value = float(v)
@@ -153,21 +154,32 @@ class ExperienceHandler(MyBaseHandler):
     model = Experience
     fields = ('slug_id', 'title','description','merchant','photo1','photo2','photo3','photo4','photo5','price','capacity','valid_from','valid_until','is_active')
     update_fields = ('is_active',)
+    query_fields = ('is_active','keywords','lat','lng','category')
 
     def read(self,request,*args,**kwargs):
-        params = dict([ (k,request.GET[k]) for k in request.GET])
+        params = dict([ (k,request.GET[k].strip()) for k in request.GET])
         of_merchant = 'of_merchant' in params and request.merchant
         if of_merchant:
             params['merchant'] = request.merchant
             del params['of_merchant']
         else:
             params['is_active'] = True
+
+        filter_params = {}
+        for key in params:
+            if key in self.query_fields and params[key] and params[key] != '':
+                filter_params[key] = params[key]
+        params = filter_params
+
         lat = params.get('lat')
         lng = params.get('lng')
         if lat:
             del params['lat']
+            lat = float(lat)
         if lng:
             del params['lng']
+            lng = float(lng)
+
 
 
         if 'id' in params or not lat  or not lng:
@@ -184,5 +196,22 @@ class ExperienceHandler(MyBaseHandler):
 
             return Experience.objects.proximity_query( { 'lat' : float(lat), 'lng' : float(lng)}, query=params)[offset:limit]
 
+    @api.user_enitity_permission(field_name='merchant.user_id')
     def update(self,request,*args,**kwargs):
-        return super(ExperienceHandler,self).update(request)
+        return super(ExperienceHandler,self).update(request, **kwargs)
+
+class MessageHandler(MyBaseHandler):
+    allowed_methods = ('DELETE','POST')
+    model = UserMessage
+
+    @api.user_enitity_permission(field_name='to.user_id')
+    def delete(self, request,id=None, obj=None, *args, **kwargs):
+        return obj.delete()
+
+    @api.allow_only_authenticated()
+    def create(self,request,*args,**kwargs):
+        params = dict([ (k,request.POST[k].strip()) for k in request.POST])
+        to__id = params.pop('to__id')
+        to = UserExtension.objects.get(id=to__id)
+        return super(MessageHandler,self).create(request,{'sender':request.user_extension,'to':to},**params)
+

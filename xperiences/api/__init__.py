@@ -5,8 +5,9 @@ import time
 from django.db.models.fields.files import FileField, FieldFile
 from django.template import loader
 from backend.models import XPImageField
+from piston.decorator import decorator
 from piston.emitters import Emitter
-from piston.utils import Mimer
+from piston.utils import Mimer, rc
 
 __author__ = 'ishai'
 
@@ -23,7 +24,7 @@ Mimer.register(lambda *a: None, ('application/x-www-form-urlencoded; charset=UTF
 def parse_file_field(thing):
     if not thing:
         return None
-    if isinstance(thing, XPImageField):
+    if isinstance(thing.field, XPImageField):
         c = Context({'photo' : thing })
         html_template = loader.get_template('photo.json')
         if html_template == None:
@@ -86,4 +87,44 @@ class EmpeericJSONEmitter(Emitter):
         if ti.seconds >= 60:
             return '%d minutes' % (ti.seconds/60)
         return '%d seconds' % (ti.seconds)
-  
+
+def user_enitity_permission(model=None,field_name='user_id'):
+
+    @decorator
+    def wrap(f, self, request,id=None,*args, **kwargs):
+    #        if field_name not in request.POST or request.POST[field_name] == '':
+    #            return rc.BAD_REQUEST
+    #        user_id = int(request.POST[field_name])
+        _model = (model or self.model)
+        if not id:
+            id = request.POST.get(_model._meta.pk.name) or request.GET.get(_model._meta.pk.name)
+        if not id:
+            return rc.FORBIDDEN
+        user_id = request.session['_auth_user_id']
+        obj = _model.objects.get(id=id)
+        field_name_parts = field_name.split('.')
+        attr = None
+        for field_name_part in field_name_parts:
+            parent = attr or obj
+            attr = getattr(parent,field_name_part)
+            if not attr:
+                break
+        if attr != user_id:
+            return rc.FORBIDDEN
+        kwargs['obj'] = obj
+        return f(self,request,*args,**kwargs)
+    return wrap
+
+def flag_user_logged_in(user_id):
+    pass
+
+def allow_only_authenticated():
+    @decorator
+    def wrap(f, self, request, *args, **kwargs):
+        if request.user.is_anonymous() and request.user_extension:
+            resp = rc.FORBIDDEN
+            resp.write("User is not authenticated")
+            return resp
+        flag_user_logged_in(request.session['_auth_user_id'])
+        return f(self,request,*args,**kwargs)
+    return wrap
