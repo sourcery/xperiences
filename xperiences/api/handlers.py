@@ -154,21 +154,32 @@ class ExperienceHandler(MyBaseHandler):
     model = Experience
     fields = ('slug_id', 'title','description','merchant','photo1','photo2','photo3','photo4','photo5','price','capacity','valid_from','valid_until','is_active')
     update_fields = ('is_active',)
+    query_fields = ('is_active','keywords','lat','lng','category')
 
     def read(self,request,*args,**kwargs):
-        params = dict([ (k,request.GET[k]) for k in request.GET])
+        params = dict([ (k,request.GET[k].strip()) for k in request.GET])
         of_merchant = 'of_merchant' in params and request.merchant
         if of_merchant:
             params['merchant'] = request.merchant
             del params['of_merchant']
         else:
             params['is_active'] = True
+
+        filter_params = {}
+        for key in params:
+            if key in self.query_fields and params[key] and params[key] != '':
+                filter_params[key] = params[key]
+        params = filter_params
+
         lat = params.get('lat')
         lng = params.get('lng')
         if lat:
             del params['lat']
+            lat = float(lat)
         if lng:
             del params['lng']
+            lng = float(lng)
+
 
 
         if 'id' in params or not lat  or not lng:

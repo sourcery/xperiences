@@ -1,16 +1,49 @@
 $(document).ready(function() {
-	user_position(function(loc) {
-		get_experiences(loc);
-	},function() {
-		get_experiences();
-	});
-
+    var query_params = read_query_string();
+    $('#lat_field').val(query_params['lat']);
+    $('#lng_field').val(query_params['lng']);
+    $('#address_field').val(query_params['address']);
+    $('#keywords_field').val(query_params['keywords']);
+    if(!query_params['lat'] || !query_params['lng'])
+    {
+        user_position(function(loc) {
+            for(var k in loc)
+                query_params[k] = loc[k];
+            get_experiences(query_params);
+        },function() {
+            get_experiences(query_params);
+        });
+    }
+    else
+    {
+        get_experiences(query_params);
+    }
 	$(".default").textWrap("holder");
     address_autocomplete('address_field',null,function(place){
         $('#lat_field').val(place.geometry.location.lat());
         $('#lng_field').val(place.geometry.location.lng());
     });
 });
+
+function read_query_string()
+{
+    var querystr;
+    var parts = window.location.href.split('?');
+    if( parts.length != 2)
+        querystr = '';
+    else
+    {
+        var q_set_split = parts[1].split('#');
+        querystr = q_set_split[0];
+    }
+    parts = querystr.split('&');
+    var query_params = {};
+    for( var i =0; i<parts.length; i++)
+    {
+        query_params[decodeURIComponent(parts[i].split('=')[0])] = decodeURIComponent(parts[i].split('=')[1]).replace(/\+/g,' ');
+    }
+    return query_params;
+}
 
 var data;
 
