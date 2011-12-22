@@ -80,7 +80,7 @@ def view_message(request,id):
 
 
 
-
+@login_required()
 def comment_merchant(request,username):
     if request.method == 'GET':
         form = MerchantMessageForm()

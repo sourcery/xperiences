@@ -130,6 +130,13 @@ class UserMessage(TextSearchModel):
     def __str__(self):
         return str(self.title)
 
+    @staticmethod
+    def user_logged_in(user_ext, session):
+        msgs = UserMessage.objects.filter(sender_session=session)
+        for msg in msgs:
+            msg.sender = user_ext
+            msg.save()
+
 
 class SiteConfiguration(models.Model):
     name = models.CharField(max_length=50, primary_key=True)

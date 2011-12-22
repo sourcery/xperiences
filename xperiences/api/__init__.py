@@ -95,17 +95,24 @@ def user_enitity_permission(model=None,field_name='user_id'):
     #        if field_name not in request.POST or request.POST[field_name] == '':
     #            return rc.BAD_REQUEST
     #        user_id = int(request.POST[field_name])
-        model = (model or self.model)
+        _model = (model or self.model)
         if not id:
-            id = request.POST.get(model._meta.pk.name) or request.GET.get(model._meta.pk.name)
+            id = request.POST.get(_model._meta.pk.name) or request.GET.get(_model._meta.pk.name)
         if not id:
             return rc.FORBIDDEN
         user_id = request.session['_auth_user_id']
-        obj = model.objects.get(id=id)
-        if getattr(obj,field_name) != user_id:
+        obj = _model.objects.get(id=id)
+        field_name_parts = field_name.split('.')
+        attr = None
+        for field_name_part in field_name_parts:
+            parent = attr or obj
+            attr = getattr(parent,field_name_part)
+            if not attr:
+                break
+        if attr != user_id:
             return rc.FORBIDDEN
         kwargs['obj'] = obj
-        return f(self,request,id=id,*args,**kwargs)
+        return f(self,request,*args,**kwargs)
     return wrap
 
 def flag_user_logged_in(user_id):

@@ -53,6 +53,23 @@ $(document).ready(function() {
 
 });
 
+function delete_message(sender, message_id)
+{
+    $.ajax({ type:'DELETE', url : '/api/message/' + message_id + '/json', success:function(data)
+    {
+        var li = $(sender).parents('li');
+        li.slideUp(800,function()
+        {
+            if(li.siblings().length)
+                li.remove();
+            else
+                $(li.parent()).html('<li class="empty-inbox">Your inbox is empty!</li>');
+        });
+    }, error: function(err){
+        alert(err);
+    }});
+}
+
 function setImageToMain(item) {
 	var thumbs = $(".exp-thumbs-img");
 	var index = item.prevAll("img").length;

@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db import models
-from backend.models import UserExtension
+from backend.models import UserExtension, UserMessage
 from experiences.models import Experience
 
 __author__ = 'ishai'
@@ -196,6 +196,14 @@ class ExperienceHandler(MyBaseHandler):
 
             return Experience.objects.proximity_query( { 'lat' : float(lat), 'lng' : float(lng)}, query=params)[offset:limit]
 
-    @api.user_enitity_permission()
+    @api.user_enitity_permission(field_name='merchant.user_id')
     def update(self,request,*args,**kwargs):
         return super(ExperienceHandler,self).update(request, **kwargs)
+
+class MessageHandler(MyBaseHandler):
+    allowed_methods = ('DELETE',)
+    model = UserMessage
+
+    @api.user_enitity_permission(field_name='to.user_id')
+    def delete(self, request,id=None, obj=None, *args, **kwargs):
+        return obj.delete()
