@@ -5,13 +5,15 @@ include
 /Scripts
 /share
 .Python
+.DS_Store
+**/.DS_Store
 xperiences/.idea
 dump
 *.pyc
 *.pyo
 *.swp
 *.psd
-.DS_Store
 src
 MongoFiles
 pip-log.txt
+xperiences/static

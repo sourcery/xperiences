@@ -29,7 +29,7 @@ categories = None
 def get_categories():
     global config, categories
     if not categories:
-        categories = config.get('CATEGORIES',[('cat1','cat2')])
+        categories = config.get('CATEGORIES',[('Hosted Meal','Hosted Meal') ,('Personal Chef','Personal Chef'), ('DIY Food Class','DIY Food Class'), ('Food Artisan', 'Food Artisan')])
     return categories
 
 def get_categories_as_choices():

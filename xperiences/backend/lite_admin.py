@@ -23,7 +23,7 @@ class UserExtensionAdmin(admin.ModelAdmin):
     actions = merchant_actions
 
 class ExperienceAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'pub_date', 'photo1')
+    list_display = ('title', 'category', 'pub_date', 'photo1', 'is_active')
 
 class UserLogAdmin(admin.ModelAdmin):
     list_display = ('user','session','url','time',)

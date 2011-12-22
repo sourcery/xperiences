@@ -1,17 +1,10 @@
 {% extends 'base.html' %}
 {% block title %}Sign Up{% endblock %}
 {% block extra_head %}
-    <!---script type="text/javascript" src="{{ MEDIA_URL }}js/openid-jquery.js"></script--->
-    <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
-          //  openid.init('openid_identifier');
-
-            FB.init({ 'apiKey' : '{{ FACEBOOK_APP_ID }}', status: true, cookie: true, xfbml: true });
-        });
         function facebook_onlogin()
         {
-            FB.login(on_complete, {'perms' : '{{ FACEBOOK_PERMISSIONS }}' });
+            FB.login(on_complete, {'scope' : '{{ settings.FACEBOOK_PERMISSIONS }}' });
         }
 
         function on_complete(rsp)
@@ -20,6 +13,9 @@
             var qry = '';
             for(var k in rsp)
             {
+				if(typeof(rsp[k]) == 'object')
+						for (var ik in rsp[k])
+							qry += encodeURIComponent(ik) + '=' + encodeURIComponent(rsp[k][ik])+ '&';
                 qry += encodeURIComponent(k) + '=' + encodeURIComponent(rsp[k])+ '&';
             }
             window.location.href = '/accounts/facebook_login/done/?' + qry;
@@ -49,7 +45,7 @@
                 $('#register_form').submit();
         }
     </script>
-    
+
 {% endblock %}
 {% block message_bar %}
     <div id='msg_span' class='error_span' style='background-color: #ed0000; width:100%;
@@ -62,14 +58,19 @@
         your email and password are not in are database
 {% endif %}
 {% if reason == 'already_exists' %}
-    there is already an account with '{{ email }}' as email 
+    there is already an account with '{{ email }}' as email
 {% endif %}
     </div>
 {% endblock %}
 {% block content %}
+	<div class="command-bar-container"></div>
+	<div id="login" class="panel">
+		Please login using facebook!
+		<a href="#" onclick='facebook_onlogin();return false;' class="fb-connect">Login <span class="text-80">with</span> Facebook</a>
+	</div>
+
     <div id="content" class="clearfix signup">
 
-        <a href="javascript:void(0);" onclick='facebook_onlogin();' class="fb-connect" style='font-size:150%;'>Login via Facebook</a>
         <div class="sign-in floatLeft" style='display:none;'>
             <form method="post" action="/accounts/login/">
                 <h3 class="form-title">Sign In</h3>

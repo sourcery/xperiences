@@ -1,0 +1,623 @@
+/**
+ * This is the Base CSS file for my own purposes
+ * Contains the basic themed stuff so that it's easy to modify
+ * but does not depend on external libraries
+ *
+ * Heavily inspired by twitter bootstrap library
+ *
+ * @author: johncch
+ *
+ * Other credits:
+ * 1. CSS Reset v2.0 | 20110126 http://meyerweb.com/eric/tools/css/reset/
+**/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+html {
+	height: 100%;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+	line-height: 1.5;
+	margin-bottom: 0.5em;
+}
+
+h1 {
+	font-size: 18pt;
+	margin-bottom: 8px;
+}
+
+h2 {
+	font-size: 16pt;
+}
+
+h3 {
+	font-size: 14pt;
+}
+
+/**
+ * Basic HTML elements
+ **/
+
+a, a:active, a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+hr {
+	border-top: 1px solid #D9D9D9;
+	height: 0;
+}
+
+/**
+ * Layouts
+ **/
+.container {
+	width: 960px;
+	min-height: 600px;
+	padding-bottom: 40px;
+	margin: 0 auto;
+	background: url(../images/grid.png);
+}
+
+.container::after,
+.container::before {
+	display: table;
+	content: "";
+	clear:both;
+}
+
+.section {}
+
+.section::before,
+.section::after {
+	display: table;
+	content: "";
+	clear:both;
+	zoom: 1;
+}
+
+.column {
+	margin-left: 20px;
+	float: left;
+}
+
+.column::before,
+.column::after {
+	display: table;
+	content: "";
+	zoom: 1;
+}
+
+.row {
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+.row:last-child {
+	margin-bottom: 0px;
+}
+
+.row > [class*="span"] {
+	margin-left: 20px;
+	display: inline;
+	float: left;
+}
+
+.row > [class*="span"]:first-child {
+	margin-left: 0px;
+}
+
+.row:before, .row:after {
+	content: "";
+	display: table;
+}
+
+.row:after {
+	clear: both;
+}
+
+.row span {
+	display: inline-block;
+	float: left;
+	position: relative;
+	top: 10px;
+	margin: 0px 0px 0 10px;
+}
+
+.span1 {
+	width: 60px;
+}
+
+.span2 {
+	width: 140px;
+}
+
+.span3 {
+	width: 220px;
+}
+
+.span4 {
+	width: 300px;
+}
+
+.span5 {
+	width: 380px;
+}
+
+.span6 {
+	width: 460px;
+}
+
+.span7 {
+	width: 540px;
+}
+
+.span8 {
+	width: 620px;
+}
+
+.span9 {
+	width: 700px;
+}
+
+.span10 {
+	width: 780px;
+}
+
+.span11 {
+	width: 860px;
+}
+
+.span12 {
+	width: 940px;
+}
+
+.pad8 {
+	padding: 8px;
+}
+
+.pad15 {
+	padding: 15px;
+}
+
+.right-col {
+	float: right;
+}
+
+.block {
+	display: inline-block;
+}
+
+.space10 {
+	height: 10px;
+}
+
+.space30 {
+	height: 30px;
+}
+
+.space40 {
+	height: 40px;
+}
+
+.space50 {
+	height: 50px;
+}
+
+.space60 {
+	height: 60px;
+}
+
+.space90 {
+	height: 90px;
+}
+
+.space120 {
+	height: 120px;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.center {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/**
+ * Utility classes
+ */
+.clear {
+	clear: both;
+	height: 1px;
+	margin-top: -1px;
+}
+
+/**
+ * Typography
+ */
+
+body {
+	font-family: "helvetica", "arial", sans-serif;
+	color: #444;
+	line-height: 1.3;
+	font-size: 10pt;
+}
+
+body .dark {
+	color: white;
+}
+
+.secondary-color {
+	color: #7a7a7a;
+}
+
+.secondary {
+	font-size: 85%; 
+	color: #7a7a7a;
+}
+
+p, ul {
+	margin: 0.3em 0 0.7em;  /* I decreased it from 1 to 0.7em - NM */
+}
+
+.dark .secondary {
+	color: #999;
+}
+
+.font12 {
+	font-size: 12pt;
+}
+
+/**
+ * Some building blocks
+**/
+
+.panel {
+	border: 1px solid #d9d9d9;
+	background: white;
+	-moz-transition: all 0.5s; /* what does this transition property do */
+	-webkit-transition: all 0.5s;
+}
+
+.panel:hover {
+	border-color: #bbbbbb;
+	box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.2);
+	-moz-transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+}
+
+.panel.dark {
+	background: #3b3F43;
+	border: 1px solid #222;
+}
+
+.panel .span9 {
+	width: 
+}
+
+.holder {
+	color: #b9b9b9;
+	font-size: 12pt;
+}
+
+/**
+ * forms
+**/
+
+label {
+	font-weight: bold;
+	display: block;
+	margin-bottom: 0.2em;
+}
+
+input.span1, textarea.span1, .span1-wrapper input, .span1-wrapper textarea {
+	display: inline-block;
+	float: none;
+	margin-left: 0;
+	width: 50px;
+}
+
+input.span2, textarea.span2, .span2-wrapper input, .span2-wrapper textarea {
+	width: 130px;
+	display: inline-block;
+	float: none;
+	margin-left: 0;
+}
+
+input.span3, textarea.span3, .span3-wrapper input, .span3-wrapper textarea  {
+	width: 210px;
+	display: inline-block;
+	float: none;
+	margin-left: 0;
+}
+
+input.span4, textarea.span4, .span4-wrapper input, .span4-wrapper textarea {
+	width: 290px;
+	display: inline-block;
+	float: none;
+	margin-left: 0;
+}
+
+input.span5, textarea.span5, .span5-wrapper input, .span5-wrapper textarea {
+	width: 370px;
+	display: inline-block;
+	float: none;
+	margin-left: 0;
+}
+
+input.span6, textarea.span6, .span6-wrapper input, .span6-wrapper textarea {
+	width: 450px;
+	display: inline-block;
+	float: none;
+	margin-left: 0;
+}
+
+input.span7, textarea.span7, .span7-wrapper input, .span7-wrapper textarea {
+	width: 530px;
+	display: inline-block;
+	float: none;
+	margin-left: 0;
+}
+
+input.span8, textarea.span8, .span8-wrapper input, .span8-wrapper textarea {
+	width: 610px;
+	display: inline-block;
+	float: none;
+	margin-left: 0;
+}
+
+input.span9, textarea.span9, .span9-wrapper input, .span9-wrapper textarea {
+	width: 690px;
+	display: inline-block;
+	float: none;
+	margin-left: 0;
+}
+
+input.span10, textarea.span10, .span10-wrapper input, .span10-wrapper textarea {
+	width: 770px;
+	display: inline-block;
+	float: none;
+	margin-left: 0;
+}
+
+input.span11, textarea.span11, .span11-wrapper input, .span11-wrapper textarea {
+	width: 850px;
+	display: inline-block;
+	float: none;
+	margin-left: 0;
+}
+
+input, button, .btn, select, textarea {
+	background: #fcfcfc;
+	font-size: 12pt;
+	vertical-align: middle;
+}
+
+textarea {
+	vertical-align: top;
+	height: auto;
+}
+
+input, textarea, select {
+	border: 1px solid #b9b9b9;
+}
+
+input[type="checkbox"], input[type="radio"] {
+	margin-right: 20px;
+}
+
+input[type="text"], input[type="password"], select, textarea {	
+	padding: 8px 0px 5px 8px;
+	border-radius: 3px;
+	color: #444;
+	font-family: "helvetica", "arial", sans-serif;
+	font-weight: normal;
+	box-shadow: inset 1px 1px 1px 0px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"]:hover, input[type="password"]:hover, textarea:hover {
+	background: #fcfcfc;
+	border: 1px solid #7a7a7a;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
+	border: 1px solid #ffaa00;
+	box-shadow: 0px 0px 5px 1px #ffaa00;
+	background: #ffffff;
+}
+
+select {
+	-webkit-appearance: menulist;
+	height: 33px;
+	padding: 8px 0px 5px 8px;
+	font-size: 11pt;
+	background-color: #eeeeee;
+	background: #ffffff -moz-linear-gradient(top, #fafafa, #f6f6f6, #e9e9e9);
+	background: -webkit-linear-gradient(top, #fafafa, #f6f6f6, #e9e9e9);
+	cursor: pointer;
+}
+
+select:focus {
+	border: 1px solid #ffaa00;
+	box-shadow: 0px 0px 5px 1px #ffaa00;
+}
+
+.img-upload {
+	width: 100px;
+	height: 80px;
+	float: left;
+	border: 1px solid #efefef;
+	overflow: hidden;
+	background: #efefef url(../images/add_sign.png) no-repeat center;
+	margin-right: 8px;
+}
+
+.img-upload.selected {
+	background: #efefef url(../images/tick_sign.png) no-repeat center;
+	border: 1px solid #dfdfdf;
+	box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+.img-upload-border {
+	border: 5px solid white;
+}
+
+.img-upload input[type="file"] {
+	height: 70px;
+	font-size: 50px;
+	z-index: 1000;
+	opacity: 0;
+	cursor: pointer;
+}
+
+
+/**
+ * Buttons
+ * are so massive they deserve a section of their own
+**/
+
+.btn {
+	display: inline-block;
+	font-family: "helvetica", "arial", sans-serif;
+	font-size: 10pt;
+	text-align: center;
+	color: #444;
+
+	background-color: #f6f6f6;
+	background: -moz-linear-gradient(top, #fafafa, #f6f6f6, #e9e9e9);
+	background: -webkit-linear-gradient(top, #fafafa, #f6f6f6, #e9e9e9);
+	padding: 8px 25px 4px;
+	border-radius: 4px;
+	border: 1px solid #e9e9e9;
+	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.8), inset 0px 1px 1px 0px rgba(255, 255, 255, 0.2);
+	cursor: pointer;
+}
+
+.btn:hover {
+	background: -moz-linear-gradient(top, #ffffff, #f9f9f9, #e9e9e9);
+	background: -webkit-linear-gradient(top, #ffffff, #f9f9f9, #e9e9e9);
+	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.8), inset 0px 1px 1px 0px rgba(255, 255, 255, 0.2);
+	text-decoration: none;
+}
+
+.btn:active {
+	background: -moz-linear-gradient(top, #f6f6f6, #f0f0f0, #e3e3e3);
+	background: -webkit-linear-gradient(top, #f6f6f6, #f0f0f0, #e3e3e3);
+	position: relative;
+	top: 1px;
+	box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.8), inset 0px 1px 1px 0px rgba(255, 255, 255, 0.2);
+}
+
+.dark .btn, input[type="submit"] {
+	box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.6), inset 0px 1px 1px 0px rgba(255, 255, 255, 0.2);
+}
+
+input[type="submit"], .submit {
+	font-weight: bold;
+	background-color: #9cc500;
+	background: linear-gradient(top, #9cc500, #8aa914);
+	background: -o-linear-gradient(top, #9cc500, #8aa914);
+	background: -ms-linear-gradient(top, #9cc500, #8aa914);
+	background: -moz-linear-gradient(top, #9cc500, #8aa914);
+	background: -webkit-linear-gradient(top, #9cc500, #8aa914);
+	border: 1px solid #8aa914;
+	color: white;
+	text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+input[type="submit"]:hover, .submit:hover {
+	background: linear-gradient(top, #a6cb1a, #96b32b);
+	background: -o-linear-gradient(top, #a6cb1a, #96b32b);
+	background: -ms-linear-gradient(top, #a6cb1a, #96b32b);
+	background: -moz-linear-gradient(top, #a6cb1a, #96b32b);
+	background: -webkit-linear-gradient(top, #a6cb1a, #96b32b);
+}
+
+input[type="submit"]:active, .submit:active {
+	background: linear-gradient(top, #8bb001, #7d9911);
+	background: -o-linear-gradient(top, #8bb001, #7d9911);
+	background: -ms-linear-gradient(top, #8bb001, #7d9911);
+	background: -moz-linear-gradient(top, #8bb001, #7d9911);
+	background: -webkit-linear-gradient(top, #8bb001, #7d9911);
+}
+
+.btn-blue {
+	background: -moz-linear-gradient(top, #5da7e5, #296f9a);
+	background: -webkit-linear-gradient(top, #5da7e5, #296f9a);
+	color: white;
+	border: 1px solid #296f9a;
+}
+
+.btn-blue:hover {
+	background: linear-gradient(top, #6dafe8, #4282ab);
+	background: -o-linear-gradient(top, #6dafe8, #4282ab);
+	background: -ms-linear-gradient(top, #6dafe8, #4282ab);
+	background: -moz-linear-gradient(top, #6dafe8, #4282ab);
+	background: -webkit-linear-gradient(top, #6dafe8, #4282ab);
+
+}
+
+.btn-blue:active {
+	background: linear-gradient(top, #5294cb, #28668e);
+	background: -o-linear-gradient(top, #5294cb, #28668e);
+	background: -ms-linear-gradient(top, #5294cb, #28668e);
+	background: -moz-linear-gradient(top, #5294cb, #28668e);
+	background: -webkit-linear-gradient(top, #5294cb, #28668e);
+}
+
+
+

@@ -1,9 +1,10 @@
 # Django settings for Experience project.
 import os
-CODE_ROOT = os.path.dirname(__file__)
+CODE_ROOT = os.path.dirname(os.path.realpath(__file__))
 
 PRODUCTION = 'MONGOLAB_URI' in os.environ
 STAGING = os.environ.get('IS_STAGING') == 'True'
+KIDS = os.environ.get('KIDS') == 'True'
 if STAGING:
     PRODUCTION = False
 
@@ -14,6 +15,10 @@ if STAGING:
 
 if PRODUCTION:
     BASE_URL = 'http://xperiences.herokuapp.com/'
+
+if KIDS:
+    BASE_URL = 'http://kids-xperiences.herokuapp.com/'
+    STAGING = True
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -64,7 +69,7 @@ TIME_ZONE = 'America/Chicago'
 LANGUAGE_CODE = 'en-us'
 
 
-SITE_ID = '4eba73fe96cf4c019c00001d' if PRODUCTION or STAGING else '4ed7858b76a6f6052c00001d'
+SITE_ID = '4eba73fe96cf4c019c00001d'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
@@ -81,7 +86,7 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/media/'
+MEDIA_ROOT = os.path.join(CODE_ROOT, 'media/')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -92,10 +97,7 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/static/'
-
-if not PRODUCTION and not STAGING:
-    STATIC_ROOT = CODE_ROOT + STATIC_ROOT
+STATIC_ROOT = os.path.join(CODE_ROOT, 'static/')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -108,9 +110,7 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(CODE_ROOT, 'media/'),
 )
 
 # List of finder classes that know how to find static files in
@@ -223,9 +223,10 @@ LOGGING = {
     }
 }
 
+AUTH_PROFILE_MODULE = 'backend.UserExtension'
 
-FACEBOOK_APP_ID = '299479036742472'
-FACEBOOK_API_KEY = '299479036742472'
+FACEBOOK_APP_ID = '308665539167964'
+FACEBOOK_API_KEY = '308665539167964'
 FACEBOOK_SECRET_KEY = '498f25f7cb732faf01e9a197fedaf3a6'
 FACEBOOK_PERMISSIONS = 'user_about_me,email,user_website,publish_stream,user_activities,user_birthday,user_education_history,user_events,user_groups,user_hometown,user_interests'
 
@@ -239,6 +240,9 @@ if not PRODUCTION and not STAGING:
     FACEBOOK_API_KEY = '317196991641774'
     FACEBOOK_SECRET_KEY = '80f852f3296fc76863fd9eaf44b9c7a0'
 
+if KIDS:
+    FACEBOOK_APP_ID = FACEBOOK_API_KEY = '264002770325375'
+    FACEBOOK_SECRET_KEY = '608c99b02c5c1185ec466b42e4602d8c'
 
 EMAIL_HOST_USER = 'peeri.empeeric@gmail.com'
 

@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% load x_tags %}
+
+{% block content %}
+<div class="container">
+	<div class="space30"></div>
+	{% include "merchants/command_bar.html" %}
+	<div class="column span9">
+		<h2>Your public profile </h2>
+		<fieldset class="panel row">
+			<div class="pad15">
+				<div class="row">
+								<div class="input-group">
+									<label class="label" for="profile-image">Profile Picture</label>
+									<div class="change-profile-image">
+				                        <div class="image-wrapper">{{ merchant.photo.url }}</div>
+										<input type="file" class="upload-new-profile-image" id="profile-image" name="profile-image" size="15">
+									</div>
+								</div>
+				</div>
+				<div class="row">
+								<div class="input-group">
+									<label class="label" for="name">Your name</label>
+									<input class="span6" type="text" name="name" id="name" value="{{ merchant.name }}">
+								</div>
+				</div>
+				<div class="row">
+								<div class="input-group">
+									<label class="label" for="address">Your address</label>
+									<input class="span6" type="text" name="name" id="address" value="{{ merchant.address }}">
+								</div>
+				</div>
+				<div class="row">
+								<div class="input-group">
+									<label class="label" for="about">About you</label>
+									<textarea class="span6" name="about" id="about" value="{{ form.description.value }}" style="overflow-x: hidden; overflow-y: hidden; height: 75px;"></textarea>
+								</div>
+							</div>
+							<div class="space30"></div>
+							<button class="btn">Save</button>
+			</div>
+		</fieldset>
+
+		<fieldset class="panel row">
+			<div class="pad15">
+				<h2>Completed earnings</h2>
+			</div>
+			<div class="listing-header">
+				<div class="listing-value">Money earned</div>
+				<div class="listing-date">Date</div>
+			</div>
+			<ul>
+				<li class="listing row">
+					<div class="listing-value">$100</div>
+					<div class="listing-date">27/12/2012</div>
+				</li>
+				<li class="listing row">
+					<div class="listing-value">$100</div>
+					<div class="listing-date">27/12/2012</div>
+				</li>
+				<li class="listing row">
+					<div class="listing-value">$100</div>
+					<div class="listing-date">27/12/2012</div>
+				</li>
+			</ul>
+		</fieldset>
+		<div class="clear"></div>
+	</div>
+	<div id="experiences"></div>
+</div>
+
+
+<script type='text/x_jquery_templates' id='res_template'>
+	<li class="front-page-item">
+	<a href="/experiences/{% t_var slug_id %}">
+		<img alt="{% t_var title %}" {% t_if photo1 %}src="{% t_var photo1.url %}"{% t_endif %}/>
+	</a>
+	<div class="thumb-details">
+		<div class="fp-item-price">
+			<span class="currency-symbol">$</span>
+			{% t_var price %}
+			<span class="currency-code"></span>
+		</div>
+		<div class="fp-item-wrapper">
+			<div class="fp-item-title">
+				<a title="{% t_var title %}" href="/experiences/{% t_var slug_id %}">{% t_var title %}</a>
+			</div>
+			<div class="fp-item-merchant">
+				<a title="{% t_var merchant.name %}" href="">{% t_var merchant.name %}{% t_if merchant.city %}, {% t_var merchant.city %} {% t_var merchant.state %} {% t_endif %}</a>
+			</div>
+		</div>
+	</div>
+	</li>
+</script>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+	var _merchant_id = '{{ marchent.id}}'
+	function get_experiences(params) {
+		params = params || {};
+		$.get('/api/experiences/json', params, render);
+	}
+
+
+	function render(data) {
+		var holder = $("#experiences");
+		$.each(data, function(idx, obj) {
+			$("#res_template").tmpl(obj).appendTo(holder);
+		});
+	}
+
+
+	$(document).ready(function(){
+		get_experiences({"merchant_id": _merchant_id });
+	});
+</script>
+{% endblock %}

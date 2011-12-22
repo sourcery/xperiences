@@ -1,152 +1,64 @@
 {% extends "base.html" %}
-{% load thumbnail %}
-{% block title %}{{ experience.title }}{% endblock %}
 {% block extra_head %}
-<script type='text/javascript' src='https://maps-api-ssl.google.com/maps/api/js?v=3&sensor=false&language=he&libraries=places' ></script>
-<script type='text/javascript' src='/static/maps.js'></script>
-
-<script type='text/javascript' >
-    $(document).ready(function()
-    {
-        $('#location_field').geoview({ 'map_id' : 'map'});
-    });
-</script>
+    <meta property="og:title" content="{{ experience.title }}" />
+    <meta property="og:type" content="food" />
+    <meta property="og:image" content="{{ experience.photo1.url }}" />
+    <meta property="og:site_name" content="Naan Profit" />
+    <meta property="fb:app_id" content="299479036742472" />
 {% endblock %}
 
+{% block title %}{{ experience.title }}{% endblock %}
+
 {% block content %}
+	<div class="space30"></div>
+    <div class="span8 column">
+        <h1>{{ experience.title }}</h1>
 
-
-
-    <article id="main-content">
-        <div class="primary">
-            <div id="exp-title">
-                <h1>{{ experience.title }}</h1>
+		<div id="img-gallery">
+			<div id="exp-main-image-outer">
+				<div id="exp-main-image"></div>
+			</div>
+			<div id="exp-img-thumbs">
+			<div id="exp-thumbs">
+                {% if experience.photo1 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo1.url}}">{% endif %}
+                {% if experience.photo2 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo2.url}}">{% endif %}
+                {% if experience.photo3 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo3.url}}">{% endif %}
+                {% if experience.photo4 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo4.url}}">{% endif %}
+                {% if experience.photo5 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo5.url}}">{% endif %}
+                </div><!-- close exp-thumbs -->
             </div>
-            <div id="img-gallery"> <!-- I need to talk to chong han about this.. I am confused -->
-                <div id="exp-main-image" class="image-wrapper"></div>
-                <div id="exp-thumbs">
-                
-                    {% thumbnail experience.photo1 experience.photo1.thumbnail_size_str crop="center" as im %}
-                        <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-                    {% endthumbnail %}
-                    {% thumbnail experience.photo2 experience.photo2.thumbnail_size_str crop="center" as im %}
-                        <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-                    {% endthumbnail %}
-                    {% thumbnail experience.photo3 experience.photo3.thumbnail_size_str crop="center" as im %}
-                        <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-                    {% endthumbnail %}
-                    {% thumbnail experience.photo4 experience.photo4.thumbnail_size_str crop="center" as im %}
-                        <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-                    {% endthumbnail %}
-                    {% thumbnail experience.photo5 experience.photo5.thumbnail_size_str crop="center" as im %}
-                        <img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-                    {% endthumbnail %}
-
-                </div><!-- close exp-thumbs -->  
-            </div><!-- close img-gallery -->
-            <div id="exp-description">
-                {{ experience.description|safe }}
-            </div><!-- close exp-description -->
-
-            <!-- there needs to be a loop here.. or disqus... not sure how this will work -->
-            <div id="reviews">
-                <!--<h3> What People Say</h3>-->
-                <!--<button id="write-a-review">Write a Review</button>-->
-            <div class="review-item">
-                <div class="reviewer-listing">
-                    <div id="reviewer-wrap">
-                        <div id="reviewer-image">
-                            <img width="50" height="50" alt="#" src="{{ MEDIA_URL }}/images/Picture_Necklace_sml.jpg">
-                        </div><!-- close reviewer-image-->
-                        <div id="reviewer-details">
-                            <p>Na'ama Moran</p>
-                            <p class="location">San-Francisco, CA</p>
-                        </div><!-- close reviewer-details -->
-                    </div><!-- close reviewer-wrap-->
-                    <div id="ratings"><img width: 60px src="{{ MEDIA_URL }}/images/stars.png"></div><!-- close ratings -->
-                </div><!-- close reviewer listing -->
-                <div id="review-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit. Vivamus eleifend rutrum porta. Integer magna sem,
-                    ultricies nec ultricies suscipit, ullamcorper sit amet
-                    purus. Sed vulputate dolor in urna varius tempor. Sed
-                    elementum molestie elit at pharetra. Suspendisse nec
-                    imperdiet turpis. Nam vitae ante urna, sit amet luctus
-                    lorem. Integer eu turpis id urna imperdiet tempor sit
-                    amet vitae elit. Nullam viverra, arcu eget hendrerit
-                    fermentum, turpis odio convallis lectus, ut laoreet nibh
-                    ligula vel dolor. Maecenas volutpat cursus dictum. Donec
-                    varius lectus et leo auctor faucibus.</p>
-                </div> <!-- close review-body -->
-            </div><!-- close review_item -->
-
-            <div class="review-item">
-                <div class="reviewer-listing">
-                    <div id="reviewer-wrap">
-                        <div id="reviewer-image">
-                            <img width="50" height="50" alt="#" src="{{ MEDIA_URL }}/images/Picture_Necklace_sml.jpg">
-                        </div><!-- close reviewer-image-->
-                        <div id="reviewer-details">
-                            <p>Na'ama Moran</p>
-                            <p class="location">San-Francisco, CA</p>
-                        </div><!-- close reviewer-details -->
-                    </div><!-- close reviewer-wrap-->
-                    <div id="ratings"><img width: 60px src="{{ MEDIA_URL }}/images/stars.png"></div><!-- close ratings -->
-                </div><!-- close reviewer listing -->
-                <div id="review-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit. Vivamus eleifend rutrum porta. Integer magna sem,
-                    ultricies nec ultricies suscipit, ullamcorper sit amet
-                    purus. Sed vulputate dolor in urna varius tempor. Sed
-                    elementum molestie elit at pharetra. Suspendisse nec
-                    imperdiet turpis. Nam vitae ante urna, sit amet luctus
-                    lorem. Integer eu turpis id urna imperdiet tempor sit
-                    amet vitae elit. Nullam viverra, arcu eget hendrerit
-                    fermentum, turpis odio convallis lectus, ut laoreet nibh
-                    ligula vel dolor. Maecenas volutpat cursus dictum. Donec
-                    varius lectus et leo auctor faucibus.</p>
-                </div> <!-- close review-body -->
-            </div><!-- close review_item -->
-
-            <div class="review-item">
-                <div class="reviewer-listing">
-                    <div id="reviewer-wrap">
-                        <div id="reviewer-image">
-                            <img width="50" height="50" alt="#" src="{{ MEDIA_URL }}/images/Picture_Necklace_sml.jpg">
-                        </div><!-- close reviewer-image-->
-                        <div id="reviewer-details">
-                            <p>Na'ama Moran</p>
-                            <p class="location">San-Francisco, CA</p>
-                        </div><!-- close reviewer-details -->
-                    </div><!-- close reviewer-wrap-->
-                    <div id="ratings"><img width: 60px src="{{ MEDIA_URL }}/images/stars.png"></div><!-- close ratings -->
-                </div><!-- close reviewer listing -->
-                <div id="review-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit. Vivamus eleifend rutrum porta. Integer magna sem,
-                    ultricies nec ultricies suscipit, ullamcorper sit amet
-                    purus. Sed vulputate dolor in urna varius tempor. Sed
-                    elementum molestie elit at pharetra. Suspendisse nec
-                    imperdiet turpis. Nam vitae ante urna, sit amet luctus
-                    lorem. Integer eu turpis id urna imperdiet tempor sit
-                    amet vitae elit. Nullam viverra, arcu eget hendrerit
-                    fermentum, turpis odio convallis lectus, ut laoreet nibh
-                    ligula vel dolor. Maecenas volutpat cursus dictum. Donec
-                    varius lectus et leo auctor faucibus.</p>
-                </div> <!-- close review-body -->
-            </div><!-- close review_item -->
-        </div><!-- close reviews -->
-
-        </div><!-- close primary -->
-
-
-        <div class="secondary">
-            <div id="price">
-                $ {{ experience.price }} <a href="#"></a><!-- the href is for when we will quote in different currencies... thinking far ahead here :-) -->
-            </div><!-- close price -->
-            <div id="buy-now" class="section">
-                <h2> How many people?</h2>
-                <span>
+        </div><!-- close img-gallery -->
+        <div class="share-buttons">
+            <ul>
+                <li>
+                    <div class="fb-like"
+                    data-href="/experiences/{{
+                    experience.slug_id }}" data-send="false"
+                    data-layout="button_count" data-width="100"
+                    data-show-faces="false" data-action="recommend"
+                    data-font="arial">
+                    </div>
+                </li>
+                <li class="twitter-share-button">
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://naanprofit.com" data-hashtags="naanprofit">Tweet</a>
+                </li>
+            </ul>
+        </div>
+        <div class="description">
+            {{ experience.description|safe }}
+        </div>
+        <div class="fb-comments" data-href="/experiences/{{experience.slug_id }}" data-num-posts="5" data-width="620"></div>
+    </div><!-- close span8 column -->
+    <div class="span4 column">
+        <h1>&nbsp;</h1>
+        <div id="action-bar" class="panel span4 font12 row">
+            <div class="price">
+                ${{ experience.price }}<a href="#"></a>
+                <span class="unit">{{ experience.unit_name }} per person</span><!-- this will have to be replaced by the unit_name -->
+            </div>
+            <div class="space10"></div>
+            <div class="row">
+                <span class="date">Dec 18, 2pm</span>
                 <select>
                     <option>1</option>
                     <option>2</option>
@@ -159,42 +71,80 @@
                     <option>9</option>
                     <option>10</option>
                 </select>
-                </span><br /><br />
-                <a href="google form goes here" id="book-now" class="button green">I want it!</a>
-            </div><!-- close buy-now section -->
-
-            <div id="merchant-listing" class="section">
-                <div id="merchant-image">
-                    {% comment %} <a title={{ merchant.name }} href="{% url merchant_profile merchant.id %}">{% endcomment %}
-                        {% include 'profile_image.html' with user_extension=merchant %}
-                    </a>
-                </div>
-                <div id="merchant-details">
-                    <ul>
-                        <li>{% comment %}<a href="{% url merchant_profile merchant.id %}">{% endcomment %}{{ merchant.name }}</a></li>
-                        <li id="location">{{ merchant.city}} {{ merchant.state }}
-                        <br />
-                        {{ merchant.country }}
-                        </li>
-                    </ul>
-                </div>
+                <input type="submit" class="btn" value="Buy" />
             </div>
-            <input type='hidden' id='location_field' value='{{ location }}' />
-            <div id="map" style='width:300px; height:200px;'>
-                <!--iframe width="320" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=6375+Nautilus+Dr+Boulder,+CO+80301&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=61.153041,92.988281&amp;vpsrc=0&amp;ie=UTF8&amp;hq=&amp;hnear=6375+Nautilus+Dr,+Boulder,+Colorado+80301&amp;ll=40.062308,-105.204048&amp;spn=0.016423,0.018024&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe><br /><small><a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=6375+Nautilus+Dr+Boulder,+CO+80301&amp;aq=&amp;sll=37.0625,-95.677068&amp;sspn=61.153041,92.988281&amp;vpsrc=0&amp;ie=UTF8&amp;hq=&amp;hnear=6375+Nautilus+Dr,+Boulder,+Colorado+80301&amp;ll=40.062308,-105.204048&amp;spn=0.016423,0.018024&amp;z=14&amp;iwloc=A" style="color:#0000FF;text-align:left">View Larger Map</a></small-->
-            </div><!-- close map -->
-            
-            <div id="exp-stats" class="section">
-                <p>Experience listed on {{ experience.pub_date }}</p>
-                <p>{{ experience.views }} views</p><!-- we don't have these attributes, make sure we add them. Ask Joseph how? -->
-                <p>{{ experience.wish_list_adds }} added this experience to their wish list</p>
-                <p><a href="#" title="report an experience">Report this experience</a></p>
-            </div><!-- close exp_stats section -->
-
-        </div><!-- close secondary -->
-    </article>
+            <div class="row">
+                <span class="date">Dec 18, 2pm</span>
+                <select>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                </select>
+                <input type="submit" class="btn" value="Buy" />
+            </div>
+            <div class="row">
+                <span class="date">Dec 18, 2pm</span>
+                <select>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                </select>
+                <input type="submit" class="btn" value="Buy" />
+            </div>
+        </div>
+        <div id="seller-info" class="panel row">
+            <div class="pad15">
+                <h3>{{merchant.name}}</h3>
+                <div class="row">
+                    <div id="merchant-image">
+                        <div class="image-wrapper">
+                            <img alt="{{ merchant.name }}" src="{% if merchant.photo %}{{ merchant.photo.url }}{% else %}http://graph.facebook.com/{{ merchant.FB_ID }}/picture/?type=large{% endif %}">
+                        </div>
+                    </div>
+                    <div id="merchant-address">
+                    {{ merchant.address }}<br />
+                    </div>
+                </div>
+                <a class="btn btn-blue font14">Contact me</a>
+            </div><!-- close pad15 -->
+        </div><!-- close seller-info -->
+        <div class="pad8 panel row">
+            <div id="map">
+                <input type='hidden' id='location_field' value='{{ location }}' />
+            </div>
+        </div>
+        <div class="secondary">
+				<ul>
+                <li>Experience listed on {{ experience.pub_date }}</li>
+                <li>{{ experience.views }} views</li><!-- do we track this? where? -->
+                {% comment %}<li>{{ experience.wish_list_adds }} added this experience to their wish list</li>{% endcomment %}
+                <li><a href="#" title="report an experience">Report this experience</a></li>
+            </ul>
+        </div>
+    </div><!-- close span4 column -->
 {% endblock %}
 
-
+{% block extra_scripts %}
+<script>
+    $(document).ready(function()
+    {
+        $('#location_field').geoview({ 'map_id' : 'map'});
+    });
+</script>
+{% endblock %}
 
 

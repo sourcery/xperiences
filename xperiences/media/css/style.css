@@ -1,576 +1,629 @@
-/*-----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-/*	CSS FOR NEIGHBORLYMEALS.COM OUR TESTBED WEBSITES FOR THE FOOD NICHE
-/*----------------------------------------------------------------------------------------------------------------------------------------------------------*/
- 	
- 	
-html, body {
-    font-family: proxima-nova, Droid Sans, helvetica, sans-serif;
-    font-size: 12px;
-    line-height: 1.3;
-    background: #fdf4e5;
-    height: 100%;
-}
-	
-#wrapper {
-    width:990px;
-    margin:0px auto;
-    min-height: 100%;
-    /*border-right: 1px solid red;
-    border-left: 1px solid red;*/
+/*
+ * Document CSS
+ *
+ * COLOR CODES
+ * PURPLE: #a58ab3
+ * TEAL: #0a9aaf
+ */
+
+body {
+	font-family: "helvetica", "arial", sans-serif;
+	background: url(../images/background.jpg);
 }
 
-#content {
-    overflow: auto;
-    padding-bottom: 70px;
+a {
+	color: #ffaa00;
 }
 
-h1 {
-    font-size: 2em;
+h1, h2, h3, h4, h5, h6 {
+	font-family: cronos-pro;
 }
 
-h2 {
-    font-size: 1.5em;
+.content-body {
+	width: 1000px;
+	min-height: 600px;
+	margin: 0 auto;
 }
 
-h3 {
-    font-size: 1.2em;
+.main-content {
+	width: 1000px;
+	margin: 0 auto;
+	padding: 10px 0 50px 0;
 }
 
+#command-bar {
+}
 
-a { text-decoration: none; }
+#command-bar ul {
+	border-top: 1px solid #dfdfdf;
+	border-bottom: 1px solid #efefef;
+}
 
+#command-bar ul li a {
+	display: block;
+	padding: 8px 15px;
+	border-top: 1px solid #efefef;
+	border-bottom: 1px solid #dfdfdf;
+	color :#7a7a7a;
+}
+
+#command-bar ul li:hover {
+}
+
+#command-bar ul li a:hover {
+	background: #FFAA00;
+	color: white;
+	text-decoration: none;
+}
 
 /*------------------------------------------------------------------------------*/
-/*	HEADER 
+/*	HEADER
 /*------------------------------------------------------------------------------*/
 
 
-header#header {
-    overflow: hidden;
-    position: relative;
-    height: 220px;
-    width: 100%;
-    margin-bottom: 10px;
+header {
+	width: 100%;
+	-moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.5);
+	background: #2D2218 url(../images/header_background.png);
 }
 
-#top-banner-bg {
-    background: #bf5c27 url(../images/header_bg2.png) repeat-x bottom;
-    padding-top: 50px;
-    padding-bottom: 30px;
+header .header-wrap {
+	width: 960px;
+	margin: 0 auto;
+	padding: 8px 0;
 }
 
-#top-banner {
-    margin: 0 auto 0;
-    width: 990px;
+header .header-wrap::after {
+	content: "";
+	display: table;
+	clear:both;
 }
 
-.clear {
-    clear: both;
+header .bottom-border {
+	height: 3px;
+	background: url(../images/header_border.png);
 }
 
-#top-banner li {
-    float: left;
-    
-}
-
-@font-face {
-    font-family: 'MenschRegular';
-    src: url('mensch-wf.eot');
-    src: url('mensch-wf.eot?#iefix') format('embedded-opentype'),
-         url('mensch-wf.woff') format('woff'),
-         url('mensch-wf.ttf') format('truetype'),
-         url('mensch-wf.svg#MenschMenschRegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-#top-banner li:last-child {
-    margin-left: 65px;
-    padding-top: 5px;
-    color: #fdf4e5;
-    font-family: MenschRegular, helvetica, san-sarif;   
-}
-
-#top-banner li:last-child h3 {
-    line-height: 2em;
-}
-
-#main-nav-bg {
-    background: #e8dcc9;
-    height: 50px;
-    padding-top: 20px;
-}
-
-#main-nav {
-    clear: both;
-    height: 50px;
-    width: 990px;
-    margin: 0 auto;
-}
-
-
-#main-nav li {
-    float: left;    
-    margin-right: 30px;
-    line-height: 50px;
-    padding-right: 10px;
-    padding-left: 10px;
-}
-
-#main-nav li a {
-    color: #c56029;
-    font-size: 16px; 
-}
-
-
-
-#main-nav li#selected {
-    margin-left:5px;
-    background-color: #fdf4e5;
-}
-
-
-
-
-/*------------------------------------------------------------------------------*/
-/*	(home page) IMAGE-GALLERY
-/*------------------------------------------------------------------------------*/
-
-.image-gallery {
-	list-style: none;
-	margin-top: 20px;
-}
-
-.image-gallery .listing-item {
+#logo {
 	float: left;
-	margin: 4px;
-	padding: 5px;
-	width: 310px;
-        border: solid 1px #e8dcc9;
-	background: #fefefe /*url(../images/image_frames.png) no-repeat;*/
+	color: white;
+	display: inline-block;
+	background: url(../images/logo.png);
+	width: 118px;
+	height: 33px;
 }
 
-
-div#thumb-details {
-	height: 50px;
-	margin-bottom: 0px;
+#logo span {
+	display: none;
 }
 
-
-li.listing-item .listing-title {
-	line-height: 16px;
-        font-size: 14px;
-        
+#service-list {
+	background: linear-gradient(top, #FFAA00, #ea9500);
+	background: -moz-linear-gradient(top, #FFAA00, #ea9500);
+	background: -ms-linear-gradient(top, #FFAA00, #ea9500);
+	background: -o-linear-gradient(top, #FFAA00, #ea9500);
+	background: -webkit-linear-gradient(top, #FFAA00, #ea9500);
+	float: right;
+	color: #2D2218;
+	border: 1px solid #ea9500;
+	text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(255, 255, 255, 0.2);
 }
-
-li.listing-item .listing-title a {
-	color: #c56029;
-}
-
-li.listing-item .listing-merchant {
-	line-height: 16px;
-}
-
-li.listing-item .listing-merchant a {
-	color: #969595;
-}
-
-li.listing-item .listing-price {
-	line-height: 16px;
-        color: #70a41e;
-}
-
-
-
-
 
 /*------------------------------------------------------------------------------*/
-/*	FOOTER (MOVE TO BASE.CSS)
+/*	FOOTER
 /*------------------------------------------------------------------------------*/
+
 
 footer {
-	border-top-color: #FFF;
-	border-top-style: solid;
-	border-top-width: 3px;
-	color: #666666;
-	position: relative;
-	height:70px;
-	margin-top: -70px;
-	padding-top: 8px;
-	background: #e8dcc9;
-	clear: both;
+	padding: 0px 0 30px 0px;
+	color: #ACACAC;
+	text-shadow: none;
+	margin-top: 80px;
 }
 
-footer > div {
-	/*display:inline-block;
-	margin:0px 60px 0px 10px;*/
+.footer-constrain {
+	width: 1000px;
 	margin: 0 auto;
-	width: 990px;
+	border-top: 1px solid #DEDEDE;
+	padding: 10px 7px 0;
 }
 
-footer ul.footer-nav {
-	list-style: none;
-	margin-top: 5px;
-	/*float: right;*/
-}
-
-footer ul.footer-nav li a {
+footer ul.footer-nav li {
 	float: left;
-	margin: 5px;
-	padding: 5px;
-        color: #92796b;
+	margin-right: 20px;
 }
 
-
-footer p#copy {
+footer .copyright {
 	float: right;
-	margin-top: 15px;
-        margin-right: 5px;
-        color: #92796b;
-	
 }
 
-
-
-/*------------------------------------------------------------------------------*/
-/*	(single listing ) MAIN-CONTENT
-/*------------------------------------------------------------------------------*/
-
-/* PRIMARY */
-
-article#main-content {
-    margin-bottom: 20px;
+footer a {
+	color: #b9b9b9;
 }
 
+footer a:hover {
+	color: #7a7a7a;
+}
 
-article#main-content .primary {
-	float: left;
-	width: 660px;
+/*------------------------------------------------------------------------------*/
+/*	FORMS AND INPUTS
+/*------------------------------------------------------------------------------*/
+
+
+.search-result {
+	width: 320px;
+	display: inline-block;
+	margin-right: 5px;
+}
+
+.search-result img {
+	width: 320px;
+	border: #E0E0E0;
+	margin: 0 auto;
+}
+
+.search-result h4 {
+	font-size: 14pt;
+	margin-bottom: 2px;
+}
+
+.search-result .price {
+	width: 34px;  /*This is not enough width to 3 digit numbers*/
+	height: 32px;
+	padding-top: 2px;
+	border-radius: 17px;
+	font-size: 14pt;
+	color: white;
+	text-align: center;
+	background: #0a9aaf;
+	float: right;
 	margin-top: 10px;
-/*	margin-right: 10px;
-*/	padding-top: 10px;
-
 }
 
-.primary #exp-title {
+.page-nav ul {
+	float: right;
+}
+
+.page-nav ul li{
+	display: inline;
+	float: left;
+	margin-right: 10px;
+}
+
+.page-nav .active {
+	color: #0a9aaf;
+	font-weight: bold;
+}
+
+.search-result:hover {
+	border: 1px solid #cccccc;
+	box-shadow: 0px 0px 3px #999;
+	-moz-transition: box-shadow 0.5s;
+}
+
+.help-text {
+	color: #999;
+	margin: 2px 0 5px;
+	font-size: 90%;
+}
+
+.has-shadow {
+	-moz-transition: 0.5s;
+	box-shadow: 0px 0px 5px #666666;
+}
+
+#map {
+	background: white;
+	border: 1px #cccccc solid;
+	width: 280px;
+	height: 200px;
+}
+
+/*------------------------------------------------------------------------------*/
+/*	EXPERIENCE PROFILE
+/*------------------------------------------------------------------------------*/
+
+
+#action-bar {
+}
+
+#action-bar .price {
+	font-size: 18pt;
+	font-weight: bold;
+	color: white;
+	margin-left: -10px;
+	margin-right: -10px;
+	margin-top: 7px;
+	background: #DF595F;
+	padding: 4px 8px;
+	box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.4);
+	position: relative;
+	border-top: 1px solid #b2474c;
+	border-bottom: 1px solid #b2474c;
+	text-align: center;
+	text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+#action-bar .price span {
+	float: none;
+	top: 0;
+}
+
+#action-bar .price::before, #action-bar .price::after {
+	content: '';
+	position: absolute;
+	border-style: solid;
+	border-color: transparent;
+	bottom: -5px;
+}
+
+#action-bar .price::before {
+	border-width: 0 10px 5px 0;
+	border-right-color: #863539;
+	left: 0;
+}
+
+#action-bar .price::after {
+	border-width: 0px 0px 5px 10px;
+	border-left-color: #863539;
+	right: 0;
+}
+
+#action-bar .price .unit {
+	font-size: 14pt;
+}
+
+#action-bar .row {
+	border-top: #d6d6d6 1px solid;
+	padding-top: 5px;
 	padding-bottom: 5px;
-	font-family: georgia;
-	color: #545550;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+#action-bar .row:hover {
+	background: #FFAA00;
+	color: white;
+}
+
+#action-bar .row .date {
+	margin-right: 10px;
+}
+
+#action-bar .row input[type="submit"] {
+	float: right;
+}
+
+#seller-info {
+	/*text-align: center;*/
+}
+
+#merchant-image {
+	float: left;
+	width: 100px;
+}
+
+#merchant-address{
+	float: left;
+	width: 120px;
+	margin-left: 40px;
+}
+
+
+.share-buttons {
+	margin: 0 0 10px 0;
+	display: inline-block;
+	float: right;
+}
+
+.share-buttons ul li {
+	float: left;
 	
+}
+
+.description {
+	display: inline-block;
+	padding: 15px 0px; 
+	border-top: 1px solid #D9D9D9;
+}
+
+#merchant-image .image-wrapper {
+	width:100px;
+	height:100px;
+	position:relative;
+}
+
+#seller-info .btn btn-blue font14 {
+	float: left;
+	margin-bottom: 10px;
+}
+
+
+
+
+
+
+/*------------------------------------------------------------------------------*/
+/*	IMAGE CAROUSEL
+/*------------------------------------------------------------------------------*/
+
+
+#exp-main-image-outer {
+	border-left: 1px solid #DFDFDF;
+	border-right: 1px solid #DFDFDF;
+	border-top: 1px solid #DFDFDF;
+	background: white;
+	position: relative;
+	width: 620px;
+	height: 400px;
+	overflow: hidden;
+}
+
+#exp-main-image-frame {
+	border: 5px solid white;
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 480px; /*440*/
+	width: 480px; /*638*/
+}
+
+#exp-img-thumbs {
+	border-left: 1px solid #DFDFDF;
+	border-right: 1px solid #DFDFDF;
+	border-bottom: 1px solid #DFDFDF;
+	width: 620px;
+	background: white;
+	margin-bottom: 30px;
+}
+
+.bottom-pad {
+	height: 5px;
+	position: absolute;
+	top: 600px;
+	width: 100%;
+	background: red;
+}
+
+#exp-main-image {
+	position: relative;
+}
+
+#exp-main-image img {
+	border: 5px solid white;
+	position: absolute;
 }
 
 #exp-thumbs {
 	overflow: hidden;
 	position: relative;
-	margin-top: 6px;
+	margin-top: 4px;
 }
 
 .exp-thumbs-img {
 	width: 70px;
 	height: 70px;
 	cursor: pointer;
-	border: 3px solid white;
-	margin-right: 2px;
+	border: 5px solid white;
 }
 
 .primary #exp-thumbs ul {
-	list-style: none;	
+	list-style: none;
+	margin-top: 10px;
+	
 }
 
 .primary #exp-thumbs li {
 	float: left;
-	padding: 5px;
-	margin-right: 5px;
 }
 
-.primary #exp-description {
-	display: inline-block;
-	margin-top: 10px;
-	padding-top: 10px;
-	border-top-color: #EEEEEE;
-	border-top-style: solid;
-	border-top-width: 1px; 
-}
+/* dashboard / all listings page */
 
-
-/* SECONDARY */
-
-article#main-content .secondary {
+div.activate {
 	float: right;
-	width: 320px;
-	padding-top: 5px;
-        margin-top: 10px;
 }
 
-.secondary #price {
-	font-size: 3em;
-	font-family: georgia;
-	color: #87a824;
-	padding-bottom: 5px;
-        
+
+ul.listings li.listing-item {
 }
 
-.secondary h2 {
-    color: #87765b;
-}
-
-.secondary #buy-now {
-	margin-top: 5px;
-	padding: 15px;
-	position: relative;
-}
-
-.secondary #buy-now span {
-	margin-top: 10px;
-	position: absolute;
-	top: 10px;
-	right: 40px;
-}
-	
-.secondary #merchant-listing {
-	margin-top: 10px;
-        margin-bottom: 10px;
-	padding: 15px;
-	position: relative;
-	height: 115px;
-}
-
-.secondary #merchant-listing #merchant-image {
-	float: left;
-}
-
-.secondary #merchant-listing #merchant-details {
-	position: absolute;
-	top: 15px;
-	left: 135px;
+.listing {
+	display: block;
 	padding: 5px;
-	line-height: 1.25em;
-        color: #87765B;
+	border-top: 1px solid #dfdfdf;
 }
 
-.secondary #merchant-listing #merchant-details a {
-        color: #87765B;
-        font-size: 1.5em;
-        line-height: 1.5em;
+.listing-header .listing-value, .listing-header .listing-date {
+	font-weight: bold;
 }
 
-.secondary #merchant-listing #merchant-details li#location {
-	font-size: 10px;
+.listing-date {
+	margin-left: 10px;
+	font-size: 12pt;
 }
 
+.listing-value {
+	width: 150px;
+	float: right;
+	font-size: 11pt;
+}
 
-.secondary #merchant-listing #merchant-rating {
-	margin-top: 3px;
-	padding-left: 3px;
+.listing-actions button {
+	margin-left: 10px;
+}
+
+/*------------------------------------------------------------------------------*/
+/*	INBOX
+/*------------------------------------------------------------------------------*/
+
+
+
+.message {
+	padding: 10px;
+	margin-bottom: 10px;
+	border-top: 1px solid #E0E0E0;
+}
+
+.message:first-child {
+	border-top: hidden;
+}
+
+.message * {
+	vertical-align: top;
+}
+
+.user {
 	display: inline-block;
-	font-size: 0.9em;
+	text-align: left;
+	margin-right: 10px;
+	vertical-align: middle;
+	overflow: hidden;
 }
 
+.user-name {
+	font-size: 90%;
+	float: right;
+	width: 80px;
+	vertical-align: bottom;
+}
 
-article#main-content .secondary #exp-stats {
-	margin-top: 10px;
+.user-location {
+	font-size: 80%;
+}
+
+.user-image  {
+	/*width: 100px;*/
+	display: inline-block;
+	text-align: center;
+	/*margin-right: 30px;*/
+	vertical-align: middle;
+}
+
+a.message-link {
+	text-decoration: none;
+}
+
+.message-link .message-title {
+	font-size: 120%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	color: #222;
+}
+
+.message-link .message-body {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	color: #7a7a7a;
+}
+
+.message-action {
+	vertical-align: middle;
+	margin-top: 5px;
+	float: right;
+}
+
+.message-timestamp {
+	margin-top: 3px;
+}
+
+.empty-inbox {
+	display:block;
 	padding: 15px;
-	font-size: 0.8em;
-	line-height: 1.7em;
+	text-align: center;
 }
 
-/* this is a hack I did because w.out the button the share images overlay the
-  section background... and it doesn't stretch.. I don't really know why... must
-  solve at some point... maybe ask Steve Etheridge */
-button.hidden {
-	visibility: hidden;
+#message-read .image-wrapper {
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
 }
 
-
-.section {
-    background-color: #f5eada;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+.user-data {
+	vertical-align: bottom;
+	display: inline-block;
 }
 
-
-/* ask chong han about this code below.. where is that .main-image thing working?
-  what is it about position relative for tag and absolute for class?
-  where is that class in the code?
-*/
-
-
-#exp-main-image {
-	width: 640px;
-	height: 480px;
-	position: relative;
+#message-read .user-name {
+	width: 400px;
+	float: none;
+	font-size: 120%;
 }
 
-.main-image {
-	width: 640px;
-	height: 480px;
-	position: absolute;
-	left: 5px;
-	top: 5px;
+#message-read .message-title {
+	font-size: 150%;
 }
 
-/* wrapper for merchant image */
-.image-wrapper {
-    border: solid 1px #EAEAEA;
-    padding: 5px;
-    text-align: center;	
+/* Login */
+#login {
+	width: 400px;
+	height: 300px;
+	font-size: 20pt;
+	text-align: center;
+	margin: 0 auto;
 }
 
+.fb-connect {
+	display: inline-block;
+	border: 1px solid #355891;
+	font-size: 17pt;
+	border-radius: 3px;
+	padding: 5px 10px 5px 50px;
+	color: white;
+	text-decoration: none;
+	background: #617fb3 url(../images/fb-logo.png) no-repeat left;
+	text-shadow: 1px 1px #666;
+}
 
-
-
+.fb-connect:hover {
+	box-shadow: 0px 0px 3px #666;
+	text-decoration: none;
+}
 
 
 /*------------------------------------------------------------------------------*/
-/*	BUTTONS
+/*	SHARE
 /*------------------------------------------------------------------------------*/
 
-a.button {
-    display: inline-block;
-    outline: none;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    font: 18px/150% helvetica, sans-serif;
-    padding: .5em 2em .55em;
-    text-shadow: 0 1px 1px rgba(0,0,0,.3);
-    -webkit-border-radius: .5em; 
-    -moz-border-radius: .5em;
-    border-radius: .5em;
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-    box-shadow: 0 1px 2px rgba(0,0,0,.2);
-    width:200px;
+.referral-action-menu {
+	text-align: center;
+	margin-top: 20px;
 }
 
-
-.green {
-    color: #fdf4e5;
-    /*border: solid 1px #3a4b06;*/
-    background: #0095cd;
-    background: -webkit-gradient(linear, left top, left bottom, from(#a5c642), to(#87a824));
-    background: -moz-linear-gradient(top,  #a5c642,  #87a824);
-    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#a5c642', endColorstr='#87a824');
+.share {
+	display: inline-block;
+	margin-right: 60px;
 }
 
-
-
-
-/*.blue:hover {
-    background: #007ead;
-    background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
-    background: -moz-linear-gradient(top,  #0095cc,  #00678e);
-    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0095cc', endColorstr='#00678e');
+.fb {
+	background: #1D95CB;
+	border: 1px solid #5771a9;
 }
 
-.blue:active {
-    color: #80bed6;
-    background: -webkit-gradient(linear, left top, left bottom, from(#0078a5), to(#00adee));
-    background: -moz-linear-gradient(top,  #0078a5,  #00adee);
-    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0078a5', endColorstr='#00adee');
-}*/
-
-
-
-/*------------------------------------------------------------------------------*/
-/*	REVIEWS
-/*------------------------------------------------------------------------------*/
-
-
-.primary #reviews {
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top-color: #fdf4e5;
-    border-top-style: solid;
-    border-top-width: 1px; 
+#button-share {
+	margin-top: 20px;
 }
-
-#reviews {
-    border-top: 1px solid red;
-}
-
-#reviews .review-item {
-    margin-top: 5px;
-    /*border: 3px solid red;*/
-    height: 200px;
-    padding-bottom: 10px; /* you need padding in case the content is really long
-			    and reaching close to 200px in height. */
-    border-bottom: 1px solid #fdf4e5;
-}
-
-
-#reviews .review-item .reviewer-listing {
-    margin-top: 10px;
-    /*border: 3px solid blue;*/
-    height: 70px;
-}
-
-
-#reviews .review-item .reviewer-listing #reviewer-wrap {
-    float: left;
-    margin: 5px 0 0 5px;
-}
-
-
-#reviews .review-item .reviewer-listing #ratings {
-    float: right;
-    /*border: 1px solid black;*/
-    margin-top: 5px;
-    width: 200px;
-}
-
-
-#reviews .review-item .reviewer-listing #reviewer-wrap #reviewer-image {
-    float: left;
-}
-
-
-#reviews .review-item .reviewer-listing #reviewer-wrap #reviewer-details {
-    float: right;
-    padding: 5px;
-    margin-left:5px;
-    color: #545550
-   /* border: 1px solid green;*/
-}
-
-#review-body {
-    /*border: 2px solid cyan;*/
-    margin-top: 5px;
-}
-
-#review-body p {
-    padding: 5px;
-}
-
 
 
 /*------------------------------------------------------------------------------*/
 /*	ABOUT
 /*------------------------------------------------------------------------------*/
 
-article#about-content {
-    font-size: 14px;
+#about p {
+    font-size: 16px;
     line-height: 1.5;
     padding: 10px;
     padding-right: 50px;
     padding-bottom: 20px;
-    
-    
-}
-
-#t-shirt-blurb {
-    margin-top: 10px;
-    border-top: #E8DCC9 solid 3px;
-    padding-top: 10px;
-}
-
-#feed-the-movement-blurb {
-    margin-top: 10px;
-    border-top: #E8DCC9 solid 3px;
-    padding-top: 10px;
+	color: #545550;
+	/*font-family: georgia;*/
+	margin-top: 30px;
+	width: 750px;
+	display: inline-block;
+	
 }
 
 
@@ -578,15 +631,82 @@ button.hidden {
     visibility: hidden;
 }
 
+#collage {
+	padding: 10px;
+	margin-top: 10px;
+}
+
+#collage ul {
+	list-style: none;
+}
+
+#collage li {
+	float: left;
+	padding: 7px;
+	margin: 0px;
+	width: 220px;
+	border: solid 2px #D9D9D9;
+	background: #fefefe 
+}
+
+
+#collage #img-1 {
+-webkit-transform: rotate(-5deg);
+-moz-transform: rotate(-5deg);
+}
+
+#collage #img-2 {
+-webkit-transform: rotate(3deg);
+-moz-transform: rotate(3deg);
+}
+
+#collage #img-3 {
+-webkit-transform: rotate(-6deg);
+-moz-transform: rotate(-6deg);
+}
+
+#collage #img-4 {
+-webkit-transform: rotate(5deg);
+-moz-transform: rotate(5deg);
+}
+
+#collage #img-5 {
+-webkit-transform: rotate(6deg);
+-moz-transform: rotate(6deg);
+}
+
+#collage #img-6 {
+-webkit-transform: rotate(-3deg);
+-moz-transform: rotate(-3deg);
+}
+
+#collage #img-7 {
+-webkit-transform: rotate(4deg);
+-moz-transform: rotate(4deg);
+}
+
+#collage #img-8 {
+-webkit-transform: rotate(-5deg);
+-moz-transform: rotate(-5deg);
+}
 
 
 
+ul.ul-image-replace {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
 
 
-
-
-
-
+/* this is kind of ugly, but the most decent image I could find right now */
+ul.ul-image-replace li {
+background-image: url(../images/check_mark_blue.png);
+background-repeat: no-repeat;
+background-position: 0.6em;
+padding-left: 3em;
+line-height: 1.5em;
+}
 
 
 

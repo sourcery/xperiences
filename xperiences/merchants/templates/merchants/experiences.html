@@ -1,69 +1,61 @@
 {% extends 'base.html' %}
+
 {% load x_tags %}
-{% block extra_head %}
-    <script type='text/javascript' src='/static/jq.templates.js' ></script>
 
-    <script type='text/javascript' >
-        $(document).ready(function()
-        {
-            get_experiences();
-        });
-
-        function get_experiences(params)
-        {
-            params = params || {};
-            params['of_merchant'] = true;
-            $.get('/api/experiences/json',params,function(data)
-            {
-                $('#experience_item_template').tmpl(data).appendTo('ul.image-gallery');
-            });
-        }
-
-        function update_status(sender, ex_id)
-        {
-            var is_active = sender.checked ? true : false;
-            $.ajax( { url : '/api/experiences/json', data : { is_active : is_active, id:ex_id } , type : 'PUT', success : function()
-            {
-                alert('saved');
-            }, error : function()
-            {
-                alert('error');
-            } });
-        }
-
-    </script>
+{% block content %}
+<div class="container">
+	<div class="space30"></div>
+	{% include "merchants/command_bar.html" %}
+    <div class="column span9">
+        <div class="listings-container">
+            <ul class="listings"></ul>
+        </div><!-- closing listings-container -->
+</div><!-- closing main-content -->
 {% endblock %}
 
-{% block wrapper %}
-    {% block content %}
-        <div class="image-grid">
-            <ul class="image-gallery">
-            </ul>
+
+{% block hidden_templates %}
+<script type='text/x_jquery_tempaltes' id='experience_item_template'>
+    <li id="#" class="listing-item">
+        <a class="#" title=" {% t_var title %}" href="{% t_url merchant_edit_experience slug_id %}">
+            <img width="100" height="100" alt="{% t_var title %}" {% t_if photo1 %}src="{% t_var photo1.url %}"{% t_endif %}>
+        </a>
+        <div id="thumb-details">
+            <p class="listing-title">
+                <a title="{% t_var title %}" href="{% t_url merchant_edit_experience slug_id %}"> {% t_var title %} </a>
+            </p>
+            <p class="listing-merchant">
+                <a title="{% t_var merchant.name %}" href=""> {% t_var merchant.name %}, {% t_var merchant.city %} {% t_var merchant.state %}</a>
+            </p>
+            <p class="listing-price">
+                <span class="currency-symbol">$</span>
+                {% t_var price %}
+                <span class="currency-code"></span>
+            </p>
         </div>
-    {% endblock %}
+        Active: <input type=checkbox value='{% t_var is_active %}' {% t_if is_active %}checked='checked'{% t_endif %} onchange='update_status(this,"{% t_var id %}");' />
+    </li>
+</script>
 {% endblock %}
 
 
-    {% block hidden_templates %}
-    <script type='text/x_jquery_tempaltes' id='experience_item_template'>
-                    <li id="#" class="listing-item">
-                        <a class="#" title=" {% t_var title %}" href="{% t_url merchant_edit_experience slug_id %}">
-                            <img width="310" height="207" alt="{% t_var title %}" {% t_if photo1 %}src="{% t_var photo1.url %}"{% t_endif %}>
-                        </a>
-                        <div id="thumb-details">
-                            <p class="listing-title">
-                                <a title="{% t_var title %}" href="{% t_url merchant_edit_experience slug_id %}"> {% t_var title %} </a>
-                            </p>
-                            <p class="listing-merchant">
-                                <a title="{% t_var merchant.name %}" href=""> {% t_var merchant.name %}, {% t_var merchant.city %} {% t_var merchant.state %}</a>
-                            </p>
-                            <p class="listing-price">
-                                <span class="currency-symbol">$</span>
-                                {% t_var price %}
-                                <span class="currency-code"></span>
-                            </p>
-                        </div>
-                        Active: <input type=checkbox value='{% t_var is_active %}' {% t_if is_active %}checked='checked'{% t_endif %} onchange='update_status(this,"{% t_var id %}");' />
-                    </li>
-    </script>
-   {% endblock %}
+{% block extra_scripts %}
+<script type='text/javascript' >
+var _merchant_id = '{{ merchant.id }}';
+function get_experiences(params) {
+    params = params || {};
+    $.get('/api/experiences/json', params, render);
+}
+
+
+function render(data) {
+    var items = $("#experience_item_template").tmpl(data);
+    items.appendTo("ul.listings");
+}
+
+
+$(document).ready(function(){
+    get_experiences({"merchant": _merchant_id });
+});
+</script>
+{% endblock %}

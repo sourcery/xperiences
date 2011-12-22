@@ -1,30 +1,50 @@
 {% extends 'base.html' %}
-{% block wrapper %}
-    {% block content %}
-        <ul >
-        {% for message in comments %}
-            <li id="#" class="listing-item">
-                {% if message.sender %}
-                {% include 'profile_image.html' with user_extension=message.sender %}
-                {% endif %}
-                <div id="thumb-details">
-                    <a href="{% url view_message message.id %}">
-                    <p class="listing-title">
-                        {{ message.title }}
-                    </p>
-                    <p class="listing-merchant">
-                        {{ message.message }}
-                    </p>
-                    <p>
-                        {{ message.time }}
-                    </p>
-                    </a>
-                </div>
-
-            </li>
-        {% endfor %}
-        </ul>
-    {% endblock %}
+{% block content %}
+	<div class="space30"></div>
+	{% include "merchants/command_bar.html" %}
+	<div class="column span9">
+		<h1>Inbox</h1>
+		<div class="panel row">
+            <ul class="messages">
+				{% for message in comments %}
+				<li class="message row">
+                    <div class="span2">
+                        <a class="user-image">
+                        {% if message.sender %}
+                            <div class="image-wrapper" style='width:50px; height:50px; position:relative;'>
+                                <img alt="{{ message.sender.name }}" width="50" height="50" src="{% if message.sender.photo %}{{ message.sender.photo.url }}{% else %}http://graph.facebook.com/{{ message.sender.FB_ID }}/picture/?type=large{% endif %}" />
+							</div>
+                        {% endif %}
+                        </a>
+                        <div class="user-name">
+                        {% if message.sender %}
+                            {{ message.sender }}
+                        {% endif %}
+                        </div>
+                        <!-- <div class="user-location">
+                        {% if message.sender %}
+                            {{ message.sender.address }}
+                        {% endif %}
+						</div> -->
+					</div>
+                    <div class="span5">
+                        <a class="message-link" href="{% url view_message message.id %}">
+                            <div class="message-title">{{ message.title }}</div><!-- is this correct? again, can't find the comments model -->
+                            <div class="message-body">{{ message.message }}</div><!-- this should be a short summary of the message body -->
+                        </a>
+                        <div class="message-timestamp secondary">
+                            on {{ message.time }}
+                        </div>
+                    </div>
+                    <div class="message-action">
+                        <!-- please make this button work -->
+                        <button class="btn">Delete</button>
+					</div>
+				</li>
+				{% empty %}
+					<li class="empty-inbox">Your inbox is empty!</li>
+				{% endfor %}
+            </ul>
+        </div>
+    </div>
 {% endblock %}
-
-

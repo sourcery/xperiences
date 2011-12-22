@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,12 +73,127 @@
         <br />
  
         <input type="submit" class="button" value="SUBMIT YOUR APPLICATION">
+=======
+<!-- THIS IS THE HOME PAGE INDEX.HTML SAVED IN THE EXPERIENCES APP -->
+{% extends "layout.html" %}
+>>>>>>> dd1709544de77babc73e82dc98c443d61e010395
 
-    </form>
-    {% endif %}
-</body>
-</html>
+{% load x_tags %} <!-- what are x_tags? -->
+
+{% block extra_head %}
+<script type='text/javascript' src='http://www.iplocationtools.com/iplocationtools.js?key={{ IP_GEOLOCATOR_API_KEY }}' ></script>
+<script type='text/javascript' src='/static/jq.templates.js' ></script>
+<script type='text/javascript' src='/static/maps.js'></script>
+{% endblock %}
+
+{% block body %}
+{% include "header.html" %} <!-- why extends base.html isn't working? -->
+
+<div class="container">
+	<div class="column span9">
+		<div class="space30"></div>
+        {% if status == 'saved' %}
+		<div class="font12">Thank you! Your application will be reviewed by our team, and we'll get back you prompotly.<br />
+        In the meantime, check out all the cool things you can do on our site.</div>
+        <div class="space10"></div>
+        <div><a class="btn btn-blue font14" href="/">Continue</a></div>
+		{% else %}
+		{{ form.errors }}
+		<h1>Apply to be listed and start selling</h1>
+		<form action="#" method="POST" enctype="multipart/form-data">
+			<fieldset class="panel row">
+				<div class="pad15">
+					<h3>Your contact information</h3>
+					<div class="row">
+						<div class="span6">
+							<label>Name</label>
+							<input class="span6" type="text" name="name" value='{{ form.name.value }}' />
+						</div>
+					</div>
+					<div class="row">
+						<div class="span6">
+							<label>Email</label>
+							<input class="span6" type="text" name="email" value='{{ user.email }}' />
+						</div>
+					</div>
+					<div class="row">
+						<div class="span6">
+							<label>Phone number</label>
+							<input class="span6" type="text" name="phone-number" value='{{ form.phone_number.value }}' />
+						</div>
+					</div>
+					<address><!-- html 5 semantic markup -->
+					<div class="row">
+						<div class="span6">
+							<label>Address</label><!-- not sure if all these fields are necessary... need to undestand what form.address.value is -->
+							<input class="span6" type="text" name="address" value='{{ form.address.value }}' />
+						</div>
+					</div>
+					<div class="row">
+						<div class="span4">
+							<label>City</label>
+							<input class="span4" type="text" name="city">
+						</div>
+						<div class="span2">
+							<label>State</label>
+							<select name="state" class="span2">
+								<option>AL</option>
+								<option>BM</option>
+								<option>CA</option>
+								<option>PA</option>
+								<option>NY</option>
+								<option>NH</option>
+								<option>MA</option>
+							</select>    
+						</div>
+					</div>
+					<div class="row">
+						<div class="span3">
+							<label>Zipcode</label>
+							<input class="span3" type="text" name="zipcode">
+						</div>
+						<div class="span3">
+							<label>Country</label>
+							<select name="country" class="span3">
+								<option>United States</option>
+							</select>
+						</div>
+					</address>
+				</div>
+			</fieldset>
+
+					<fieldset class="panel row">
+						<div class="pad15">
+						<h3>Tell us about yourself</h3>
+						<p class="help-text">Tell us about yourself, how long have you been doing this, what sets you apart... anything that helps tell your story</p>
+						<textarea class="span6" class="description" required="required" name="merchant_app_description">{{ form.description.value }}</textarea>
+					</div>
+					</fieldset>
+
+					<fieldset class="panel row">
+						<div class="pad15">
+						<h3>What are you offering?</h3>
+						<p class="help-text">Tell us about your services, what makes your work appealing and unique to your customers</p>
+						<textarea class="span6" class="description" required="required" name="offering_app_description">{{ form.offering.value }}</textarea>
+					</div>
+					</fieldset>
 
 
+					<fieldset class="panel row">
+						<div class="pad15">
+						<h3>Who are your customers?</h3>
+						<p class="help-text">Describe your target customers (age, charateristics, lifestyle, etc.)</p>
+						<textarea class="span6" class="description" required="required" name="target_customers_app_description">{{ form.target_customers.value }}</textarea>
+					</div>
+					</fieldset>
+					<div class="space30"></div>
+					<input type="submit" class="btn" value="Send application">
+			</form>
+			{% endif %}
+		</div>
+	</div><!-- close content-body -->
+{% include "footer.html" %}
+
+{% endblock %}
 
 

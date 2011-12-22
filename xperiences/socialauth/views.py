@@ -16,7 +16,7 @@ from django.contrib.auth.views import logout
 from openid_consumer.views import begin
 from socialauth.auth_backends import create_user_from_session, get_referrer_from_request, get_user_extension_from_request
 from socialauth.lib import oauthtwitter2 as oauthtwitter
-                            
+
 from socialauth.lib.linkedin import *
 from django.contrib.auth.models import User
 from django.db.utils import IntegrityError
@@ -53,7 +53,7 @@ def login_page(request):
     if 'next' in request.GET:
         request.session['openid_next'] = request.GET.get('next')
     if request.method == 'GET':
-        return render_to_response('sign_up.html', {'next': request.GET.get('next', LOGIN_REDIRECT_URL)}, context_instance=RequestContext(request))
+        return render_to_response('sign_up.html', {'next': request.GET.get('next', LOGIN_REDIRECT_URL), 'settings': settings}, context_instance=RequestContext(request))
     else:
         username = request.POST['username']
         password = request.POST['password']
@@ -165,7 +165,7 @@ def twitter_login(request):
     next = request.GET.get('next', None)
     if next:
         request.session['twitter_login_next'] = next
-    
+
     twitter = oauthtwitter.TwitterOAuthClient(settings.TWITTER_CONSUMER_KEY, settings.TWITTER_CONSUMER_SECRET)
     request_token = twitter.fetch_request_token(callback = request.build_absolute_uri(reverse('socialauth_twitter_login_done')))
     request.session['request_token'] = request_token.to_string()
@@ -176,7 +176,7 @@ def twitter_login_done(request):
     request_token = request.session.get('request_token', None)
     verifier = request.GET.get('oauth_verifier', None)
     denied = request.GET.get('denied', None)
-    
+
     # If we've been denied, put them back to the signin page
     # They probably meant to sign in with facebook >:D
     if denied:
@@ -205,7 +205,7 @@ def twitter_login_done(request):
         user = authenticate(twitter_access_token=access_token)
     except:
         user = None
-  
+
     # if user is authenticated then login user
     if user:
         login(request, user)
@@ -256,19 +256,19 @@ def openid_done(request, provider=None):
     If we are, we will create a new Django user for this Openid, else login the
     existing openid.
     """
-    
+
     if not provider:
         provider = request.session.get('openid_provider', '')
     if hasattr(request,'openid') and request.openid:
         #check for already existing associations
         openid_key = str(request.openid)
-	
+
         #authenticate and login
         try:
             user = authenticate(openid_key=openid_key, request=request, provider = provider)
         except:
             user = None
-	    
+
         if user:
             login(request, user)
             if 'openid_next' in request.session :
@@ -325,9 +325,9 @@ def facebook_login_done(request):
     next = request.session.get('openid_next', LOGIN_REDIRECT_URL)
 
     login(request, user)
-    
+
     logging.debug("SOCIALAUTH: Successfully logged in with Facebook!")
-    
+
     return HttpResponseRedirect(next)
 
 def openid_login_page(request):
@@ -343,7 +343,7 @@ def social_logout(request):
 
     # normal logout
     logout_response = logout(request, template_name='logout.html')
-    
+
     if 'next' in request.GET:
         return HttpResponseRedirect(request.GET.get('next'))
     elif getattr(settings, 'LOGOUT_REDIRECT_URL', None):

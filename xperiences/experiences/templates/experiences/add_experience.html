@@ -1,154 +1,223 @@
 {% extends 'base.html' %}
 {% block extra_head %}
-    {{ form.media }}
+{% comment %}
+{{ form.media }}
+{% endcomment %}
+<script src="{{MEDIA_URL}}js/jquery-ui-1.8.16.custom.min.js"></script>
+<script src="{{MEDIA_URL}}js/jquery-ui-timepicker-addon.js"></script>
+<link rel="stylesheet" href="{{MEDIA_URL}}css/ui-lightness/jquery-ui-1.8.16.custom.css" />
+<script>
+	$(document).ready(function(e){
+		$(".datepicker").datetimepicker();
+
+		$(".img-upload input").change(function(e){
+			var $this = $(e.currentTarget);
+			var val = $this.val();
+			console.log(val);
+			if(val != "") {
+				$this.parent().parent().addClass("selected");
+			} else {
+				$this.parent().parent().removeClass("selected");
+			}
+		})
+	});
+</script>
 {% endblock %}
+
 {% block content %}
-    <h2>Add listing form</h2><!-- we can change this title based on the niche-->
-    {{ form.errors }}
-    <form action="#" method="POST" enctype="multipart/form-data">
-        <fieldset>
-            <legend>Describe your offering</legend>    
-            <label>Title {{ form.title }}</label><br /><br />
-            <label>Description (tell us about your cooking, the setting, yourself... anything that helps tell your story)<br />
-            {{ form.description }}</label><br /><br />
+	<div class="space30"></div>
+	{% include "merchants/command_bar.html" %}
+	<div class="column span9">
+		<h1>Add a new experience listing</h1><!-- we can change this title based on the niche-->
+		{{ form.errors }}
+		<form action="#" method="POST" enctype="multipart/form-data">
+			<div class="row">
+			<fieldset class="panel">
+				<div class="pad15">
+					<h3>Describe your offering</h3>
+					
+					<div class="row">
+						<div>
+							<label>Title</label>
+							<div class="span6-wrapper">
+								{{ form.title }}
+							</div>
+						</div>
+					</div>
 
-            <label>Category
-            {{ form.category }}
-            <!--select name="category">
-                <option>Category 1</option>
-                <option>Category 2</option>
-                <option>Category 3</option>
-                <option>Category 4</option>
-                <option>Category 5</option>
-            </select-->
-            </label><br /><br />
-        </fieldset>
-        
-        <br /><br />
-        
-        <fieldset>
-            <legend>Tell your story visually</legend>    
-            <label>Upload your images
-                {{ form.photo1 }}
-                {{ form.photo2 }}
-                {{ form.photo3 }}
-                {{ form.photo4 }}
-                {{ form.photo5 }}
-            </label><br /><br />
-            <label>Link to a video {{ form.video_link }}</label>
-        </fieldset>
-        
-        <br /><br />
-        
-        <fieldset>    
-            <legend>Location</legend>
-            {{ form.use_saved_address }}
-            <address><!-- html 5 semantic markup -->
-                Address:
-                {{ form.address }}
-                <br />
-                <!--label>Address <input class="space_common" type="text" name="address"></label><br />
-                <label>City  <input class="space_common" type="text" name="city"></label><br />
-                <label>State  
-                    <select name="state">
-                        <option>AL</option>
-                        <option>BM</option>
-                        <option>CA</option>
-                        <option>PA</option>
-                        <option>NY</option>
-                        <option>NH</option>
-                        <option>MA</option>
-                    </select>
-                </label><br />
-                <label>Zip-code<input class="space_common" type="text" name="zipcode"></label><br />
-                <label>Country  <!-- eveyrthing is going to be in the U.S. for now>
-                    <select name="country">
-                       <option>United States</option>
-                    </select>
-                </label><br /-->
-                {{ form.xp_location }}
-            </address><br />
-        </fieldset>
-        
-        <br /><br />
-        
-        <fieldset>
-            <legend>Available dates and times</legend>
-            <p> Pick available dates </p>
-            From:
-            {{ form.valid_from }}
-            <br />
-            Until:
-            {{ form.valid_until }}
-            <!-- how to enable them select specific dates as well as 'from' 'to'? -->
-            <!-- the calendar here is just a place holder -->
+					{% comment %}
+					<div class="row">
+						<label>Category</label>
+						{{ form.category }}
+					</div>
+					{% endcomment %}
 
-            <!--iframe id='cv_if1' src='http://cdn.instantcal.com/cvir.html?id=cv_nav1&theme=RE&ntype=cv_datepickerm&file=http%3A%2F%2Fwww.instantcal.com%2Ftest.ics' allowTransparency='true' scrolling='no' frameborder=0 height=250 width=250></iframe-->
-            <br />
-            <p>Pick available times</p>
-            <!-- here I want to include a better time widget, perhaps a slider like in Kayak. -->
-            <!--input type="radio" name="mornings" />Mornings<br />
-            <input type="radio" name="evenings" />Evenings<br /> 
-            <input type="radio" name="all_day" />All day<br /-->
-        </fieldset>
-        
-        <br /><br />
-        
-        <fieldset>
-            <legend>Give more details to help people find you</legend>    
-            <label>Tags {{ form.tags }}</label><br /><br /><!-- I need to learn how to do this... -->
-            {{ form.my_place.label_tag }}
-            {{ form.my_place }}
-            <br />
-            {{ form.delivery.label_tag }}
-            {{ form.delivery }}
-            <br />
-            {{ form.pick_up.label_tag }}
-            {{ form.pick_up }}
-            <br />
-        </fieldset>
-        
-        <br /><br />
-        
-        <fieldset>
-            <legend>Price and capacity</legend>
-            <label for="id_price">Price</label>
-            <span>$</span>
-            {{ form.price }}
-            <span>USD</span><br /><br />
-            <label for="capacity">How many people can you feed?
-                {{ form.capacity }}
-                <!--select id='capacity' name="capcaity">
-                    <option>1-5</option>
-                    <option>6-10</option>
-                    <option>11-15</option>
-                    <option>16-20</option>
-                    <option>more than 20</option>
-                </select></label>
-                <input type="checkbox" name="run_out_of_food"> until I run out of food<br /--->
-        </fieldset>       
-        
-        <br /><br />
-        
-        <input type="submit" class="button" value="View listing">
+					<div class="row">
+						<div>
+							<label>Description</label>
+							<div class="span6-wrapper">
+								{{ form.description }}
+							</div>
+							<p class="secondary">(tell us about your cooking, the setting, yourself... anything that helps tell your story)</p>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			</div>
+	
+			<div class="row">
+				<div class="span5">
+					<fieldset class="panel"><div class="pad15">
+							<h3>Available dates and times</h3>
+							<div class="row">
+								<div>
+								<label>Pick a date</label>
+								<div class="span3-wrapper">{{ form.valid_from }}</div>
+								</div>
+							</div>
+						{% comment %}
+						{{ form.valid_until }}
+						{% endcomment %}
+						<!-- how to enable them select specific dates as well as 'from' 'to'? -->
+						<!-- the calendar here is just a place holder -->
 
-    </form>
+						<!--iframe id='cv_if1' src='http://cdn.instantcal.com/cvir.html?id=cv_nav1&theme=RE&ntype=cv_datepickerm&file=http%3A%2F%2Fwww.instantcal.com%2Ftest.ics' allowTransparency='true' scrolling='no' frameborder=0 height=250 width=250></iframe-->
+						<div class="row">
+							<div>
+								<label>Pick available times</label>
+								<div class="span3-wrapper">{{ form.valid_until }}</div>
+							</div>
+						</div>
+						<!-- here I want to include a better time widget, perhaps a slider like in Kayak. -->
+						<!--input type="radio" name="mornings" />Mornings<br />
+						<input type="radio" name="evenings" />Evenings<br />
+						<input type="radio" name="all_day" />All day<br /-->
+					</div></fieldset>
+				</div>
+				<div class="span4">
+					<fieldset class="panel"><div class="pad15">
+						<h3>Price and capacity</h3>
+						<div class="row">
+							<div>
+								<label>Price</label>
+								<div class="row">
+									<span>$</span><div class="span1-wrapper">{{ form.price }}</div><span>USD</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div>
+								<label for="capacity">How many people can you feed?</label>
+								<div class="span2-wrapper">{{ form.capacity }}</div>
+							</div>
+						</div>
+					</div></fieldset>
+				</div>
+			</div>
+
+			<div class="row">
+			<fieldset class="panel">
+				<div class="pad15">
+				<h3>Tell your story visually</h3>
+				<div class="row">
+					<label>Upload your images</label>
+					<div class="img-upload"><div class="img-upload-border">{{ form.photo1 }}</div></div>
+					<div class="img-upload"><div class="img-upload-border">{{ form.photo2 }}</div></div>
+					<div class="img-upload"><div class="img-upload-border">{{ form.photo3 }}</div></div>
+					<div class="img-upload"><div class="img-upload-border">{{ form.photo4 }}</div></div>
+					<div class="img-upload"><div class="img-upload-border">{{ form.photo5 }}</div></div>
+				</div>
+				<div class="row">
+					<div>
+						<label>Link to a video</label>
+						<div class="span6-wrapper">{{ form.video_link }}</div>
+					</div>
+				</div>
+				</div>
+			</fieldset>
+			</div>
+
+			<div class="row">	
+				<fieldset class="panel">
+					<div class="pad15">
+						<h3>Location</h3>
+						{{ form.use_saved_address }} Use my saved address
+						<p>Or enter a new address</p>
+						<address><!-- html 5 semantic markup -->
+							<div class="row">
+								<div>
+									<label>Address</label>
+									<div class="span6-wrapper">{{ form.address }}</div>
+								</div>
+							</div>
+							<!--label>Address <input class="space_common" type="text" name="address"></label><br />
+						<label>City  <input class="space_common" type="text" name="city"></label><br />
+						<label>State
+							<select name="state">
+								<option>AL</option>
+								<option>BM</option>
+								<option>CA</option>
+								<option>PA</option>
+								<option>NY</option>
+								<option>NH</option>
+								<option>MA</option>
+							</select>
+						</label><br />
+						<label>Zip-code<input class="space_common" type="text" name="zipcode"></label><br />
+						<label>Country  <!-- eveyrthing is going to be in the U.S. for now>
+							<select name="country">
+								<option>United States</option>
+							</select>
+						</label><br /> -->
+						{% comment %}
+						{{ form.xp_location }}
+						{% endcomment %}
+					</address><br />
+				</div>
+			</fieldset>
+		</div>
+		<div class="row">
+		<fieldset class="panel">
+			<div class="pad15">
+				<h3>Give more details to help people find you</h3>
+				<div class="row">
+					<div>
+						<label>Tags</label>
+						<div class="span6-wrapper">{{ form.tags }}</div><!-- I need to learn how to do this... -->
+					</div>
+				</div>
+				{% comment %}
+				{{ form.my_place.label_tag }}
+				{{ form.my_place }}
+				{{ form.delivery.label_tag }}
+				{{ form.delivery }}
+				{{ form.pick_up.label_tag }}
+				{{ form.pick_up }}
+				{% endcomment %}
+				</div>
+			</fieldset>
+		</div>
+		<div class="space30"></div>
+		<input class="btn" type="submit" value="Add listing">
+		</form>
+	</div>
 {% endblock %}
 <!-- -- title for listing
 -- text area for description
 -- upload images ("of your cooking, the setting, yourself. anything that helps tell your story.")
 -- link to video (or embedding)
 -- geo location (need to represent if it's (a) stationary, (b) has a delivery service area...
-   enter address and radius, we pull geo location from Google and display map.
--- time availability widget - use calendar and enable them to mark multiple dates.   
+enter address and radius, we pull geo location from Google and display map.
+-- time availability widget - use calendar and enable them to mark multiple dates.
 
-    as well as general times, like "lunchtime weekdays" (these can be check boxes)
+as well as general times, like "lunchtime weekdays" (these can be check boxes)
 
--- toggle: listing "active" / "inactive"  
+-- toggle: listing "active" / "inactive"
 -- tags
 -- field to classify type of experience: "delivery, take out, eat in" (checkboxes)
 -- how many people? (they will have limited capacity) - drop down menu
--- price   
+-- price
 -- save
 -- listing preview with 'edit' and 'submit' buttons
 (if user clicks edit go back one step
