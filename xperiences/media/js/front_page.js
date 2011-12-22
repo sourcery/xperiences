@@ -6,6 +6,10 @@ $(document).ready(function() {
 	});
 
 	$(".default").textWrap("holder");
+    address_autocomplete('address_field',null,function(place){
+        $('#lat_field').val(place.geometry.location.lat());
+        $('#lng_field').val(place.geometry.location.lng());
+    });
 });
 
 var data;

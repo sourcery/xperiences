@@ -254,16 +254,10 @@ class FacebookBackend:
             ext = get_user_extension_from_request(user, request)
             ext.FB_ID = uid
             ext.FB_token = access_token
-<<<<<<< HEAD
             ext.bio = fb_data.get('bio','')
             ext.website = fb_data.get('website','')
             print fb_data
             friends = []
-=======
-            ext.description = fb_data.get('bio', '')
-            ext.website = fb_data.get('website', '')
-
->>>>>>> dd1709544de77babc73e82dc98c443d61e010395
             try:
                 friends = graph.get_object('me/friends').get('data', {})
             except Exception:
