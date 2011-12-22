@@ -10,20 +10,20 @@
 {% block title %}{{ experience.title }}{% endblock %}
 
 {% block content %}
-	<div class="space30"></div>
+    <div class="space30"></div>
     <div class="span8 column">
         <h1>{{ experience.title }}</h1>
-		<div id="img-gallery">
-			<div id="exp-main-image-outer">
-				<div id="exp-main-image"></div>
-			</div>
-			<div id="exp-img-thumbs">
-			<div id="exp-thumbs">
-                {% if experience.photo1 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo1.url}}">{% endif %}
-                {% if experience.photo2 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo2.url}}">{% endif %}
-                {% if experience.photo3 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo3.url}}">{% endif %}
-                {% if experience.photo4 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo4.url}}">{% endif %}
-                {% if experience.photo5 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo5.url}}">{% endif %}
+        <div id="img-gallery">
+            <div id="exp-main-image-outer">
+                <div id="exp-main-image"></div>
+            </div>
+            <div id="exp-img-thumbs">
+                <div id="exp-thumbs">
+                    {% if experience.photo1 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo1.url}}">{% endif %}
+                    {% if experience.photo2 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo2.url}}">{% endif %}
+                    {% if experience.photo3 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo3.url}}">{% endif %}
+                    {% if experience.photo4 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo4.url}}">{% endif %}
+                    {% if experience.photo5 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo5.url}}">{% endif %}
                 </div><!-- close exp-thumbs -->
             </div>
         </div><!-- close img-gallery -->
@@ -126,7 +126,7 @@
             </div>
         </div>
         <div class="secondary">
-				<ul>
+            <ul>
                 <li>Experience listed on {{ experience.pub_date }}</li>
                 <li>{{ experience.views }} views</li><!-- do we track this? where? -->
                 {% comment %}<li>{{ experience.wish_list_adds }} added this experience to their wish list</li>{% endcomment %}
