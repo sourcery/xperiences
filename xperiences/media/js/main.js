@@ -228,7 +228,7 @@ function image_autoscale(obj, params)
         var parent_width = parent.innerWidth();
         var parent_height = parent.innerHeight();
         var parent_prop = parent_width * 1.0 / parent_height;
-        parent.css({position:'relative;'});
+        parent.css({position:'relative'});
 
         var width = elm.width();
         var height = elm.height();
