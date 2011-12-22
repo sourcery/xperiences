@@ -115,7 +115,7 @@ class MyBaseHandler(BaseHandler):
                             value = v
                         elif type(field) == models.BooleanField:
                             value = v == True or v == 'true'
-                        elif type(field) == models.IntegerField or type(field) == models.BigIntegerField or type(field) == models.ForeignKey:
+                        elif type(field) == models.IntegerField or type(field) == models.BigIntegerField:
                             value = int(v)
                         elif type(field) == models.FloatField:
                             value = float(v)
@@ -201,9 +201,17 @@ class ExperienceHandler(MyBaseHandler):
         return super(ExperienceHandler,self).update(request, **kwargs)
 
 class MessageHandler(MyBaseHandler):
-    allowed_methods = ('DELETE',)
+    allowed_methods = ('DELETE','POST')
     model = UserMessage
 
     @api.user_enitity_permission(field_name='to.user_id')
     def delete(self, request,id=None, obj=None, *args, **kwargs):
         return obj.delete()
+
+    @api.allow_only_authenticated()
+    def create(self,request,*args,**kwargs):
+        params = dict([ (k,request.POST[k].strip()) for k in request.POST])
+        to__id = params.pop('to__id')
+        to = UserExtension.objects.get(id=to__id)
+        return super(MessageHandler,self).create(request,{'sender':request.user_extension,'to':to},**params)
+

@@ -1,3 +1,4 @@
+{% load x_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,6 +44,28 @@
             $.getScript("//connect.facebook.net/en_US/all.js", function() {FB.init({ 'apiKey' : '{{ settings.FACEBOOK_APP_ID }}', status: true, cookie: true, xfbml: true });});
         });
         !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+    </script>
+    <script type='text/x-jquery-tmpl' id="send_message_template">
+        <div style='background-color:white; padding:10px;'>
+            Write a message <br />
+            Title: <input type='text' name='title' alt='Title' /> <br />
+            Message: <textarea name='message' alt='Message'></textarea> <br />
+            
+            <button class='dialog_submit'>Send</button>
+            <button class='dialog_cancel'>Cancel</button>
+            
+        </div>
+    </script>
+    <script type='text/x-jquery-tmpl' id="message_box">
+        <div style='background-color:white; padding:10px;'>
+            {% t_var message %}
+        </div>
+    </script>
+    <script type='text/x-jquery-tmpl' id="loading_dialog">
+        <div  style='background-color:white; padding:10px;'>
+            Loading... <br/>
+            <img src='{{ MEDIA_URL }}images/loading.gif' />
+        </div>
     </script>
     {% block hidden_templates %}{% endblock %}
 

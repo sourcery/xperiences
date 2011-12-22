@@ -121,7 +121,7 @@ def flag_user_logged_in(user_id):
 def allow_only_authenticated():
     @decorator
     def wrap(f, self, request, *args, **kwargs):
-        if request.user.is_anonymous():
+        if request.user.is_anonymous() and request.user_extension:
             resp = rc.FORBIDDEN
             resp.write("User is not authenticated")
             return resp
