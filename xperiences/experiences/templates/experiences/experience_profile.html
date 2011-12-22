@@ -1,6 +1,11 @@
 {% extends "base.html" %}
-
-{% comment %}{% load thumbnail %}{% endcomment %}
+{% block extra_head %}
+    <meta property="og:title" content="{{ experience.title }}" />
+    <meta property="og:type" content="food" />
+    <meta property="og:image" content="{{ experience.photo1.url }}" />
+    <meta property="og:site_name" content="Naan Profit" />
+    <meta property="fb:app_id" content="299479036742472" />
+{% endblock %}
 
 {% block title %}{{ experience.title }}{% endblock %}
 
@@ -27,7 +32,7 @@
             <ul>
                 <li>
                     <div class="fb-like"
-                    data-href="http://naanprofit.com/experiences/{{
+                    data-href="/experiences/{{
                     experience.slug_id }}" data-send="false"
                     data-layout="button_count" data-width="100"
                     data-show-faces="false" data-action="recommend"
@@ -42,7 +47,8 @@
         <div class="description">
             {{ experience.description|safe }}
         </div>
-        <div class="fb-comments" data-href="http://naanprofit.com" data-num-posts="5" data-width="620"></div>
+        <div class="fb-comments" data-href="/experiences/{{
+                    experience.slug_id }}" data-num-posts="5" data-width="620"></div>
     </div><!-- close span8 column -->
     <div class="span4 column">
         <h1>&nbsp;</h1>
