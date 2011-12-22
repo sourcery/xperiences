@@ -29,6 +29,7 @@ class Category(models.Model):
 
 
 class Experience(GeoModel, TextSearchModel):
+    use_saved_address = models.BooleanField(default=True,verbose_name='Use merchant address (if clicked,address above will be ignored)')
     merchant = models.ForeignKey(UserExtension,null=True)
 
     is_active = models.BooleanField(default=True)
@@ -47,8 +48,7 @@ class Experience(GeoModel, TextSearchModel):
     photo4 = XPImageField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
     photo5 = XPImageField(upload_to='%Y%m%d%H%M%S', null=True, blank=True)
     video_link = models.CharField(max_length=150,null=True,blank=True) #TextField makes it be a text area which is not what we want
-    use_saved_address = models.BooleanField(default=True)
-    
+
     #date = models.DateField()
     #time = models.TimeField()
     valid_from = models.DateTimeField(default=datetime.datetime.now)
