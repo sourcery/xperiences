@@ -55,7 +55,7 @@ class UserExtension(GeoModel,TextSearchModel):
     phone_number = models.CharField(max_length=15, default='', blank=True)
     website = models.CharField(max_length=100, default='', blank=True)
 
-    bio = models.TextField(max_length=755,default='')
+    bio = models.TextField(max_length=755,default='',blank=True)
     birthday = models.DateField(null=True, blank=True)
     education = models.TextField(max_length=255, default='', blank=True)
     groups = models.TextField(max_length=755, default='', blank=True)
