@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from backend import configurations
 from backend.decorators import merchant_required
 from experiences.forms import ExperienceForm
-from experiences.models import Experience
+from experiences.models import Experience, Category
 import pymongo
 from db_manage import db
 
@@ -104,7 +104,7 @@ def search_experience(request):
 
 
 def get_categories():
-    return configurations.get_categories()
+    return Category.get_all_categories()
 
 
 def get_experience_of_the_day():

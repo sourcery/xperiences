@@ -139,3 +139,5 @@ class SiteConfiguration(models.Model):
 @receiver(signals.post_save, sender=User)
 def user_post_save(instance, created, **_):
     pass
+
+

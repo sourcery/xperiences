@@ -7,6 +7,26 @@ from django.template.defaultfilters import slugify
 
 
 #from merchants.models import Merchant
+cached_categories = None
+class Category(models.Model):
+    slug = models.CharField(max_length=30)
+    title = models.CharField(max_length=50)
+
+    def __unicode__(self):
+        return self.title
+
+    @staticmethod
+    def get_all_categories():
+        global cached_categories
+        if not cached_categories:
+            cached_categories = Category.objects.all()
+        return cached_categories
+
+    def save(self, *args, **kwargs):
+        global cached_categories
+        cached_categories = None
+        return super(Category,self).save(*args,**kwargs)
+
 
 class Experience(GeoModel, TextSearchModel):
     merchant = models.ForeignKey(UserExtension,null=True)
@@ -16,7 +36,7 @@ class Experience(GeoModel, TextSearchModel):
     title = TextSearchField(max_length=50)  # by default blank=false and null=false, meaning that both fields are mandatory in both admin and DB
     slug_id = models.CharField(max_length=50,editable=False)
     description = RichTextField()
-    category = models.CharField(max_length=50, choices=configurations.get_categories_as_choices(), null=True, blank=True)
+    category = models.ForeignKey(Category,null=True,blank=True)
     price = models.PositiveIntegerField(default=0)
     unit_name = models.CharField(max_length=100, null=True, blank=True) # eg.: week, meal, day...
     unit_count = models.PositiveIntegerField(default=0, null=True, blank=True)
