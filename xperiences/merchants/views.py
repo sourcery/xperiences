@@ -21,8 +21,10 @@ def merchant_profile(request, username):
 def register(request):
     status = ''
     template_name = 'merchants/merchant_application.html'
+    merchant = request.user.get_profile()
+    merchant.is_merchant = True
     if request.method == 'POST':
-        form = MerchantForm(request.POST,instance=request.merchant)
+        form = MerchantForm(request.POST, instance=merchant)
         if form.is_valid():
             form.save()
             email = request.POST.get('email')
@@ -31,17 +33,17 @@ def register(request):
                 request.user.save()
             status = 'saved'
             print "I work!"
-            utils.merchant_onreview_email(request.merchant)
-            return render_to_response(template_name, {'form':form,'status': status, 'merchant':request.merchant}, context_instance=RequestContext(request))
+            utils.merchant_onreview_email(merchant)
+            return render_to_response(template_name, {'form':form,'status': status, 'merchant':merchant}, context_instance=RequestContext(request))
         else:
             errors = form.errors
             status = 'yay! Merchant created'
             print "I work!"
-            return render_to_response(template_name, {'form':form,'errors':errors,'status': status, 'merchant':request.merchant}, context_instance=RequestContext(request))
+            return render_to_response(template_name, {'form':form,'errors':errors,'status': status, 'merchant':merchant}, context_instance=RequestContext(request))
     else:
-        form = MerchantForm(instance=request.merchant)
-#        return render_to_response(template, context_instance=RequestContext(request, context))
-        return render_to_response(template_name, {'form':form, 'status': status, 'merchant':request.merchant}, context_instance=RequestContext(request))
+        form = MerchantForm(instance=merchant)
+        return render_to_response(template_name, {'form':form, 'status': status, 'merchant':merchant}, context_instance=RequestContext(request))
+
 
 @merchant_required()
 def experiences(request):

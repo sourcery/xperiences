@@ -1,14 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Sign Up{% endblock %}
 {% block extra_head %}
-    <!---script type="text/javascript" src="{{ MEDIA_URL }}js/openid-jquery.js"></script--->
-    <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
-          //  openid.init('openid_identifier');
-
-            FB.init({ 'apiKey' : '{{ FACEBOOK_APP_ID }}', status: true, cookie: true, xfbml: true });
-        });
         function facebook_onlogin()
         {
             FB.login(on_complete, {'scope' : '{{ settings.FACEBOOK_PERMISSIONS }}' });
@@ -70,12 +63,10 @@
     </div>
 {% endblock %}
 {% block content %}
-	<div id="fb-root"></div>
-
 	<div class="command-bar-container"></div>
 	<div id="login" class="panel">
 		Please login using facebook!
-		<a href="javascript:void(0);" onclick='facebook_onlogin();' class="fb-connect">Login <span class="text-80">with</span> Facebook</a>
+		<a href="#" onclick='facebook_onlogin();return false;' class="fb-connect">Login <span class="text-80">with</span> Facebook</a>
 	</div>
 
     <div id="content" class="clearfix signup">

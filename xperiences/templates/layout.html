@@ -5,8 +5,8 @@
 	<link rel="stylesheet" href="{{ MEDIA_URL }}css/base.css">
 	<link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-	<title>{% block title %}{% endblock %}</title>
 	{% block extra_head %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
 	{% block body %}{% endblock %}
@@ -36,25 +36,14 @@
 	})();
    </script>
 	<!-- FB JavaScript SDK Like button-->
+    <!-- FB JS SDK Comments -->
 	<div id="fb-root"></div>
-	<script>(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
-	<!-- FB JS SDK Comments -->
-	<div id="fb-root"></div>
-	<script>(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
-	<!-- Twitter share button -->
-	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	<script>
+        $(document).ready(function() {
+            $.getScript("//connect.facebook.net/en_US/all.js", function() {FB.init({ 'apiKey' : '{{ settings.FACEBOOK_APP_ID }}', status: true, cookie: true, xfbml: true });});
+        });
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+    </script>
     {% block hidden_templates %}{% endblock %}
 
     {% block extra_scripts %}{% endblock %}

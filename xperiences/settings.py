@@ -223,9 +223,10 @@ LOGGING = {
     }
 }
 
+AUTH_PROFILE_MODULE = 'backend.UserExtension'
 
-FACEBOOK_APP_ID = '299479036742472'
-FACEBOOK_API_KEY = '299479036742472'
+FACEBOOK_APP_ID = '308665539167964'
+FACEBOOK_API_KEY = '308665539167964'
 FACEBOOK_SECRET_KEY = '498f25f7cb732faf01e9a197fedaf3a6'
 FACEBOOK_PERMISSIONS = 'user_about_me,email,user_website,publish_stream,user_activities,user_birthday,user_education_history,user_events,user_groups,user_hometown,user_interests'
 

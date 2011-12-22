@@ -54,6 +54,6 @@ class ReferralMiddleware(object):
             request.session['referrer'] = request.GET['referrer']
 
 import settings
-CONTEXT = { 'IP_GEOLOCATOR_API_KEY' : settings.IP_GEOLOCATOR_API_KEY }
+CONTEXT = { 'IP_GEOLOCATOR_API_KEY' : settings.IP_GEOLOCATOR_API_KEY, "settings": settings }
 def context_processor(request):
     return CONTEXT
