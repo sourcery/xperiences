@@ -13,7 +13,6 @@
 	<div class="space30"></div>
     <div class="span8 column">
         <h1>{{ experience.title }}</h1>
-
 		<div id="img-gallery">
 			<div id="exp-main-image-outer">
 				<div id="exp-main-image"></div>
@@ -32,8 +31,7 @@
             <ul>
                 <li>
                     <div class="fb-like"
-                    data-href="/experiences/{{
-                    experience.slug_id }}" data-send="false"
+                    data-href="/experiences/{{ experience.slug_id }}" data-send="false"
                     data-layout="button_count" data-width="100"
                     data-show-faces="false" data-action="recommend"
                     data-font="arial">
@@ -47,7 +45,7 @@
         <div class="description">
             {{ experience.description|safe }}
         </div>
-        <div class="fb-comments" data-href="/experiences/{{experience.slug_id }}" data-num-posts="5" data-width="620"></div>
+        <div class="fb-comments" data-href="/experiences/{{ experience.slug_id }}" data-num-posts="5" data-width="620"></div>
     </div><!-- close span8 column -->
     <div class="span4 column">
         <h1>&nbsp;</h1>
@@ -112,7 +110,7 @@
                 <div class="row">
                     <div id="merchant-image">
                         <div class="image-wrapper">
-                            <img alt="{{ merchant.name }}" src="{% if merchant.photo %}{{ merchant.photo.url }}{% else %}http://graph.facebook.com/{{ merchant.FB_ID }}/picture/?type=large{% endif %}">
+                            <img style='display:none;' alt="{{ merchant.name }}" src="{% if merchant.photo %}{{ merchant.photo.url }}{% else %}http://graph.facebook.com/{{ merchant.FB_ID }}/picture/?type=large{% endif %}">
                         </div>
                     </div>
                     <div id="merchant-address">

@@ -41,7 +41,7 @@ class UserLog(models.Model):
 
 class UserExtension(GeoModel,TextSearchModel):
     id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(User, unique=True, null=True)
+    user = models.OneToOneField(User, null=True)
     validation_code = models.CharField(max_length=20, null=True, blank=True)
     is_merchant = models.BooleanField(default=False)
     is_approved = models.BooleanField(default=False)
