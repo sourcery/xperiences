@@ -1,5 +1,4 @@
 import datetime
-from backend import configurations
 from backend.fields import GeoModel, RichTextField, XPImageField, TextSearchField, TextSearchModel
 from backend.models import UserExtension
 from django.db import models
@@ -60,7 +59,7 @@ class Experience(GeoModel, TextSearchModel):
     pick_up = models.BooleanField(default=False,verbose_name='Pick up')
     capacity = models.CharField(max_length=7,default='1-5',choices=[('1-5','1-5'),('6-10','6-10'),('11-15','11-15'),('16-20','16-20'),('20+','More than 20'),('+','until I run out of food')])
 
-    
+
     #capacity = models.CharField(max_length=7,default='1-5',choices=[('1-5','1-5'),('6-10','6-10'),('11-15','11-15'),('16-20','16-20'),('20+','More than 20'),('+','until I run out of food')])
 
 

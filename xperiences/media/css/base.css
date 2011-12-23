@@ -228,6 +228,10 @@ hr {
 	padding: 15px;
 }
 
+.pad25 {
+	padding: 25px;
+}
+
 .right-col {
 	float: right;
 }
