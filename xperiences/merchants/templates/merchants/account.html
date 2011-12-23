@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
-
+{% load thumbnail %}
 {% load x_tags %}
-
+{% block extra_head %}
+    {{ form.media }}
+{% endblock %}
 {% block content %}
 <div class="container">
 	<div class="space30"></div>
@@ -9,39 +11,50 @@
 	<div class="column span9">
 		<h2>Your public profile </h2>
 		<fieldset class="panel row">
+            <form method='POST' enctype="multipart/form-data">
 			<div class="pad15">
 				<div class="row">
 								<div class="input-group">
 									<label class="label" for="profile-image">Profile Picture</label>
 									<div class="change-profile-image">
-				                        <div class="image-wrapper">{{ merchant.photo.url }}</div>
-										<input type="file" class="upload-new-profile-image" id="profile-image" name="profile-image" size="15">
+				                        <div class="image-wrapper">
+                                            {% if merchant.photo %}
+                                                {% thumbnail merchant.photo "450x300" crop="center" as im %}
+                                                    <img class="exp-thumbs-img" alt="{{ merchant.name }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                                                {% endthumbnail %}
+                                            {% else %}
+                                                <img style='display:none;' alt="{{ merchant.name }}" src="http://graph.facebook.com/{{ merchant.FB_ID }}/picture/?type=large">
+                                            {% endif %}
+                                        </div>
+                                        {{ form.photo }}
 									</div>
 								</div>
 				</div>
 				<div class="row">
 								<div class="input-group">
 									<label class="label" for="name">Your name</label>
-									<input class="span6" type="text" name="name" id="name" value="{{ merchant.name }}">
+									<input class="span6" type="text" name="{{ form.name.name }}" id="name" value="{{ form.name.value }}">
 								</div>
 				</div>
 				<div class="row">
+                                {{ form.xp_location }}
 								<div class="input-group">
-									<label class="label" for="address">Your address</label>
-									<input class="span6" type="text" name="name" id="address" value="{{ merchant.address }}">
+									<label class="label" for="id_address">Your address</label>
+									<input class="span6" type="text" name="{{ form.address.name }}" id="id_address" value="{{ form.address.value }}">
+                                    <div style='display:none;'><div id='hidden_map'></div></div>
 								</div>
 				</div>
 				<div class="row">
 								<div class="input-group">
 									<label class="label" for="about">About you</label>
-									<textarea class="span6" name="about" id="about" value="{{ form.description.value }}" style="overflow-x: hidden; overflow-y: hidden; height: 75px;"></textarea>
+									<textarea class="span6" name="{{ form.description.name }}" id="about" value="{{ form.description.value }}" style="overflow-x: hidden; overflow-y: hidden; height: 75px;"></textarea>
 								</div>
 							</div>
 							<div class="space30"></div>
-							<button class="btn">Save</button>
+							<button type='submit' class="btn">Save</button>
 			</div>
+        </form>
 		</fieldset>
-
 		<fieldset class="panel row">
 			<div class="pad15">
 				<h2>Completed earnings</h2>

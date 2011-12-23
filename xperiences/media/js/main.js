@@ -75,14 +75,21 @@ function send_message_dialog(merchant_id)
      open_dialog({ template: 'send_message_template', submit:function(dialog){
          var dict = read_input_params(dialog);
          dict['to__id'] = merchant_id;
-         $.ajax({url:'/api/message/json',data:dict,type:'POST',
-         success:function()
-         {
-             message_dialog('message sent');
-         },
-         error: function(err){
-             alert(err);
-         }});
+         var on_complete = function(response) {
+             $.get('/accounts/facebook_login/done/', response.authResponse, function()
+             {
+                 $.ajax({url:'/api/message/json',data:dict,type:'POST',
+                     success:function()
+                     {
+                         message_dialog('message sent');
+                     },
+                     error: function(err){
+                         alert(err);
+                     }
+                 });
+            });
+         };
+         FB.login(on_complete, {'scope' : _FB_SCOPE });
          return false;
      }});
 }
@@ -167,7 +174,7 @@ function setImageToMain(item) {
 	});
 	item.before(first)
 
-	setMainImage(item.prop("src"));	
+	setMainImage(item.prop("src"));
 
 	item.animate({
 		"opacity": 0
@@ -177,7 +184,7 @@ function setImageToMain(item) {
 			thumbswrapper.prepend(item);
 			item.css({
 				"first": -w,
-				"opacity": ""	
+				"opacity": ""
 			});
 		}
 	});
@@ -193,7 +200,7 @@ function setMainImage(imgPath) {
 	var w = newImage.height();
 	if(oldImage.length > 0) {
 		oldImage.animate({
-			"opacity": 0	
+			"opacity": 0
 		},{
 			"complete": function() {
 				oldImage.remove();
@@ -228,7 +235,7 @@ function image_autoscale(obj, params)
         var parent_width = parent.innerWidth();
         var parent_height = parent.innerHeight();
         var parent_prop = parent_width * 1.0 / parent_height;
-        parent.css({position:'relative;'});
+        parent.css({position:'relative'});
 
         var width = elm.width();
         var height = elm.height();

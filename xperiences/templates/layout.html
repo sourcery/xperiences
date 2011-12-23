@@ -41,6 +41,7 @@
     <!-- FB JS SDK Comments -->
 	<div id="fb-root"></div>
 	<script>
+        var _FB_SCOPE = '{{ settings.FACEBOOK_PERMISSIONS }}';
         $(document).ready(function() {
             $.getScript("//connect.facebook.net/en_US/all.js", function() {FB.init({ 'apiKey' : '{{ settings.FACEBOOK_APP_ID }}', status: true, cookie: true, xfbml: true });});
         });
@@ -51,10 +52,10 @@
             Write a message <br />
             Title: <input type='text' name='title' alt='Title' /> <br />
             Message: <textarea name='message' alt='Message'></textarea> <br />
-            
+
             <button class='dialog_submit'>Send</button>
             <button class='dialog_cancel'>Cancel</button>
-            
+
         </div>
     </script>
     <script type='text/x-jquery-tmpl' id="message_box">

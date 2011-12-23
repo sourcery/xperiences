@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load thumbnail %}
 {% block extra_head %}
     <meta property="og:title" content="{{ experience.title }}" />
     <meta property="og:type" content="food" />
@@ -10,7 +11,7 @@
 {% block title %}{{ experience.title }}{% endblock %}
 
 {% block content %}
-	<div class="space30"></div>
+    <div class="space30"></div>
     <div class="span8 column">
         <h1>{{ experience.title }}</h1>
 		<div id="img-gallery">
@@ -19,11 +20,21 @@
 			</div>
 			<div id="exp-img-thumbs">
 			<div id="exp-thumbs">
-                {% if experience.photo1 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo1.url}}">{% endif %}
-                {% if experience.photo2 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo2.url}}">{% endif %}
-                {% if experience.photo3 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo3.url}}">{% endif %}
-                {% if experience.photo4 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo4.url}}">{% endif %}
-                {% if experience.photo5 %}<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{experience.photo5.url}}">{% endif %}
+                        {% thumbnail experience.photo1 "450x300" crop="center" as im %}
+							<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+						{% endthumbnail %}
+						{% thumbnail experience.photo2 "450x300" crop="center" as im %}
+							<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+						{% endthumbnail %}
+						{% thumbnail experience.photo3 "450x300" crop="center" as im %}
+							<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+						{% endthumbnail %}
+						{% thumbnail experience.photo4 "450x300" crop="center" as im %}
+							<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+						{% endthumbnail %}
+						{% thumbnail experience.photo5 "450x300" crop="center" as im %}
+							<img class="exp-thumbs-img" alt="{{ experience.title }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+						{% endthumbnail %}
                 </div><!-- close exp-thumbs -->
             </div>
         </div><!-- close img-gallery -->
@@ -110,7 +121,13 @@
                 <div class="row">
                     <div id="merchant-image">
                         <div class="image-wrapper">
-                            <img style='display:none;' alt="{{ merchant.name }}" src="{% if merchant.photo %}{{ merchant.photo.url }}{% else %}http://graph.facebook.com/{{ merchant.FB_ID }}/picture/?type=large{% endif %}">
+                            {% if merchant.photo %}
+                                {% thumbnail merchant.photo "450x300" crop="center" as im %}
+                                    <img class="exp-thumbs-img" alt="{{ merchant.name }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                                {% endthumbnail %}</div>
+                            {% else %}
+                                <img style='display:none;' alt="{{ merchant.name }}" src="http://graph.facebook.com/{{ merchant.FB_ID }}/picture/?type=large">
+                            {% endif %}
                         </div>
                     </div>
                     <div id="merchant-address">
@@ -126,7 +143,7 @@
             </div>
         </div>
         <div class="secondary">
-				<ul>
+            <ul>
                 <li>Experience listed on {{ experience.pub_date }}</li>
                 <li>{{ experience.views }} views</li><!-- do we track this? where? -->
                 {% comment %}<li>{{ experience.wish_list_adds }} added this experience to their wish list</li>{% endcomment %}

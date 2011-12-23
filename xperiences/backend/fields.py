@@ -37,21 +37,22 @@ class Coordinate(models.Model):
 
 class GeoField(EmbeddedModelField):
     address_field = ''
-
+    map_id = ''
 
     def __init__(self, **kwargs):
         kwargs['default'] = Coordinate
         #        kwargs['editable'] = False
         if 'address_field' in kwargs:
-            self.address_field = 'id_' + kwargs.get('address_field', '')
-            del kwargs['address_field']
+            self.address_field = 'id_' + kwargs.pop('address_field')
+        if 'map_id' in kwargs:
+            self.map_id = kwargs.pop('map_id')
         super(GeoField, self).__init__(Coordinate, **kwargs)
 
 
     def formfield(self, **kwargs):
     # A file widget is provided, but use model FileField or ImageField
         # for storing specific files most of the time
-        defaults = {'widget': PointWidgetWithAddressField(self.address_field)}
+        defaults = {'widget': PointWidgetWithAddressField(address_field=self.address_field)}
         #        attrs = kwargs.get('attrs',{})
         #        attrs['address_field'] = self.address_field
         defaults.update(kwargs)

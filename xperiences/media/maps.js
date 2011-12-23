@@ -19,14 +19,16 @@ $.prototype.geopicker = function(params)
         defaults[key] = params[key];
     var elm = $(this);
     var address_input = defaults['address_field'];
+    var map_id = defaults['map_id'];
     if(!address_input)
         address_input = elm.attr('address_field');
+    if(!map_id)
+        map_id = elm.is('[map_id]')? elm.attr('map_id') : null;
     var map;
     var marker;
     var center;
     var init = function()
     {
-        var map_id = defaults['map_id'];
         if(!map_id)
         {
             var num = Number(new Date());
@@ -34,17 +36,17 @@ $.prototype.geopicker = function(params)
             $('<div class="geopicker_map" id="' + map_id + '"></div>').insertAfter(elm);
         }
 
-        var button_id = defaults['button_id'];
-        var button = button_id ? $('#' + button_id) : $('<div class="my_location">My Location</div>').insertAfter(elm);
+////        var button_id = defaults['button_id'];
+//        var button = button_id ? $('#' + button_id) : $('<div class="my_location">My Location</div>').insertAfter(elm);
 
-        button.click(function()
-        {
-            user_position(function(loc)
-            {
-                center = loc;
-                update_location(new google.maps.LatLng(loc.lat, loc.lng));
-            });
-        });
+//        button.click(function()
+//        {
+//            user_position(function(loc)
+//            {
+//                center = loc;
+//                update_location(new google.maps.LatLng(loc.lat, loc.lng));
+//            });
+//        });
         var latlng = elm.val() || '0,0';
 
         var m_init_map = function()
