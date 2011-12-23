@@ -124,7 +124,7 @@
                             {% if merchant.photo %}
                                 {% thumbnail merchant.photo "450x300" crop="center" as im %}
                                     <img class="exp-thumbs-img" alt="{{ merchant.name }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-                                {% endthumbnail %}</div>
+                                {% endthumbnail %}
                             {% else %}
                                 <img style='display:none;' alt="{{ merchant.name }}" src="http://graph.facebook.com/{{ merchant.FB_ID }}/picture/?type=large">
                             {% endif %}
@@ -145,7 +145,7 @@
         <div class="secondary">
             <ul>
                 <li>Experience listed on {{ experience.pub_date }}</li>
-                <li>{{ experience.views }} views</li><!-- do we track this? where? -->
+                <li>{{ views }} views</li>
                 {% comment %}<li>{{ experience.wish_list_adds }} added this experience to their wish list</li>{% endcomment %}
                 <li><a href="#" title="report an experience">Report this experience</a></li>
             </ul>
