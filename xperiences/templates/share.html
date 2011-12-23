@@ -1,41 +1,37 @@
 {% extends "base.html" %}
 {% block title %}Spread the love{% endblock %}
 {% block content %}
-    <div class="main-content">
-            <div class="command-bar-container">
-			<!--<div class="command-bar">
-				This can be hidden if not in use
-			</div>-->
-            </div>
-Think of those people who you've told -- "you should open a restaurant", or "damn
-that's good! you should sell that at the local market" -- now invite them to join
-our experiment!<br/><br/>
+<div class="space30"></div>
+<div class="font12 center span11">
+	<div id="share" class="panel row">
+		<div class="pad25">
+			<h1>Sharing is Caring</h1>
+			Think of those people who you've told -- "you should open a restaurant", or "damn
+			that's good! you should sell that at the local market" -- now invite them to join
+			our experiment!<br/><br/>
 
-Send a link to your friends or invite them via email or Facebook.<br/><br/>
+			Send a link to your friends or invite them via email or Facebook.<br/><br/>
 
-For every one of your friends who lists on our site, you will get .... and your friend will get....
-(still need to figure out if we give them account credit or a gift)
+			For every one of your friends who lists on our site, you will get .... and your friend will get....
+			(still need to figure out if we give them account credit or a gift)
 
-Thanks again. Let us know if you have any more feedback for us! {here link to feedback form}
-
-            <div class="referral-action-menu">
-				<div id="link-share" style="text-align: center;" class="panel">
-					<h1>Simply share a link</h1>
-					<input id="link-share" readonly="true" valeu="unique link here" class="share"><!-- wee need to generate a link and have it here ready to be copied -->
-					<a href="#" id="fb-share" class="button-glossy fb share">Share on Facebook</a>
-					<a href="http://www.twitter.com/share" id="twitter-share" class="share">Share on Twitter</a>
+			<div id="share-controls">
+				<div class="row">
+					<input type="text" readonly="true" value="unique link here" class="default span5"><!-- wee need to generate a link and have it here ready to be copied -->
+					<a href="#" class="btn btn-blue">Share on Facebook</a>
+					<a href="http://www.twitter.com/share" id="twitter-share" class="btn">Share on Twitter</a>
 				</div>
-					<div id="button-share" class="panel">
-					<h1>Or refer friends via Facebook or email</h1>
-						<a href="email-referral.html" class="button-glossy share">Email your friends</a>
-						<a href="fb-referral.html" class="button-glossy fb share">Invite your friends with Facebook</a>
-					</div>	
+				<h4>or, you can</h4>
+				<div class="row">
+					<a href="email-referral.html" class="btn">Invite your friends with email</a>
+					<a href="fb-referral.html" class="btn btn-blue">Invite your friends with Facebook</a>
 				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
-        </div>
-        
-       
-    </div>
+
 {% endblock %}
 
 <!--Tell us about the person you've got in mind and why they are perfect for the
