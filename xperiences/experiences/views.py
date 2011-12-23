@@ -12,7 +12,7 @@ def experience_by_category(request, category):
 #    recent_experiences = Experience.objects.filter(category=category)
 
     template_name = 'experiences/index.html'  # aren't we supposed to have something like experiences/category/list_experiences.html?
-    # or is that something that'll be determined by the urls.py?   I think this url should change!!
+    # or is that something that will be determined by the urls.py?   I think this url should change!!
 
     return render_to_response(template_name, context_instance=RequestContext(request,{'category': category, 'categories':get_categories() }))
 
@@ -20,18 +20,9 @@ def experience_by_category(request, category):
 def experience_profile(request, id):
     experience = Experience.get_by_slug(id)
 
-    #experience = wrapmongo(db.experience.find_one({'_id': pymongo.objectid.ObjectId(id)}))
-
-    #merchant_tuple = experience["merchant"] # get a tuple with ObjectId and name
-
-    #merchant_obj = wrapmongo(db.merchant.find_one({"_id": merchant_tuple[0]})) # get a merchant object
-
     merchant_obj = experience.merchant
 
     template_name = 'experiences/experience_profile.html' # should we slugify the name of experience?
-
-    #more_experiences = wrapmongo(db.experience.find({'merchant': experience.get('merchant')}).limit(10))
-    #more_experiences = [e for e in more_experiences if e['_id'] != experience['_id']]
 
     more_experiences = merchant_obj.experience_set.all()[:10]
 
@@ -137,7 +128,7 @@ def add_experience(request):
 #            status = 'You must choose one category'
         if data['use_saved_address'] is True:
             pass    # here I should assign the merchant's address to the experience...
-            # not sure how to do it b/c the experience is still not in created in mongo...
+            # not sure how to do it b/c the experience is still not in created in Mongo...
         elif not len(data['address']):  # are these supposed to be elif?
             status = 'Please enter a valid address'
 #        elif len(data['city']) == 0:
