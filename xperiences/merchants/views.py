@@ -52,7 +52,7 @@ def experiences(request):
 
 @merchant_required()
 def merchant_inbox(request):
-    comments = UserMessage.objects.filter(to=request.merchant)
+    comments = UserMessage.objects.filter(to=request.merchant).order_by("-time")
     return render_to_response('merchants/inbox.html', {'comments' : comments},context_instance=RequestContext(request))
 
 
