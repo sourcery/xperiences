@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-    Error:
-    {% block error_message %}
-    {% endblock %}
+	<div class="center span9">
+		<div id="error" class="panel row">
+			<h2>Oops..</h2>
+			{% block error_message %}
+			{% endblock %}
+			<div id="error-retry"Reload to retry or return to <a href="/">the main page</a></div>
+		</div>
+	</div>
 {% endblock %}
