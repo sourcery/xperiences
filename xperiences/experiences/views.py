@@ -1,20 +1,18 @@
+from backend.models import UserLog
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
-from django.http import HttpResponse
 from backend import configurations
 from backend.decorators import merchant_required
 from experiences.forms import ExperienceForm
 from experiences.models import Experience, Category
-import pymongo
-from db_manage import db
 
 
 def experience_by_category(request, category):
 #    recent_experiences = Experience.objects.filter(category=category)
 
     template_name = 'experiences/index.html'  # aren't we supposed to have something like experiences/category/list_experiences.html?
-    # or is that something that'll be determined by the urls.py?   I think this url should change!!
+    # or is that something that will be determined by the urls.py?   I think this url should change!!
 
     return render_to_response(template_name, context_instance=RequestContext(request,{'category': category, 'categories':get_categories() }))
 
@@ -22,46 +20,24 @@ def experience_by_category(request, category):
 def experience_profile(request, id):
     experience = Experience.get_by_slug(id)
 
-    #experience = wrapmongo(db.experience.find_one({'_id': pymongo.objectid.ObjectId(id)}))
-
-    #merchant_tuple = experience["merchant"] # get a tuple with ObjectId and name
-
-    #merchant_obj = wrapmongo(db.merchant.find_one({"_id": merchant_tuple[0]})) # get a merchant object
-
     merchant_obj = experience.merchant
 
     template_name = 'experiences/experience_profile.html' # should we slugify the name of experience?
-
-    #more_experiences = wrapmongo(db.experience.find({'merchant': experience.get('merchant')}).limit(10))
-    #more_experiences = [e for e in more_experiences if e['_id'] != experience['_id']]
 
     more_experiences = merchant_obj.experience_set.all()[:10]
 
     location ,address = experience.get_location_address()
 
-    return render_to_response(template_name,
-            {'experience': experience, 'merchant': merchant_obj, 'more_experiences': more_experiences ,'location' : location, 'address':address},
-                              context_instance=RequestContext(request))
+    views = UserLog.objects.filter(url=request.path).count()
 
-
-def wrapmongo(o):
-    """Lets you access dict.id to get dict._id"""
-
-
-    class MongoDict(dict):
-        def __init__(self, i):
-            dict.__init__(self, i)
-
-
-        @property
-        def id(self):
-            return str(self.get('_id'))
-
-
-    if not isinstance(o, dict):
-        return (MongoDict(i) for i in o)
-    else:
-        return MongoDict(o)
+    return render_to_response(template_name, {
+        'experience': experience,
+        'merchant': merchant_obj,
+        'more_experiences': more_experiences,
+        'location': location,
+        'address': address,
+        'views': views,
+    }, context_instance=RequestContext(request))
 
 
 def index(request):
@@ -131,49 +107,6 @@ def get_experience_of_the_day():
     except Exception:
         return None
 
-def add_experience_to_favorites(request):
-    exp_id = request.POST['experience_id']  #({'_id':pymongo.objectid.ObjectId(id)}))
-    #fav_experience = wrapmongo(db.experience.find_one({"_id": pymongo.objectid.ObjectId(exp_id)}))
-
-    #get merchant
-    merch_id = request.POST['merchant_id']
-    fav_merchant = wrapmongo( db.merchant.find_one({"_id": pymongo.objectid.ObjectId(merch_id)}))
-
-    #add experience id to favorite experiences in merchant collection
-    if 'favorite_experiences' not in fav_merchant:
-        fav_merchant["favorite_experience"] = []
-    merchant_favorite_experiences = fav_merchant["favorite_experiences"]
-    merchant_favorite_experiences.append(exp_id)
-    db.merchant.save(fav_merchant)
-
-    return HttpResponse("Favorite experience saved!")
-
-
-def add_image(image, experience):
-    """accepts image which is a django upload file object and an experience object.
-        returns boolean for successful or not
-    """
-    filename = save_image(image)
-    if 'images' in experience:
-        experience['images'].append(filename)
-    else:
-        experience['images'] = [filename]
-    db.experience.save(experience)
-    return True
-
-
-def add_image_to_experience(request, id):
-    template_name = 'experiences/add_image.html'
-
-    experience = Experience.objects.get(id=id)#db.experience.find_one({'_id': pymongo.objectid.ObjectId(id)})
-    if request.method == 'POST':
-        #import pdb; pdb.set_trace()
-        image = request.FILES['image_1']
-        add_image(image, experience)
-        return HttpResponse("Your image was saved!")
-    else:
-        return render_to_response(template_name, {'experience': experience}, context_instance=RequestContext(request))
-
 
 # need to read and learn about form validation... how to make sure that what people enter is valid... so many edge cases are possible...
 @merchant_required()
@@ -195,7 +128,7 @@ def add_experience(request):
 #            status = 'You must choose one category'
         if data['use_saved_address'] is True:
             pass    # here I should assign the merchant's address to the experience...
-            # not sure how to do it b/c the experience is still not in created in mongo...
+            # not sure how to do it b/c the experience is still not in created in Mongo...
         elif not len(data['address']):  # are these supposed to be elif?
             status = 'Please enter a valid address'
 #        elif len(data['city']) == 0:
