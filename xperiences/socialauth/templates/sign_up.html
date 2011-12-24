@@ -63,10 +63,11 @@
     </div>
 {% endblock %}
 {% block content %}
-	<div class="command-bar-container"></div>
-	<div id="login" class="panel">
-		Please login using facebook!
-		<a href="#" onclick='facebook_onlogin();return false;' class="fb-connect">Login <span class="text-80">with</span> Facebook</a>
+	<div class="space30"></div>
+	<div id="login" class="panel span9">
+		<div id="login-actions">
+			<a href="#" onclick='facebook_onlogin();return false;' class="fb-connect">Login <span class="text-80">with</span> Facebook</a>
+		</div>
 	</div>
 
     <div id="content" class="clearfix signup">
