@@ -8,7 +8,9 @@
 <link rel="stylesheet" href="{{MEDIA_URL}}css/ui-lightness/jquery-ui-1.8.16.custom.css" />
 <script>
 	$(document).ready(function(e){
-		$(".datepicker").datetimepicker();
+		$(".datepicker").datetimepicker({
+			stepMinute: 15
+		});
 
 		$(".img-upload input").change(function(e){
 			var $this = $(e.currentTarget);
@@ -26,7 +28,6 @@
 
 {% block content %}
 	<div class="space30"></div>
-	{% include "merchants/command_bar.html" %}
 	<div class="column span9">
 		<h1>Add a new experience listing</h1><!-- we can change this title based on the niche-->
 		{{ form.errors }}
@@ -202,6 +203,7 @@
 		<input class="btn" type="submit" value="Add listing">
 		</form>
 	</div>
+	{% include "merchants/command_bar.html" %}
 {% endblock %}
 <!-- -- title for listing
 -- text area for description

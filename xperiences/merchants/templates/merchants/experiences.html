@@ -3,27 +3,27 @@
 {% load x_tags %}
 
 {% block content %}
-<div class="container">
-	<div class="space30"></div>
-	{% include "merchants/command_bar.html" %}
-    <div class="column span9">
-        <div class="listings-container">
-            <ul class="listings"></ul>
-        </div><!-- closing listings-container -->
-</div><!-- closing main-content -->
+<div class="space30"></div>
+<div class="column span9">
+	<div class="listings-container">
+		<h1>Your experiences</h1>
+		<ul class="listings"></ul>
+	</div><!-- closing listings-container -->
+</div>
+{% include "merchants/command_bar.html" %}
 {% endblock %}
 
 
 {% block hidden_templates %}
 <script type='text/x_jquery_tempaltes' id='experience_item_template'>
-    <li id="#" class="listing-item">
-        <a class="#" title=" {% t_var title %}" href="{% t_url merchant_edit_experience slug_id %}">
-            <img width="100" height="100" alt="{% t_var title %}" {% t_if photo1 %}src="{% t_var photo1.url %}"{% t_endif %}>
+    <li class="listing panel">
+        <h4 class="listing-title">
+            <a title="{% t_var title %}" href="{% t_url merchant_edit_experience slug_id %}"> {% t_var title %} </a>
+		</h4>	
+		<a class="listing-image" title=" {% t_var title %}" href="{% t_url merchant_edit_experience slug_id %}">
+            <img width="150" height="70" alt="{% t_var title %}" {% t_if photo1 %}src="{% t_var photo1.url %}"{% t_endif %}>
         </a>
-        <div id="thumb-details">
-            <p class="listing-title">
-                <a title="{% t_var title %}" href="{% t_url merchant_edit_experience slug_id %}"> {% t_var title %} </a>
-            </p>
+		<!--        <div id="thumb-details">
             <p class="listing-merchant">
                 <a title="{% t_var merchant.name %}" href=""> {% t_var merchant.name %}, {% t_var merchant.city %} {% t_var merchant.state %}</a>
             </p>
@@ -33,7 +33,29 @@
                 <span class="currency-code"></span>
             </p>
         </div>
-        Active: <input type=checkbox value='{% t_var is_active %}' {% t_if is_active %}checked='checked'{% t_endif %} onchange='update_status(this,"{% t_var id %}");' />
+		Active: <input type=checkbox value='{% t_var is_active %}' {% t_if is_active %}checked='checked'{% t_endif %} onchange='update_status(this,"{% t_var id %}");' />-->
+		
+		<div class="listing-item-short">
+			<div>Money earned</div>
+			<div class="listing-value">$100</div>
+		</div>
+		<div class="listing-item-short">
+			<div>Requests</div>
+			<div class="listing-value">10</div>
+		</div>
+		<div class="listing-item-short">
+			<div>Page views</div>
+			<div class="listing-value">200</div>
+		</div>
+		<div class="listing-actions">
+			<button class="btn">edit</button>
+			<button class="btn">view</button>
+			{% t_if is_active %}
+			<button id="{% t_var id %}" class="activate btn submit">activate</button>
+			{% t_else %}
+			<button id="{% t_var id %}" class="activate btn">deactivate</button>
+			{% t_endif %}
+		</div>
     </li>
 </script>
 {% endblock %}
@@ -55,7 +77,15 @@ function render(data) {
 
 
 $(document).ready(function(){
-    get_experiences({"merchant": _merchant_id });
+		get_experiences({"merchant": _merchant_id });
+
+		$(".activate").on("click", function(e) {
+			var $this = $(e.currentTarget);
+			var id = $this.prop("id");
+			update_state(this, id);
+			$this.text() = $this.text() == "activate" ? "deactivate" : "activate";
+			$this.toggleClass("submit");
+		});
 });
 </script>
 {% endblock %}

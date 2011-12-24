@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<link rel="stylesheet" href="{{ MEDIA_URL }}css/base.css">
 	<link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css">
 	<script src="{{ MEDIA_URL }}js/modernizr.custom.78131.js"></script>
@@ -47,16 +48,26 @@
         });
         !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
     </script>
-    <script type='text/x-jquery-tmpl' id="send_message_template">
-        <div style='background-color:white; padding:10px;'>
-            Write a message <br />
-            Title: <input type='text' name='title' alt='Title' /> <br />
-            Message: <textarea name='message' alt='Message'></textarea> <br />
-
-            <button class='dialog_submit'>Send</button>
-            <button class='dialog_cancel'>Cancel</button>
-
-        </div>
+	<script type='text/x-jquery-tmpl' id="send_message_template">
+		<div>
+		<div class='span6 pad15 panel'>
+			<div class="row">
+						<div>
+							<label>Title</label>
+							<input class="span5" type='text' name='title' alt='Title' />
+						</div>
+			</div>
+			<div class="row">
+						<div>
+						<label>Message</label>
+						<textarea class="span5" name='message' alt='Message'></textarea>
+						</div>
+			</div>
+			<div class="space30"></div>
+            <button class='dialog_submit btn submit'>Send</button>
+            <button class='dialog_cancel btn'>Cancel</button>
+		</div>
+		</div>
     </script>
     <script type='text/x-jquery-tmpl' id="message_box">
         <div style='background-color:white; padding:10px;'>

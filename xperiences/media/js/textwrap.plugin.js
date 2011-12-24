@@ -6,8 +6,8 @@
 		return this.each(function() { 
 			var $this = $(this);
 			var curVal = $this.val();
-			var value = $this.prop("alt");
-			console.log(value);
+			var value = $this.prop("placeholder");
+			$this.prop("placeholder", "");
 
 			var parentDiv = $("<div>");
 			parentDiv;

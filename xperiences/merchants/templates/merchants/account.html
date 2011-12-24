@@ -2,12 +2,12 @@
 {% load thumbnail %}
 {% load x_tags %}
 {% block extra_head %}
-    {{ form.media }}
+	{% comment %}
+	{{ form.media }}
+	{% endcomment %}
 {% endblock %}
 {% block content %}
-<div class="container">
 	<div class="space30"></div>
-	{% include "merchants/command_bar.html" %}
 	<div class="column span9">
 		<h2>Your public profile </h2>
 		<fieldset class="panel row">
@@ -81,7 +81,7 @@
 		<div class="clear"></div>
 	</div>
 	<div id="experiences"></div>
-</div>
+	{% include "merchants/command_bar.html" %}
 
 
 <script type='text/x_jquery_templates' id='res_template'>

@@ -7,7 +7,7 @@
  */
 
 body {
-	font-family: "helvetica", "arial", sans-serif;
+	font-family: calluna-sans, "helvetica", "arial", sans-serif;
 	background: url(../images/background.jpg);
 }
 
@@ -34,9 +34,14 @@ h1, h2, h3, h4, h5, h6 {
 #command-bar {
 }
 
+#command-bar .panel h3 {
+	margin: 15px 0 0 15px;
+}
+
 #command-bar ul {
 	border-top: 1px solid #dfdfdf;
 	border-bottom: 1px solid #efefef;
+	margin: 0;
 }
 
 #command-bar ul li a {
@@ -64,6 +69,8 @@ h1, h2, h3, h4, h5, h6 {
 header {
 	width: 100%;
 	-moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.5);
+	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.5);
 	background: #2D2218 url(../images/header_background.png);
 }
 
@@ -80,8 +87,9 @@ header .header-wrap::after {
 }
 
 header .bottom-border {
-	height: 3px;
-	background: url(../images/header_border.png);
+	height: 2px;
+/*	background: #C2D683; */
+	background: url(../images/header_border.png); 
 }
 
 #logo {
@@ -98,15 +106,20 @@ header .bottom-border {
 }
 
 #service-list {
+	background: #FFAA00;
 	background: linear-gradient(top, #FFAA00, #ea9500);
 	background: -moz-linear-gradient(top, #FFAA00, #ea9500);
-	background: -ms-linear-gradient(top, #FFAA00, #ea9500);
 	background: -o-linear-gradient(top, #FFAA00, #ea9500);
 	background: -webkit-linear-gradient(top, #FFAA00, #ea9500);
+	background: -ms-linear-gradient(top, #FFAA00, #ea9500);
 	float: right;
 	color: #2D2218;
 	border: 1px solid #ea9500;
 	text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+#login-btn {
+	float: right;
 }
 
 /*------------------------------------------------------------------------------*/
@@ -559,11 +572,27 @@ a.message-link {
 
 /* Login */
 #login {
-	width: 400px;
-	height: 300px;
+	height: 400px;
 	font-size: 20pt;
 	text-align: center;
 	margin: 0 auto;
+	background: white url(../images/bg_table.jpg) no-repeat center bottom;
+}
+
+#login-actions {
+	position: relative;
+	top: 280px;
+}
+
+#login-actions .fb-connect::after {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 42px;
+	margin-left: -53px;
+	width: 260px;
+	height: 0px;
+	box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.4);
 }
 
 .fb-connect {
@@ -584,13 +613,15 @@ a.message-link {
 }
 
 
+
+
 /*------------------------------------------------------------------------------*/
 /*	SHARE
 /*------------------------------------------------------------------------------*/
 
 #share {
 	background: white url(../images/bg_share.jpg) no-repeat center bottom;
-	height: 512px;
+	height: 552px;
 }
 
 #share-controls {
