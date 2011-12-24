@@ -74,6 +74,17 @@ header {
 	background: #2D2218 url(../images/header_background.png);
 }
 
+#header-notice-bar {
+	display: block;
+	color: black;
+	background: #ffaa00;
+	text-align: center;
+	padding: 8px;
+	font-size: 14pt;
+	box-shadow: inset 0px -2px 8px -2px rgba(0, 0, 0, 0.3);
+	z-index: 101;
+}
+
 header .header-wrap {
 	width: 960px;
 	margin: 0 auto;
