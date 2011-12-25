@@ -29,7 +29,7 @@ class Category(models.Model):
 
 class Experience(GeoModel, TextSearchModel):
     use_saved_address = models.BooleanField(default=True,verbose_name='Use merchant address (if clicked,address above will be ignored)')
-    merchant = models.ForeignKey(UserExtension)
+    merchant = models.ForeignKey(UserExtension,null=True)
 
     is_active = models.BooleanField(default=True)
 
