@@ -19,8 +19,8 @@
 
 			<div id="share-controls">
 				<div class="row">
-					<input type="text" readonly="true" value="unique link here" class="default span5"><!-- wee need to generate a link and have it here ready to be copied -->
-					<a href="#" class="btn btn-blue">Share on Facebook</a>
+					<input type="text" readonly="true" value="{{ settings.BASE_URL }}{% if user.is_authenticated %}?referrer={{ user.username }}{% endif %}" class="default span5"><!-- wee need to generate a link and have it here ready to be copied -->
+					<a href="http://www.facebook.com/sharer/sharer.php?u={{ link|iriencode }}" class="btn btn-blue">Share on Facebook</a>
 					<a href="http://www.twitter.com/share" id="twitter-share" class="btn">Share on Twitter</a>
 				</div>
 				<div id="invite-buttons">

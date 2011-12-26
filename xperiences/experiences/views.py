@@ -126,7 +126,7 @@ def add_experience(request):
             status = 'Please limit description to 2000 characters, to improve the chances that people will actually read it'
 #        if 'category' not in data:
 #            status = 'You must choose one category'
-        if data['use_saved_address'] is True:
+        if data.get('use_saved_address') is True:
             pass    # here I should assign the merchant's address to the experience...
             # not sure how to do it b/c the experience is still not in created in Mongo...
         elif not len(data['address']):  # are these supposed to be elif?
@@ -162,7 +162,7 @@ def add_experience(request):
         form = ExperienceForm(request.POST,request.FILES,instance=new_object)
         if form.is_valid() and status == '':
             new_object = form.save()
-            return redirect(reverse(experience_profile,kwargs = {'id':new_object.id}))
+            return redirect(reverse(experience_profile,kwargs = {'id':new_object.slug_id}))
         else:
             return render_to_response('experiences/add_experience.html',context_instance=RequestContext(request, {'form':form, 'status':status}))
     else:
