@@ -244,19 +244,23 @@ if KIDS:
     FACEBOOK_APP_ID = FACEBOOK_API_KEY = '264002770325375'
     FACEBOOK_SECRET_KEY = '608c99b02c5c1185ec466b42e4602d8c'
 
-EMAIL_HOST_USER = 'peeri.empeeric@gmail.com'
+if 'SENDGRID_PASSWORD' in os.environ:
+    EMAIL_HOST = 'smtp.sendgrid.net',
+    EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
+    EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD'],
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    SERVER_EMAIL = EMAIL_HOST_USER
+    DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+else:
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = 'peeri.empeeric@gmail.com'
+    EMAIL_HOST_PASSWORD = 'peeriempeeri'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    SERVER_EMAIL = EMAIL_HOST_USER
+    DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-EMAIL_HOST = 'smtp.gmail.com'
-
-EMAIL_HOST_PASSWORD = 'peeriempeeri'
-
-EMAIL_PORT = 587
-
-EMAIL_USE_TLS = True
-
-SERVER_EMAIL = EMAIL_HOST_USER
-
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 LOGIN_URL = '/accounts/login/'
 
