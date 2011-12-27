@@ -144,9 +144,9 @@ MIDDLEWARE_CLASSES = [
     #'middleware.MongoMiddleware'
 ]
 
-if not DEBUG:
-    MIDDLEWARE_CLASSES.insert(0,'django.middleware.cache.UpdateCacheMiddleware')
-    MIDDLEWARE_CLASSES.append('django.middleware.cache.FetchFromCacheMiddleware')
+#if not DEBUG:
+#    MIDDLEWARE_CLASSES.insert(0,'django.middleware.cache.UpdateCacheMiddleware')
+#    MIDDLEWARE_CLASSES.append('django.middleware.cache.FetchFromCacheMiddleware')
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'backend.middleware.context_processor',
