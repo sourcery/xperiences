@@ -16,7 +16,7 @@
 		<div class="space30"></div>
         {% if status == 'saved' %}
 		<div class="font12">Thank you! Your application will be reviewed by our team, and we'll get back you prompotly.<br />
-        In the meantime, check out all the cool things you can do on our site.</div>
+        In the meantime, check out other cool things you can do on our site.</div>
         <div class="space10"></div>
         <div><a class="btn btn-blue font14" href="/">Continue</a></div>
 		{% else %}
@@ -47,11 +47,11 @@
 					<address><!-- html 5 semantic markup -->
 					<div class="row">
 						<div class="span6">
-							<label>Address</label><!-- not sure if all these fields are necessary... need to undestand what form.address.value is -->
+							<label>Address</label>
 							<input class="span6" type="text" name="address" value='{{ form.address.value }}' />
 						</div>
 					</div>
-					<div class="row">
+					<!--<div class="row">
 						<div class="span4">
 							<label>City</label>
 							<input class="span4" type="text" name="city">
@@ -79,7 +79,7 @@
 							<select name="country" class="span3">
 								<option>United States</option>
 							</select>
-						</div>
+						</div>-->
 					</address>
 				</div>
 			</fieldset>
