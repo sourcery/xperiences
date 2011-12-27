@@ -295,6 +295,10 @@ class FacebookBackend:
 
             ext.save()
 
+
+        if request.session.get('is_merchant', False) and not ext.is_merchant:
+            ext.is_merchant = True
+            ext.save()
         request.user_extension = ext
         return ext.user
 

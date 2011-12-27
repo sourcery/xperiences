@@ -8,16 +8,22 @@
 	<div id="share" class="panel row">
 		<div class="pad25">
 			<h1>Sharing is Caring</h1>
+            {% if not sent %}
+                <form method='POST'>
 			<p>Input names, separated by commas</p>
 			<div class="row">
-				<input type="text" class="span8" />
+				<input type="text" class="span8" name='to' />
 			</div>
 			<div class="row">
-				<textarea id="" name="" rows="5" class="span8" cols="30">Check out this cool website!</textarea>
+				<textarea id="" name="message" rows="5" class="span8" cols="30">Check out this cool website!</textarea>
 			</div>
 			<div class="row">
 				<input type="submit" class="btn" value="send" />
 			</div>
+                </form>
+            {% else %}
+                Your message was sent
+            {% endif %}
 		</div>
 	</div>
 </div>

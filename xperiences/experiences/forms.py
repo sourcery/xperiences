@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.admin.widgets import AdminSplitDateTime
 from django.forms.fields import DateTimeField
 from backend.widgets import XPDatePicker
 from models import Experience
@@ -10,7 +11,7 @@ class ExperienceForm(forms.ModelForm):
         super(ExperienceForm, self).__init__(*args, **kwargs)
         for name,field in self.fields.items():
             if isinstance(field,DateTimeField):
-                field.widget = XPDatePicker()
+                field.widget =  AdminSplitDateTime()
 
     class Meta:
         model = Experience

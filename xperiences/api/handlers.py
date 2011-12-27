@@ -158,6 +158,7 @@ class ExperienceHandler(MyBaseHandler):
 
     def read(self,request,*args,**kwargs):
         params = dict([ (k,request.GET[k].strip()) for k in request.GET])
+        params['limit'] = params.get('limit',10)
         of_merchant = 'of_merchant' in params and request.merchant
         if of_merchant:
             params['merchant'] = request.merchant
@@ -167,7 +168,7 @@ class ExperienceHandler(MyBaseHandler):
 
         filter_params = {}
         for key in params:
-            if key in self.query_fields and params[key] and params[key] != '':
+            if (key in self.query_fields or key in ('limit','offset')) and params[key] and params[key] != '':
                 filter_params[key] = params[key]
         params = filter_params
 
@@ -185,7 +186,7 @@ class ExperienceHandler(MyBaseHandler):
         if 'id' in params or not lat  or not lng:
             return super(ExperienceHandler,self).read(request,*args,**params)
         else:
-            limit = int(params.get('limit',50))
+            limit = int(params.get('limit',10))
             if 'limit' in params:
                 del params['limit']
             if limit > MAX_RESULTS_PER_QUERY:

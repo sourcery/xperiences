@@ -30,8 +30,13 @@ def parse_file_field(thing):
         if html_template == None:
             return None
         content = html_template.render(c)
+        if content == u'':
+            return None
         print content
-        return simplejson.loads(content)
+        try:
+            return simplejson.loads(content)
+        except Exception,e:
+            return None
     return { 'url' : thing.url }
 
 class EmpeericJSONEmitter(Emitter):
