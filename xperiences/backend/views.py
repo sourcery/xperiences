@@ -113,7 +113,7 @@ def invite(request):
 def redirect_top(request,next='/'):
     if next == '':
         next = '/'
-    return render_to_response('<script type="text/javascript" >    window.top.location.href = "%s";    </script>' % next)
+    return HttpResponse('<script type="text/javascript" >    window.top.location.href = "%s";    </script>' % next)
 
 def invite_callback(request):
 #    if 'request_ids' in request.GET:
