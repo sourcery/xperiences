@@ -218,7 +218,9 @@ if (!console) {
 
 $.prototype.cjObjectScaler = function(params)
 {
-image_autoscale($(this), params);
+    var obj = $(this);
+    if(obj.length)
+        image_autoscale(obj, params);
 }
 
 function image_autoscale(obj, params)

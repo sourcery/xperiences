@@ -148,3 +148,7 @@ def user_post_save(instance, created, **_):
     pass
 
 
+class UserInvite(models.Model):
+    user = models.ForeignKey(User)
+    invited = models.CharField(max_length=30)
+

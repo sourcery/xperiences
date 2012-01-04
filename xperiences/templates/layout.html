@@ -23,7 +23,7 @@
     <script src='/static/maps.js'></script>
 	<script type="text/javascript" src="http://use.typekit.com/qvy1ycb.js"></script>
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-	<script>$(document).ready(function() {image_autoscale($('.image-wrapper img'));});</script>
+	<script>$(document).ready(function() { $('.auto_scale_photo').each(function() { image_autoscale($(this)); })});</script>
 	<!-- Google analytics -->
 	<script type="text/javascript">
 	var _gaq = _gaq || [];

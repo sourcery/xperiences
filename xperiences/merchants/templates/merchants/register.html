@@ -27,6 +27,9 @@
 			</div>
 			{{ form.xp_location }}
 			<address><!-- html 5 semantic markup -->
+                {{ form.xp_location }}
+                <div style='display:none;'><div id='hidden_map'></div></div>
+
 				<label>Address</label>
 				{{ form.address }}
 				<!--               <label>Address</label>
@@ -59,8 +62,6 @@
 						<select class="short" name="country">
 							<option>United States</option>
 						</select>
-					</div>
-				</div>
 			</address><!-- Not sure how the address field looks-->
 		</fieldset>
 

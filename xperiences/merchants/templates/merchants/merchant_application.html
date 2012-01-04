@@ -47,8 +47,10 @@
 					<address><!-- html 5 semantic markup -->
 					<div class="row">
 						<div class="span6">
+                            {{ form.xp_location }}
+                            <div style='display:none;'><div id='hidden_map'></div></div>
 							<label>Address</label>
-							<input class="span6" type="text" name="address" value='{{ form.address.value }}' />
+							<input class="span6" id="id_address" type="text" name="address" value='{{ form.address.value }}' />
 						</div>
 					</div>
 					<!--<div class="row">

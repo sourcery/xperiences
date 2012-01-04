@@ -1,4 +1,4 @@
-from backend.models import UserExtension, UserLog
+from backend.models import UserExtension, UserLog, UserInvite
 from django.contrib.auth.models import User
 from django.conf import settings
 import facebook
@@ -220,6 +220,8 @@ class FacebookBackend:
     def authenticate(self, request, user=None):
         uid = request.GET.get('userID')
         access_token = request.GET.get('accessToken')
+        if not uid or not access_token:
+            return None
         try:
             ext = UserExtension.objects.get(FB_token=access_token)
         except UserExtension.DoesNotExist:
@@ -252,6 +254,10 @@ class FacebookBackend:
                 user.save()
 
             ext = get_user_extension_from_request(user, request)
+            if not ext.referred_by:
+                referrer = UserInvite.objects.filter(invited=uid)[:1]
+                if len(referrer):
+                    ext.referred_by = referrer[0]
             ext.FB_ID = uid
             ext.FB_token = access_token
             ext.bio = fb_data.get('bio','')

@@ -1,6 +1,7 @@
 from backend import utils
 from django.contrib import admin
 from django.contrib.admin.sites import AdminSite
+from backend.admin import UserExtensionAdmin
 from backend.models import UserLog
 from experiences.models import Experience, Category
 from models import UserExtension
@@ -9,19 +10,6 @@ from models import UserExtension
 class LiteAdmin(AdminSite):
     pass
 
-
-def approve_merchant(modeladmin, request, queryset):
-    for merchant in queryset:
-        if merchant.is_merchant and not merchant.is_approved:
-            utils.approve_merchant(merchant)
-
-
-merchant_actions = [approve_merchant]
-
-
-class UserExtensionAdmin(admin.ModelAdmin):
-    actions = merchant_actions
-    list_filter = ('is_merchant','is_approved')
 
 class ExperienceAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'pub_date', 'photo1', 'is_active')

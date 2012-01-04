@@ -20,7 +20,7 @@
 				                        <div class="image-wrapper">
                                             {% if merchant.photo %}
                                                 {% thumbnail merchant.photo "450x300" crop="center" as im %}
-                                                    <img class="exp-thumbs-img" alt="{{ merchant.name }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                                                    <img class="auto_scale_photo" alt="{{ merchant.name }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
                                                 {% endthumbnail %}
                                             {% else %}
                                                 <img style='display:none;' alt="{{ merchant.name }}" src="http://graph.facebook.com/{{ merchant.FB_ID }}/picture/?type=large">
@@ -84,49 +84,4 @@
 	{% include "merchants/command_bar.html" %}
 
 
-<script type='text/x_jquery_templates' id='res_template'>
-	<li class="front-page-item">
-	<a href="/experiences/{% t_var slug_id %}">
-		<img alt="{% t_var title %}" {% t_if photo1 %}src="{% t_var photo1.url %}"{% t_endif %}/>
-	</a>
-	<div class="thumb-details">
-		<div class="fp-item-price">
-			<span class="currency-symbol">$</span>
-			{% t_var price %}
-			<span class="currency-code"></span>
-		</div>
-		<div class="fp-item-wrapper">
-			<div class="fp-item-title">
-				<a title="{% t_var title %}" href="/experiences/{% t_var slug_id %}">{% t_var title %}</a>
-			</div>
-			<div class="fp-item-merchant">
-				<a title="{% t_var merchant.name %}" href="">{% t_var merchant.name %}{% t_if merchant.city %}, {% t_var merchant.city %} {% t_var merchant.state %} {% t_endif %}</a>
-			</div>
-		</div>
-	</div>
-	</li>
-</script>
-{% endblock %}
-
-{% block extra_scripts %}
-<script>
-	var _merchant_id = '{{ marchent.id}}'
-	function get_experiences(params) {
-		params = params || {};
-		$.get('/api/experiences/json', params, render);
-	}
-
-
-	function render(data) {
-		var holder = $("#experiences");
-		$.each(data, function(idx, obj) {
-			$("#res_template").tmpl(obj).appendTo(holder);
-		});
-	}
-
-
-	$(document).ready(function(){
-		get_experiences({"merchant_id": _merchant_id });
-	});
-</script>
 {% endblock %}

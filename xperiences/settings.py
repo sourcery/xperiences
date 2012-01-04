@@ -8,7 +8,7 @@ KIDS = os.environ.get('KIDS') == 'True'
 if STAGING:
     PRODUCTION = False
 
-BASE_URL = 'http://dev.empeeric.com'
+BASE_URL = 'http://127.0.0.1:8000/'
 
 if STAGING:
     BASE_URL = 'http://xperiences-dev.herokuapp.com/'
@@ -74,7 +74,7 @@ SITE_ID = '4eba73fe96cf4c019c00001d'
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 
-HTTP_BASE_URL = 'dev.empeeric.com/'
+HTTP_BASE_URL = BASE_URL
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.

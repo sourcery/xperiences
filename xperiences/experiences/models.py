@@ -33,7 +33,7 @@ class Experience(GeoModel, TextSearchModel):
 
     is_active = models.BooleanField(default=True)
 
-    title = TextSearchField(max_length=50)  # by default blank=false and null=false, meaning that both fields are mandatory in both admin and DB
+    title = TextSearchField(max_length=50,unique=True)  # by default blank=false and null=false, meaning that both fields are mandatory in both admin and DB
     slug_id = models.CharField(max_length=50,editable=False)
     description = RichTextField()
     category = models.ForeignKey(Category,null=True,blank=True)
