@@ -9,7 +9,7 @@ from sorl.thumbnail import ImageField
 
 class XPDBManager(MongoDBManager):
     def proximity_query(self, location, **kwargs):
-        max_distance = float(kwargs.get('max_distance', 10))
+        max_distance = float(kwargs.get('max_distance', 5))
         field_name = kwargs.get('field', 'xp_location')
         lat = location['lat']
         lng = location['lng']
