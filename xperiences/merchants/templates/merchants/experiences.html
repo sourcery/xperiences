@@ -51,9 +51,9 @@
 			<a href="{% t_url merchant_edit_experience slug_id %}"><button class="btn">edit</button></a>
             <a href="{% t_url experience_profile slug_id %}"><button class="btn">view</button></a>
 			{% t_if is_active %}
-			<button id="{% t_var id %}" class="activate btn submit">activate</button>
+			<button id="deactivate_{% t_var slug_id %}" class="activate btn" onclick='activate_experience(this,"{% t_var slug_id %}");'>deactivate</button>
 			{% t_else %}
-			<button id="{% t_var id %}" class="activate btn">deactivate</button>
+			<button id="activate_{% t_var slug_id %}" class="activate btn submit" onclick='activate_experience(this,"{% t_var slug_id %}");'>activate</button>
 			{% t_endif %}
 		</div>
     </li>
@@ -63,7 +63,7 @@
 
 {% block extra_scripts %}
 <script type='text/javascript' >
-var _merchant_id = '{{ merchant.id }}';
+var _merchant_id = '{{ merchant }}';
 function get_experiences(params) {
     params = params || {};
     $.get('/api/experiences/json', params, render);
@@ -77,15 +77,22 @@ function render(data) {
 
 
 $(document).ready(function(){
-		get_experiences({"merchant": _merchant_id });
-
-		$(".activate").click(function(e) {
-			var $this = $(e.currentTarget);
-			var id = $this.prop("id");
-			update_state(this, id);
-			$this.text() = $this.text() == "activate" ? "deactivate" : "activate";
-			$this.toggleClass("submit");
-		});
+		get_experiences({"of_merchant": true });
 });
+
+function activate_experience(sender,slug_id)
+{
+    var $this = $(sender);
+    var is_activated = $this.text() != "activate";
+    update_state(slug_id,is_activated);
+    $this.text(is_activated ? "activate" : "deactivate");
+    $this.toggleClass("submit");
+}
+
+function update_state(slug_id,is_activated)
+{
+        var is_active = !is_activated;
+        $.ajax( { url : '/api/experiences/json', data : { is_active : is_active, slug_id:slug_id } , type : 'PUT'});
+}
 </script>
 {% endblock %}

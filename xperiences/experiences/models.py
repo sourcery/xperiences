@@ -36,7 +36,7 @@ class Experience(GeoModel):
     title = TextSearchField(max_length=50,unique=True)  # by default blank=false and null=false, meaning that both fields are mandatory in both admin and DB
     slug_id = models.CharField(max_length=50,editable=False)
     description = RichTextField()
-    category = models.ForeignKey(Category,null=True,blank=True)
+    category = models.ForeignKey(Category,null=True)
     price = models.PositiveIntegerField(default=0)
     unit_name = models.CharField(max_length=100, null=True, blank=True) # eg.: week, meal, day...
     unit_count = models.PositiveIntegerField(default=0, null=True, blank=True)

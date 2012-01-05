@@ -5,6 +5,7 @@ import time
 from django.db.models.fields.files import FileField, FieldFile
 from django.template import loader
 from backend.models import XPImageField
+from django.utils.functional import update_wrapper
 from piston.decorator import decorator
 from piston.emitters import Emitter
 from piston.utils import Mimer, rc
@@ -93,20 +94,24 @@ class EmpeericJSONEmitter(Emitter):
             return '%d minutes' % (ti.seconds/60)
         return '%d seconds' % (ti.seconds)
 
-def user_enitity_permission(model=None,field_name='user_id'):
+def user_enitity_permission(model=None,field_name='user_id', id_field_name=None):
 
     @decorator
-    def wrap(f, self, request,id=None,*args, **kwargs):
+    def wrap(f, self, request,*args, **kwargs):
     #        if field_name not in request.POST or request.POST[field_name] == '':
     #            return rc.BAD_REQUEST
     #        user_id = int(request.POST[field_name])
         _model = (model or self.model)
+        _id_field_name = id_field_name
+        if _id_field_name == None:
+            _id_field_name = _model._meta.pk.name
+        id = kwargs.get(_id_field_name)
         if not id:
-            id = request.POST.get(_model._meta.pk.name) or request.GET.get(_model._meta.pk.name)
+            id = request.POST.get(_id_field_name) or request.GET.get(_id_field_name)
         if not id:
             return rc.FORBIDDEN
         user_id = request.session['_auth_user_id']
-        obj = _model.objects.get(id=id)
+        obj = _model.objects.get(**{ _id_field_name:id})
         field_name_parts = field_name.split('.')
         attr = None
         for field_name_part in field_name_parts:
