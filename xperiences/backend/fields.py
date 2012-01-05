@@ -9,14 +9,13 @@ from sorl.thumbnail import ImageField
 
 class XPDBManager(MongoDBManager):
     def proximity_query(self, location, **kwargs):
-    #        max_distance = kwargs.get('max_distance', 10)
+        max_distance = kwargs.get('max_distance', 10)
         field_name = kwargs.get('field', 'xp_location')
         lat = location['lat']
         lng = location['lng']
         query = kwargs.get('query', {})
-        query[field_name] = {'$near': {'lat': lat, 'lng': lng}}
+        query[field_name] = {'$near': {'lat': lat, 'lng': lng},'$maxDistance':max_distance}
         return self.raw_query(query)
-
 
     def text_search(self, keyword, **kwargs):
         query = kwargs.get('query', {})

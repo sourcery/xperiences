@@ -27,7 +27,7 @@ class Category(models.Model):
         return super(Category,self).save(*args,**kwargs)
 
 
-class Experience(GeoModel, TextSearchModel):
+class Experience(GeoModel):
     use_saved_address = models.BooleanField(default=True,verbose_name='Use merchant address (if clicked,address above will be ignored)')
     merchant = models.ForeignKey(UserExtension,null=True)
 

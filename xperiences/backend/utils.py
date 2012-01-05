@@ -42,7 +42,7 @@ def validate_user(user_id, code):
     return False
 
 def merchant_onreview_email(merchant):
-    approvers = User.objects.filter(is_superuser=True)
+    approvers = User.objects.filter(is_staff=True)
     approver_emails = [str(a.email) for a in approvers]
     send_email_with_template(settings.EMAIL_HOST_USER,approver_emails,'A new application is on review','new_app_review.html',{'merchant':merchant})
     send_email_with_template(settings.EMAIL_HOST_USER,[merchant.user.email],'Your Application is on review', 'app_review.html',{ 'merchant':merchant})

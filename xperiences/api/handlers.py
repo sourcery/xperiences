@@ -16,6 +16,9 @@ import logging
 from piston.handler import BaseHandler
 from backend import models as my_models
 import api
+from pymongo.objectid import ObjectId
+import re
+
 
 Emitter.register('json', api.EmpeericJSONEmitter, 'application/json; charset=utf-8')
 MAX_RESULTS_PER_QUERY = 100
@@ -154,7 +157,7 @@ class ExperienceHandler(MyBaseHandler):
     model = Experience
     fields = ('slug_id', 'title','description','merchant','photo1','photo2','photo3','photo4','photo5','price','capacity','valid_from','valid_until','is_active')
     update_fields = ('is_active',)
-    query_fields = ('is_active','keywords','lat','lng','category')
+    query_fields = ('is_active','keywords','lat','lng','category','max_distance')
 
     def read(self,request,*args,**kwargs):
         params = dict([ (k,request.GET[k].strip()) for k in request.GET])
@@ -183,19 +186,32 @@ class ExperienceHandler(MyBaseHandler):
 
 
 
-        if 'id' in params or not lat  or not lng:
-            return super(ExperienceHandler,self).read(request,*args,**params)
-        else:
-            limit = int(params.get('limit',10))
-            if 'limit' in params:
-                del params['limit']
-            if limit > MAX_RESULTS_PER_QUERY:
-                limit = MAX_RESULTS_PER_QUERY
-            offset = int(params.get('offset',0))
-            if 'offset' in params:
-                del params['offset']
+#        if 'id' in params or not lat  or not lng:
+#            return super(ExperienceHandler,self).read(request,*args,**params)
+#        else:
+        limit = int(params.get('limit',10))
+        if 'limit' in params:
+            del params['limit']
+        if limit > MAX_RESULTS_PER_QUERY:
+            limit = MAX_RESULTS_PER_QUERY
+        offset = int(params.get('offset',0))
+        if 'offset' in params:
+            del params['offset']
 
-            return Experience.objects.proximity_query( { 'lat' : float(lat), 'lng' : float(lng)}, query=params)[offset:limit]
+        if 'category' in params:
+            categories = params.pop('category').split(',')
+#            if len(categories) > 0 and categories[0] != '':
+            category_objects = [ObjectId(c) for c in categories]
+            params['category_id'] = { '$in' : category_objects}
+        if 'keywords' in params:
+            keywords = params.pop('keywords').split(' ')
+            keywords_regex ='.*' + ('.*'.join([k.strip() for k in keywords])) + '.*'
+            params["$or"] = [{'description': { '$regex' : keywords_regex }},{'title': { '$regex' : keywords_regex }}]
+
+        more_args = {}
+        if 'max_distance' in params:
+            more_args['max_distance'] = params.pop('max_distance')
+        return Experience.objects.proximity_query( { 'lat' : float(lat), 'lng' : float(lng)},query=params,**more_args)[offset:limit]
 
     @api.user_enitity_permission(field_name='merchant.user_id')
     def update(self,request,*args,**kwargs):
