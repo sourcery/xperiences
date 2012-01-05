@@ -123,10 +123,10 @@
                         <div class="image-wrapper">
                             {% if merchant.photo %}
                                 {% thumbnail merchant.photo "450x300" crop="center" as im %}
-                                    <img class="exp-thumbs-img" alt="{{ merchant.name }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                                    <img class="exp-thumbs-img" class='auto_scale_photo' alt="{{ merchant.name }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
                                 {% endthumbnail %}
                             {% else %}
-                                <img style='display:none;' alt="{{ merchant.name }}" src="http://graph.facebook.com/{{ merchant.FB_ID }}/picture/?type=large">
+                                <img class='auto_scale_photo' alt="{{ merchant.name }}" src="http://graph.facebook.com/{{ merchant.FB_ID }}/picture/?type=large">
                             {% endif %}
                         </div>
                     </div>

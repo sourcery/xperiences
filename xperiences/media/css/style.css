@@ -784,4 +784,6 @@ line-height: 1.5em;
 
 .auto_scale_photo
 {
+    width:0px;
+    height:0px;
 }
