@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.admin.widgets import AdminSplitDateTime
 from django.forms.fields import DateTimeField
-from backend.widgets import XPDatePicker
+from backend.widgets import XPDatePicker, PointWidgetWithAddressField
 from models import Experience
 
 
@@ -9,6 +9,8 @@ from models import Experience
 class ExperienceForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ExperienceForm, self).__init__(*args, **kwargs)
+        field = self.fields['xp_location']
+        field.widget = PointWidgetWithAddressField(address_field='id_address',map_id='hidden_map')()
         for name,field in self.fields.items():
             if isinstance(field,DateTimeField):
                 field.widget =  AdminSplitDateTime()
