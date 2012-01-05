@@ -24,7 +24,7 @@
 		})
 	});
 </script>
-    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" />
+    <!--link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" /-->
     <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css" />
     <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="/static/admin/css/ie.css" /><![endif]-->
 
@@ -170,11 +170,11 @@
 				<h3>Tell your story visually</h3>
 				<div class="row">
 					<label>Upload your images</label>
-					<div class="img-upload"><div class="img-upload-border">{{ form.photo1 }}</div></div>
-					<div class="img-upload"><div class="img-upload-border">{{ form.photo2 }}</div></div>
-					<div class="img-upload"><div class="img-upload-border">{{ form.photo3 }}</div></div>
-					<div class="img-upload"><div class="img-upload-border">{{ form.photo4 }}</div></div>
-					<div class="img-upload"><div class="img-upload-border">{{ form.photo5 }}</div></div>
+					<div class="img-upload"><div class="img-upload-border"><input type='file' name='{{ form.photo1.name }}' id='{{ form.photo1.id }}' accept="image/*" /></div></div>
+					<div class="img-upload"><div class="img-upload-border"><input type='file' name='{{ form.photo2.name }}' id='{{ form.photo2.id }}' accept="image/*" /></div></div>
+					<div class="img-upload"><div class="img-upload-border"><input type='file' name='{{ form.photo3.name }}' id='{{ form.photo3.id }}' accept="image/*" /></div></div>
+					<div class="img-upload"><div class="img-upload-border"><input type='file' name='{{ form.photo4.name }}' id='{{ form.photo4.id }}' accept="image/*" /></div></div>
+					<div class="img-upload"><div class="img-upload-border"><input type='file' name='{{ form.photo5.name }}' id='{{ form.photo5.id }}' accept="image/*" /></div></div>
 				</div>
 				<div class="row">
 					<div>
