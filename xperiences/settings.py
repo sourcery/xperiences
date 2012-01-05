@@ -245,7 +245,7 @@ if KIDS:
     FACEBOOK_SECRET_KEY = '608c99b02c5c1185ec466b42e4602d8c'
 
 if 'SENDGRID_PASSWORD' in os.environ:
-    EMAIL_HOST = 'smtp.sendgrid.net',
+    EMAIL_HOST = 'smtp.sendgrid.net'
     EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
     EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD'],
     EMAIL_PORT = 587
