@@ -186,32 +186,32 @@ class ExperienceHandler(MyBaseHandler):
 
 
 
-#        if 'id' in params or not lat  or not lng:
-#            return super(ExperienceHandler,self).read(request,*args,**params)
-#        else:
-        limit = int(params.get('limit',10))
-        if 'limit' in params:
-            del params['limit']
-        if limit > MAX_RESULTS_PER_QUERY:
-            limit = MAX_RESULTS_PER_QUERY
-        offset = int(params.get('offset',0))
-        if 'offset' in params:
-            del params['offset']
+        if 'id' in params or not lat  or not lng:
+            return super(ExperienceHandler,self).read(request,*args,**params)
+        else:
+            limit = int(params.get('limit',10))
+            if 'limit' in params:
+                del params['limit']
+            if limit > MAX_RESULTS_PER_QUERY:
+                limit = MAX_RESULTS_PER_QUERY
+            offset = int(params.get('offset',0))
+            if 'offset' in params:
+                del params['offset']
 
-        if 'category' in params:
-            categories = params.pop('category').split(',')
-#            if len(categories) > 0 and categories[0] != '':
-            category_objects = [ObjectId(c) for c in categories]
-            params['category_id'] = { '$in' : category_objects}
-        if 'keywords' in params:
-            keywords = params.pop('keywords').split(' ')
-            keywords_regex ='.*' + ('.*'.join([k.strip() for k in keywords])) + '.*'
-            params["$or"] = [{'description': { '$regex' : keywords_regex }},{'title': { '$regex' : keywords_regex }}]
+            if 'category' in params:
+                categories = params.pop('category').split(',')
+    #            if len(categories) > 0 and categories[0] != '':
+                category_objects = [ObjectId(c) for c in categories]
+                params['category_id'] = { '$in' : category_objects}
+            if 'keywords' in params:
+                keywords = params.pop('keywords').split(' ')
+                keywords_regex ='.*' + ('.*'.join([k.strip() for k in keywords])) + '.*'
+                params["$or"] = [{'description': { '$regex' : keywords_regex }},{'title': { '$regex' : keywords_regex }}]
 
-        more_args = {}
-        if 'max_distance' in params:
-            more_args['max_distance'] = params.pop('max_distance')
-        return Experience.objects.proximity_query( { 'lat' : float(lat), 'lng' : float(lng)},query=params,**more_args)[offset:limit]
+            more_args = {}
+            if 'max_distance' in params:
+                more_args['max_distance'] = params.pop('max_distance')
+            return Experience.objects.proximity_query( { 'lat' : float(lat), 'lng' : float(lng)},query=params,**more_args)[offset:limit]
 
     @api.user_enitity_permission(field_name='merchant.user_id')
     def update(self,request,*args,**kwargs):

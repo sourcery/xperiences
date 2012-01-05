@@ -48,8 +48,8 @@
 			<div class="listing-value">200</div>
 		</div>
 		<div class="listing-actions">
-			<button class="btn">edit</button>
-			<button class="btn">view</button>
+			<a href="{% t_url merchant_edit_experience slug_id %}"><button class="btn">edit</button></a>
+            <a href="{% t_url experience_profile slug_id %}"><button class="btn">view</button></a>
 			{% t_if is_active %}
 			<button id="{% t_var id %}" class="activate btn submit">activate</button>
 			{% t_else %}
@@ -79,7 +79,7 @@ function render(data) {
 $(document).ready(function(){
 		get_experiences({"merchant": _merchant_id });
 
-		$(".activate").on("click", function(e) {
+		$(".activate").click(function(e) {
 			var $this = $(e.currentTarget);
 			var id = $this.prop("id");
 			update_state(this, id);
