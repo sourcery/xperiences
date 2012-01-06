@@ -8,6 +8,8 @@
 	<link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css">
 	<script src="{{ MEDIA_URL }}js/modernizr.custom.78131.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://use.typekit.com/qvy1ycb.js"></script>
+   	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 	{% block extra_head %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
 </head>
@@ -21,8 +23,6 @@
     <script src='/static/jq.templates.js' ></script>
 	<!--    <script src='/static/js/jquery-ui-timepicker-addon.js' ></script> -->
     <script src='/static/maps.js'></script>
-	<script type="text/javascript" src="http://use.typekit.com/qvy1ycb.js"></script>
-	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 	<script>$(document).ready(function() { $('.auto_scale_photo').each(function() { image_autoscale($(this)); })});</script>
 	<!-- Google analytics -->
 	<script type="text/javascript">

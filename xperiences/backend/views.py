@@ -71,19 +71,21 @@ def preconfigured_merchant(request):
             context = {'form_user' : form_user, 'form_user_extension' : form_user_extension }
             return render_to_response('preconfigured_merchant_form.html', context_instance=RequestContext(request, context))
 
+
+
 @login_required()
 def email_referral(request):
-    context = {}
+    message = request.POST.get('message', 'Check out this cool website!\n' + settings.BASE_URL + '?username=' + request.user_extension.name)
+    context = {'message': message}
     if request.method == 'POST':
         to = request.POST['to']
         to = to.strip().split(',')
         subject = '%s want\'s to share with you this cool site' % request.user.get_full_name()
-        message = request.POST['message']
-        message += '\n' + settings.BASE_URL
-        message += '?username=' + request.user.username
-        send_mail(subject,message,settings.EMAIL_HOST_USER,to)
+        send_mail(subject, message, settings.EMAIL_HOST_USER, to)
         context['sent'] = True
-    return render_to_response('email_referral.html',context_instance=RequestContext(request,context))
+    return render_to_response('email_referral.html', context_instance=RequestContext(request, context))
+
+
 
 def share(request):
     link = settings.BASE_URL
@@ -97,6 +99,8 @@ def share(request):
             print invite_card
             i += 1
     return render_to_response('share.html',context_instance=RequestContext(request,{'link':link}))
+
+
 
 def invite(request):
     message = 'Check out this cool site'
