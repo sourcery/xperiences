@@ -9,7 +9,7 @@ from django.shortcuts import render_to_response, redirect
 from django.template.context import RequestContext
 from backend.management.commands.ensure_geo_fields import ensure_geo_fields
 from django.http import HttpResponse
-from backend.models import UserExtension, UserInvite
+from backend.models import UserExtension, UserInvite, UserMessage
 import settings
 from socialauth import facebook
 
@@ -110,10 +110,13 @@ def invite(request):
     return redirect(url + urllib.urlencode(params))
 
 
+
 def redirect_top(request,next='/'):
     if next == '':
         next = '/'
     return HttpResponse('<script type="text/javascript" >    window.top.location.href = "%s";    </script>' % next)
+
+
 
 def invite_callback(request):
 #    if 'request_ids' in request.GET:
@@ -134,3 +137,10 @@ def invite_callback(request):
 #                return redirect_top(request,settings.HTTP_BASE_URL)
 #    else:
     return redirect_top(request,settings.HTTP_BASE_URL)
+
+
+
+@login_required()
+def user_inbox(request):
+    comments = UserMessage.objects.filter(to=request.user_extension).order_by("-time")
+    return render_to_response('inbox.html', {'comments' : comments, 'command_bar': 'user_command_bar.html'}, context_instance=RequestContext(request))

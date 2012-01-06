@@ -8,7 +8,7 @@
         {% if not user.is_authenticated %}
 		<a id="login-btn" class="btn btn-blue" href="/accounts/login/">Login</a>
         {% else %}
-        <a id="login-btn" class="btn btn-blue" href="/accounts/logout/">Logout</a>
+        <a id="login-btn" class="btn btn-blue" href="/user">{{ request.user_extension.name }}</a>
         {% endif %}
 		<a id="service-list" class="btn" href="/experiences/add_experience/">Start selling</a>
 	</div>

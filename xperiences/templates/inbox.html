@@ -28,15 +28,14 @@
 					</div>
                     <div class="span5">
                         <a class="message-link" href="{% url view_message message.id %}">
-                            <div class="message-title">{{ message.title }}</div><!-- is this correct? again, can't find the comments model -->
-                            <div class="message-body">{{ message.message }}</div><!-- this should be a short summary of the message body -->
+                            <div class="message-title">{{ message.title }}</div>
+                            <div class="message-body">{{ message.message }}</div>
                         </a>
                         <div class="message-timestamp secondary">
                             on {{ message.time }}
                         </div>
                     </div>
                     <div class="message-action">
-                        <!-- please make this button work -->
                         <button class="btn" onclick='delete_message(this,"{{ message.id }}");'>Delete</button>
 					</div>
 				</li>
@@ -46,5 +45,5 @@
             </ul>
         </div>
     </div>
-	{% include "merchants/command_bar.html" %}
+	{% include command_bar %}
 {% endblock %}
