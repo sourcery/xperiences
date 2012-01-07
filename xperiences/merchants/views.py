@@ -45,6 +45,12 @@ def register(request):
         return render_to_response(template_name, {'form':form, 'status': status, 'merchant':merchant}, context_instance=RequestContext(request))
 
 
+
+@login_required()
+def waiting_approval(request):
+    return render_to_response('merchants/waiting_approval.html', {'merchant':request.user_extension}, context_instance=RequestContext(request))
+
+
 @merchant_required()
 def experiences(request):
     if request.method == 'GET':
