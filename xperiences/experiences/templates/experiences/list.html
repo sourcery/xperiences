@@ -8,27 +8,38 @@
 {% endblock %}
 
 {% block content %}
-        <div class="command-bar-container">
-        </div>
-        <div class="two-col-left-narrow-float">
-            <div id="search-left-bar" class="panel dark">
-                <h4>Search results</h4>
-                <input type="text" class="shorter" id='keywords_field' /> near <input type="text" class="short" id="address_field" />
-                <input type='hidden' id="lat_field" name='lat' />
-                <input type='hidden' id="lng_field" name='lng' />
+	<div class="space30"></div>
+	<div class="span4 column left">
+		<div id="search-left-bar" class="panel dark">
+			<div class="pad15">
+				<h3>Search results for</h3>
+				<div class="row">
+					<input type="text" class="span3" id='keywords_field' /> 
+				</div>
+				<div class="row">
+					near
+				</div>
+				<div class="row">
+					<input type="text" class="span3" id="address_field" />
+				</div>
+				<input type='hidden' id="lat_field" name='lat' />
+				<input type='hidden' id="lng_field" name='lng' />
 
-                <button class="margin-top-10" onclick='search_again();' >search again</button>
-            </div>
-            <div id="map-bar" class="panel">
-                This is where the map goes
-            </div>
-            <div id="filter-bar" class="panel">
-                <h4>Filter by</h4>
-                {% for category in categories %}
-                <div><input type="checkbox" name="{{ category.id }}" checked='checked'>{{ category }}</div>
-                {% endfor %}
-            </div>
-        </div>
+				<div class="row">
+					<button class="btn" onclick='search_again();' >search again</button>
+				</div>
+			</div>
+		</div>
+		<!-- <div id="map-bar" class="panel">
+			This is where the map goes
+		</div>
+		<div id="filter-bar" class="panel">
+			<h4>Filter by</h4>
+			{% for category in categories %}
+			<div><input type="checkbox" name="{{ category.id }}" checked='checked'>{{ category }}</div>
+			{% endfor %}
+		</div>
+	</div> -->
         <div class="two-col-right-wide">
 <!--            <h2>There are 32 listings</h2> -->
             <div class="page-nav">

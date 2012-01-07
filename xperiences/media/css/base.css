@@ -79,6 +79,10 @@ h3 {
 	font-size: 14pt;
 }
 
+h4 {
+	font-size: 12pt;
+}
+
 /**
  * Basic HTML elements
  **/
@@ -163,7 +167,7 @@ hr {
 	clear: both;
 }
 
-.row span {
+.row span.item {
 	display: inline-block;
 	float: left;
 	position: relative;
@@ -606,14 +610,17 @@ input[type="submit"]:active, .submit:active {
 	background: -webkit-linear-gradient(top, #8bb001, #7d9911);
 }
 
-.btn-blue {
-	background: -moz-linear-gradient(top, #5da7e5, #296f9a);
+.btn.blue {
+	background: linear-gradient(top, #5da7e5, #296f9a);
 	background: -webkit-linear-gradient(top, #5da7e5, #296f9a);
+	background: -o-linear-gradient(top, #5da7e5, #296f9a);
+	background: -ms-linear-gradient(top, #5da7e5, #296f9a);
+	background: -moz-linear-gradient(top, #5da7e5, #296f9a);
 	color: white;
 	border: 1px solid #296f9a;
 }
 
-.btn-blue:hover {
+.btn.blue:hover {
 	background: linear-gradient(top, #6dafe8, #4282ab);
 	background: -o-linear-gradient(top, #6dafe8, #4282ab);
 	background: -ms-linear-gradient(top, #6dafe8, #4282ab);
@@ -622,7 +629,7 @@ input[type="submit"]:active, .submit:active {
 
 }
 
-.btn-blue:active {
+.btn.blue:active {
 	background: linear-gradient(top, #5294cb, #28668e);
 	background: -o-linear-gradient(top, #5294cb, #28668e);
 	background: -ms-linear-gradient(top, #5294cb, #28668e);

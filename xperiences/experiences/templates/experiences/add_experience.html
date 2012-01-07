@@ -3,14 +3,16 @@
 {% comment %}
 {{ form.media }}
 {% endcomment %}
-<script src="{{MEDIA_URL}}js/jquery-ui-1.8.16.custom.min.js"></script>
+<!-- <script src="{{MEDIA_URL}}js/jquery-ui-1.8.16.custom.min.js"></script>
 <script src="{{MEDIA_URL}}js/jquery-ui-timepicker-addon.js"></script>
-<link rel="stylesheet" href="{{MEDIA_URL}}css/ui-lightness/jquery-ui-1.8.16.custom.css" />
+<link rel="stylesheet" href="{{MEDIA_URL}}css/ui-lightness/jquery-ui-1.8.16.custom.css" />-->
+<script type="text/javascript" src="{{MEDIA_URL}}/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}/ckeditor/adapters/jquery.js"></script>
 <script>
 	$(document).ready(function(e){
-		$(".datepicker").datetimepicker({
+		/*		$(".datepicker").datetimepicker({
 			stepMinute: 15
-		});
+		});*/
 
 		$(".img-upload input").change(function(e){
 			var $this = $(e.currentTarget);
@@ -32,8 +34,6 @@
 {% block extra_scripts %}
 
     <script type="text/javascript">window.__admin_media_prefix__ = "/static/admin/";</script>
-
-    <script type="text/javascript" src="/static/admin/js/jquery.min.js"></script>
     <script type="text/javascript" >
         function gettext(msgid) {
             return msgid;
