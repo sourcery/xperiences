@@ -146,5 +146,6 @@ def invite_callback(request):
 
 @login_required()
 def user_inbox(request):
+    command_bar = 'merchants/command_bar.html' if request.user_extension.is_merchant else 'user_command_bar.html'
     comments = UserMessage.objects.filter(to=request.user_extension).order_by("-time")
-    return render_to_response('inbox.html', {'comments' : comments, 'command_bar': 'user_command_bar.html'}, context_instance=RequestContext(request))
+    return render_to_response('inbox.html', {'comments' : comments, 'command_bar': command_bar}, context_instance=RequestContext(request))
