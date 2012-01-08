@@ -6,8 +6,18 @@
 <div class="space30"></div>
 <div class="column span9">
 	<div class="listings-container">
-		<h1>Your experiences</h1>
+		<h1 class="title">Your experiences</h1>
 		<ul class="listings"></ul>
+		<table id="listings" class="panel">
+			<tr>
+				<th width="45%">Title</th>
+				<th>Revenue</th>
+				<th>Requests</th>
+				<th>Page views</th>
+				<th>Actions</th>
+				<th width="100px">List</th>
+			</tr>
+		</table>
 	</div><!-- closing listings-container -->
 </div>
 {% include "merchants/command_bar.html" %}
@@ -15,48 +25,35 @@
 
 
 {% block hidden_templates %}
-<script type='text/x_jquery_tempaltes' id='experience_item_template'>
-    <li class="listing panel">
-        <h4 class="listing-title">
-            <a title="{% t_var title %}" href="{% t_url merchant_edit_experience slug_id %}"> {% t_var title %} </a>
-		</h4>	
-		<a class="listing-image" title=" {% t_var title %}" href="{% t_url merchant_edit_experience slug_id %}">
-            <img width="150" height="70" alt="{% t_var title %}" {% t_if photo1 %}src="{% t_var photo1.url %}"{% t_endif %}>
-        </a>
-		<!--        <div id="thumb-details">
-            <p class="listing-merchant">
-                <a title="{% t_var merchant.name %}" href=""> {% t_var merchant.name %}, {% t_var merchant.city %} {% t_var merchant.state %}</a>
-            </p>
-            <p class="listing-price">
-                <span class="currency-symbol">$</span>
-                {% t_var price %}
-                <span class="currency-code"></span>
-            </p>
-        </div>
-		Active: <input type=checkbox value='{% t_var is_active %}' {% t_if is_active %}checked='checked'{% t_endif %} onchange='update_status(this,"{% t_var id %}");' />-->
-		
-		<div class="listing-item-short">
-			<div>Money earned</div>
-			<div class="listing-value">$100</div>
-		</div>
-		<div class="listing-item-short">
-			<div>Requests</div>
-			<div class="listing-value">10</div>
-		</div>
-		<div class="listing-item-short">
-			<div>Page views</div>
-			<div class="listing-value">200</div>
-		</div>
-		<div class="listing-actions">
-			<a href="{% t_url merchant_edit_experience slug_id %}"><button class="btn">edit</button></a>
-            <a href="{% t_url experience_profile slug_id %}"><button class="btn">view</button></a>
+<script type='text/x_jquery_templates' id="experience_item_tmpl">
+	<tr>
+		<td>
+			<a title="{% t_var title %}" href="{% t_url merchant_edit_experience slug_id %}">{% t_var title %} </a>
+			<a class="listing-image" title=" {% t_var title %}" href="{% t_url merchant_edit_experience slug_id %}">
+				<img alt="{% t_var title %}" {% t_if photo1 %}src="{% t_var photo1.url %}"{% t_endif %}>
+			</a>
+		</td>
+		<td>
+			USD100.00
+		</td>
+		<td>
+			10
+		</td>
+		<td>
+			200
+		</td>
+		<td>
+			<a href="{% t_url merchant_edit_experience slug_id %}">edit</a>
+			<a href="{% t_url experience_profile slug_id %}">view</a>	
+		</td>
+		<td>
 			{% t_if is_active %}
 			<button id="deactivate_{% t_var slug_id %}" class="activate btn" onclick='activate_experience(this,"{% t_var slug_id %}");'>deactivate</button>
 			{% t_else %}
 			<button id="activate_{% t_var slug_id %}" class="activate btn submit" onclick='activate_experience(this,"{% t_var slug_id %}");'>activate</button>
 			{% t_endif %}
-		</div>
-    </li>
+		</td>
+	</tr>
 </script>
 {% endblock %}
 
@@ -71,8 +68,8 @@ function get_experiences(params) {
 
 
 function render(data) {
-    var items = $("#experience_item_template").tmpl(data);
-    items.appendTo("ul.listings");
+    var items = $("#experience_item_tmpl").tmpl(data);
+    items.appendTo("#listings");
 }
 
 

@@ -40,17 +40,22 @@
 			</div>
 		</div>
 		</div>
-        <div id="search-results" class="span8 column">
+        <div id="search-results" class="span9 column">
         </div>
     </div>
 
 <div style='display:none;'>
 	<script type='text/x_jquery_templates' id='test-template'>
-		<div class="search-result">
-			<img alt=" {% t_var title %} "{% t_if photo1 %}src="{% t_var photo1.url %}"{% t_endif %} />
+		<div class="search-result span3 panel">
+			<div class="pad8">
+				<div class="image-wrapper">
+					<img alt=" {% t_var title %} "{% t_if photo1 %}src="{% t_var photo1.url %}"{% t_endif %} />
+				</div>
+				<div class="name"><a title="{% t_var title %}" href="/experiences/{% t_var slug_id %}">{% t_var title %}</a></div>
 			<div class="price">${% t_var price %}</div>
-			<a title="{% t_var title %}" href="/experiences/{% t_var slug_id %}"><h4>{% t_var title %}</h4></a>
-			<a title="{% t_var merchant.name %}" href=""><div class="secondary">{% t_var merchant.name %}{% t_if merchant.city %}, {% t_var merchant.city %} {% t_var merchant.state %} {% t_endif %}</div></a>
+			<div class="merchant">
+				<a title="{% t_var merchant.name %}" href="">{% t_var merchant.name %}{% t_if merchant.city %}, {% t_var merchant.city %} {% t_var merchant.state %} {% t_endif %}</a></div>
+		</div>
 		</div>
 	 </script>
 </div>
