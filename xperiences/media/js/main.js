@@ -66,7 +66,7 @@ function delete_message(sender, message_id)
                 $(li.parent()).html('<li class="empty-inbox">Your inbox is empty!</li>');
         });
     }, error: function(err){
-        alert(err);
+        //alert(err);
     }});
 }
 

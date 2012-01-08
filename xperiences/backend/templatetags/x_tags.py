@@ -48,7 +48,7 @@ def t_url(parser,token):
     args = {}
     arg_names = {}
     for i in range(len(exp)-2):
-        argname = ''.join([random.choice('1234567890') for j in range(10)] ) # 'xp_tag_arg%d'% i
+        argname = ''.join([random.choice('1234567890') for j in range(15)] ) # 'xp_tag_arg%d'% i
         args[argname] = '${' + exp[i+2] + '}'
         arg_names[argname] = argname
         new_content += ' ' + argname

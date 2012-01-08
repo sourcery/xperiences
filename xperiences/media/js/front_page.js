@@ -46,13 +46,18 @@ function read_query_string()
 }
 
 var data;
-
+var meta;
+var last_params;
 
 function get_experiences(params) {
 	params = params || {};
+    params['max_distance'] = 1000;
+    params['limit'] = 2;
+    last_params = params;
 	$.get('/api/experiences/json', params, function(_data){
-		data = _data;
-		render(_data);
+		data = _data.objects;
+        meta = _data.meta;
+		render(data,meta);
 	});
 }
 

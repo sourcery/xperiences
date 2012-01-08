@@ -1,16 +1,262 @@
 {% extends 'base.html' %}
 {% block extra_head %}
-    {{ form.media }}
+    {% comment %}
+{{ form.media }}
+{% endcomment %}
+    <script src="{{MEDIA_URL}}js/jquery-ui-1.8.16.custom.min.js"></script>
+    <script src="{{MEDIA_URL}}js/jquery-ui-timepicker-addon.js"></script>
+    <link rel="stylesheet" href="{{MEDIA_URL}}css/ui-lightness/jquery-ui-1.8.16.custom.css" />
+    <script>
+        $(document).ready(function(e){
+            $(".datepicker").datetimepicker({
+                stepMinute: 15
+            });
+
+            $(".img-upload input").change(function(e){
+                var $this = $(e.currentTarget);
+                var val = $this.val();
+                console.log(val);
+                if(val != "") {
+                    $this.parent().parent().addClass("selected");
+                } else {
+                    $this.parent().parent().removeClass("selected");
+                }
+            })
+        });
+    </script>
+    <!--link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" /-->
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css" />
+    <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="/static/admin/css/ie.css" /><![endif]-->
+
+{% endblock %}
+{% block extra_scripts %}
+
+    <script type="text/javascript">window.__admin_media_prefix__ = "/static/admin/";</script>
+
+    <script type="text/javascript" src="/static/admin/js/jquery.min.js"></script>
+    <script type="text/javascript" >
+        function gettext(msgid) {
+            return msgid;
+        }
+        var formats = new Array();
+
+        formats['DATETIME_FORMAT'] = 'N j, Y, P';
+        formats['DATE_FORMAT'] = 'N j, Y';
+        formats['DECIMAL_SEPARATOR'] = '.';
+        formats['MONTH_DAY_FORMAT'] = 'F j';
+        formats['NUMBER_GROUPING'] = '3';
+        formats['TIME_FORMAT'] = 'P';
+        formats['FIRST_DAY_OF_WEEK'] = '0';
+        formats['TIME_INPUT_FORMATS'] = ['%H:%M:%S', '%H:%M'];
+        formats['THOUSAND_SEPARATOR'] = ',';
+        formats['DATE_INPUT_FORMATS'] = ['%Y-%m-%d', '%m/%d/%Y', '%m/%d/%y'];
+        formats['YEAR_MONTH_FORMAT'] = 'F Y';
+        formats['SHORT_DATE_FORMAT'] = 'm/d/Y';
+        formats['SHORT_DATETIME_FORMAT'] = 'm/d/Y P';
+        formats['DATETIME_INPUT_FORMATS'] = ['%Y-%m-%d %H:%M:%S', '%Y-%m-%d %H:%M', '%Y-%m-%d', '%m/%d/%Y %H:%M:%S', '%m/%d/%Y %H:%M', '%m/%d/%Y', '%m/%d/%y %H:%M:%S', '%m/%d/%y %H:%M', '%m/%d/%y'];
+
+        function get_format(format_type) {
+            var value = formats[format_type];
+            if (typeof(value) == 'undefined') {
+                return msgid;
+            } else {
+                return value;
+            }
+        }
+    </script>
+    <script type="text/javascript" src="/static/admin/js/core.js"></script>
+    <script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+    <script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+    <script type="text/javascript" src="/static/admin/js/actions.min.js"></script>
+    <script type="text/javascript" src="/static/admin/js/calendar.js"></script>
+    <script type="text/javascript" src="/static/admin/js/admin/DateTimeShortcuts.js"></script>
+
 {% endblock %}
 
-{% block wrapper %}
-    {% block content %}
-        <form method='post' enctype="multipart/form-data">
-            {{ form.as_p }}
-            <input type='submit' value='save' />
+{% block content %}
+    <div class="space30"></div>
+    <div class="column span9">
+        <h1>Edit experience listing</h1><!-- we can change this title based on the niche-->
+        {{ form.errors }}
+        <form action="#" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <fieldset class="panel">
+                    <div class="pad15">
+                        <h3>Describe your offering</h3>
+
+                        <div class="row">
+                            <div>
+                                <label>Title</label>
+                                <div class="span6-wrapper">
+                                    {{ form.title }}
+                                </div>
+                            </div>
+                        </div>
+
+                        {% comment %}
+					<div class="row">
+						<label>Category</label>
+						{{ form.category }}
+					</div>
+					{% endcomment %}
+
+                        <div class="row">
+                            <div>
+                                <label>Description</label>
+                                <div class="span6-wrapper">
+                                    {{ form.description }}
+                                </div>
+                                <p class="secondary">(tell us about your cooking, the setting, yourself... anything that helps tell your story)</p>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="row">
+                <div class="span5">
+                    <fieldset class="panel"><div class="pad15">
+                        <h3>Available dates and times</h3>
+                        <div class="row">
+                            <div>
+                                <label>Pick a date</label>
+                                <div class="span3-wrapper">{{ form.valid_from }}</div>
+                            </div>
+                        </div>
+                        {% comment %}
+						{{ form.valid_until }}
+						{% endcomment %}
+                        <!-- how to enable them select specific dates as well as 'from' 'to'? -->
+                        <!-- the calendar here is just a place holder -->
+
+                        <!--iframe id='cv_if1' src='http://cdn.instantcal.com/cvir.html?id=cv_nav1&theme=RE&ntype=cv_datepickerm&file=http%3A%2F%2Fwww.instantcal.com%2Ftest.ics' allowTransparency='true' scrolling='no' frameborder=0 height=250 width=250></iframe-->
+                        <div class="row">
+                            <div>
+                                <label>Pick available times</label>
+                                <div class="span3-wrapper">{{ form.valid_until }}</div>
+                            </div>
+                        </div>
+                        <!-- here I want to include a better time widget, perhaps a slider like in Kayak. -->
+                        <!--input type="radio" name="mornings" />Mornings<br />
+                              <input type="radio" name="evenings" />Evenings<br />
+                              <input type="radio" name="all_day" />All day<br /-->
+                    </div></fieldset>
+                </div>
+                <div class="span4">
+                    <fieldset class="panel"><div class="pad15">
+                        <h3>Price and capacity</h3>
+                        <div class="row">
+                            <div>
+                                <label>Price</label>
+                                <div class="row">
+                                    <span>$</span><div class="span1-wrapper">{{ form.price }}</div><span>USD</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div>
+                                <label for="capacity">How many people can you feed?</label>
+                                <div class="span2-wrapper">{{ form.capacity }}</div>
+                            </div>
+                        </div>
+                    </div></fieldset>
+                </div>
+            </div>
+
+            <div class="row">
+                <fieldset class="panel">
+                    <div class="pad15">
+                        <h3>Tell your story visually</h3>
+                        <div class="row">
+                            <label>Upload your images</label>
+                            <div class="img-upload"><div class="img-upload-border"><input type='file' name='{{ form.photo1.name }}' id='{{ form.photo1.id }}' accept="image/*" /></div></div>
+                            <div class="img-upload"><div class="img-upload-border"><input type='file' name='{{ form.photo2.name }}' id='{{ form.photo2.id }}' accept="image/*" /></div></div>
+                            <div class="img-upload"><div class="img-upload-border"><input type='file' name='{{ form.photo3.name }}' id='{{ form.photo3.id }}' accept="image/*" /></div></div>
+                            <div class="img-upload"><div class="img-upload-border"><input type='file' name='{{ form.photo4.name }}' id='{{ form.photo4.id }}' accept="image/*" /></div></div>
+                            <div class="img-upload"><div class="img-upload-border"><input type='file' name='{{ form.photo5.name }}' id='{{ form.photo5.id }}' accept="image/*" /></div></div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <label>Link to a video</label>
+                                <div class="span6-wrapper">{{ form.video_link }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="row">
+                <fieldset class="panel">
+                    <div class="pad15">
+                        <h3>Location</h3>
+                        {{ form.use_saved_address }} Use my saved address
+                        {{ form.xp_location }}
+                        <div style='display:none;'><div id='hidden_map'></div></div>
+
+                        <p>Or enter a new address</p>
+                        <address><!-- html 5 semantic markup -->
+                            <div class="row">
+                                <div>
+                                    <label>Address</label>
+                                    <div class="span6-wrapper">{{ form.address }}</div>
+                                </div>
+                            </div>
+                            <!--label>Address <input class="space_common" type="text" name="address"></label><br />
+                               <label>City  <input class="space_common" type="text" name="city"></label><br />
+                               <label>State
+                                   <select name="state">
+                                       <option>AL</option>
+                                       <option>BM</option>
+                                       <option>CA</option>
+                                       <option>PA</option>
+                                       <option>NY</option>
+                                       <option>NH</option>
+                                       <option>MA</option>
+                                   </select>
+                               </label><br />
+                               <label>Zip-code<input class="space_common" type="text" name="zipcode"></label><br />
+                               <label>Country  <!-- eveyrthing is going to be in the U.S. for now>
+                                   <select name="country">
+                                       <option>United States</option>
+                                   </select>
+                               </label><br /> -->
+                            {% comment %}
+						{{ form.xp_location }}
+						{% endcomment %}
+                        </address><br />
+                    </div>
+                </fieldset>
+            </div>
+            <div class="row">
+                <fieldset class="panel">
+                    <div class="pad15">
+                        <h3>Give more details to help people find you</h3>
+                        <div class="row">
+                            <div>
+                                <label>Tags</label>
+                                <div class="span6-wrapper">{{ form.tags }}</div><!-- I need to learn how to do this... -->
+                            </div>
+                        </div>
+                        {% comment %}
+				{{ form.my_place.label_tag }}
+				{{ form.my_place }}
+				{{ form.delivery.label_tag }}
+				{{ form.delivery }}
+				{{ form.pick_up.label_tag }}
+				{{ form.pick_up }}
+				{% endcomment %}
+                    </div>
+                </fieldset>
+            </div>
+            {{ form.category }}
+            <div class="space30"></div>
+            <input class="btn" type="submit" value="Add listing">
         </form>
-
-    {% endblock %}
+    </div>
+    {% include "merchants/command_bar.html" %}
 {% endblock %}
+
+
 
 

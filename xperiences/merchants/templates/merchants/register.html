@@ -23,7 +23,7 @@
 			</div>
 			<label>Phone number</label>
 			<div class="input-medium">
-				{{ form.phone-number}}
+				{{ form.phone_number}}
 			</div>
 			{{ form.xp_location }}
 			<address><!-- html 5 semantic markup -->
@@ -77,13 +77,13 @@
 		<fieldset>
 			<h3>What are you offering?</h3>
 			<p class="help-text">Tell us about your services, what makes your work appealing and unique to your customers</p>
-			<textarea class="tall description" required="required" name="offering_app_description"></textarea>
+			<textarea class="tall description" required="required" name="offering">{{ form.offering.value }}</textarea>
 		</fieldset>
 
 		<fieldset>
 			<h3>Who are your customers?</h3>
 			<p class="help-text">Describe your target customers (age, charateristics, lifestyle, etc.)</p>
-			<textarea class="tall description" required="required" name="target_customers_app_description"></textarea>
+			<textarea class="tall description" required="required" name="target_customers">{{ form.target_customers.value }}</textarea>
 		</fieldset>
 		<input type="submit" class="margin-top-30" value="View listing">
 	</form>

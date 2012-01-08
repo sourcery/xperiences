@@ -40,7 +40,7 @@ class MyBaseHandler(BaseHandler):
         offset = int(kwargs.get('offset',0))
         if 'offset' in kwargs:
             del kwargs['offset']
-        return super(MyBaseHandler,self).read(request,*args,**kwargs)[offset:limit]
+        return super(MyBaseHandler,self).read(request,*args,**kwargs)[offset:offset+limit]
 
 
     def update(self, request, additions=None,update_fields=None,*args, **kwargs):
@@ -213,20 +213,33 @@ class ExperienceHandler(MyBaseHandler):
             more_args['max_distance'] = params.pop('max_distance')
 
         if lat and lng:
-            return Experience.objects.proximity_query( { 'lat' : float(lat), 'lng' : float(lng)},query=params,**more_args)[offset:limit]
+            return pagination(request,Experience.objects.proximity_query( { 'lat' : float(lat), 'lng' : float(lng)},query=params,**more_args),offset,limit)
         else:
-            return Experience.objects.raw_query(params)[offset:limit]
+            return pagination(request,Experience.objects.raw_query(params),offset,limit)
 
     @api.user_enitity_permission(field_name='merchant.user_id', id_field_name='slug_id')
     def update(self,request,*args,**kwargs):
         return super(ExperienceHandler,self).update(request, **kwargs)
+
+import math
+
+def pagination(request,queryset,offset,limit):
+    objects = queryset[offset:offset+limit]
+    count = queryset.count()
+    if count == 0:
+        pages = 0
+    else:
+        pages = max(int(math.ceil(count / limit)),1)
+    page = int(math.floor(min(offset,count-1) / limit))
+    return {'objects':objects,'meta':{'count':count,'limit':limit,'offset':offset,'pages':pages,'page':page ,'has_next':page!=pages-1,'has_previous':page!=0}}
 
 class MessageHandler(MyBaseHandler):
     allowed_methods = ('DELETE','POST')
     model = UserMessage
 
     @api.user_enitity_permission(field_name='to.user_id')
-    def delete(self, request,id=None, obj=None, *args, **kwargs):
+    def delete(self, request,*args, **kwargs):
+        obj = kwargs['obj']
         return obj.delete()
 
     @api.allow_only_authenticated()

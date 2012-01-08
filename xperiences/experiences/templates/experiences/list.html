@@ -60,12 +60,40 @@
 {% block extra_scripts %}
     <script type='text/javascript' src='{{ MEDIA_URL }}js/front_page.js'></script>
     <script>
-function render(data) {
-	var tcrw = $(".two-col-right-wide").empty();
-	for (var i = 0; i < data.length; i++) {
-		$("#test-template").tmpl(data[i]).appendTo(tcrw);
-	}
-}
+    function render(data,meta) {
+        var tcrw = $(".two-col-right-wide").empty();
+        if(meta)
+            tcrw.append(create_nav(meta));
+        for (var i = 0; i < data.length; i++) {
+            $("#test-template").tmpl(data[i]).appendTo(tcrw);
+        }
+    }
+
+    function create_nav(meta)
+    {
+        if(meta.pages <= 1)
+            return '';
+        var ul = $('<ul></ul');// $('<div class="page-nav"><ul></ul></div>');
+        if(meta.has_previous)
+            ul.append('<li to_page="' + (Number(meta.page)-1) + '">&lt;</li>');
+        for(var i=0; i<meta.pages; i++)
+        {
+            if(i==meta.page)
+                ul.append('<li class="active">' + (i+1) + '</li>');
+            else
+                ul.append('<li to_page="' + i + '">' + (i+1) + '</li>');
+        }
+        if(meta.has_next)
+            ul.append('<li to_page="' + Number(meta.page)+1 + '">&gt;</li>');
+        $('li',ul).click(function()
+        {
+            if(!$(this).has('to_page'))
+                return;
+            last_params['offset'] = Number($(this).attr('to_page'))*Number(meta.limit);
+            get_experiences(last_params);
+        });
+        return $('<div class="page-nav"></div>').append(ul);
+    }
     function search_again()
     {
         var lat = $('#lat_field').val();

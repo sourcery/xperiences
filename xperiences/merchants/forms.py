@@ -12,7 +12,7 @@ class MerchantForm(forms.ModelForm):
 
     class Meta:
         model = UserExtension
-        fields = ('name', 'address','phone_number','description','xp_location','photo')
+        fields = ('name', 'address','phone_number','description','xp_location','photo','offering','target_customers')
 
 class MerchantMessageForm(forms.ModelForm):
     class Meta:
