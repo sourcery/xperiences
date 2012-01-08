@@ -60,6 +60,10 @@ table {
 	border-spacing: 0;
 }
 
+*:focus {
+	outline: none;
+}
+
 h1, h2, h3, h4, h5, h6 {
 	font-weight: bold;
 	line-height: 1.5;
@@ -581,7 +585,7 @@ select:focus {
 	box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.6), inset 0px 1px 1px 0px rgba(255, 255, 255, 0.2);
 }
 
-input[type="submit"], .submit {
+input[type="submit"], .btn.submit {
 	font-weight: bold;
 	background-color: #9cc500;
 	background: linear-gradient(top, #9cc500, #8aa914);
@@ -635,6 +639,16 @@ input[type="submit"]:active, .submit:active {
 	background: -ms-linear-gradient(top, #5294cb, #28668e);
 	background: -moz-linear-gradient(top, #5294cb, #28668e);
 	background: -webkit-linear-gradient(top, #5294cb, #28668e);
+}
+
+.widebutton {
+	padding-top: 10px;
+	clear: both;
+	text-align: center;
+}
+
+.widebutton .btn {
+	width: 90%;
 }
 
 
