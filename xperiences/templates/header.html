@@ -1,8 +1,9 @@
 {% block header %}
 <header>
-	<a id="header-notice-bar" href="/share">
-		The more the merrier. Share this with your friends and eat to your heart's content!
-	</a>
+<a id="header-notice-bar" href="/share">
+	The more the merrier. Share this with your friends and eat to your heart's content!
+	<img id="header-notice-close" src="{{ MEDIA_URL }}/images/close.png">
+</a>
 	<div class="header-wrap span12">
 		<a id="logo" href="/"><span>naanprofit</span></a>
         {% if not user.is_authenticated %}

@@ -39,6 +39,7 @@ footer, header, hgroup, menu, nav, section {
 
 html {
 	height: 100%;
+	word-wrap: break-word;
 }
 
 ol, ul {

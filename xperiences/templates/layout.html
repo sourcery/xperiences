@@ -16,8 +16,9 @@
 <body>
 	{% block body %}{% endblock %}
 
-    <script src='https://maps-api-ssl.google.com/maps/api/js?v=3&sensor=false&libraries=places' ></script>
-   	<script src="{{ MEDIA_URL }}js/textwrap.plugin.js"></script>
+	<script src='https://maps-api-ssl.google.com/maps/api/js?v=3&sensor=false&libraries=places' ></script>
+	<script src="{{ MEDIA_URL }}js/textwrap.plugin.js"></script>
+	<script src="{{ MEDIA_URL }}js/jquery.cookie.js"></script>
    	<script src="{{ MEDIA_URL }}js/main.js"></script>
     <script src='http://www.iplocationtools.com/iplocationtools.js?key={{ IP_GEOLOCATOR_API_KEY }}' ></script>
     <script src='/static/jq.templates.js' ></script>

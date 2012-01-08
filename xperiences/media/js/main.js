@@ -5,6 +5,22 @@ var wrapperW;
 var wrapperH;
 
 $(document).ready(function() {
+	var close = $("#header-notice-close");
+	if(close.length > 0) {
+		var show = $.cookie("header_show");
+		if(show == "off") {
+		} else {
+			$("#header-notice-bar").css("display", "block");
+			close.click(function(e) {
+				e.stopPropagation();
+				$.cookie("header_show", "off");
+				$("#header-notice-bar").css("display", "none");
+			});
+		}
+
+	}
+
+	$.cookie("show_header");
 
 	var mainImg = $("#exp-main-image");
 	var thumbs = $(".exp-thumbs-img");
