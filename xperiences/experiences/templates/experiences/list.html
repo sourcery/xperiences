@@ -8,60 +8,65 @@
 {% endblock %}
 
 {% block content %}
-        <div class="command-bar-container">
-        </div>
-        <div class="two-col-left-narrow-float">
-            <div id="search-left-bar" class="panel dark">
-                <h4>Search results</h4>
-                <input type="text" class="shorter" id='keywords_field' /> near <input type="text" class="short" id="address_field" />
-                <input type='hidden' id="lat_field" name='lat' />
-                <input type='hidden' id="lng_field" name='lng' />
+	<div class="space60"></div>
+	<div class="span3 column left">
+		<div id="search-left-bar" class="panel dark font12 row">
+			<div class="pad15">
+				<h3>Search results for</h3>
+				<div class="row">
+					<input type="text" class="span2" id='keywords_field' /> 
+					<span class="item">near</span>
+				</div>
+				<div class="row">
+					<input type="text" class="span2" id="address_field" />
+				</div>
+				<input type='hidden' id="lat_field" name='lat' />
+				<input type='hidden' id="lng_field" name='lng' />
 
-                <button class="margin-top-10" onclick='search_again();' >search again</button>
-            </div>
-            <div id="map-bar" class="panel">
-                This is where the map goes
-            </div>
-            <div id="filter-bar" class="panel">
-                <h4>Filter by</h4>
-                {% for category in categories %}
-                <div><input type="checkbox" name="{{ category.id }}" checked='checked'>{{ category }}</div>
-                {% endfor %}
-            </div>
+				<div class="widebutton">
+					<button class="btn submit" onclick='search_again();' >search again</button>
+				</div>
+			</div>
+		</div>
+		<!-- <div id="map-bar" class="panel">
+			This is where the map goes
+		</div> -->
+		<div id="filter-bar" class="panel">
+			<div class="pad15">
+			<h4>Filter by</h4>
+			{% for category in categories %}
+			<div><input type="checkbox" name="{{ category.id }}" checked='checked'>{{ category }}</div>
+			{% endfor %}
+			</div>
+		</div>
+		</div>
+        <div id="search-results" class="span9 column">
         </div>
-        <div class="two-col-right-wide">
-<!--            <h2>There are 32 listings</h2> -->
-            <div class="page-nav">
-                <ul>
-                    <li>&lt;</li>
-                    <li class="active">1</li>
-                    <li>2</li> 
-                    <li>3</li> 
-                    <li>4</li> 
-                    <li>&gt;</li>
-                </ul>
-            </div>
-        </div>
-        <div class="image-grid"></div>
     </div>
 
-    <div style='display:none;'>
-        <script type='text/x_jquery_templates' id='test-template'>
-            <div class="search-result">
-                <img alt=" {% t_var title %} "{% t_if photo1 %}src="{% t_var photo1.url %}"{% t_endif %} />
-                <div class="price">${% t_var price %}</div>
-                <a title="{% t_var title %}" href="/experiences/{% t_var slug_id %}"><h4>{% t_var title %}</h4></a>
-                <a title="{% t_var merchant.name %}" href=""><div class="secondary">{% t_var merchant.name %}{% t_if merchant.city %}, {% t_var merchant.city %} {% t_var merchant.state %} {% t_endif %}</div></a>
-            </div>
-         </script>
-    </div>
+<div style='display:none;'>
+	<script type='text/x_jquery_templates' id='test-template'>
+		<div class="search-result span3 panel">
+			<div class="pad8">
+				<div class="image-wrapper">
+					<img alt=" {% t_var title %} "{% t_if photo1 %}src="{% t_var photo1.url %}"{% t_endif %} />
+				</div>
+				<div class="name"><a title="{% t_var title %}" href="/experiences/{% t_var slug_id %}">{% t_var title %}</a></div>
+			<div class="price">${% t_var price %}</div>
+			<div class="merchant">
+				<a title="{% t_var merchant.name %}" href="">{% t_var merchant.name %}{% t_if merchant.city %}, {% t_var merchant.city %} {% t_var merchant.state %} {% t_endif %}</a></div>
+		</div>
+		</div>
+	 </script>
+</div>
 {% endblock %}
 
 {% block extra_scripts %}
     <script type='text/javascript' src='{{ MEDIA_URL }}js/front_page.js'></script>
     <script>
+
     function render(data,meta) {
-        var tcrw = $(".two-col-right-wide").empty();
+        var tcrw = $("#search-results").empty();
         if(meta)
             tcrw.append(create_nav(meta));
         for (var i = 0; i < data.length; i++) {
@@ -110,8 +115,8 @@
                 categories += cb.attr('name');
             }
         });
-        if(categories == '')
-            return;
+//        if(categories == '')
+//            return;
         var params = {
           lat:lat,lng:lng,keywords:keywords,category:categories
         };

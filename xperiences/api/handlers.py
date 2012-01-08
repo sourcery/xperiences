@@ -152,6 +152,8 @@ class MerchantHandler(MyBaseHandler):
     model = UserExtension
     fields = ('id','name', 'description','user','photo')
 
+DEFAULT_EXPERIENCES_PER_PAGE = 10
+
 class ExperienceHandler(MyBaseHandler):
     allowed_methods = ('GET','PUT',)
     model = Experience
@@ -161,7 +163,10 @@ class ExperienceHandler(MyBaseHandler):
 
     def read(self,request,*args,**kwargs):
         params = dict([ (k,request.GET[k].strip()) for k in request.GET])
-        params['limit'] = params.get('limit',10)
+        params['limit'] = params.get('limit',DEFAULT_EXPERIENCES_PER_PAGE)
+
+        if params.get('category') == '':
+            return []
 
         filter_params = {}
         for key in params:
@@ -229,7 +234,7 @@ def pagination(request,queryset,offset,limit):
     if count == 0:
         pages = 0
     else:
-        pages = max(int(math.ceil(count / limit)),1)
+        pages = max(int(math.ceil(float(count) / limit)),1)
     page = int(math.floor(min(offset,count-1) / limit))
     return {'objects':objects,'meta':{'count':count,'limit':limit,'offset':offset,'pages':pages,'page':page ,'has_next':page!=pages-1,'has_previous':page!=0}}
 
@@ -249,3 +254,19 @@ class MessageHandler(MyBaseHandler):
         to = UserExtension.objects.get(id=to__id)
         return super(MessageHandler,self).create(request,{'sender':request.user_extension,'to':to},**params)
 
+nauticalMilePerLat = 60.00721
+nauticalMilePerLongitude = 60.10793
+rad = math.pi / 180.0
+milesPerNauticalMile = 1.15078
+MILES_TO_KM = 1.609344
+
+def calculate_distance(lat1,lon1, lat2,lon2):
+    """
+    Caclulate distance between two lat lons in NM
+    """
+    if not lat1 or not lat2 or not lon1 or not lon2:
+        return 10000.0
+    yDistance = (lat2 - lat1) * nauticalMilePerLat
+    xDistance = (math.cos(lat1 * rad) + math.cos(lat2 * rad)) * (lon2 - lon1) * (nauticalMilePerLongitude / 2)
+    distance = math.sqrt( yDistance**2 + xDistance**2 )
+    return distance * milesPerNauticalMile * MILES_TO_KM

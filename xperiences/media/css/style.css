@@ -16,7 +16,8 @@ a {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: cronos-pro;
+/* 	font-family: cronos-pro; */
+	font-weight: bold;
 }
 
 .content-body {
@@ -31,7 +32,9 @@ h1, h2, h3, h4, h5, h6 {
 	padding: 10px 0 50px 0;
 }
 
-#command-bar {
+#command-bar .panel {
+/*	padding: 45px 0 80px; */
+	padding: 10px 0;
 }
 
 #command-bar .panel h3 {
@@ -39,17 +42,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #command-bar ul {
-	border-top: 1px solid #dfdfdf;
-	border-bottom: 1px solid #efefef;
 	margin: 0;
+	border-bottom: 1px solid #d9d9d9;
 }
 
 #command-bar ul li a {
 	display: block;
 	padding: 8px 15px;
-	border-top: 1px solid #efefef;
-	border-bottom: 1px solid #dfdfdf;
 	color :#7a7a7a;
+	border-top: 1px solid #d9d9d9;
+	border-collapse: collapse;
 }
 
 #command-bar ul li:hover {
@@ -80,15 +82,14 @@ header {
 	background: #ffaa00;
 	text-align: center;
 	padding: 8px;
-	font-size: 14pt;
+	font-size: 12pt;
 	box-shadow: inset 0px -2px 8px -2px rgba(0, 0, 0, 0.3);
 	z-index: 101;
 }
 
 header .header-wrap {
-	width: 960px;
 	margin: 0 auto;
-	padding: 8px 0;
+	padding: 8px 0px 8px 20px;
 }
 
 header .header-wrap::after {
@@ -173,35 +174,59 @@ footer a:hover {
 /*	FORMS AND INPUTS
 /*------------------------------------------------------------------------------*/
 
-
-.search-result {
-	width: 320px;
-	display: inline-block;
-	margin-right: 5px;
+#address_field {
+	width: 180px;
 }
 
-.search-result img {
-	width: 320px;
+#search-left-bar {
+
+}
+
+.search-result {
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	height: 200px;
+}
+
+.search-result .image-wrapper {
+	width: 205px;
+	height: 140px;
+	overflow: hidden;
+}
+
+.search-result .image-wrapper img {
+	width: 215px;
+	margin-left: -5px;
 	border: #E0E0E0;
 	margin: 0 auto;
 }
 
-.search-result h4 {
-	font-size: 14pt;
+.search-result .name {
+	font-size: 12pt;
+	margin-top: 5px;
 	margin-bottom: 2px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #FFAA00;
 }
 
 .search-result .price {
-	width: 34px;  /*This is not enough width to 3 digit numbers*/
-	height: 32px;
-	padding-top: 2px;
-	border-radius: 17px;
-	font-size: 14pt;
-	color: white;
-	text-align: center;
-	background: #0a9aaf;
+	text-align: right;
 	float: right;
-	margin-top: 10px;
+}
+
+.search-result .merchant {
+	width: 70%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #7a7a7a;
+}
+
+.search-result .merchant a {
+	color: #7a7a7a;
 }
 
 .page-nav ul {
@@ -247,8 +272,8 @@ footer a:hover {
 /*	EXPERIENCE PROFILE
 /*------------------------------------------------------------------------------*/
 
-
-#action-bar {
+.title {
+	font-family: cronos-pro;
 }
 
 #action-bar .price {
@@ -327,14 +352,27 @@ footer a:hover {
 #merchant-image {
 	float: left;
 	width: 100px;
+	overflow: hidden;
 }
 
-#merchant-address{
-	float: left;
-	width: 120px;
-	margin-left: 40px;
+#merchant-image img {
+	width: 100px;
 }
 
+#merchant-details {
+	margin-left: 120px;
+}
+
+#merchant-contact {
+	margin: 0 auto 0;
+	padding: 10px 0 0;
+	clear: both;
+	text-align: center;
+}
+
+#merchant-contact .btn {
+	width: 70%;
+}
 
 .share-buttons {
 	margin: 0 0 10px 0;
@@ -352,19 +390,15 @@ footer a:hover {
 	padding: 15px 0px; 
 	border-top: 1px solid #D9D9D9;
 }
-
-#merchant-image .image-wrapper {
-	width:100px;
-	height:100px;
-	position:relative;
-}
-
 #seller-info .btn btn-blue font14 {
 	float: left;
 	margin-bottom: 10px;
 }
 
 
+#date-price-row .panel {
+	height: 280px;
+}
 
 
 
@@ -400,7 +434,7 @@ footer a:hover {
 	border-bottom: 1px solid #DFDFDF;
 	width: 620px;
 	background: white;
-	margin-bottom: 30px;
+	margin: -4px 0 10px;
 }
 
 .bottom-pad {
@@ -430,7 +464,9 @@ footer a:hover {
 	width: 70px;
 	height: 70px;
 	cursor: pointer;
-	border: 5px solid white;
+	border-top: 5px solid white;
+	border-bottom: 5px solid white;
+	border-left: 5px solid white;
 }
 
 .primary #exp-thumbs ul {
@@ -449,33 +485,39 @@ div.activate {
 	float: right;
 }
 
-
-ul.listings li.listing-item {
+#listings {
+	width: 100%;
 }
 
-.listing {
-	display: block;
-	padding: 5px;
-	border-top: 1px solid #dfdfdf;
+#listings tr {
+	border-top: 1px solid #d9d9d9;
 }
 
-.listing-header .listing-value, .listing-header .listing-date {
+#listings th, #listings td {
+	text-align: left;
+	padding: 8px 4px 4px 7px;
+}
+
+#listings th {
 	font-weight: bold;
 }
 
-.listing-date {
-	margin-left: 10px;
-	font-size: 12pt;
+.listing-image {
+	width: 40px;
+	height: 40px;
+	overflow: hidden;
+	float: left;
+	margin-right: 10px;
 }
 
-.listing-value {
-	width: 150px;
-	float: right;
-	font-size: 11pt;
+.listing-image img {
+	width: 50px;
 }
 
-.listing-actions button {
-	margin-left: 10px;
+#listings .btn {
+	padding: 5px;
+	font-size: 8pt;
+	font-weight: bold;
 }
 
 /*------------------------------------------------------------------------------*/
@@ -582,36 +624,30 @@ a.message-link {
 }
 
 /* Login */
+
 #login {
-	height: 400px;
-	font-size: 20pt;
 	text-align: center;
-	margin: 0 auto;
-	background: white url(../images/bg_table.jpg) no-repeat center bottom;
 }
 
-#login-actions {
-	position: relative;
-	top: 280px;
+#login-img {
+	height: 180px;
+	background: url(../images/login_bg.jpg);
 }
 
-#login-actions .fb-connect::after {
-	content: "";
-	display: block;
-	position: absolute;
-	top: 42px;
-	margin-left: -53px;
-	width: 260px;
-	height: 0px;
-	box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.4);
+#login .title {
+	font-size: 150%;
+}
+
+.login-actions {
+	text-align:center;
 }
 
 .fb-connect {
 	display: inline-block;
 	border: 1px solid #355891;
-	font-size: 17pt;
+	font-size: 15pt;
 	border-radius: 3px;
-	padding: 5px 10px 5px 50px;
+	padding: 5px 30px 5px 50px;
 	color: white;
 	text-decoration: none;
 	background: #617fb3 url(../images/fb-logo.png) no-repeat left;
@@ -623,7 +659,9 @@ a.message-link {
 	text-decoration: none;
 }
 
-
+#logout {
+	text-align: center;
+}
 
 
 /*------------------------------------------------------------------------------*/
@@ -784,6 +822,5 @@ line-height: 1.5em;
 
 .auto_scale_photo
 {
-    width:0px;
-    height:0px;
+    display: none;
 }

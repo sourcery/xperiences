@@ -6,10 +6,11 @@ from djangotoolbox.fields import EmbeddedModelField, ListField
 from backend.widgets import PointWidgetWithAddressField, RichTextEditorWidget
 from sorl.thumbnail import ImageField
 
+DEFAULT_MAX_DISTANCE = 1500
 
 class XPDBManager(MongoDBManager):
     def proximity_query(self, location, **kwargs):
-        max_distance = float(kwargs.get('max_distance', 50))
+        max_distance = float(kwargs.get('max_distance', DEFAULT_MAX_DISTANCE/10))
         field_name = kwargs.get('field', 'xp_location')
         lat = location['lat']
         lng = location['lng']

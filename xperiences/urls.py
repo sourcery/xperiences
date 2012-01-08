@@ -29,6 +29,7 @@ urlpatterns = patterns('',
     (r'^facebook/','backend.views.invite_callback'),
     (r'^start', direct_to_template, {'template': 'start.html'}),
     (r'^contact', direct_to_template, {'template': 'contact.html'}),
+    (r'^user', 'backend.views.user_inbox'),
     (r'^$', include('experiences.urls')),
 
 ) + static(settings.MEDIA_URL, document_root=settings.STATIC_DOC_ROOT)

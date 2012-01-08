@@ -3,12 +3,12 @@
 	<a id="header-notice-bar" href="/share">
 		The more the merrier. Share this with your friends and eat to your heart's content!
 	</a>
-	<div class="header-wrap">
+	<div class="header-wrap span12">
 		<a id="logo" href="/"><span>naanprofit</span></a>
         {% if not user.is_authenticated %}
-		<a id="login-btn" class="btn btn-blue" href="/accounts/login/">Login</a>
+		<a id="login-btn" class="btn blue" href="/accounts/login/">Login</a>
         {% else %}
-        <a id="login-btn" class="btn btn-blue" href="/accounts/logout/">Logout</a>
+        <a id="login-btn" class="btn blue" href="/user">{{ request.user_extension.name }}</a>
         {% endif %}
 		<a id="service-list" class="btn" href="/experiences/add_experience/">Start selling</a>
 	</div>

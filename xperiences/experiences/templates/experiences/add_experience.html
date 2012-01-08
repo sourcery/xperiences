@@ -3,14 +3,16 @@
 {% comment %}
 {{ form.media }}
 {% endcomment %}
-<script src="{{MEDIA_URL}}js/jquery-ui-1.8.16.custom.min.js"></script>
+<!-- <script src="{{MEDIA_URL}}js/jquery-ui-1.8.16.custom.min.js"></script>
 <script src="{{MEDIA_URL}}js/jquery-ui-timepicker-addon.js"></script>
-<link rel="stylesheet" href="{{MEDIA_URL}}css/ui-lightness/jquery-ui-1.8.16.custom.css" />
+<link rel="stylesheet" href="{{MEDIA_URL}}css/ui-lightness/jquery-ui-1.8.16.custom.css" />-->
+<script type="text/javascript" src="{{MEDIA_URL}}/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}/ckeditor/adapters/jquery.js"></script>
 <script>
 	$(document).ready(function(e){
-		$(".datepicker").datetimepicker({
+		/*		$(".datepicker").datetimepicker({
 			stepMinute: 15
-		});
+		});*/
 
 		$(".img-upload input").change(function(e){
 			var $this = $(e.currentTarget);
@@ -25,15 +27,13 @@
 	});
 </script>
     <!--link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" /-->
-    <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css" />
+    <!-- link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css" /-->
     <!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="/static/admin/css/ie.css" /><![endif]-->
 
 {% endblock %}
 {% block extra_scripts %}
 
     <script type="text/javascript">window.__admin_media_prefix__ = "/static/admin/";</script>
-
-    <script type="text/javascript" src="/static/admin/js/jquery.min.js"></script>
     <script type="text/javascript" >
         function gettext(msgid) {
             return msgid;
@@ -113,7 +113,7 @@
 			</fieldset>
 			</div>
 	
-			<div class="row">
+			<div id="date-price-row" class="row">
 				<div class="span5">
 					<fieldset class="panel"><div class="pad15">
 							<h3>Available dates and times</h3>
@@ -149,7 +149,7 @@
 							<div>
 								<label>Price</label>
 								<div class="row">
-									<span>$</span><div class="span1-wrapper">{{ form.price }}</div><span>USD</span>
+									<span class="item font12">$</span><div class="span1-wrapper">{{ form.price }}</div><span class="item font12">USD</span>
 								</div>
 							</div>
 						</div>
@@ -238,6 +238,12 @@
 						<div class="span6-wrapper">{{ form.tags }}</div><!-- I need to learn how to do this... -->
 					</div>
 				</div>
+				<div class="row">
+					<div>
+						<label>Category</label>
+						<div class="span4-wrapper">{{ form.category }}</div>
+					</div>
+				</div>
 				{% comment %}
 				{{ form.my_place.label_tag }}
 				{{ form.my_place }}
@@ -249,7 +255,6 @@
 				</div>
 			</fieldset>
 		</div>
-            {{ form.category }}
 		<div class="space30"></div>
 		<input class="btn" type="submit" value="Add listing">
 		</form>

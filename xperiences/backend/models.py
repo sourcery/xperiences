@@ -5,7 +5,7 @@ from backend.fields import  RichTextField, XPImageField, GeoModel, TextSearchMod
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import signals
-
+from django.contrib.sessions.models import Session
 
 
 class UserLog(models.Model):
@@ -76,6 +76,10 @@ class UserExtension(GeoModel,TextSearchModel):
         db_table = 'merchant'
 
 
+    def delete(self, using=None):
+        raise Exception("Can't delete users")
+
+
     @staticmethod
     def get_merchant(**kwargs):
         try:
@@ -118,6 +122,8 @@ class UserExtension(GeoModel,TextSearchModel):
 
     def __unicode__(self):  # this is for the presentation in the admin site
         return self.name
+
+
 
 class UserMessage(TextSearchModel):
     to = models.ForeignKey(UserExtension, related_name='merchant_user')

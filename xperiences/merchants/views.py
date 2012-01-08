@@ -45,15 +45,22 @@ def register(request):
         return render_to_response(template_name, {'form':form, 'status': status, 'merchant':merchant}, context_instance=RequestContext(request))
 
 
+
+@login_required()
+def waiting_approval(request):
+    return render_to_response('merchants/waiting_approval.html', {'merchant':request.user_extension}, context_instance=RequestContext(request))
+
+
 @merchant_required()
 def experiences(request):
     if request.method == 'GET':
         return render_to_response('merchants/experiences.html', {'merchant':request.merchant}, context_instance=RequestContext(request))
 
+
 @merchant_required()
 def merchant_inbox(request):
     comments = UserMessage.objects.filter(to=request.merchant).order_by("-time")
-    return render_to_response('merchants/inbox.html', {'comments' : comments},context_instance=RequestContext(request))
+    return render_to_response('inbox.html', {'comments' : comments, 'command_bar': 'merchants/command_bar.html'}, context_instance=RequestContext(request))
 
 
 

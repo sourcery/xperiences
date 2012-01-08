@@ -23,7 +23,7 @@
                                                     <img class="auto_scale_photo" alt="{{ merchant.name }}" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
                                                 {% endthumbnail %}
                                             {% else %}
-                                                <img style='display:none;' alt="{{ merchant.name }}" src="http://graph.facebook.com/{{ merchant.FB_ID }}/picture/?type=large">
+                                                <img class='auto_scale_photo' alt="{{ merchant.name }}" src="http://graph.facebook.com/{{ merchant.FB_ID }}/picture/?type=large">
                                             {% endif %}
                                         </div>
                                         {{ form.photo }}
@@ -55,7 +55,7 @@
 			</div>
         </form>
 		</fieldset>
-		<fieldset class="panel row">
+		<!--fieldset class="panel row">
 			<div class="pad15">
 				<h2>Completed earnings</h2>
 			</div>
@@ -77,7 +77,7 @@
 					<div class="listing-date">27/12/2012</div>
 				</li>
 			</ul>
-		</fieldset>
+		</fieldset-->
 		<div class="clear"></div>
 	</div>
 	<div id="experiences"></div>

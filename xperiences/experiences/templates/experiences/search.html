@@ -65,24 +65,22 @@
     </script>
 {% endblock %}
 
+{% block wrapper %}
+	<!--<h1>hits: {{ hits }}</h1>-->
+	{% block content %}
+		<form method='get'>
+			<input id='search_field' type='text' name='keywords' value='' />
+			<input type='hidden' name='lat' id='lat_field' />
+			<input type='hidden' name='lng' id='lng_field' />
+			<input type='submit' value='Search' />
+		</form>
 
-
-    {% block wrapper %}
-        <!--<h1>hits: {{ hits }}</h1>-->
-        {% block content %}
-            <form method='get'>
-                <input id='search_field' type='text' name='keywords' value='' />
-                <input type='hidden' name='lat' id='lat_field' />
-                <input type='hidden' name='lng' id='lng_field' />
-                <input type='submit' value='Search' />
-            </form>
-
-            <div class="image-grid">
-                <ul class="image-gallery">
-                </ul>
-            </div><!-- end image-grid div -->
-        {% endblock %}<!-- end content block -->
-    {% endblock %}<!-- end wrapper block
+		<div class="image-grid">
+			<ul class="image-gallery">
+			</ul>
+		</div><!-- end image-grid div -->
+	{% endblock %}<!-- end content block -->
+{% endblock %}<!-- end wrapper block
 
 
     {% block hidden_templates %}

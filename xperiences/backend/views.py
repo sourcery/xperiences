@@ -9,7 +9,7 @@ from django.shortcuts import render_to_response, redirect
 from django.template.context import RequestContext
 from backend.management.commands.ensure_geo_fields import ensure_geo_fields
 from django.http import HttpResponse
-from backend.models import UserExtension, UserInvite
+from backend.models import UserExtension, UserInvite, UserMessage
 import settings
 from socialauth import facebook
 
@@ -71,19 +71,21 @@ def preconfigured_merchant(request):
             context = {'form_user' : form_user, 'form_user_extension' : form_user_extension }
             return render_to_response('preconfigured_merchant_form.html', context_instance=RequestContext(request, context))
 
+
+
 @login_required()
 def email_referral(request):
-    context = {}
+    message = request.POST.get('message', 'Check out this cool website!\n' + settings.BASE_URL + '?username=' + request.user_extension.name)
+    context = {'message': message}
     if request.method == 'POST':
         to = request.POST['to']
         to = to.strip().split(',')
         subject = '%s want\'s to share with you this cool site' % request.user.get_full_name()
-        message = request.POST['message']
-        message += '\n' + settings.BASE_URL
-        message += '?username=' + request.user.username
-        send_mail(subject,message,settings.EMAIL_HOST_USER,to)
+        send_mail(subject, message, settings.EMAIL_HOST_USER, to)
         context['sent'] = True
-    return render_to_response('email_referral.html',context_instance=RequestContext(request,context))
+    return render_to_response('email_referral.html', context_instance=RequestContext(request, context))
+
+
 
 def share(request):
     link = settings.BASE_URL
@@ -98,6 +100,8 @@ def share(request):
             i += 1
     return render_to_response('share.html',context_instance=RequestContext(request,{'link':link}))
 
+
+
 def invite(request):
     message = 'Check out this cool site'
     url = 'https://www.facebook.com/dialog/apprequests?'
@@ -110,10 +114,13 @@ def invite(request):
     return redirect(url + urllib.urlencode(params))
 
 
+
 def redirect_top(request,next='/'):
     if next == '':
         next = '/'
     return HttpResponse('<script type="text/javascript" >    window.top.location.href = "%s";    </script>' % next)
+
+
 
 def invite_callback(request):
 #    if 'request_ids' in request.GET:
@@ -134,3 +141,11 @@ def invite_callback(request):
 #                return redirect_top(request,settings.HTTP_BASE_URL)
 #    else:
     return redirect_top(request,settings.HTTP_BASE_URL)
+
+
+
+@login_required()
+def user_inbox(request):
+    command_bar = 'merchants/command_bar.html' if request.user_extension.is_merchant else 'user_command_bar.html'
+    comments = UserMessage.objects.filter(to=request.user_extension).order_by("-time")
+    return render_to_response('inbox.html', {'comments' : comments, 'command_bar': command_bar}, context_instance=RequestContext(request))
