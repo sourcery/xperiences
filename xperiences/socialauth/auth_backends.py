@@ -296,15 +296,8 @@ class FacebookBackend:
                 groups = {}
             ext.groups = groups
 
-            if request.session.get('is_merchant', False):
-                ext.is_merchant = True
-
             ext.save()
 
-
-        if request.session.get('is_merchant', False) and not ext.is_merchant:
-            ext.is_merchant = True
-            ext.save()
         request.user_extension = ext
         return ext.user
 

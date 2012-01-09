@@ -33,8 +33,9 @@ def merchant_required(login_url=None, redirect_field_name=REDIRECT_FIELD_NAME):
         @wraps(view_func, assigned=available_attrs(view_func))
         def _wrapped_view(request, *args, **kwargs):
             path = request.build_absolute_uri()
-            if getattr(request, 'user_extension', None) != None:
-                if not request.user_extension.is_merchant:
+            ext = getattr(request, 'user_extension', None)
+            if ext:
+                if not (ext.is_merchant and ext.description):
                     # If the login url is the same scheme and net location then just
                     # use the path as the "next" url.
                     login_scheme, login_netloc = urlparse.urlparse(login_url or
@@ -44,7 +45,7 @@ def merchant_required(login_url=None, redirect_field_name=REDIRECT_FIELD_NAME):
                         (not login_netloc or login_netloc == current_netloc)):
                         path = request.get_full_path()
                     return redirect_to_login(path,'/merchants/register/', redirect_field_name)
-                if not request.user_extension.is_approved:
+                if not ext.is_approved:
                     return redirect_to_login(path, '/merchants/waiting_approval', redirect_field_name)
                 else:
                     return view_func(request, *args, **kwargs)
