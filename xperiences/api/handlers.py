@@ -1,23 +1,13 @@
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+import math
 from django.db import models
 from backend.models import UserExtension, UserMessage
 from experiences.models import Experience
-
-__author__ = 'ishai'
-
-from datetime import timedelta, datetime
-import threading
-from piston.emitters import Emitter, JSONEmitter
-from django.db.models.base import Model
-from piston.resource import UploadRequestHandler
-from piston.utils import rc, throttle
-import logging
+from datetime import datetime
+from piston.emitters import Emitter
+from piston.utils import rc
 from piston.handler import BaseHandler
-from backend import models as my_models
 import api
 from pymongo.objectid import ObjectId
-import re
 
 
 Emitter.register('json', api.EmpeericJSONEmitter, 'application/json; charset=utf-8')
@@ -143,17 +133,15 @@ class MyBaseHandler(BaseHandler):
         else:
             return None
 
-class UserHandler(MyBaseHandler):
-    model = User
-    fields = ('id','first_name','last_name','full_name','short_name','email')
+
 
 class MerchantHandler(MyBaseHandler):
-
     model = UserExtension
-    fields = ('id','name', 'description','user','photo')
+    fields = ('id','name', 'description', 'photo')
+
+
 
 DEFAULT_EXPERIENCES_PER_PAGE = 10
-
 class ExperienceHandler(MyBaseHandler):
     allowed_methods = ('GET','PUT',)
     model = Experience
@@ -218,25 +206,27 @@ class ExperienceHandler(MyBaseHandler):
             more_args['max_distance'] = params.pop('max_distance')
 
         if lat and lng:
-            return pagination(request,Experience.objects.proximity_query( { 'lat' : float(lat), 'lng' : float(lng)},query=params,**more_args),offset,limit)
+            return pagination(request, Experience.objects.proximity_query( { 'lat' : float(lat), 'lng' : float(lng)},query=params,**more_args),offset,limit)
         else:
-            return pagination(request,Experience.objects.raw_query(params),offset,limit)
+            return pagination(request, Experience.objects.raw_query(params),offset,limit)
 
     @api.user_enitity_permission(field_name='merchant.user_id', id_field_name='slug_id')
     def update(self,request,*args,**kwargs):
         return super(ExperienceHandler,self).update(request, **kwargs)
 
-import math
 
-def pagination(request,queryset,offset,limit):
+
+def pagination(_, queryset,offset,limit):
     objects = queryset[offset:offset+limit]
     count = queryset.count()
-    if count == 0:
+    if not count:
         pages = 0
     else:
         pages = max(int(math.ceil(float(count) / limit)),1)
     page = int(math.floor(min(offset,count-1) / limit))
     return {'objects':objects,'meta':{'count':count,'limit':limit,'offset':offset,'pages':pages,'page':page ,'has_next':page!=pages-1,'has_previous':page!=0}}
+
+
 
 class MessageHandler(MyBaseHandler):
     allowed_methods = ('DELETE','POST')
