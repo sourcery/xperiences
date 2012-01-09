@@ -89,6 +89,8 @@ function send_message_dialog(merchant_id)
 {
      open_dialog({ template: 'send_message_template', submit:function(dialog){
          var dict = read_input_params(dialog);
+         if(dict.title == '' || dict.message == '')
+            return false;
          dict['to__id'] = merchant_id;
          var on_complete = function(response) {
              $.get('/accounts/facebook_login/done/', response.authResponse, function()
@@ -105,7 +107,6 @@ function send_message_dialog(merchant_id)
             });
          };
          FB.login(on_complete, {'scope' : _FB_SCOPE });
-         return false;
      }});
 }
 function read_input_params(elm)
@@ -164,7 +165,7 @@ function open_dialog(params)
         if(params.load)
             params.load(dialog);
     });
-    $('.dialog_close', dialog).click( on_cancel );
+    $('.dialog_cancel', dialog).click( on_cancel );
     $('.dialog_submit', dialog).click(function()
     {
         if(params.submit)

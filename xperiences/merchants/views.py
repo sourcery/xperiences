@@ -71,6 +71,7 @@ def account(request):
         form = MerchantForm(request.POST,request.FILES, instance=merchant)
         if form.is_valid():
             form.save()
+            form = MerchantForm(instance=merchant)
             return render_to_response('merchants/account.html', {'form':form,'merchant':merchant}, context_instance=RequestContext(request))
         else:
             errors = form.errors

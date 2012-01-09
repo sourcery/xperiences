@@ -51,7 +51,7 @@ class UserExtension(GeoModel,TextSearchModel):
     referred_by = models.ForeignKey(User, null=True, blank=True, related_name='referred_by')
 
     name = models.CharField(max_length=50)
-    description = RichTextField(default='', blank=True)
+    description = RichTextField(default='',blank=False)
     phone_number = models.CharField(max_length=15, default='', blank=True)
     website = models.CharField(max_length=100, default='', blank=True)
 
