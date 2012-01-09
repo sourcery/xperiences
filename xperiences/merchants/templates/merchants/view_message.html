@@ -2,7 +2,7 @@
 {% block content %}
 <div class="space60"></div>
 <div id="message-read" class="column span9">
-	<h1 class="title">Hello w{{ message.title}}</h1>
+	<h1 class="title">{{ message.title}}</h1>
 	<div class="panel pad15">
 		{% if not status or status != 'ok' %}
 		{{ status }}

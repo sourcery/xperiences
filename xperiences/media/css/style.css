@@ -74,6 +74,8 @@ header {
 	-webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.5);
 	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.5);
 	background: #2D2218 url(../images/header_background.png);
+	color: white;
+	font-size: 11pt;
 }
 
 #header-notice-bar {
@@ -96,7 +98,7 @@ header {
 
 header .header-wrap {
 	margin: 0 auto;
-	padding: 8px 0px 8px 20px;
+/*	padding: 8px 0px 8px 20px;*/
 }
 
 header .header-wrap::after {
@@ -118,6 +120,7 @@ header .bottom-border {
 	background: url(../images/logo.png);
 	width: 118px;
 	height: 33px;
+	margin: 5px 0 0;
 }
 
 #logo span {
@@ -131,14 +134,16 @@ header .bottom-border {
 	background: -o-linear-gradient(top, #FFAA00, #ea9500);
 	background: -webkit-linear-gradient(top, #FFAA00, #ea9500);
 	background: -ms-linear-gradient(top, #FFAA00, #ea9500);
-	float: right;
 	color: #2D2218;
 	border: 1px solid #ea9500;
 	text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(255, 255, 255, 0.2);
+	float: right;
+	padding: 15px 10px 10px;
 }
 
 #login-btn {
 	float: right;
+	margin: 15px 10px 0;
 }
 
 /*------------------------------------------------------------------------------*/

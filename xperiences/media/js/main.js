@@ -8,8 +8,7 @@ $(document).ready(function() {
 	var close = $("#header-notice-close");
 	if(close.length > 0) {
 		var show = $.cookie("header_show");
-		if(show == "off") {
-		} else {
+		if(show != "off") {
 			$("#header-notice-bar").css("display", "block");
 			close.click(function(e) {
 				e.stopPropagation();
@@ -48,20 +47,20 @@ $(document).ready(function() {
 			first.remove();
 			first.css({
 				"left": (thumbs.length - 1) * thumbW
-			})
+			});
 			var w = thumbW;
 			thumbswrapper.append(first);
 			thumbs.each(function(index, el) {
 				$(el).animate({
 					"left": "-=" + thumbW
-				})
+				});
 			});
 			setMainImage(second.prop("src"));
 		}, ANIMATE_INTERVAL);
 
 		thumbs.live("click", function(e) {
 			setImageToMain($(e.currentTarget));
-		})
+		});
 
 		setMainImage(thumbs.first().prop("src"));
 	}

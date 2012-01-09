@@ -6,12 +6,15 @@
 </a>
 	<div class="header-wrap span12">
 		<a id="logo" href="/"><span>naanprofit</span></a>
+		<a id="service-list" href="/experiences/add_experience/">Start Selling!</a>
         {% if not user.is_authenticated %}
-		<a id="login-btn" class="btn blue" href="/accounts/login/">Login</a>
+		<a id="login-btn" href="/accounts/login/">Login</a>
         {% else %}
-        <a id="login-btn" class="btn blue" href="/user">{{ request.user_extension.name }}</a>
+		<div id="login-btn">
+			Welcome, <a href="/user">{{ request.user_extension.name }}</a>!
+			<a href="/accounts/logout">Sign Out</a>
+		</div>
         {% endif %}
-		<a id="service-list" class="btn" href="/experiences/add_experience/">Start selling</a>
 	</div>
 	<div class="bottom-border"></div>
 </header>
