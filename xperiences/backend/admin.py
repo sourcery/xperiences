@@ -85,6 +85,15 @@ class UserExtensionAdmin(ButtonableModelAdmin):
     actions = merchant_actions
     list_filter = ('is_merchant', 'is_approved','is_deleted')
 
+#    def has_delete_permission(self, request, obj=None):
+#        return False
+
+    def get_actions(self, request):
+        actions = super(UserExtensionAdmin, self).get_actions(request)
+        if 'delete_selected' in actions:
+            del actions['delete_selected']
+        return actions
+
     def approve(self, obj):
         utils.approve_merchant(obj)
     approve.short_description = 'Approve (Send Email)'
