@@ -2,7 +2,7 @@
 {% block content %}
 <div class="space60"></div>
 <div id="message-read" class="column span9">
-	<h1 class="title">{{ message.title}}</h1>
+	<h1 class="title">Hello w{{ message.title}}</h1>
 	<div class="panel pad15">
 		{% if not status or status != 'ok' %}
 		{{ status }}
@@ -21,21 +21,21 @@
 					</div>
 				</div>
 				<div class="clear"></div>
-				{% endif %}
-				<div class="message-body">
-					{{ message.message }}
-				</div>
-				<div class="space30"></div>
-				<form method='post'>
-					<textarea rows="10" cols="50" name='reply'></textarea>
-					<div class="space10"></div>
-					<input class="btn" type='submit' value='Reply' />
-				</form>
-				{% else %}
-				Sent
-				{% endif %}
 			</div>
+			{% endif %}
+			<div class="message-body">
+				{{ message.message }}
+			</div>
+			<div class="space30"></div>
+			<form method='post'>
+				<textarea rows="10" cols="50" name='reply'></textarea>
+				<div class="space10"></div>
+				<input class="btn" type='submit' value='Reply' />
+			</form>
 		</div>
+		{% else %}
+		Message Sent!
+		{% endif %}
 	</div>
 </div>
 {% include "merchants/command_bar.html" %}
