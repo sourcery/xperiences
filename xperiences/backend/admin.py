@@ -1,18 +1,12 @@
+import sorl
+from django.contrib import admin
 from backend import utils
-from backend.models import UserMessage
+from backend.models import UserMessage, UserExtension, UserLog, SiteConfiguration
+from django.contrib.admin.sites import AdminSite
 from django.http import HttpResponseRedirect
 from django.utils.functional import update_wrapper
-from models import UserExtension, UserLog, SiteConfiguration
-from django.contrib import admin
+from experiences.models import Experience, Category
 
-
-admin.site.register(UserLog)
-admin.site.register(SiteConfiguration)
-import sorl
-
-admin.site.register(sorl.thumbnail.models.KVStore)
-
-admin.site.register(UserMessage)
 
 class ButtonableModelAdmin(admin.ModelAdmin):
     """
@@ -50,23 +44,12 @@ class ButtonableModelAdmin(admin.ModelAdmin):
         extra_context['extra_buttons']=[{'func_name':b.func_name, 'short_description':b.short_description} for b in self.buttons]
         return super(ButtonableModelAdmin, self).change_view(request, object_id, extra_context)
 
-#    def __call__(self, request, url):
-#        if url is not None:
-#            import re
-#            res=re.match('(.*/)?(?P<id>\d+)/(?P<command>.*)', url)
-#            if res:
-#                if res.group('command') in [b.func_name for b in self.buttons]:
-#                    obj = self.model._default_manager.get(pk=res.group('id'))
-#                    getattr(self, res.group('command'))(obj)
-#                    return HttpResponseRedirect(request.META['HTTP_REFERER'])
-#
-#        return super(ButtonableModelAdmin, self).__call__(request, url)
 
     def button_view(self, request, object_id,button=None,**kwargs):
         obj = self.model._default_manager.get(pk=object_id)
         button(self,obj)
         return HttpResponseRedirect(request.META['HTTP_REFERER'])
-#        return self.self.change_view(self,request,object_id,**kwargs)
+
 
     def get_urls(self):
         from django.conf.urls.defaults import patterns, url
@@ -82,10 +65,10 @@ class ButtonableModelAdmin(admin.ModelAdmin):
             urlpatterns += patterns('',
                 url(r'^(.+)/' + button.func_name + '/$',wrap(button),name='%s_%s_' % info  + button.func_name)
                 ,)
-#        urls = tuple([url(r'^(.+)/' + button.func_name + '/$',wrap(button),name='%s_%s_' % info  + button.func_name) for button in self.buttons])
-#        urlpatterns = patterns('',urls)
         urlpatterns += super(ButtonableModelAdmin,self).get_urls()
         return urlpatterns
+
+
 
 def approve_merchant(modeladmin, request, queryset):
     for merchant in queryset:
@@ -94,6 +77,7 @@ def approve_merchant(modeladmin, request, queryset):
 
 
 merchant_actions = [approve_merchant]
+
 
 
 class UserExtensionAdmin(ButtonableModelAdmin):
@@ -106,4 +90,46 @@ class UserExtensionAdmin(ButtonableModelAdmin):
     buttons = [approve]
 
 
-admin.site.register(UserExtension,UserExtensionAdmin)
+
+class ExperienceAdmin(admin.ModelAdmin):
+    list_display = ('title', 'category', 'pub_date', 'photo1', 'is_active', 'merchant')
+
+
+
+class UserLogAdmin(admin.ModelAdmin):
+    list_display = ('user','session','url','time',)
+    list_filter = ('user',)
+
+
+
+class CategoryAdmin(admin.ModelAdmin):
+    pass
+
+
+
+class UserMessageAdmin(admin.ModelAdmin):
+    list_display = ('to', 'sender', 'time',)
+    list_filter = ('to', 'sender', 'time',)
+
+
+super_admin = admin.site
+try:
+    super_admin.register(UserLog, UserLogAdmin)
+    super_admin.register(sorl.thumbnail.models.KVStore)
+    super_admin.register(UserExtension, UserExtensionAdmin)
+    super_admin.register(UserMessage, UserMessageAdmin)
+except Exception:
+    pass
+
+
+
+class LiteAdmin(AdminSite):
+    _registry = {}
+
+
+lite_admin = LiteAdmin("lite_admin")
+lite_admin.register(UserExtension, UserExtensionAdmin)
+lite_admin.register(Experience, ExperienceAdmin)
+lite_admin.register(UserLog, UserLogAdmin)
+lite_admin.register(Category, CategoryAdmin)
+lite_admin.register(UserMessage, UserMessageAdmin)

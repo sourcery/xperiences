@@ -1,11 +1,12 @@
 from django.conf import settings
 from django.conf.urls.defaults import *
 from django.conf.urls.static import static
+from django.contrib import admin
 #noinspection PyDeprecation
 from django.views.generic.simple import direct_to_template
-from django.contrib import admin
-from backend.lite_admin import lite_admin
+from backend.admin import lite_admin, super_admin
 admin.autodiscover()
+
 
 urlpatterns = patterns('',
     # Uncomment the admin/doc line below to enable admin documentation:
@@ -18,7 +19,7 @@ urlpatterns = patterns('',
     (r'^api/', include('api.urls')),
     (r'^admin/backend/', include('backend.urls')),
     (r'^accounts/', include('socialauth.urls')),
-    (r'^super_admin/', include(admin.site.urls)),
+    (r'^super_admin/', include(super_admin.urls)),
     (r'^admin/', include(lite_admin.urls)),
     (r'^about', direct_to_template, {'template': 'about.html'}),
     (r'^jobs', direct_to_template, {'template': 'jobs.html'}),
