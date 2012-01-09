@@ -81,9 +81,9 @@ merchant_actions = [approve_merchant]
 
 
 class UserExtensionAdmin(ButtonableModelAdmin):
-    list_display = ('name', 'user', 'photo', 'FB_token', 'is_merchant', 'is_approved')
+    list_display = ('name', 'user', 'photo', 'FB_token', 'is_merchant', 'is_approved','is_deleted')
     actions = merchant_actions
-    list_filter = ('is_merchant', 'is_approved')
+    list_filter = ('is_merchant', 'is_approved','is_deleted')
 
     def approve(self, obj):
         utils.approve_merchant(obj)

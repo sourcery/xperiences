@@ -5,7 +5,6 @@ from backend.fields import  RichTextField, XPImageField, GeoModel, TextSearchMod
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import signals
-from django.contrib.sessions.models import Session
 
 
 class UserLog(models.Model):
@@ -45,6 +44,7 @@ class UserExtension(GeoModel,TextSearchModel):
     validation_code = models.CharField(max_length=20, null=True, blank=True)
     is_merchant = models.BooleanField(default=False)
     is_approved = models.BooleanField(default=False)
+    is_deleted = models.BooleanField(default=False)
     credit = models.FloatField(default=0.0)
     FB_ID = models.CharField(max_length=40, null=True, blank=True)
     FB_token = models.CharField(max_length=255, null=True, blank=True)
@@ -75,9 +75,15 @@ class UserExtension(GeoModel,TextSearchModel):
         ordering = ['name']
         db_table = 'merchant'
 
-
     def delete(self, using=None):
-        raise Exception("Can't delete users")
+        from experiences.models import Experience
+        exps = Experience.objects.filter(merchant=self)
+        for exp in exps:
+            exp.is_active = False
+            exp.save()
+        self.is_deleted = True
+        self.save()
+        #raise Exception("Can't delete users")
 
 
     @staticmethod

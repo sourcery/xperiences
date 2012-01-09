@@ -12,7 +12,7 @@ from merchants.forms import MerchantForm, MerchantMessageForm
 
 
 def merchant_profile(request, username):
-    merchant = UserExtension.get_merchant(user=User.objects.get(username=username))
+    merchant = UserExtension.get_merchant(user=User.objects.get(username=username),is_deleted=False)
     template_name = 'merchants/merchant_profile.html'
     return render_to_response(template_name, {'merchant': merchant}, context_instance=RequestContext(request))
 
@@ -87,9 +87,9 @@ def view_message(request,id):
         return render_to_response('merchants/view_message.html',context_instance=RequestContext(request,{'message':message}))
     else:
         comment = request.POST.get('reply','')
+        message = UserMessage.objects.get(id=id)
+        reply = UserMessage(to=message.sender, sender=message.to, title=message.title,message=comment)
         if comment and comment != '':
-            message = UserMessage.objects.get(id=id)
-            reply = UserMessage(to=message.sender, sender=message.to, title=message.title,message=comment)
             reply.save()
             return render_to_response('merchants/view_message.html',context_instance=RequestContext(request,{'message':message,'reply':reply,'status':'ok'}))
         else:

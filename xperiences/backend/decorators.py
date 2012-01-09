@@ -11,7 +11,7 @@ def user_extension_required(login_url=None, redirect_field_name=REDIRECT_FIELD_N
     def decorator(view_func):
         @wraps(view_func, assigned=available_attrs(view_func))
         def _wrapped_view(request, *args, **kwargs):
-            if request.user_extension:
+            if request.user_extension and not request.user_extension.is_deleted:
                 return view_func(request, *args, **kwargs)
             path = request.build_absolute_uri()
             # If the login url is the same scheme and net location then just
@@ -34,7 +34,7 @@ def merchant_required(login_url=None, redirect_field_name=REDIRECT_FIELD_NAME):
         def _wrapped_view(request, *args, **kwargs):
             path = request.build_absolute_uri()
             ext = getattr(request, 'user_extension', None)
-            if ext:
+            if ext and not ext.is_deleted:
                 if not (ext.is_merchant and ext.description):
                     # If the login url is the same scheme and net location then just
                     # use the path as the "next" url.
