@@ -77,12 +77,21 @@ def preconfigured_merchant(request):
 def email_referral(request):
     message = request.POST.get('message', 'Check out this cool website!\n' + settings.BASE_URL + '?username=' + request.user_extension.name)
     context = {'message': message}
+    status = ''
     if request.method == 'POST':
         to = request.POST['to']
-        to = to.strip().split(',')
-        subject = '%s want\'s to share with you this cool site' % request.user.get_full_name()
-        send_mail(subject, message, settings.EMAIL_HOST_USER, to)
-        context['sent'] = True
+        to = to.strip()
+        if to != u'':
+            to = to.split(',')
+            try:
+                subject = '%s want\'s to share with you this cool site' % request.user.get_full_name()
+                send_mail(subject, message, settings.EMAIL_HOST_USER, to)
+                context['sent'] = True
+            except Exception,e:
+                status = 'Failed'
+        else:
+            status = 'Choose recipients'
+    context['status'] = status
     return render_to_response('email_referral.html', context_instance=RequestContext(request, context))
 
 

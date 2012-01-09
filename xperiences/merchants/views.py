@@ -2,10 +2,11 @@ from django.contrib.auth.models import User
 from backend import utils
 from backend.decorators import merchant_required
 from backend.models import UserExtension, UserMessage
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
 from experiences.forms import ExperienceForm
 from experiences.models import Experience
 from merchants.forms import MerchantForm, MerchantMessageForm
@@ -133,7 +134,7 @@ def edit_experience(request, slug_id):
         form = ExperienceForm(request.POST,request.FILES,instance=exp)
         if form.is_valid():
             form.save()
-            return HttpResponse('saved')
+            return redirect(reverse('merchant_experiences'))
         else:
             return render_to_response('merchants/edit_experience.html', context_instance=RequestContext(request,{'form' : form}) )
 
