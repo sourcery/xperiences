@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "base.html" %}
 
 {% load x_tags %} <!-- what are x_tags? -->
 
@@ -8,47 +8,53 @@
 <script type='text/javascript' src='/static/maps.js'></script>
 {% endblock %}
 
-{% block body %}
-{% include "header.html" %} <!-- why extends base.html isn't working? -->
+{% block content %}
 
-<div class="container">
-	<div class="column span9">
-		<div class="space30"></div>
-        {% if status == 'saved' %}
-		<div class="font12">Thank you! Your application will be reviewed by our team, and we'll get back you prompotly.<br />
-        In the meantime, check out other cool things you can do on our site.</div>
-        <div class="space10"></div>
-        <div><a class="btn btn-blue font14" href="/">Continue</a></div>
-		{% else %}
-		{{ form.errors }}
-		<h1>Apply to be listed and start selling</h1>
-		<form action="#" method="POST" enctype="multipart/form-data">
-			<fieldset class="panel row">
-				<div class="pad15">
-					<h3>Your contact information</h3>
-					<div class="row">
-						<div class="span6">
-							<label>Name</label>
-							<input class="span6" type="text" name="name" value='{{ form.name.value }}' />
-						</div>
+{% if status == 'saved' %}
+<div class="space60"></div>
+<div class="span7 center">
+	<div class="panel">
+		<div class="pad15">
+			<h1 class="title">Thank you!</h1>
+			<p>Your application will be reviewed by our team, and we'll get back you promptly.</p>
+			<p>In the meantime, check out other cool things <a href="/">you can do on our site.</a></p>
+		</div>
+	</div>
+	<div id="login-img" class="panel span7 row">
+	</div>
+</div>
+{% else %}
+<div class="space30"></div>
+<div class="column span9">
+	{{ form.errors }}
+	<h1>Apply to be listed and start selling</h1>
+	<form action="#" method="POST" enctype="multipart/form-data">
+		<fieldset class="panel row">
+			<div class="pad15">
+				<h3>Your contact information</h3>
+				<div class="row">
+					<div class="span6">
+						<label>Name</label>
+						<input class="span6" type="text" name="name" value='{{ form.name.value }}' />
 					</div>
-					<div class="row">
-						<div class="span6">
-							<label>Email</label>
-							<input class="span6" type="text" name="email" value='{{ user.email }}' />
-						</div>
+				</div>
+				<div class="row">
+					<div class="span6">
+						<label>Email</label>
+						<input class="span6" type="text" name="email" value='{{ user.email }}' />
 					</div>
-					<div class="row">
-						<div class="span6">
-							<label>Phone number</label>
-							<input class="span6" type="text" name="phone_number" value='{{ form.phone_number.value }}' />
-						</div>
+				</div>
+				<div class="row">
+					<div class="span6">
+						<label>Phone number</label>
+						<input class="span6" type="text" name="phone_number" value='{{ form.phone_number.value }}' />
 					</div>
-					<address><!-- html 5 semantic markup -->
+				</div>
+				<address><!-- html 5 semantic markup -->
 					<div class="row">
 						<div class="span6">
-                            {{ form.xp_location }}
-                            <div style='display:none;'><div id='hidden_map'></div></div>
+							{{ form.xp_location }}
+							<div style='display:none;'><div id='hidden_map'></div></div>
 							<label>Address</label>
 							<input class="span6" id="id_address" type="text" name="address" value='{{ form.address.value }}' />
 						</div>
@@ -86,38 +92,36 @@
 				</div>
 			</fieldset>
 
-					<fieldset class="panel row">
-						<div class="pad15">
-						<h3>Tell us about yourself</h3>
-						<p class="help-text">Tell us about yourself, how long have you been doing this, what sets you apart... anything that helps tell your story</p>
-						<textarea class="span6" class="description" required="required" name="description">{{ form.description.value }}</textarea>
-					</div>
-					</fieldset>
+			<fieldset class="panel row">
+				<div class="pad15">
+					<h3>Tell us about yourself</h3>
+					<p class="help-text">Tell us about yourself, how long have you been doing this, what sets you apart... anything that helps tell your story</p>
+					<textarea class="span6" class="description" required="required" name="description">{{ form.description.value }}</textarea>
+				</div>
+			</fieldset>
 
-					<fieldset class="panel row">
-						<div class="pad15">
-						<h3>What are you offering?</h3>
-						<p class="help-text">Tell us about your services, what makes your work appealing and unique to your customers</p>
-						<textarea class="span6" class="description" required="required" name="offering">{{ form.offering.value }}</textarea>
-					</div>
-					</fieldset>
+			<fieldset class="panel row">
+				<div class="pad15">
+					<h3>What are you offering?</h3>
+					<p class="help-text">Tell us about your services, what makes your work appealing and unique to your customers</p>
+					<textarea class="span6" class="description" required="required" name="offering">{{ form.offering.value }}</textarea>
+				</div>
+			</fieldset>
 
 
-					<fieldset class="panel row">
-						<div class="pad15">
-						<h3>Who are your customers?</h3>
-						<p class="help-text">Describe your target customers (age, charateristics, lifestyle, etc.)</p>
-						<textarea class="span6" class="description" required="required" name="target_customers">{{ form.target_customers.value }}</textarea>
-					</div>
-					</fieldset>
-					<div class="space30"></div>
-					<input type="submit" class="btn" value="Send application">
-			</form>
-			{% endif %}
-		</div>
-	</div><!-- close content-body -->
-{% include "footer.html" %}
+			<fieldset class="panel row">
+				<div class="pad15">
+					<h3>Who are your customers?</h3>
+					<p class="help-text">Describe your target customers (age, charateristics, lifestyle, etc.)</p>
+					<textarea class="span6" class="description" required="required" name="target_customers">{{ form.target_customers.value }}</textarea>
+				</div>
+			</fieldset>
+			<div class="space30"></div>
+			<input type="submit" class="btn" value="Send application">
+		</form>
+	</div>
 
+{% endif %}
 {% endblock %}
 
 

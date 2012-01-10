@@ -91,9 +91,14 @@ header {
 	overflow: hidden;
 }
 
+#header-notice-bar a {
+	color: black;
+}
+
 #header-notice-close {
 	margin-left: 100px;
 	vertical-align: middle;
+	cursor: pointer;
 }
 
 header .header-wrap {
