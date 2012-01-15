@@ -37,7 +37,6 @@ class UserLog(models.Model):
             log.save()
 
 
-
 class UserExtension(GeoModel,TextSearchModel):
     id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User, null=True)
@@ -52,7 +51,7 @@ class UserExtension(GeoModel,TextSearchModel):
 
     name = models.CharField(max_length=50)
     description = RichTextField(default='',blank=False)
-    phone_number = models.CharField(max_length=15, default='', blank=True)
+    phone_number = models.CharField(max_length=15, default='', blank=False)
     website = models.CharField(max_length=100, default='', blank=True)
 
     bio = models.TextField(max_length=755,default='',blank=True)
@@ -68,6 +67,14 @@ class UserExtension(GeoModel,TextSearchModel):
 
     offering = RichTextField(default='',blank=True)
     target_customers = RichTextField(default='',blank=True)
+
+    def __init__(self, *args, **kwargs):
+        super(UserExtension,self).__init__(*args,**kwargs)
+        for field in self._meta.fields:
+            if field.name == 'address':
+                field.blank = False
+                field.null = True
+                field.default = None
 
 
 

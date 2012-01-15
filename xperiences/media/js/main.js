@@ -132,7 +132,7 @@ function open_dialog(params)
 
     function close_dialog()
     {
-        $('body>.active_dialog,body>.shadow_div').remove();
+        $('body>.active_dialog,body>.shadow_div').fadeOut(300,function() { $(this).remove(); });
     }
     function on_cancel()
     {

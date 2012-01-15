@@ -9,7 +9,6 @@ from piston.handler import BaseHandler
 import api
 from pymongo.objectid import ObjectId
 
-
 Emitter.register('json', api.EmpeericJSONEmitter, 'application/json; charset=utf-8')
 MAX_RESULTS_PER_QUERY = 100
 # Base class for handler

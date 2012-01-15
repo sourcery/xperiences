@@ -41,27 +41,28 @@ def t_var(parser,token):
     else:
         return TextNode('${%s!=null?%s:%s}' % (exp[1],exp[1],exp[2]))
 
-@register.tag
-def t_url(parser,token):
-    exp = token.split_contents()
-    new_content = exp[0] + ' ' + exp[1]
-    args = {}
-    arg_names = {}
-    for i in range(len(exp)-2):
-        argname = ''.join([random.choice('1234567890') for j in range(15)] ) # 'xp_tag_arg%d'% i
-        args[argname] = '${' + exp[i+2] + '}'
-        arg_names[argname] = argname
-        new_content += ' ' + argname
-    token.contents = new_content
-    tagged =  url(parser,token)
-    old_render = tagged.render
-    def new_render(context):
-        rendered = old_render(Context(arg_names))
-        for arg in args:
-            rendered = rendered.replace(arg,args[arg])
-        return rendered
-    tagged.render = new_render
-    return tagged
+# BAD CODE
+#@register.tag
+#def t_url(parser,token):
+#    exp = token.split_contents()
+#    new_content = exp[0] + ' ' + exp[1]
+#    args = {}
+#    arg_names = {}
+#    for i in range(len(exp)-2):
+#        argname = ''.join([random.choice('1234567890') for j in range(15)] ) # 'xp_tag_arg%d'% i
+#        args[argname] = '${' + exp[i+2] + '}'
+#        arg_names[argname] = argname
+#        new_content += ' ' + argname
+#    token.contents = new_content
+#    tagged =  url(parser,token)
+#    old_render = tagged.render
+#    def new_render(context):
+#        rendered = old_render(Context(arg_names))
+#        for arg in args:
+#            rendered = rendered.replace(arg,args[arg])
+#        return rendered
+#    tagged.render = new_render
+#    return tagged
 
 @register.tag
 def t_uri(parser,token):

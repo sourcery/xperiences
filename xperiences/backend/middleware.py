@@ -1,19 +1,12 @@
 from django.contrib.auth.models import AnonymousUser
 from backend.models import UserExtension, UserLog
+from django.utils.functional import SimpleLazyObject
 
 __author__ = 'ishai'
 
 class LazyUserExtension(object):
     def __get__(self, request, _=None):
-        if not getattr(request, '_cached_user_ext', None):
-            if request.user.is_authenticated():
-                try:
-                    request._cached_user_ext = UserExtension.objects.get(user=request.user)
-                except UserExtension.DoesNotExist:
-                    request._cached_user_ext = None
-            else:
-                request._cached_user_ext = None
-        return request._cached_user_ext
+        return request.user.get_profile()
 
 class LazyMerchant(object):
     def __get__(self, request, _=None):
@@ -56,4 +49,34 @@ class ReferralMiddleware(object):
 import settings
 CONTEXT = { 'IP_GEOLOCATOR_API_KEY' : settings.IP_GEOLOCATOR_API_KEY, "settings": settings }
 def context_processor(request):
+    def auth(request):
+        """
+        Returns context variables required by apps that use Django's authentication
+        system.
+
+        If there is no 'user' attribute in the request, uses AnonymousUser (from
+        django.contrib.auth).
+        """
+    # If we access request.user, request.session is accessed, which results in
+    # 'Vary: Cookie' being sent in every request that uses this context
+    # processor, which can easily be every request on a site if
+    # TEMPLATE_CONTEXT_PROCESSORS has this context processor added.  This kills
+    # the ability to cache.  So, we carefully ensure these attributes are lazy.
+    # We don't use django.utils.functional.lazy() for User, because that
+    # requires knowing the class of the object we want to proxy, which could
+    # break with custom auth backends.  LazyObject is a less complete but more
+    # flexible solution that is a good enough wrapper for 'User'.
+    def get_user_extension():
+        if hasattr(request, 'user_extension'):
+            return request.user_extension
+        else:
+            return None
+    def get_merchant():
+        if hasattr(request, 'merchant'):
+            return request.merchant
+        else:
+            return None
+
+    CONTEXT['user_extension'] = SimpleLazyObject(get_user_extension)
+    CONTEXT['merchant'] = SimpleLazyObject(get_merchant)
     return CONTEXT

@@ -28,8 +28,8 @@
 <script type='text/x_jquery_templates' id="experience_item_tmpl">
 	<tr>
 		<td>
-			<a title="{% t_var title %}" href="{% t_url merchant_edit_experience slug_id %}">{% t_var title %} </a>
-			<a class="listing-image" title=" {% t_var title %}" href="{% t_url merchant_edit_experience slug_id %}">
+			<a title="{% t_var title %}" href="/merchants/edit_experience/{% t_var slug_id %}/">{% t_var title %} </a>
+			<a class="listing-image" title=" {% t_var title %}" href="/merchants/edit_experience/{% t_var slug_id %}/">
 				<img alt="{% t_var title %}" {% t_if photo1 %}src="{% t_var photo1.url %}"{% t_endif %}>
 			</a>
 		</td>
@@ -43,8 +43,8 @@
 			200
 		</td>
 		<td>
-			<a href="{% t_url merchant_edit_experience slug_id %}">edit</a>
-			<a href="{% t_url experience_profile slug_id %}">view</a>	
+			<a href="/merchants/edit_experience/{% t_var slug_id %}/">edit</a>
+			<a href="/experiences/{% t_var slug_id %}/">view</a>
 		</td>
 		<td>
 			{% t_if is_active %}

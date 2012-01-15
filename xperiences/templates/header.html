@@ -9,7 +9,7 @@
 	<div class="header-wrap span12">
 		<a id="logo" href="/"><span>naanprofit</span></a>
 		<a id="service-list" href="/experiences/add_experience/">Start Selling!</a>
-        {% if not user.is_authenticated %}
+        {% if not user.is_authenticated or user_extension.is_deleted %}
 		<a id="login-btn" href="/accounts/login/">Login</a>
         {% else %}
 		<div id="login-btn">

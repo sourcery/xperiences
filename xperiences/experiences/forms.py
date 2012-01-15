@@ -17,5 +17,5 @@ class ExperienceForm(forms.ModelForm):
 
     class Meta:
         model = Experience
-        exclude = ('merchant','pub_date')
+        exclude = ('merchant','pub_date','is_active')
 #        fields = ('title', 'description','category','price','video_link','use_saved_address','valid_from','valid_until','pub_date','photo1','photo2','photo3','photo4','photo5','xp_location','tags')

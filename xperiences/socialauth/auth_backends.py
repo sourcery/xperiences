@@ -254,7 +254,15 @@ class FacebookBackend:
                 user.save()
 
             ext = get_user_extension_from_request(user, request)
-            if not ext.referred_by:
+            # make db problems more robust
+            referred_by = None
+            if ext.referred_by_id:
+                referred_by = UserExtension.objects.filter(id=ext.referred_by_id)[:1]
+                if len(referred_by):
+                    referred_by = referred_by[0]
+                else:
+                    referred_by = None
+            if not referred_by:
                 referrer = UserInvite.objects.filter(invited=uid)[:1]
                 if len(referrer):
                     ext.referred_by = referrer[0].user
